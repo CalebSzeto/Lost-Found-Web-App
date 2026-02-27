@@ -1,0 +1,115 @@
+.navbar {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  padding: 0 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  gap: 0.5rem;
+}
+
+.brandIcon {
+  font-size: 1.5rem;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.btnReportLost {
+  background: #EF4444;
+  color: white !important;
+  font-weight: 600;
+}
+
+.btnReportLost:hover {
+  background: #DC2626;
+}
+
+.btnReportFound {
+  background: #10B981;
+  color: white !important;
+  font-weight: 600;
+}
+
+.btnReportFound:hover {
+  background: #059669;
+}
+
+.btnRegister {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+.btnLogout {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btnLogout:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
+
+  .container {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.75rem 0;
+    gap: 0.5rem;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .brandText {
+    font-size: 1rem;
+  }
+}

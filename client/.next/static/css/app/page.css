@@ -1,0 +1,146 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/app/page.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.page_hero__SKW6o {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED, #9333EA);
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.page_heroContent__2lPR8 {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.page_heroContent__2lPR8 h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.page_heroSubtitle__RTAw0 {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.page_heroActions__8_tzb {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Sections */
+.page_section__61PEw {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page_sectionTitle__hzsAh {
+  text-align: center;
+  font-size: 2rem;
+  color: #1E1B3A;
+  margin-bottom: 2.5rem;
+}
+
+/* Steps */
+.page_stepsGrid__OG6X3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+}
+
+.page_stepCard__RUgHq {
+  background: white;
+  border-radius: 14px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #E5E7EB;
+}
+
+.page_stepNumber__2EZE0 {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+}
+
+.page_stepCard__RUgHq h3 {
+  color: #1E1B3A;
+  margin: 0 0 0.5rem;
+}
+
+.page_stepCard__RUgHq p {
+  color: #6B7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Quick Links */
+.page_quickLinksSection__YSVDT {
+  background: #F3F4F6;
+  padding: 4rem 2rem;
+}
+
+.page_quickLinksGrid__ZXhDe {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page_quickLinkCard__Uqa2N {
+  background: white;
+  border-radius: 14px;
+  padding: 2rem;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #E5E7EB;
+}
+
+.page_quickLinkCard__Uqa2N:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.page_qlIcon__vsVKC {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.page_quickLinkCard__Uqa2N h3 {
+  color: #1E1B3A;
+  margin: 0 0 0.5rem;
+}
+
+.page_quickLinkCard__Uqa2N p {
+  color: #6B7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .page_heroContent__2lPR8 h1 {
+    font-size: 2rem;
+  }
+}
+

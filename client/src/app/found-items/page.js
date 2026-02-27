@@ -1,0 +1,63 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import SearchBar from '@/components/SearchBar';
+import PostCard from '@/components/PostCard';
+import { getFoundItems } from '@/lib/api';
+
+export default function FoundItemsPage() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchItems = async (filters = {}) => {
+    try {
+      setLoading(true);
+      const res = await getFoundItems(filters);
+      setItems(res.data);
+    } catch (err) {
+      setError('Failed to load found items');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const handleSearch = (filters) => {
+    fetchItems(filters);
+  };
+
+  return (
+    <div className="pageContainer">
+      <div className="pageHeader">
+        <h1>🟢 Found Items</h1>
+        <p>Browse items that have been found. If one of these is yours, message the finder!</p>
+      </div>
+
+      <SearchBar onSearch={handleSearch} showDateFilter={false} />
+
+      {loading ? (
+        <div className="loadingSpinner">
+          <div className="spinner"></div>
+          <p>Loading found items...</p>
+        </div>
+      ) : error ? (
+        <div className="errorMessage">{error}</div>
+      ) : items.length === 0 ? (
+        <div className="emptyState">
+          <h3>No found items posted yet</h3>
+          <p>Check back later or report an item you&apos;ve found.</p>
+        </div>
+      ) : (
+        <div className="postsGrid">
+          {items.map((item) => (
+            <PostCard key={item.found_item_id} item={item} type="found" />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

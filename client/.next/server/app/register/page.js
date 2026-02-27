@@ -1,0 +1,682 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "app/register/page";
+exports.ids = ["app/register/page"];
+exports.modules = {
+
+/***/ "../../client/components/action-async-storage.external":
+/*!*******************************************************************************!*\
+  !*** external "next/dist/client/components/action-async-storage.external.js" ***!
+  \*******************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/action-async-storage.external.js");
+
+/***/ }),
+
+/***/ "../../client/components/request-async-storage.external":
+/*!********************************************************************************!*\
+  !*** external "next/dist/client/components/request-async-storage.external.js" ***!
+  \********************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/request-async-storage.external.js");
+
+/***/ }),
+
+/***/ "../../client/components/static-generation-async-storage.external":
+/*!******************************************************************************************!*\
+  !*** external "next/dist/client/components/static-generation-async-storage.external.js" ***!
+  \******************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/static-generation-async-storage.external.js");
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/app-page.runtime.dev.js":
+/*!*************************************************************************!*\
+  !*** external "next/dist/compiled/next-server/app-page.runtime.dev.js" ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/compiled/next-server/app-page.runtime.dev.js");
+
+/***/ }),
+
+/***/ "assert":
+/*!*************************!*\
+  !*** external "assert" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("assert");
+
+/***/ }),
+
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("crypto");
+
+/***/ }),
+
+/***/ "dns":
+/*!**********************!*\
+  !*** external "dns" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("dns");
+
+/***/ }),
+
+/***/ "events":
+/*!*************************!*\
+  !*** external "events" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("events");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "http":
+/*!***********************!*\
+  !*** external "http" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("http");
+
+/***/ }),
+
+/***/ "http2":
+/*!************************!*\
+  !*** external "http2" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("http2");
+
+/***/ }),
+
+/***/ "https":
+/*!************************!*\
+  !*** external "https" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("https");
+
+/***/ }),
+
+/***/ "net":
+/*!**********************!*\
+  !*** external "net" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("net");
+
+/***/ }),
+
+/***/ "os":
+/*!*********************!*\
+  !*** external "os" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("os");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");
+
+/***/ }),
+
+/***/ "process":
+/*!**************************!*\
+  !*** external "process" ***!
+  \**************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("process");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "string_decoder":
+/*!*********************************!*\
+  !*** external "string_decoder" ***!
+  \*********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("string_decoder");
+
+/***/ }),
+
+/***/ "tls":
+/*!**********************!*\
+  !*** external "tls" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tls");
+
+/***/ }),
+
+/***/ "tty":
+/*!**********************!*\
+  !*** external "tty" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tty");
+
+/***/ }),
+
+/***/ "url":
+/*!**********************!*\
+  !*** external "url" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("url");
+
+/***/ }),
+
+/***/ "util":
+/*!***********************!*\
+  !*** external "util" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("util");
+
+/***/ }),
+
+/***/ "zlib":
+/*!***********************!*\
+  !*** external "zlib" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ "node:assert":
+/*!******************************!*\
+  !*** external "node:assert" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:assert");
+
+/***/ }),
+
+/***/ "node:async_hooks":
+/*!***********************************!*\
+  !*** external "node:async_hooks" ***!
+  \***********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:async_hooks");
+
+/***/ }),
+
+/***/ "node:buffer":
+/*!******************************!*\
+  !*** external "node:buffer" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:buffer");
+
+/***/ }),
+
+/***/ "node:console":
+/*!*******************************!*\
+  !*** external "node:console" ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:console");
+
+/***/ }),
+
+/***/ "node:crypto":
+/*!******************************!*\
+  !*** external "node:crypto" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:crypto");
+
+/***/ }),
+
+/***/ "node:diagnostics_channel":
+/*!*******************************************!*\
+  !*** external "node:diagnostics_channel" ***!
+  \*******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:diagnostics_channel");
+
+/***/ }),
+
+/***/ "node:events":
+/*!******************************!*\
+  !*** external "node:events" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:events");
+
+/***/ }),
+
+/***/ "node:http":
+/*!****************************!*\
+  !*** external "node:http" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:http");
+
+/***/ }),
+
+/***/ "node:http2":
+/*!*****************************!*\
+  !*** external "node:http2" ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:http2");
+
+/***/ }),
+
+/***/ "node:net":
+/*!***************************!*\
+  !*** external "node:net" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:net");
+
+/***/ }),
+
+/***/ "node:perf_hooks":
+/*!**********************************!*\
+  !*** external "node:perf_hooks" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:perf_hooks");
+
+/***/ }),
+
+/***/ "node:querystring":
+/*!***********************************!*\
+  !*** external "node:querystring" ***!
+  \***********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:querystring");
+
+/***/ }),
+
+/***/ "node:stream":
+/*!******************************!*\
+  !*** external "node:stream" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:stream");
+
+/***/ }),
+
+/***/ "node:tls":
+/*!***************************!*\
+  !*** external "node:tls" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:tls");
+
+/***/ }),
+
+/***/ "node:url":
+/*!***************************!*\
+  !*** external "node:url" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:url");
+
+/***/ }),
+
+/***/ "node:util":
+/*!****************************!*\
+  !*** external "node:util" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:util");
+
+/***/ }),
+
+/***/ "node:util/types":
+/*!**********************************!*\
+  !*** external "node:util/types" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:util/types");
+
+/***/ }),
+
+/***/ "node:worker_threads":
+/*!**************************************!*\
+  !*** external "node:worker_threads" ***!
+  \**************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:worker_threads");
+
+/***/ }),
+
+/***/ "node:zlib":
+/*!****************************!*\
+  !*** external "node:zlib" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:zlib");
+
+/***/ }),
+
+/***/ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fregister%2Fpage&page=%2Fregister%2Fpage&appPaths=%2Fregister%2Fpage&pagePath=private-next-app-dir%2Fregister%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fregister%2Fpage&page=%2Fregister%2Fpage&appPaths=%2Fregister%2Fpage&pagePath=private-next-app-dir%2Fregister%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D! ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   GlobalError: () => (/* reexport default from dynamic */ next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2___default.a),\n/* harmony export */   __next_app__: () => (/* binding */ __next_app__),\n/* harmony export */   originalPathname: () => (/* binding */ originalPathname),\n/* harmony export */   pages: () => (/* binding */ pages),\n/* harmony export */   routeModule: () => (/* binding */ routeModule),\n/* harmony export */   tree: () => (/* binding */ tree)\n/* harmony export */ });\n/* harmony import */ var next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/server/future/route-modules/app-page/module.compiled */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/module.compiled.js?d969\");\n/* harmony import */ var next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/dist/server/future/route-kind */ \"(rsc)/./node_modules/next/dist/server/future/route-kind.js\");\n/* harmony import */ var next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/dist/client/components/error-boundary */ \"(rsc)/./node_modules/next/dist/client/components/error-boundary.js\");\n/* harmony import */ var next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/dist/server/app-render/entry-base */ \"(rsc)/./node_modules/next/dist/server/app-render/entry-base.js\");\n/* harmony import */ var next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};\n/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__) if([\"default\",\"tree\",\"pages\",\"GlobalError\",\"originalPathname\",\"__next_app__\",\"routeModule\"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__[__WEBPACK_IMPORT_KEY__]\n/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);\n\"TURBOPACK { transition: next-ssr }\";\n\n\n// We inject the tree and pages here so that we can use them in the route\n// module.\nconst tree = {\n        children: [\n        '',\n        {\n        children: [\n        'register',\n        {\n        children: ['__PAGE__', {}, {\n          page: [() => Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/register/page.js */ \"(rsc)/./src/app/register/page.js\")), \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\"],\n          \n        }]\n      },\n        {\n        \n        \n      }\n      ]\n      },\n        {\n        'layout': [() => Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/layout.js */ \"(rsc)/./src/app/layout.js\")), \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\"],\n'not-found': [() => Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! next/dist/client/components/not-found-error */ \"(rsc)/./node_modules/next/dist/client/components/not-found-error.js\", 23)), \"next/dist/client/components/not-found-error\"],\n        \n      }\n      ]\n      }.children;\nconst pages = [\"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\"];\n\n\nconst __next_app_require__ = __webpack_require__\nconst __next_app_load_chunk__ = () => Promise.resolve()\nconst originalPathname = \"/register/page\";\nconst __next_app__ = {\n    require: __next_app_require__,\n    loadChunk: __next_app_load_chunk__\n};\n\n// Create and export the route module that will be consumed.\nconst routeModule = new next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__.AppPageRouteModule({\n    definition: {\n        kind: next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__.RouteKind.APP_PAGE,\n        page: \"/register/page\",\n        pathname: \"/register\",\n        // The following aren't used in production.\n        bundlePath: \"\",\n        filename: \"\",\n        appPaths: []\n    },\n    userland: {\n        loaderTree: tree\n    }\n});\n\n//# sourceMappingURL=app-page.js.map//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWFwcC1sb2FkZXIuanM/bmFtZT1hcHAlMkZyZWdpc3RlciUyRnBhZ2UmcGFnZT0lMkZyZWdpc3RlciUyRnBhZ2UmYXBwUGF0aHM9JTJGcmVnaXN0ZXIlMkZwYWdlJnBhZ2VQYXRoPXByaXZhdGUtbmV4dC1hcHAtZGlyJTJGcmVnaXN0ZXIlMkZwYWdlLmpzJmFwcERpcj0lMkZVc2VycyUyRmNhbGVic3pldG8lMkZ2c2NvZGUtc2Nob29sLXByb2plY3RzJTJGY3NzY2hvb2xwcm9qZWN0JTJGQ1M0ODAwSFdBMiUyRmNsaWVudCUyRnNyYyUyRmFwcCZwYWdlRXh0ZW5zaW9ucz10c3gmcGFnZUV4dGVuc2lvbnM9dHMmcGFnZUV4dGVuc2lvbnM9anN4JnBhZ2VFeHRlbnNpb25zPWpzJnJvb3REaXI9JTJGVXNlcnMlMkZjYWxlYnN6ZXRvJTJGdnNjb2RlLXNjaG9vbC1wcm9qZWN0cyUyRmNzc2Nob29scHJvamVjdCUyRkNTNDgwMEhXQTIlMkZjbGllbnQmaXNEZXY9dHJ1ZSZ0c2NvbmZpZ1BhdGg9dHNjb25maWcuanNvbiZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9JnByZWZlcnJlZFJlZ2lvbj0mbWlkZGxld2FyZUNvbmZpZz1lMzAlM0QhIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxhQUFhLHNCQUFzQjtBQUNpRTtBQUNyQztBQUMvRDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxpQ0FBaUM7QUFDakMsdUJBQXVCLGdLQUF3STtBQUMvSjtBQUNBLFNBQVM7QUFDVCxPQUFPO0FBQ1A7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLE9BQU87QUFDUDtBQUNBLHlCQUF5QixrSkFBaUk7QUFDMUosb0JBQW9CLDBOQUFnRjtBQUNwRztBQUNBO0FBQ0E7QUFDQSxPQUFPO0FBQ1A7QUFDdUI7QUFDNkQ7QUFDcEYsNkJBQTZCLG1CQUFtQjtBQUNoRDtBQUNPO0FBQ0E7QUFDUDtBQUNBO0FBQ0E7QUFDdUQ7QUFDdkQ7QUFDTyx3QkFBd0IsOEdBQWtCO0FBQ2pEO0FBQ0EsY0FBYyx5RUFBUztBQUN2QjtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxLQUFLO0FBQ0w7QUFDQTtBQUNBO0FBQ0EsQ0FBQzs7QUFFRCIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8/OWQ5OCJdLCJzb3VyY2VzQ29udGVudCI6WyJcIlRVUkJPUEFDSyB7IHRyYW5zaXRpb246IG5leHQtc3NyIH1cIjtcbmltcG9ydCB7IEFwcFBhZ2VSb3V0ZU1vZHVsZSB9IGZyb20gXCJuZXh0L2Rpc3Qvc2VydmVyL2Z1dHVyZS9yb3V0ZS1tb2R1bGVzL2FwcC1wYWdlL21vZHVsZS5jb21waWxlZFwiO1xuaW1wb3J0IHsgUm91dGVLaW5kIH0gZnJvbSBcIm5leHQvZGlzdC9zZXJ2ZXIvZnV0dXJlL3JvdXRlLWtpbmRcIjtcbi8vIFdlIGluamVjdCB0aGUgdHJlZSBhbmQgcGFnZXMgaGVyZSBzbyB0aGF0IHdlIGNhbiB1c2UgdGhlbSBpbiB0aGUgcm91dGVcbi8vIG1vZHVsZS5cbmNvbnN0IHRyZWUgPSB7XG4gICAgICAgIGNoaWxkcmVuOiBbXG4gICAgICAgICcnLFxuICAgICAgICB7XG4gICAgICAgIGNoaWxkcmVuOiBbXG4gICAgICAgICdyZWdpc3RlcicsXG4gICAgICAgIHtcbiAgICAgICAgY2hpbGRyZW46IFsnX19QQUdFX18nLCB7fSwge1xuICAgICAgICAgIHBhZ2U6IFsoKSA9PiBpbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIi9Vc2Vycy9jYWxlYnN6ZXRvL3ZzY29kZS1zY2hvb2wtcHJvamVjdHMvY3NzY2hvb2xwcm9qZWN0L0NTNDgwMEhXQTIvY2xpZW50L3NyYy9hcHAvcmVnaXN0ZXIvcGFnZS5qc1wiKSwgXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9zcmMvYXBwL3JlZ2lzdGVyL3BhZ2UuanNcIl0sXG4gICAgICAgICAgXG4gICAgICAgIH1dXG4gICAgICB9LFxuICAgICAgICB7XG4gICAgICAgIFxuICAgICAgICBcbiAgICAgIH1cbiAgICAgIF1cbiAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgJ2xheW91dCc6IFsoKSA9PiBpbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIi9Vc2Vycy9jYWxlYnN6ZXRvL3ZzY29kZS1zY2hvb2wtcHJvamVjdHMvY3NzY2hvb2xwcm9qZWN0L0NTNDgwMEhXQTIvY2xpZW50L3NyYy9hcHAvbGF5b3V0LmpzXCIpLCBcIi9Vc2Vycy9jYWxlYnN6ZXRvL3ZzY29kZS1zY2hvb2wtcHJvamVjdHMvY3NzY2hvb2xwcm9qZWN0L0NTNDgwMEhXQTIvY2xpZW50L3NyYy9hcHAvbGF5b3V0LmpzXCJdLFxuJ25vdC1mb3VuZCc6IFsoKSA9PiBpbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIm5leHQvZGlzdC9jbGllbnQvY29tcG9uZW50cy9ub3QtZm91bmQtZXJyb3JcIiksIFwibmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL25vdC1mb3VuZC1lcnJvclwiXSxcbiAgICAgICAgXG4gICAgICB9XG4gICAgICBdXG4gICAgICB9LmNoaWxkcmVuO1xuY29uc3QgcGFnZXMgPSBbXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9zcmMvYXBwL3JlZ2lzdGVyL3BhZ2UuanNcIl07XG5leHBvcnQgeyB0cmVlLCBwYWdlcyB9O1xuZXhwb3J0IHsgZGVmYXVsdCBhcyBHbG9iYWxFcnJvciB9IGZyb20gXCJuZXh0L2Rpc3QvY2xpZW50L2NvbXBvbmVudHMvZXJyb3ItYm91bmRhcnlcIjtcbmNvbnN0IF9fbmV4dF9hcHBfcmVxdWlyZV9fID0gX193ZWJwYWNrX3JlcXVpcmVfX1xuY29uc3QgX19uZXh0X2FwcF9sb2FkX2NodW5rX18gPSAoKSA9PiBQcm9taXNlLnJlc29sdmUoKVxuZXhwb3J0IGNvbnN0IG9yaWdpbmFsUGF0aG5hbWUgPSBcIi9yZWdpc3Rlci9wYWdlXCI7XG5leHBvcnQgY29uc3QgX19uZXh0X2FwcF9fID0ge1xuICAgIHJlcXVpcmU6IF9fbmV4dF9hcHBfcmVxdWlyZV9fLFxuICAgIGxvYWRDaHVuazogX19uZXh0X2FwcF9sb2FkX2NodW5rX19cbn07XG5leHBvcnQgKiBmcm9tIFwibmV4dC9kaXN0L3NlcnZlci9hcHAtcmVuZGVyL2VudHJ5LWJhc2VcIjtcbi8vIENyZWF0ZSBhbmQgZXhwb3J0IHRoZSByb3V0ZSBtb2R1bGUgdGhhdCB3aWxsIGJlIGNvbnN1bWVkLlxuZXhwb3J0IGNvbnN0IHJvdXRlTW9kdWxlID0gbmV3IEFwcFBhZ2VSb3V0ZU1vZHVsZSh7XG4gICAgZGVmaW5pdGlvbjoge1xuICAgICAgICBraW5kOiBSb3V0ZUtpbmQuQVBQX1BBR0UsXG4gICAgICAgIHBhZ2U6IFwiL3JlZ2lzdGVyL3BhZ2VcIixcbiAgICAgICAgcGF0aG5hbWU6IFwiL3JlZ2lzdGVyXCIsXG4gICAgICAgIC8vIFRoZSBmb2xsb3dpbmcgYXJlbid0IHVzZWQgaW4gcHJvZHVjdGlvbi5cbiAgICAgICAgYnVuZGxlUGF0aDogXCJcIixcbiAgICAgICAgZmlsZW5hbWU6IFwiXCIsXG4gICAgICAgIGFwcFBhdGhzOiBbXVxuICAgIH0sXG4gICAgdXNlcmxhbmQ6IHtcbiAgICAgICAgbG9hZGVyVHJlZTogdHJlZVxuICAgIH1cbn0pO1xuXG4vLyMgc291cmNlTWFwcGluZ1VSTD1hcHAtcGFnZS5qcy5tYXAiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fregister%2Fpage&page=%2Fregister%2Fpage&appPaths=%2Fregister%2Fpage&pagePath=private-next-app-dir%2Fregister%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fapp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Ferror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Flayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Frender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fapp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Ferror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Flayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Frender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true! ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/app-router.js */ \"(ssr)/./node_modules/next/dist/client/components/app-router.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/client-page.js */ \"(ssr)/./node_modules/next/dist/client/components/client-page.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/error-boundary.js */ \"(ssr)/./node_modules/next/dist/client/components/error-boundary.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/layout-router.js */ \"(ssr)/./node_modules/next/dist/client/components/layout-router.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/not-found-boundary.js */ \"(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/render-from-template-context.js */ \"(ssr)/./node_modules/next/dist/client/components/render-from-template-context.js\", 23));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGbm9kZV9tb2R1bGVzJTJGbmV4dCUyRmRpc3QlMkZjbGllbnQlMkZjb21wb25lbnRzJTJGYXBwLXJvdXRlci5qcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjIlMkZVc2VycyUyRmNhbGVic3pldG8lMkZ2c2NvZGUtc2Nob29sLXByb2plY3RzJTJGY3NzY2hvb2xwcm9qZWN0JTJGQ1M0ODAwSFdBMiUyRmNsaWVudCUyRm5vZGVfbW9kdWxlcyUyRm5leHQlMkZkaXN0JTJGY2xpZW50JTJGY29tcG9uZW50cyUyRmNsaWVudC1wYWdlLmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGbm9kZV9tb2R1bGVzJTJGbmV4dCUyRmRpc3QlMkZjbGllbnQlMkZjb21wb25lbnRzJTJGZXJyb3ItYm91bmRhcnkuanMlMjIlMkMlMjJpZHMlMjIlM0ElNUIlNUQlN0QmbW9kdWxlcz0lN0IlMjJyZXF1ZXN0JTIyJTNBJTIyJTJGVXNlcnMlMkZjYWxlYnN6ZXRvJTJGdnNjb2RlLXNjaG9vbC1wcm9qZWN0cyUyRmNzc2Nob29scHJvamVjdCUyRkNTNDgwMEhXQTIlMkZjbGllbnQlMkZub2RlX21vZHVsZXMlMkZuZXh0JTJGZGlzdCUyRmNsaWVudCUyRmNvbXBvbmVudHMlMkZsYXlvdXQtcm91dGVyLmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGbm9kZV9tb2R1bGVzJTJGbmV4dCUyRmRpc3QlMkZjbGllbnQlMkZjb21wb25lbnRzJTJGbm90LWZvdW5kLWJvdW5kYXJ5LmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGbm9kZV9tb2R1bGVzJTJGbmV4dCUyRmRpc3QlMkZjbGllbnQlMkZjb21wb25lbnRzJTJGcmVuZGVyLWZyb20tdGVtcGxhdGUtY29udGV4dC5qcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZzZXJ2ZXI9dHJ1ZSEiLCJtYXBwaW5ncyI6IkFBQUEsa09BQXNLO0FBQ3RLO0FBQ0Esb09BQXVLO0FBQ3ZLO0FBQ0EsME9BQTBLO0FBQzFLO0FBQ0Esd09BQXlLO0FBQ3pLO0FBQ0Esa1BBQThLO0FBQzlLO0FBQ0Esc1FBQXdMIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Lz9hMjhkIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwiL1VzZXJzL2NhbGVic3pldG8vdnNjb2RlLXNjaG9vbC1wcm9qZWN0cy9jc3NjaG9vbHByb2plY3QvQ1M0ODAwSFdBMi9jbGllbnQvbm9kZV9tb2R1bGVzL25leHQvZGlzdC9jbGllbnQvY29tcG9uZW50cy9hcHAtcm91dGVyLmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL2NsaWVudC1wYWdlLmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL2Vycm9yLWJvdW5kYXJ5LmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL2xheW91dC1yb3V0ZXIuanNcIik7XG47XG5pbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIi9Vc2Vycy9jYWxlYnN6ZXRvL3ZzY29kZS1zY2hvb2wtcHJvamVjdHMvY3NzY2hvb2xwcm9qZWN0L0NTNDgwMEhXQTIvY2xpZW50L25vZGVfbW9kdWxlcy9uZXh0L2Rpc3QvY2xpZW50L2NvbXBvbmVudHMvbm90LWZvdW5kLWJvdW5kYXJ5LmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL3JlbmRlci1mcm9tLXRlbXBsYXRlLWNvbnRleHQuanNcIik7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fapp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Ferror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Flayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fnode_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Frender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Flayout.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Flayout.js%22%2C%22ids%22%3A%5B%5D%7D&server=true! ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/layout.js */ \"(ssr)/./src/app/layout.js\"));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGc3JjJTJGYXBwJTJGbGF5b3V0LmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJnNlcnZlcj10cnVlISIsIm1hcHBpbmdzIjoiQUFBQSxrSkFBaUkiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9sb3N0LWFuZC1mb3VuZC1jbGllbnQvPzJjZTMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9zcmMvYXBwL2xheW91dC5qc1wiKTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Flayout.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Fregister%2Fpage.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Fregister%2Fpage.js%22%2C%22ids%22%3A%5B%5D%7D&server=true! ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./src/app/register/page.js */ \"(ssr)/./src/app/register/page.js\"));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMiUyRlVzZXJzJTJGY2FsZWJzemV0byUyRnZzY29kZS1zY2hvb2wtcHJvamVjdHMlMkZjc3NjaG9vbHByb2plY3QlMkZDUzQ4MDBIV0EyJTJGY2xpZW50JTJGc3JjJTJGYXBwJTJGcmVnaXN0ZXIlMkZwYWdlLmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJnNlcnZlcj10cnVlISIsIm1hcHBpbmdzIjoiQUFBQSxnS0FBd0kiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9sb3N0LWFuZC1mb3VuZC1jbGllbnQvP2U2MzQiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCIvVXNlcnMvY2FsZWJzemV0by92c2NvZGUtc2Nob29sLXByb2plY3RzL2Nzc2Nob29scHJvamVjdC9DUzQ4MDBIV0EyL2NsaWVudC9zcmMvYXBwL3JlZ2lzdGVyL3BhZ2UuanNcIik7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp%2Fregister%2Fpage.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/app/layout.js":
+/*!***************************!*\
+  !*** ./src/app/layout.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RootLayout)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _context_AuthContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/context/AuthContext */ \"(ssr)/./src/context/AuthContext.js\");\n/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Navbar */ \"(ssr)/./src/components/Navbar.js\");\n/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Footer */ \"(ssr)/./src/components/Footer.js\");\n/* harmony import */ var _globals_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./globals.css */ \"(ssr)/./src/app/globals.css\");\n/* __next_internal_client_entry_do_not_use__ default auto */ \n\n\n\n\nfunction RootLayout({ children }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"html\", {\n        lang: \"en\",\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"head\", {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"title\", {\n                        children: \"Campus Lost & Found\"\n                    }, void 0, false, {\n                        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                        lineNumber: 12,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"description\",\n                        content: \"School Lost & Found Platform - Report and find lost items\"\n                    }, void 0, false, {\n                        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                        lineNumber: 13,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"meta\", {\n                        name: \"viewport\",\n                        content: \"width=device-width, initial-scale=1\"\n                    }, void 0, false, {\n                        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                        lineNumber: 14,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                lineNumber: 11,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"body\", {\n                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_context_AuthContext__WEBPACK_IMPORTED_MODULE_1__.AuthProvider, {\n                    children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        style: {\n                            display: \"flex\",\n                            flexDirection: \"column\",\n                            minHeight: \"100vh\"\n                        },\n                        children: [\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Navbar__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {}, void 0, false, {\n                                fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                                lineNumber: 19,\n                                columnNumber: 13\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"main\", {\n                                style: {\n                                    flex: 1\n                                },\n                                children: children\n                            }, void 0, false, {\n                                fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                                lineNumber: 20,\n                                columnNumber: 13\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {}, void 0, false, {\n                                fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                                lineNumber: 23,\n                                columnNumber: 13\n                            }, this)\n                        ]\n                    }, void 0, true, {\n                        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                        lineNumber: 18,\n                        columnNumber: 11\n                    }, this)\n                }, void 0, false, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                    lineNumber: 17,\n                    columnNumber: 9\n                }, this)\n            }, void 0, false, {\n                fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n                lineNumber: 16,\n                columnNumber: 7\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js\",\n        lineNumber: 10,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL2xheW91dC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUVxRDtBQUNaO0FBQ0E7QUFDbEI7QUFFUixTQUFTRyxXQUFXLEVBQUVDLFFBQVEsRUFBRTtJQUM3QyxxQkFDRSw4REFBQ0M7UUFBS0MsTUFBSzs7MEJBQ1QsOERBQUNDOztrQ0FDQyw4REFBQ0M7a0NBQU07Ozs7OztrQ0FDUCw4REFBQ0M7d0JBQUtDLE1BQUs7d0JBQWNDLFNBQVE7Ozs7OztrQ0FDakMsOERBQUNGO3dCQUFLQyxNQUFLO3dCQUFXQyxTQUFROzs7Ozs7Ozs7Ozs7MEJBRWhDLDhEQUFDQzswQkFDQyw0RUFBQ1osOERBQVlBOzhCQUNYLDRFQUFDYTt3QkFBSUMsT0FBTzs0QkFBRUMsU0FBUzs0QkFBUUMsZUFBZTs0QkFBVUMsV0FBVzt3QkFBUTs7MENBQ3pFLDhEQUFDaEIsMERBQU1BOzs7OzswQ0FDUCw4REFBQ2lCO2dDQUFLSixPQUFPO29DQUFFSyxNQUFNO2dDQUFFOzBDQUNwQmY7Ozs7OzswQ0FFSCw4REFBQ0YsMERBQU1BOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFNbkIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9sb3N0LWFuZC1mb3VuZC1jbGllbnQvLi9zcmMvYXBwL2xheW91dC5qcz81YjE5Il0sInNvdXJjZXNDb250ZW50IjpbIid1c2UgY2xpZW50JztcblxuaW1wb3J0IHsgQXV0aFByb3ZpZGVyIH0gZnJvbSAnQC9jb250ZXh0L0F1dGhDb250ZXh0JztcbmltcG9ydCBOYXZiYXIgZnJvbSAnQC9jb21wb25lbnRzL05hdmJhcic7XG5pbXBvcnQgRm9vdGVyIGZyb20gJ0AvY29tcG9uZW50cy9Gb290ZXInO1xuaW1wb3J0ICcuL2dsb2JhbHMuY3NzJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUm9vdExheW91dCh7IGNoaWxkcmVuIH0pIHtcbiAgcmV0dXJuIChcbiAgICA8aHRtbCBsYW5nPVwiZW5cIj5cbiAgICAgIDxoZWFkPlxuICAgICAgICA8dGl0bGU+Q2FtcHVzIExvc3QgJiBGb3VuZDwvdGl0bGU+XG4gICAgICAgIDxtZXRhIG5hbWU9XCJkZXNjcmlwdGlvblwiIGNvbnRlbnQ9XCJTY2hvb2wgTG9zdCAmIEZvdW5kIFBsYXRmb3JtIC0gUmVwb3J0IGFuZCBmaW5kIGxvc3QgaXRlbXNcIiAvPlxuICAgICAgICA8bWV0YSBuYW1lPVwidmlld3BvcnRcIiBjb250ZW50PVwid2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTFcIiAvPlxuICAgICAgPC9oZWFkPlxuICAgICAgPGJvZHk+XG4gICAgICAgIDxBdXRoUHJvdmlkZXI+XG4gICAgICAgICAgPGRpdiBzdHlsZT17eyBkaXNwbGF5OiAnZmxleCcsIGZsZXhEaXJlY3Rpb246ICdjb2x1bW4nLCBtaW5IZWlnaHQ6ICcxMDB2aCcgfX0+XG4gICAgICAgICAgICA8TmF2YmFyIC8+XG4gICAgICAgICAgICA8bWFpbiBzdHlsZT17eyBmbGV4OiAxIH19PlxuICAgICAgICAgICAgICB7Y2hpbGRyZW59XG4gICAgICAgICAgICA8L21haW4+XG4gICAgICAgICAgICA8Rm9vdGVyIC8+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvQXV0aFByb3ZpZGVyPlxuICAgICAgPC9ib2R5PlxuICAgIDwvaHRtbD5cbiAgKTtcbn1cbiJdLCJuYW1lcyI6WyJBdXRoUHJvdmlkZXIiLCJOYXZiYXIiLCJGb290ZXIiLCJSb290TGF5b3V0IiwiY2hpbGRyZW4iLCJodG1sIiwibGFuZyIsImhlYWQiLCJ0aXRsZSIsIm1ldGEiLCJuYW1lIiwiY29udGVudCIsImJvZHkiLCJkaXYiLCJzdHlsZSIsImRpc3BsYXkiLCJmbGV4RGlyZWN0aW9uIiwibWluSGVpZ2h0IiwibWFpbiIsImZsZXgiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./src/app/layout.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/app/register/page.js":
+/*!**********************************!*\
+  !*** ./src/app/register/page.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RegisterPage)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ \"(ssr)/./node_modules/next/dist/api/link.js\");\n/* harmony import */ var next_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/navigation */ \"(ssr)/./node_modules/next/dist/api/navigation.js\");\n/* harmony import */ var _context_AuthContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/context/AuthContext */ \"(ssr)/./src/context/AuthContext.js\");\n/* harmony import */ var _auth_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth.module.css */ \"(ssr)/./src/app/register/auth.module.css\");\n/* harmony import */ var _auth_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_auth_module_css__WEBPACK_IMPORTED_MODULE_5__);\n/* __next_internal_client_entry_do_not_use__ default auto */ \n\n\n\n\n\nfunction RegisterPage() {\n    const [email, setEmail] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const [password, setPassword] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const [confirmPassword, setConfirmPassword] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const [displayName, setDisplayName] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const [error, setError] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);\n    const { signup } = (0,_context_AuthContext__WEBPACK_IMPORTED_MODULE_4__.useAuth)();\n    const router = (0,next_navigation__WEBPACK_IMPORTED_MODULE_3__.useRouter)();\n    const handleSubmit = async (e)=>{\n        e.preventDefault();\n        setError(\"\");\n        if (password !== confirmPassword) {\n            return setError(\"Passwords do not match\");\n        }\n        if (password.length < 6) {\n            return setError(\"Password must be at least 6 characters\");\n        }\n        setLoading(true);\n        try {\n            await signup(email, password, displayName);\n            router.push(\"/\");\n        } catch (err) {\n            if (err.code === \"auth/email-already-in-use\") {\n                setError(\"An account with this email already exists\");\n            } else if (err.code === \"auth/weak-password\") {\n                setError(\"Password is too weak\");\n            } else {\n                setError(\"Failed to create account. Please try again.\");\n            }\n        } finally{\n            setLoading(false);\n        }\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().container),\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().card),\n            children: [\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().header),\n                    children: [\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h2\", {\n                            children: \"Create Account\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 52,\n                            columnNumber: 11\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                            children: \"Join Campus Lost & Found\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 53,\n                            columnNumber: 11\n                        }, this)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                    lineNumber: 51,\n                    columnNumber: 9\n                }, this),\n                error && /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    className: \"errorMessage\",\n                    children: error\n                }, void 0, false, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                    lineNumber: 56,\n                    columnNumber: 19\n                }, this),\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"form\", {\n                    onSubmit: handleSubmit,\n                    className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().form),\n                    children: [\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"formGroup\",\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"label\", {\n                                    htmlFor: \"displayName\",\n                                    children: \"Display Name\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 60,\n                                    columnNumber: 13\n                                }, this),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                                    id: \"displayName\",\n                                    type: \"text\",\n                                    value: displayName,\n                                    onChange: (e)=>setDisplayName(e.target.value),\n                                    placeholder: \"Your name\",\n                                    required: true\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 61,\n                                    columnNumber: 13\n                                }, this)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 59,\n                            columnNumber: 11\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"formGroup\",\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"label\", {\n                                    htmlFor: \"email\",\n                                    children: \"School Email\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 72,\n                                    columnNumber: 13\n                                }, this),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                                    id: \"email\",\n                                    type: \"email\",\n                                    value: email,\n                                    onChange: (e)=>setEmail(e.target.value),\n                                    placeholder: \"your.name@school.edu\",\n                                    required: true\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 73,\n                                    columnNumber: 13\n                                }, this)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 71,\n                            columnNumber: 11\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"formGroup\",\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"label\", {\n                                    htmlFor: \"password\",\n                                    children: \"Password\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 84,\n                                    columnNumber: 13\n                                }, this),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                                    id: \"password\",\n                                    type: \"password\",\n                                    value: password,\n                                    onChange: (e)=>setPassword(e.target.value),\n                                    placeholder: \"At least 6 characters\",\n                                    required: true\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 85,\n                                    columnNumber: 13\n                                }, this)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 83,\n                            columnNumber: 11\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            className: \"formGroup\",\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"label\", {\n                                    htmlFor: \"confirmPassword\",\n                                    children: \"Confirm Password\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 96,\n                                    columnNumber: 13\n                                }, this),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                                    id: \"confirmPassword\",\n                                    type: \"password\",\n                                    value: confirmPassword,\n                                    onChange: (e)=>setConfirmPassword(e.target.value),\n                                    placeholder: \"Confirm your password\",\n                                    required: true\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                                    lineNumber: 97,\n                                    columnNumber: 13\n                                }, this)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 95,\n                            columnNumber: 11\n                        }, this),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                            type: \"submit\",\n                            className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().submitBtn),\n                            disabled: loading,\n                            children: loading ? \"Creating Account...\" : \"Create Account\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 107,\n                            columnNumber: 11\n                        }, this)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                    lineNumber: 58,\n                    columnNumber: 9\n                }, this),\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                    className: (_auth_module_css__WEBPACK_IMPORTED_MODULE_5___default().switchText),\n                    children: [\n                        \"Already have an account? \",\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                            href: \"/login\",\n                            children: \"Sign In\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                            lineNumber: 113,\n                            columnNumber: 36\n                        }, this)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n                    lineNumber: 112,\n                    columnNumber: 9\n                }, this)\n            ]\n        }, void 0, true, {\n            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n            lineNumber: 50,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js\",\n        lineNumber: 49,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL3JlZ2lzdGVyL3BhZ2UuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFFd0M7QUFDWDtBQUNlO0FBQ0k7QUFDVDtBQUV4QixTQUFTTTtJQUN0QixNQUFNLENBQUNDLE9BQU9DLFNBQVMsR0FBR1AsK0NBQVFBLENBQUM7SUFDbkMsTUFBTSxDQUFDUSxVQUFVQyxZQUFZLEdBQUdULCtDQUFRQSxDQUFDO0lBQ3pDLE1BQU0sQ0FBQ1UsaUJBQWlCQyxtQkFBbUIsR0FBR1gsK0NBQVFBLENBQUM7SUFDdkQsTUFBTSxDQUFDWSxhQUFhQyxlQUFlLEdBQUdiLCtDQUFRQSxDQUFDO0lBQy9DLE1BQU0sQ0FBQ2MsT0FBT0MsU0FBUyxHQUFHZiwrQ0FBUUEsQ0FBQztJQUNuQyxNQUFNLENBQUNnQixTQUFTQyxXQUFXLEdBQUdqQiwrQ0FBUUEsQ0FBQztJQUN2QyxNQUFNLEVBQUVrQixNQUFNLEVBQUUsR0FBR2YsNkRBQU9BO0lBQzFCLE1BQU1nQixTQUFTakIsMERBQVNBO0lBRXhCLE1BQU1rQixlQUFlLE9BQU9DO1FBQzFCQSxFQUFFQyxjQUFjO1FBQ2hCUCxTQUFTO1FBRVQsSUFBSVAsYUFBYUUsaUJBQWlCO1lBQ2hDLE9BQU9LLFNBQVM7UUFDbEI7UUFDQSxJQUFJUCxTQUFTZSxNQUFNLEdBQUcsR0FBRztZQUN2QixPQUFPUixTQUFTO1FBQ2xCO1FBRUFFLFdBQVc7UUFFWCxJQUFJO1lBQ0YsTUFBTUMsT0FBT1osT0FBT0UsVUFBVUk7WUFDOUJPLE9BQU9LLElBQUksQ0FBQztRQUNkLEVBQUUsT0FBT0MsS0FBSztZQUNaLElBQUlBLElBQUlDLElBQUksS0FBSyw2QkFBNkI7Z0JBQzVDWCxTQUFTO1lBQ1gsT0FBTyxJQUFJVSxJQUFJQyxJQUFJLEtBQUssc0JBQXNCO2dCQUM1Q1gsU0FBUztZQUNYLE9BQU87Z0JBQ0xBLFNBQVM7WUFDWDtRQUNGLFNBQVU7WUFDUkUsV0FBVztRQUNiO0lBQ0Y7SUFFQSxxQkFDRSw4REFBQ1U7UUFBSUMsV0FBV3hCLG1FQUFnQjtrQkFDOUIsNEVBQUN1QjtZQUFJQyxXQUFXeEIsOERBQVc7OzhCQUN6Qiw4REFBQ3VCO29CQUFJQyxXQUFXeEIsZ0VBQWE7O3NDQUMzQiw4REFBQzRCO3NDQUFHOzs7Ozs7c0NBQ0osOERBQUNDO3NDQUFFOzs7Ozs7Ozs7Ozs7Z0JBR0puQix1QkFBUyw4REFBQ2E7b0JBQUlDLFdBQVU7OEJBQWdCZDs7Ozs7OzhCQUV6Qyw4REFBQ29CO29CQUFLQyxVQUFVZjtvQkFBY1EsV0FBV3hCLDhEQUFXOztzQ0FDbEQsOERBQUN1Qjs0QkFBSUMsV0FBVTs7OENBQ2IsOERBQUNRO29DQUFNQyxTQUFROzhDQUFjOzs7Ozs7OENBQzdCLDhEQUFDQztvQ0FDQ0MsSUFBRztvQ0FDSEMsTUFBSztvQ0FDTEMsT0FBTzdCO29DQUNQOEIsVUFBVSxDQUFDckIsSUFBTVIsZUFBZVEsRUFBRXNCLE1BQU0sQ0FBQ0YsS0FBSztvQ0FDOUNHLGFBQVk7b0NBQ1pDLFFBQVE7Ozs7Ozs7Ozs7OztzQ0FJWiw4REFBQ2xCOzRCQUFJQyxXQUFVOzs4Q0FDYiw4REFBQ1E7b0NBQU1DLFNBQVE7OENBQVE7Ozs7Ozs4Q0FDdkIsOERBQUNDO29DQUNDQyxJQUFHO29DQUNIQyxNQUFLO29DQUNMQyxPQUFPbkM7b0NBQ1BvQyxVQUFVLENBQUNyQixJQUFNZCxTQUFTYyxFQUFFc0IsTUFBTSxDQUFDRixLQUFLO29DQUN4Q0csYUFBWTtvQ0FDWkMsUUFBUTs7Ozs7Ozs7Ozs7O3NDQUlaLDhEQUFDbEI7NEJBQUlDLFdBQVU7OzhDQUNiLDhEQUFDUTtvQ0FBTUMsU0FBUTs4Q0FBVzs7Ozs7OzhDQUMxQiw4REFBQ0M7b0NBQ0NDLElBQUc7b0NBQ0hDLE1BQUs7b0NBQ0xDLE9BQU9qQztvQ0FDUGtDLFVBQVUsQ0FBQ3JCLElBQU1aLFlBQVlZLEVBQUVzQixNQUFNLENBQUNGLEtBQUs7b0NBQzNDRyxhQUFZO29DQUNaQyxRQUFROzs7Ozs7Ozs7Ozs7c0NBSVosOERBQUNsQjs0QkFBSUMsV0FBVTs7OENBQ2IsOERBQUNRO29DQUFNQyxTQUFROzhDQUFrQjs7Ozs7OzhDQUNqQyw4REFBQ0M7b0NBQ0NDLElBQUc7b0NBQ0hDLE1BQUs7b0NBQ0xDLE9BQU8vQjtvQ0FDUGdDLFVBQVUsQ0FBQ3JCLElBQU1WLG1CQUFtQlUsRUFBRXNCLE1BQU0sQ0FBQ0YsS0FBSztvQ0FDbERHLGFBQVk7b0NBQ1pDLFFBQVE7Ozs7Ozs7Ozs7OztzQ0FJWiw4REFBQ0M7NEJBQU9OLE1BQUs7NEJBQVNaLFdBQVd4QixtRUFBZ0I7NEJBQUU0QyxVQUFVaEM7c0NBQzFEQSxVQUFVLHdCQUF3Qjs7Ozs7Ozs7Ozs7OzhCQUl2Qyw4REFBQ2lCO29CQUFFTCxXQUFXeEIsb0VBQWlCOzt3QkFBRTtzQ0FDTiw4REFBQ0gsaURBQUlBOzRCQUFDaUQsTUFBSztzQ0FBUzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFLdkQiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9sb3N0LWFuZC1mb3VuZC1jbGllbnQvLi9zcmMvYXBwL3JlZ2lzdGVyL3BhZ2UuanM/Y2QwNyJdLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGNsaWVudCc7XG5cbmltcG9ydCBSZWFjdCwgeyB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCBMaW5rIGZyb20gJ25leHQvbGluayc7XG5pbXBvcnQgeyB1c2VSb3V0ZXIgfSBmcm9tICduZXh0L25hdmlnYXRpb24nO1xuaW1wb3J0IHsgdXNlQXV0aCB9IGZyb20gJ0AvY29udGV4dC9BdXRoQ29udGV4dCc7XG5pbXBvcnQgc3R5bGVzIGZyb20gJy4vYXV0aC5tb2R1bGUuY3NzJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gUmVnaXN0ZXJQYWdlKCkge1xuICBjb25zdCBbZW1haWwsIHNldEVtYWlsXSA9IHVzZVN0YXRlKCcnKTtcbiAgY29uc3QgW3Bhc3N3b3JkLCBzZXRQYXNzd29yZF0gPSB1c2VTdGF0ZSgnJyk7XG4gIGNvbnN0IFtjb25maXJtUGFzc3dvcmQsIHNldENvbmZpcm1QYXNzd29yZF0gPSB1c2VTdGF0ZSgnJyk7XG4gIGNvbnN0IFtkaXNwbGF5TmFtZSwgc2V0RGlzcGxheU5hbWVdID0gdXNlU3RhdGUoJycpO1xuICBjb25zdCBbZXJyb3IsIHNldEVycm9yXSA9IHVzZVN0YXRlKCcnKTtcbiAgY29uc3QgW2xvYWRpbmcsIHNldExvYWRpbmddID0gdXNlU3RhdGUoZmFsc2UpO1xuICBjb25zdCB7IHNpZ251cCB9ID0gdXNlQXV0aCgpO1xuICBjb25zdCByb3V0ZXIgPSB1c2VSb3V0ZXIoKTtcblxuICBjb25zdCBoYW5kbGVTdWJtaXQgPSBhc3luYyAoZSkgPT4ge1xuICAgIGUucHJldmVudERlZmF1bHQoKTtcbiAgICBzZXRFcnJvcignJyk7XG5cbiAgICBpZiAocGFzc3dvcmQgIT09IGNvbmZpcm1QYXNzd29yZCkge1xuICAgICAgcmV0dXJuIHNldEVycm9yKCdQYXNzd29yZHMgZG8gbm90IG1hdGNoJyk7XG4gICAgfVxuICAgIGlmIChwYXNzd29yZC5sZW5ndGggPCA2KSB7XG4gICAgICByZXR1cm4gc2V0RXJyb3IoJ1Bhc3N3b3JkIG11c3QgYmUgYXQgbGVhc3QgNiBjaGFyYWN0ZXJzJyk7XG4gICAgfVxuXG4gICAgc2V0TG9hZGluZyh0cnVlKTtcblxuICAgIHRyeSB7XG4gICAgICBhd2FpdCBzaWdudXAoZW1haWwsIHBhc3N3b3JkLCBkaXNwbGF5TmFtZSk7XG4gICAgICByb3V0ZXIucHVzaCgnLycpO1xuICAgIH0gY2F0Y2ggKGVycikge1xuICAgICAgaWYgKGVyci5jb2RlID09PSAnYXV0aC9lbWFpbC1hbHJlYWR5LWluLXVzZScpIHtcbiAgICAgICAgc2V0RXJyb3IoJ0FuIGFjY291bnQgd2l0aCB0aGlzIGVtYWlsIGFscmVhZHkgZXhpc3RzJyk7XG4gICAgICB9IGVsc2UgaWYgKGVyci5jb2RlID09PSAnYXV0aC93ZWFrLXBhc3N3b3JkJykge1xuICAgICAgICBzZXRFcnJvcignUGFzc3dvcmQgaXMgdG9vIHdlYWsnKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIHNldEVycm9yKCdGYWlsZWQgdG8gY3JlYXRlIGFjY291bnQuIFBsZWFzZSB0cnkgYWdhaW4uJyk7XG4gICAgICB9XG4gICAgfSBmaW5hbGx5IHtcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpO1xuICAgIH1cbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPXtzdHlsZXMuY29udGFpbmVyfT5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPXtzdHlsZXMuY2FyZH0+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtzdHlsZXMuaGVhZGVyfT5cbiAgICAgICAgICA8aDI+Q3JlYXRlIEFjY291bnQ8L2gyPlxuICAgICAgICAgIDxwPkpvaW4gQ2FtcHVzIExvc3QgJiBGb3VuZDwvcD5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAge2Vycm9yICYmIDxkaXYgY2xhc3NOYW1lPVwiZXJyb3JNZXNzYWdlXCI+e2Vycm9yfTwvZGl2Pn1cblxuICAgICAgICA8Zm9ybSBvblN1Ym1pdD17aGFuZGxlU3VibWl0fSBjbGFzc05hbWU9e3N0eWxlcy5mb3JtfT5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZvcm1Hcm91cFwiPlxuICAgICAgICAgICAgPGxhYmVsIGh0bWxGb3I9XCJkaXNwbGF5TmFtZVwiPkRpc3BsYXkgTmFtZTwvbGFiZWw+XG4gICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgaWQ9XCJkaXNwbGF5TmFtZVwiXG4gICAgICAgICAgICAgIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgICAgdmFsdWU9e2Rpc3BsYXlOYW1lfVxuICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldERpc3BsYXlOYW1lKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJZb3VyIG5hbWVcIlxuICAgICAgICAgICAgICByZXF1aXJlZFxuICAgICAgICAgICAgLz5cbiAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZm9ybUdyb3VwXCI+XG4gICAgICAgICAgICA8bGFiZWwgaHRtbEZvcj1cImVtYWlsXCI+U2Nob29sIEVtYWlsPC9sYWJlbD5cbiAgICAgICAgICAgIDxpbnB1dFxuICAgICAgICAgICAgICBpZD1cImVtYWlsXCJcbiAgICAgICAgICAgICAgdHlwZT1cImVtYWlsXCJcbiAgICAgICAgICAgICAgdmFsdWU9e2VtYWlsfVxuICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldEVtYWlsKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJ5b3VyLm5hbWVAc2Nob29sLmVkdVwiXG4gICAgICAgICAgICAgIHJlcXVpcmVkXG4gICAgICAgICAgICAvPlxuICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmb3JtR3JvdXBcIj5cbiAgICAgICAgICAgIDxsYWJlbCBodG1sRm9yPVwicGFzc3dvcmRcIj5QYXNzd29yZDwvbGFiZWw+XG4gICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgaWQ9XCJwYXNzd29yZFwiXG4gICAgICAgICAgICAgIHR5cGU9XCJwYXNzd29yZFwiXG4gICAgICAgICAgICAgIHZhbHVlPXtwYXNzd29yZH1cbiAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRQYXNzd29yZChlLnRhcmdldC52YWx1ZSl9XG4gICAgICAgICAgICAgIHBsYWNlaG9sZGVyPVwiQXQgbGVhc3QgNiBjaGFyYWN0ZXJzXCJcbiAgICAgICAgICAgICAgcmVxdWlyZWRcbiAgICAgICAgICAgIC8+XG4gICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZvcm1Hcm91cFwiPlxuICAgICAgICAgICAgPGxhYmVsIGh0bWxGb3I9XCJjb25maXJtUGFzc3dvcmRcIj5Db25maXJtIFBhc3N3b3JkPC9sYWJlbD5cbiAgICAgICAgICAgIDxpbnB1dFxuICAgICAgICAgICAgICBpZD1cImNvbmZpcm1QYXNzd29yZFwiXG4gICAgICAgICAgICAgIHR5cGU9XCJwYXNzd29yZFwiXG4gICAgICAgICAgICAgIHZhbHVlPXtjb25maXJtUGFzc3dvcmR9XG4gICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Q29uZmlybVBhc3N3b3JkKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJDb25maXJtIHlvdXIgcGFzc3dvcmRcIlxuICAgICAgICAgICAgICByZXF1aXJlZFxuICAgICAgICAgICAgLz5cbiAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgIDxidXR0b24gdHlwZT1cInN1Ym1pdFwiIGNsYXNzTmFtZT17c3R5bGVzLnN1Ym1pdEJ0bn0gZGlzYWJsZWQ9e2xvYWRpbmd9PlxuICAgICAgICAgICAge2xvYWRpbmcgPyAnQ3JlYXRpbmcgQWNjb3VudC4uLicgOiAnQ3JlYXRlIEFjY291bnQnfVxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICA8L2Zvcm0+XG5cbiAgICAgICAgPHAgY2xhc3NOYW1lPXtzdHlsZXMuc3dpdGNoVGV4dH0+XG4gICAgICAgICAgQWxyZWFkeSBoYXZlIGFuIGFjY291bnQ/IDxMaW5rIGhyZWY9XCIvbG9naW5cIj5TaWduIEluPC9MaW5rPlxuICAgICAgICA8L3A+XG4gICAgICA8L2Rpdj5cbiAgICA8L2Rpdj5cbiAgKTtcbn1cbiJdLCJuYW1lcyI6WyJSZWFjdCIsInVzZVN0YXRlIiwiTGluayIsInVzZVJvdXRlciIsInVzZUF1dGgiLCJzdHlsZXMiLCJSZWdpc3RlclBhZ2UiLCJlbWFpbCIsInNldEVtYWlsIiwicGFzc3dvcmQiLCJzZXRQYXNzd29yZCIsImNvbmZpcm1QYXNzd29yZCIsInNldENvbmZpcm1QYXNzd29yZCIsImRpc3BsYXlOYW1lIiwic2V0RGlzcGxheU5hbWUiLCJlcnJvciIsInNldEVycm9yIiwibG9hZGluZyIsInNldExvYWRpbmciLCJzaWdudXAiLCJyb3V0ZXIiLCJoYW5kbGVTdWJtaXQiLCJlIiwicHJldmVudERlZmF1bHQiLCJsZW5ndGgiLCJwdXNoIiwiZXJyIiwiY29kZSIsImRpdiIsImNsYXNzTmFtZSIsImNvbnRhaW5lciIsImNhcmQiLCJoZWFkZXIiLCJoMiIsInAiLCJmb3JtIiwib25TdWJtaXQiLCJsYWJlbCIsImh0bWxGb3IiLCJpbnB1dCIsImlkIiwidHlwZSIsInZhbHVlIiwib25DaGFuZ2UiLCJ0YXJnZXQiLCJwbGFjZWhvbGRlciIsInJlcXVpcmVkIiwiYnV0dG9uIiwic3VibWl0QnRuIiwiZGlzYWJsZWQiLCJzd2l0Y2hUZXh0IiwiaHJlZiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/app/register/page.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/components/Footer.js":
+/*!**********************************!*\
+  !*** ./src/components/Footer.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _Footer_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer.module.css */ \"(ssr)/./src/components/Footer.module.css\");\n/* harmony import */ var _Footer_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Footer_module_css__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nconst Footer = ()=>{\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"footer\", {\n        className: (_Footer_module_css__WEBPACK_IMPORTED_MODULE_2___default().footer),\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            className: (_Footer_module_css__WEBPACK_IMPORTED_MODULE_2___default().container),\n            children: [\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                    children: [\n                        \"\\xa9 \",\n                        new Date().getFullYear(),\n                        \" Campus Lost & Found. All rights reserved.\"\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Footer.js\",\n                    lineNumber: 8,\n                    columnNumber: 9\n                }, undefined),\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                    className: (_Footer_module_css__WEBPACK_IMPORTED_MODULE_2___default().subtitle),\n                    children: \"Helping students recover their belongings.\"\n                }, void 0, false, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Footer.js\",\n                    lineNumber: 9,\n                    columnNumber: 9\n                }, undefined)\n            ]\n        }, void 0, true, {\n            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Footer.js\",\n            lineNumber: 7,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Footer.js\",\n        lineNumber: 6,\n        columnNumber: 5\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29tcG9uZW50cy9Gb290ZXIuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBMEI7QUFDZTtBQUV6QyxNQUFNRSxTQUFTO0lBQ2IscUJBQ0UsOERBQUNDO1FBQU9DLFdBQVdILGtFQUFhO2tCQUM5Qiw0RUFBQ0k7WUFBSUQsV0FBV0gscUVBQWdCOzs4QkFDOUIsOERBQUNNOzt3QkFBRTt3QkFBRyxJQUFJQyxPQUFPQyxXQUFXO3dCQUFHOzs7Ozs7OzhCQUMvQiw4REFBQ0Y7b0JBQUVILFdBQVdILG9FQUFlOzhCQUFFOzs7Ozs7Ozs7Ozs7Ozs7OztBQUl2QztBQUVBLGlFQUFlQyxNQUFNQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvRm9vdGVyLmpzPzlkZjAiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCBzdHlsZXMgZnJvbSAnLi9Gb290ZXIubW9kdWxlLmNzcyc7XG5cbmNvbnN0IEZvb3RlciA9ICgpID0+IHtcbiAgcmV0dXJuIChcbiAgICA8Zm9vdGVyIGNsYXNzTmFtZT17c3R5bGVzLmZvb3Rlcn0+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLmNvbnRhaW5lcn0+XG4gICAgICAgIDxwPsKpIHtuZXcgRGF0ZSgpLmdldEZ1bGxZZWFyKCl9IENhbXB1cyBMb3N0ICYgRm91bmQuIEFsbCByaWdodHMgcmVzZXJ2ZWQuPC9wPlxuICAgICAgICA8cCBjbGFzc05hbWU9e3N0eWxlcy5zdWJ0aXRsZX0+SGVscGluZyBzdHVkZW50cyByZWNvdmVyIHRoZWlyIGJlbG9uZ2luZ3MuPC9wPlxuICAgICAgPC9kaXY+XG4gICAgPC9mb290ZXI+XG4gICk7XG59O1xuXG5leHBvcnQgZGVmYXVsdCBGb290ZXI7XG4iXSwibmFtZXMiOlsiUmVhY3QiLCJzdHlsZXMiLCJGb290ZXIiLCJmb290ZXIiLCJjbGFzc05hbWUiLCJkaXYiLCJjb250YWluZXIiLCJwIiwiRGF0ZSIsImdldEZ1bGxZZWFyIiwic3VidGl0bGUiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./src/components/Footer.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/components/Navbar.js":
+/*!**********************************!*\
+  !*** ./src/components/Navbar.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ \"(ssr)/./node_modules/next/dist/api/link.js\");\n/* harmony import */ var next_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/navigation */ \"(ssr)/./node_modules/next/dist/api/navigation.js\");\n/* harmony import */ var _context_AuthContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/context/AuthContext */ \"(ssr)/./src/context/AuthContext.js\");\n/* harmony import */ var _Navbar_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Navbar.module.css */ \"(ssr)/./src/components/Navbar.module.css\");\n/* harmony import */ var _Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5__);\n/* __next_internal_client_entry_do_not_use__ default auto */ \n\n\n\n\n\nconst Navbar = ()=>{\n    const { currentUser, logout } = (0,_context_AuthContext__WEBPACK_IMPORTED_MODULE_4__.useAuth)();\n    const router = (0,next_navigation__WEBPACK_IMPORTED_MODULE_3__.useRouter)();\n    const handleLogout = async ()=>{\n        try {\n            await logout();\n            router.push(\"/\");\n        } catch (err) {\n            console.error(\"Logout error:\", err);\n        }\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"nav\", {\n        className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navbar),\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().container),\n            children: [\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                    href: \"/\",\n                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().brand),\n                    children: [\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                            className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().brandIcon),\n                            children: \"\\uD83D\\uDD0D\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                            lineNumber: 26,\n                            columnNumber: 11\n                        }, undefined),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                            className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().brandText),\n                            children: \"Campus Lost & Found\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                            lineNumber: 27,\n                            columnNumber: 11\n                        }, undefined)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                    lineNumber: 25,\n                    columnNumber: 9\n                }, undefined),\n                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().links),\n                    children: [\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                            href: \"/lost-items\",\n                            className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink),\n                            children: \"Lost Items\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                            lineNumber: 31,\n                            columnNumber: 11\n                        }, undefined),\n                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                            href: \"/found-items\",\n                            className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink),\n                            children: \"Found Items\"\n                        }, void 0, false, {\n                            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                            lineNumber: 32,\n                            columnNumber: 11\n                        }, undefined),\n                        currentUser ? /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/report-lost\",\n                                    className: `${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink)} ${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().btnReportLost)}`,\n                                    children: \"Report Lost\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 36,\n                                    columnNumber: 15\n                                }, undefined),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/report-found\",\n                                    className: `${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink)} ${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().btnReportFound)}`,\n                                    children: \"Report Found\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 39,\n                                    columnNumber: 15\n                                }, undefined),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/messages\",\n                                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink),\n                                    children: \"Messages\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 42,\n                                    columnNumber: 15\n                                }, undefined),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/my-posts\",\n                                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink),\n                                    children: \"My Posts\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 43,\n                                    columnNumber: 15\n                                }, undefined),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                                    onClick: handleLogout,\n                                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().btnLogout),\n                                    children: \"Logout\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 44,\n                                    columnNumber: 15\n                                }, undefined)\n                            ]\n                        }, void 0, true) : /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n                            children: [\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/login\",\n                                    className: (_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink),\n                                    children: \"Login\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 50,\n                                    columnNumber: 15\n                                }, undefined),\n                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                    href: \"/register\",\n                                    className: `${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().navLink)} ${(_Navbar_module_css__WEBPACK_IMPORTED_MODULE_5___default().btnRegister)}`,\n                                    children: \"Sign Up\"\n                                }, void 0, false, {\n                                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                                    lineNumber: 51,\n                                    columnNumber: 15\n                                }, undefined)\n                            ]\n                        }, void 0, true)\n                    ]\n                }, void 0, true, {\n                    fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n                    lineNumber: 30,\n                    columnNumber: 9\n                }, undefined)\n            ]\n        }, void 0, true, {\n            fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n            lineNumber: 24,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/components/Navbar.js\",\n        lineNumber: 23,\n        columnNumber: 5\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navbar);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29tcG9uZW50cy9OYXZiYXIuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFFMEI7QUFDRztBQUNlO0FBQ0k7QUFDUDtBQUV6QyxNQUFNSyxTQUFTO0lBQ2IsTUFBTSxFQUFFQyxXQUFXLEVBQUVDLE1BQU0sRUFBRSxHQUFHSiw2REFBT0E7SUFDdkMsTUFBTUssU0FBU04sMERBQVNBO0lBRXhCLE1BQU1PLGVBQWU7UUFDbkIsSUFBSTtZQUNGLE1BQU1GO1lBQ05DLE9BQU9FLElBQUksQ0FBQztRQUNkLEVBQUUsT0FBT0MsS0FBSztZQUNaQyxRQUFRQyxLQUFLLENBQUMsaUJBQWlCRjtRQUNqQztJQUNGO0lBRUEscUJBQ0UsOERBQUNHO1FBQUlDLFdBQVdYLGtFQUFhO2tCQUMzQiw0RUFBQ2E7WUFBSUYsV0FBV1gscUVBQWdCOzs4QkFDOUIsOERBQUNILGlEQUFJQTtvQkFBQ2tCLE1BQUs7b0JBQUlKLFdBQVdYLGlFQUFZOztzQ0FDcEMsOERBQUNpQjs0QkFBS04sV0FBV1gscUVBQWdCO3NDQUFFOzs7Ozs7c0NBQ25DLDhEQUFDaUI7NEJBQUtOLFdBQVdYLHFFQUFnQjtzQ0FBRTs7Ozs7Ozs7Ozs7OzhCQUdyQyw4REFBQ2E7b0JBQUlGLFdBQVdYLGlFQUFZOztzQ0FDMUIsOERBQUNILGlEQUFJQTs0QkFBQ2tCLE1BQUs7NEJBQWNKLFdBQVdYLG1FQUFjO3NDQUFFOzs7Ozs7c0NBQ3BELDhEQUFDSCxpREFBSUE7NEJBQUNrQixNQUFLOzRCQUFlSixXQUFXWCxtRUFBYztzQ0FBRTs7Ozs7O3dCQUVwREUsNEJBQ0M7OzhDQUNFLDhEQUFDTCxpREFBSUE7b0NBQUNrQixNQUFLO29DQUFlSixXQUFXLENBQUMsRUFBRVgsbUVBQWMsQ0FBQyxDQUFDLEVBQUVBLHlFQUFvQixDQUFDLENBQUM7OENBQUU7Ozs7Ozs4Q0FHbEYsOERBQUNILGlEQUFJQTtvQ0FBQ2tCLE1BQUs7b0NBQWdCSixXQUFXLENBQUMsRUFBRVgsbUVBQWMsQ0FBQyxDQUFDLEVBQUVBLDBFQUFxQixDQUFDLENBQUM7OENBQUU7Ozs7Ozs4Q0FHcEYsOERBQUNILGlEQUFJQTtvQ0FBQ2tCLE1BQUs7b0NBQVlKLFdBQVdYLG1FQUFjOzhDQUFFOzs7Ozs7OENBQ2xELDhEQUFDSCxpREFBSUE7b0NBQUNrQixNQUFLO29DQUFZSixXQUFXWCxtRUFBYzs4Q0FBRTs7Ozs7OzhDQUNsRCw4REFBQ3dCO29DQUFPQyxTQUFTcEI7b0NBQWNNLFdBQVdYLHFFQUFnQjs4Q0FBRTs7Ozs7Ozt5REFLOUQ7OzhDQUNFLDhEQUFDSCxpREFBSUE7b0NBQUNrQixNQUFLO29DQUFTSixXQUFXWCxtRUFBYzs4Q0FBRTs7Ozs7OzhDQUMvQyw4REFBQ0gsaURBQUlBO29DQUFDa0IsTUFBSztvQ0FBWUosV0FBVyxDQUFDLEVBQUVYLG1FQUFjLENBQUMsQ0FBQyxFQUFFQSx1RUFBa0IsQ0FBQyxDQUFDOzhDQUFFOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBUzNGO0FBRUEsaUVBQWVDLE1BQU1BLEVBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9sb3N0LWFuZC1mb3VuZC1jbGllbnQvLi9zcmMvY29tcG9uZW50cy9OYXZiYXIuanM/M2QwZSJdLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGNsaWVudCc7XG5cbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgTGluayBmcm9tICduZXh0L2xpbmsnO1xuaW1wb3J0IHsgdXNlUm91dGVyIH0gZnJvbSAnbmV4dC9uYXZpZ2F0aW9uJztcbmltcG9ydCB7IHVzZUF1dGggfSBmcm9tICdAL2NvbnRleHQvQXV0aENvbnRleHQnO1xuaW1wb3J0IHN0eWxlcyBmcm9tICcuL05hdmJhci5tb2R1bGUuY3NzJztcblxuY29uc3QgTmF2YmFyID0gKCkgPT4ge1xuICBjb25zdCB7IGN1cnJlbnRVc2VyLCBsb2dvdXQgfSA9IHVzZUF1dGgoKTtcbiAgY29uc3Qgcm91dGVyID0gdXNlUm91dGVyKCk7XG5cbiAgY29uc3QgaGFuZGxlTG9nb3V0ID0gYXN5bmMgKCkgPT4ge1xuICAgIHRyeSB7XG4gICAgICBhd2FpdCBsb2dvdXQoKTtcbiAgICAgIHJvdXRlci5wdXNoKCcvJyk7XG4gICAgfSBjYXRjaCAoZXJyKSB7XG4gICAgICBjb25zb2xlLmVycm9yKCdMb2dvdXQgZXJyb3I6JywgZXJyKTtcbiAgICB9XG4gIH07XG5cbiAgcmV0dXJuIChcbiAgICA8bmF2IGNsYXNzTmFtZT17c3R5bGVzLm5hdmJhcn0+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLmNvbnRhaW5lcn0+XG4gICAgICAgIDxMaW5rIGhyZWY9XCIvXCIgY2xhc3NOYW1lPXtzdHlsZXMuYnJhbmR9PlxuICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT17c3R5bGVzLmJyYW5kSWNvbn0+8J+UjTwvc3Bhbj5cbiAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9e3N0eWxlcy5icmFuZFRleHR9PkNhbXB1cyBMb3N0ICYgRm91bmQ8L3NwYW4+XG4gICAgICAgIDwvTGluaz5cblxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLmxpbmtzfT5cbiAgICAgICAgICA8TGluayBocmVmPVwiL2xvc3QtaXRlbXNcIiBjbGFzc05hbWU9e3N0eWxlcy5uYXZMaW5rfT5Mb3N0IEl0ZW1zPC9MaW5rPlxuICAgICAgICAgIDxMaW5rIGhyZWY9XCIvZm91bmQtaXRlbXNcIiBjbGFzc05hbWU9e3N0eWxlcy5uYXZMaW5rfT5Gb3VuZCBJdGVtczwvTGluaz5cblxuICAgICAgICAgIHtjdXJyZW50VXNlciA/IChcbiAgICAgICAgICAgIDw+XG4gICAgICAgICAgICAgIDxMaW5rIGhyZWY9XCIvcmVwb3J0LWxvc3RcIiBjbGFzc05hbWU9e2Ake3N0eWxlcy5uYXZMaW5rfSAke3N0eWxlcy5idG5SZXBvcnRMb3N0fWB9PlxuICAgICAgICAgICAgICAgIFJlcG9ydCBMb3N0XG4gICAgICAgICAgICAgIDwvTGluaz5cbiAgICAgICAgICAgICAgPExpbmsgaHJlZj1cIi9yZXBvcnQtZm91bmRcIiBjbGFzc05hbWU9e2Ake3N0eWxlcy5uYXZMaW5rfSAke3N0eWxlcy5idG5SZXBvcnRGb3VuZH1gfT5cbiAgICAgICAgICAgICAgICBSZXBvcnQgRm91bmRcbiAgICAgICAgICAgICAgPC9MaW5rPlxuICAgICAgICAgICAgICA8TGluayBocmVmPVwiL21lc3NhZ2VzXCIgY2xhc3NOYW1lPXtzdHlsZXMubmF2TGlua30+TWVzc2FnZXM8L0xpbms+XG4gICAgICAgICAgICAgIDxMaW5rIGhyZWY9XCIvbXktcG9zdHNcIiBjbGFzc05hbWU9e3N0eWxlcy5uYXZMaW5rfT5NeSBQb3N0czwvTGluaz5cbiAgICAgICAgICAgICAgPGJ1dHRvbiBvbkNsaWNrPXtoYW5kbGVMb2dvdXR9IGNsYXNzTmFtZT17c3R5bGVzLmJ0bkxvZ291dH0+XG4gICAgICAgICAgICAgICAgTG9nb3V0XG4gICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgPC8+XG4gICAgICAgICAgKSA6IChcbiAgICAgICAgICAgIDw+XG4gICAgICAgICAgICAgIDxMaW5rIGhyZWY9XCIvbG9naW5cIiBjbGFzc05hbWU9e3N0eWxlcy5uYXZMaW5rfT5Mb2dpbjwvTGluaz5cbiAgICAgICAgICAgICAgPExpbmsgaHJlZj1cIi9yZWdpc3RlclwiIGNsYXNzTmFtZT17YCR7c3R5bGVzLm5hdkxpbmt9ICR7c3R5bGVzLmJ0blJlZ2lzdGVyfWB9PlxuICAgICAgICAgICAgICAgIFNpZ24gVXBcbiAgICAgICAgICAgICAgPC9MaW5rPlxuICAgICAgICAgICAgPC8+XG4gICAgICAgICAgKX1cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cbiAgICA8L25hdj5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IE5hdmJhcjtcbiJdLCJuYW1lcyI6WyJSZWFjdCIsIkxpbmsiLCJ1c2VSb3V0ZXIiLCJ1c2VBdXRoIiwic3R5bGVzIiwiTmF2YmFyIiwiY3VycmVudFVzZXIiLCJsb2dvdXQiLCJyb3V0ZXIiLCJoYW5kbGVMb2dvdXQiLCJwdXNoIiwiZXJyIiwiY29uc29sZSIsImVycm9yIiwibmF2IiwiY2xhc3NOYW1lIiwibmF2YmFyIiwiZGl2IiwiY29udGFpbmVyIiwiaHJlZiIsImJyYW5kIiwic3BhbiIsImJyYW5kSWNvbiIsImJyYW5kVGV4dCIsImxpbmtzIiwibmF2TGluayIsImJ0blJlcG9ydExvc3QiLCJidG5SZXBvcnRGb3VuZCIsImJ1dHRvbiIsIm9uQ2xpY2siLCJidG5Mb2dvdXQiLCJidG5SZWdpc3RlciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/components/Navbar.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/context/AuthContext.js":
+/*!************************************!*\
+  !*** ./src/context/AuthContext.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   AuthProvider: () => (/* binding */ AuthProvider),\n/* harmony export */   useAuth: () => (/* binding */ useAuth)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ \"(ssr)/./node_modules/firebase/auth/dist/index.mjs\");\n/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/lib/firebase */ \"(ssr)/./src/lib/firebase.js\");\n/* harmony import */ var _lib_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/lib/api */ \"(ssr)/./src/lib/api.js\");\n/* __next_internal_client_entry_do_not_use__ useAuth,AuthProvider auto */ \n\n\n\n\nconst AuthContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)();\nconst useAuth = ()=>(0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(AuthContext);\nconst AuthProvider = ({ children })=>{\n    const [currentUser, setCurrentUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);\n    const signup = async (email, password, displayName)=>{\n        const result = await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.createUserWithEmailAndPassword)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, email, password);\n        try {\n            await (0,_lib_api__WEBPACK_IMPORTED_MODULE_4__.registerUser)(displayName);\n        } catch (err) {\n            console.error(\"Backend registration error:\", err);\n        }\n        return result;\n    };\n    const login = (email, password)=>{\n        return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, email, password);\n    };\n    const logout = ()=>{\n        return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signOut)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth);\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        const unsubscribe = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, (user)=>{\n            setCurrentUser(user);\n            setLoading(false);\n        });\n        return unsubscribe;\n    }, []);\n    const value = {\n        currentUser,\n        signup,\n        login,\n        logout,\n        loading\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(AuthContext.Provider, {\n        value: value,\n        children: !loading && children\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/context/AuthContext.js\",\n        lineNumber: 56,\n        columnNumber: 5\n    }, undefined);\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29udGV4dC9BdXRoQ29udGV4dC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBRThFO0FBTXZEO0FBQ2U7QUFDRztBQUV6QyxNQUFNVyw0QkFBY1Ysb0RBQWFBO0FBRTFCLE1BQU1XLFVBQVUsSUFBTVYsaURBQVVBLENBQUNTLGFBQWE7QUFFOUMsTUFBTUUsZUFBZSxDQUFDLEVBQUVDLFFBQVEsRUFBRTtJQUN2QyxNQUFNLENBQUNDLGFBQWFDLGVBQWUsR0FBR2IsK0NBQVFBLENBQUM7SUFDL0MsTUFBTSxDQUFDYyxTQUFTQyxXQUFXLEdBQUdmLCtDQUFRQSxDQUFDO0lBRXZDLE1BQU1nQixTQUFTLE9BQU9DLE9BQU9DLFVBQVVDO1FBQ3JDLE1BQU1DLFNBQVMsTUFBTWxCLDZFQUE4QkEsQ0FBQ0ksK0NBQUlBLEVBQUVXLE9BQU9DO1FBQ2pFLElBQUk7WUFDRixNQUFNWCxzREFBWUEsQ0FBQ1k7UUFDckIsRUFBRSxPQUFPRSxLQUFLO1lBQ1pDLFFBQVFDLEtBQUssQ0FBQywrQkFBK0JGO1FBQy9DO1FBQ0EsT0FBT0Q7SUFDVDtJQUVBLE1BQU1JLFFBQVEsQ0FBQ1AsT0FBT0M7UUFDcEIsT0FBT2YseUVBQTBCQSxDQUFDRywrQ0FBSUEsRUFBRVcsT0FBT0M7SUFDakQ7SUFFQSxNQUFNTyxTQUFTO1FBQ2IsT0FBT3JCLHNEQUFPQSxDQUFDRSwrQ0FBSUE7SUFDckI7SUFFQUwsZ0RBQVNBLENBQUM7UUFDUixNQUFNeUIsY0FBY3JCLGlFQUFrQkEsQ0FBQ0MsK0NBQUlBLEVBQUUsQ0FBQ3FCO1lBQzVDZCxlQUFlYztZQUNmWixXQUFXO1FBQ2I7UUFDQSxPQUFPVztJQUNULEdBQUcsRUFBRTtJQUVMLE1BQU1FLFFBQVE7UUFDWmhCO1FBQ0FJO1FBQ0FRO1FBQ0FDO1FBQ0FYO0lBQ0Y7SUFFQSxxQkFDRSw4REFBQ04sWUFBWXFCLFFBQVE7UUFBQ0QsT0FBT0E7a0JBQzFCLENBQUNkLFdBQVdIOzs7Ozs7QUFHbkIsRUFBRSIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8uL3NyYy9jb250ZXh0L0F1dGhDb250ZXh0LmpzPzRiYTYiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBjbGllbnQnO1xuXG5pbXBvcnQgUmVhY3QsIHsgY3JlYXRlQ29udGV4dCwgdXNlQ29udGV4dCwgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7XG4gIGNyZWF0ZVVzZXJXaXRoRW1haWxBbmRQYXNzd29yZCxcbiAgc2lnbkluV2l0aEVtYWlsQW5kUGFzc3dvcmQsXG4gIHNpZ25PdXQsXG4gIG9uQXV0aFN0YXRlQ2hhbmdlZCxcbn0gZnJvbSAnZmlyZWJhc2UvYXV0aCc7XG5pbXBvcnQgeyBhdXRoIH0gZnJvbSAnQC9saWIvZmlyZWJhc2UnO1xuaW1wb3J0IHsgcmVnaXN0ZXJVc2VyIH0gZnJvbSAnQC9saWIvYXBpJztcblxuY29uc3QgQXV0aENvbnRleHQgPSBjcmVhdGVDb250ZXh0KCk7XG5cbmV4cG9ydCBjb25zdCB1c2VBdXRoID0gKCkgPT4gdXNlQ29udGV4dChBdXRoQ29udGV4dCk7XG5cbmV4cG9ydCBjb25zdCBBdXRoUHJvdmlkZXIgPSAoeyBjaGlsZHJlbiB9KSA9PiB7XG4gIGNvbnN0IFtjdXJyZW50VXNlciwgc2V0Q3VycmVudFVzZXJdID0gdXNlU3RhdGUobnVsbCk7XG4gIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKHRydWUpO1xuXG4gIGNvbnN0IHNpZ251cCA9IGFzeW5jIChlbWFpbCwgcGFzc3dvcmQsIGRpc3BsYXlOYW1lKSA9PiB7XG4gICAgY29uc3QgcmVzdWx0ID0gYXdhaXQgY3JlYXRlVXNlcldpdGhFbWFpbEFuZFBhc3N3b3JkKGF1dGgsIGVtYWlsLCBwYXNzd29yZCk7XG4gICAgdHJ5IHtcbiAgICAgIGF3YWl0IHJlZ2lzdGVyVXNlcihkaXNwbGF5TmFtZSk7XG4gICAgfSBjYXRjaCAoZXJyKSB7XG4gICAgICBjb25zb2xlLmVycm9yKCdCYWNrZW5kIHJlZ2lzdHJhdGlvbiBlcnJvcjonLCBlcnIpO1xuICAgIH1cbiAgICByZXR1cm4gcmVzdWx0O1xuICB9O1xuXG4gIGNvbnN0IGxvZ2luID0gKGVtYWlsLCBwYXNzd29yZCkgPT4ge1xuICAgIHJldHVybiBzaWduSW5XaXRoRW1haWxBbmRQYXNzd29yZChhdXRoLCBlbWFpbCwgcGFzc3dvcmQpO1xuICB9O1xuXG4gIGNvbnN0IGxvZ291dCA9ICgpID0+IHtcbiAgICByZXR1cm4gc2lnbk91dChhdXRoKTtcbiAgfTtcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGNvbnN0IHVuc3Vic2NyaWJlID0gb25BdXRoU3RhdGVDaGFuZ2VkKGF1dGgsICh1c2VyKSA9PiB7XG4gICAgICBzZXRDdXJyZW50VXNlcih1c2VyKTtcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpO1xuICAgIH0pO1xuICAgIHJldHVybiB1bnN1YnNjcmliZTtcbiAgfSwgW10pO1xuXG4gIGNvbnN0IHZhbHVlID0ge1xuICAgIGN1cnJlbnRVc2VyLFxuICAgIHNpZ251cCxcbiAgICBsb2dpbixcbiAgICBsb2dvdXQsXG4gICAgbG9hZGluZyxcbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxBdXRoQ29udGV4dC5Qcm92aWRlciB2YWx1ZT17dmFsdWV9PlxuICAgICAgeyFsb2FkaW5nICYmIGNoaWxkcmVufVxuICAgIDwvQXV0aENvbnRleHQuUHJvdmlkZXI+XG4gICk7XG59O1xuIl0sIm5hbWVzIjpbIlJlYWN0IiwiY3JlYXRlQ29udGV4dCIsInVzZUNvbnRleHQiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsImNyZWF0ZVVzZXJXaXRoRW1haWxBbmRQYXNzd29yZCIsInNpZ25JbldpdGhFbWFpbEFuZFBhc3N3b3JkIiwic2lnbk91dCIsIm9uQXV0aFN0YXRlQ2hhbmdlZCIsImF1dGgiLCJyZWdpc3RlclVzZXIiLCJBdXRoQ29udGV4dCIsInVzZUF1dGgiLCJBdXRoUHJvdmlkZXIiLCJjaGlsZHJlbiIsImN1cnJlbnRVc2VyIiwic2V0Q3VycmVudFVzZXIiLCJsb2FkaW5nIiwic2V0TG9hZGluZyIsInNpZ251cCIsImVtYWlsIiwicGFzc3dvcmQiLCJkaXNwbGF5TmFtZSIsInJlc3VsdCIsImVyciIsImNvbnNvbGUiLCJlcnJvciIsImxvZ2luIiwibG9nb3V0IiwidW5zdWJzY3JpYmUiLCJ1c2VyIiwidmFsdWUiLCJQcm92aWRlciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/context/AuthContext.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/lib/api.js":
+/*!************************!*\
+  !*** ./src/lib/api.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createFoundItem: () => (/* binding */ createFoundItem),\n/* harmony export */   createLostItem: () => (/* binding */ createLostItem),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   deleteFoundItem: () => (/* binding */ deleteFoundItem),\n/* harmony export */   deleteLostItem: () => (/* binding */ deleteLostItem),\n/* harmony export */   getConversations: () => (/* binding */ getConversations),\n/* harmony export */   getCurrentUser: () => (/* binding */ getCurrentUser),\n/* harmony export */   getFoundItem: () => (/* binding */ getFoundItem),\n/* harmony export */   getFoundItems: () => (/* binding */ getFoundItems),\n/* harmony export */   getLostItem: () => (/* binding */ getLostItem),\n/* harmony export */   getLostItems: () => (/* binding */ getLostItems),\n/* harmony export */   getMessages: () => (/* binding */ getMessages),\n/* harmony export */   registerUser: () => (/* binding */ registerUser),\n/* harmony export */   sendMessage: () => (/* binding */ sendMessage),\n/* harmony export */   updateFoundItem: () => (/* binding */ updateFoundItem),\n/* harmony export */   updateLostItem: () => (/* binding */ updateLostItem)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"(ssr)/./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./firebase */ \"(ssr)/./src/lib/firebase.js\");\n\n\nconst API_URL = \"http://localhost:5000/api\" || 0;\nconst api = axios__WEBPACK_IMPORTED_MODULE_1__[\"default\"].create({\n    baseURL: API_URL\n});\n// Attach Firebase ID token to every request\napi.interceptors.request.use(async (config)=>{\n    if (false) {}\n    return config;\n});\n// ==================== AUTH ====================\nconst registerUser = (displayName)=>api.post(\"/auth/register\", {\n        displayName\n    });\nconst getCurrentUser = ()=>api.get(\"/auth/me\");\n// ==================== LOST ITEMS ====================\nconst createLostItem = (formData)=>api.post(\"/lost-items\", formData, {\n        headers: {\n            \"Content-Type\": \"multipart/form-data\"\n        }\n    });\nconst getLostItems = (params)=>api.get(\"/lost-items\", {\n        params\n    });\nconst getLostItem = (id)=>api.get(`/lost-items/${id}`);\nconst updateLostItem = (id, data)=>api.put(`/lost-items/${id}`, data);\nconst deleteLostItem = (id)=>api.delete(`/lost-items/${id}`);\n// ==================== FOUND ITEMS ====================\nconst createFoundItem = (data)=>api.post(\"/found-items\", data);\nconst getFoundItems = (params)=>api.get(\"/found-items\", {\n        params\n    });\nconst getFoundItem = (id)=>api.get(`/found-items/${id}`);\nconst updateFoundItem = (id, data)=>api.put(`/found-items/${id}`, data);\nconst deleteFoundItem = (id)=>api.delete(`/found-items/${id}`);\n// ==================== MESSAGES ====================\nconst sendMessage = (data)=>api.post(\"/messages\", data);\nconst getConversations = ()=>api.get(\"/messages/conversations\");\nconst getMessages = (partnerId, postId)=>api.get(`/messages/${partnerId}`, {\n        params: {\n            post_id: postId\n        }\n    });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (api);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvbGliL2FwaS5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBMEI7QUFDUTtBQUVsQyxNQUFNRSxVQUFVQywyQkFBK0IsSUFBSTtBQUVuRCxNQUFNRyxNQUFNTiw2Q0FBS0EsQ0FBQ08sTUFBTSxDQUFDO0lBQ3ZCQyxTQUFTTjtBQUNYO0FBRUEsNENBQTRDO0FBQzVDSSxJQUFJRyxZQUFZLENBQUNDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLE9BQU9DO0lBQ2xDLElBQUksS0FBa0IsRUFBYSxFQU1sQztJQUNELE9BQU9BO0FBQ1Q7QUFFQSxpREFBaUQ7QUFDMUMsTUFBTU8sZUFBZSxDQUFDQyxjQUMzQmQsSUFBSWUsSUFBSSxDQUFDLGtCQUFrQjtRQUFFRDtJQUFZLEdBQUc7QUFFdkMsTUFBTUUsaUJBQWlCLElBQzVCaEIsSUFBSWlCLEdBQUcsQ0FBQyxZQUFZO0FBRXRCLHVEQUF1RDtBQUNoRCxNQUFNQyxpQkFBaUIsQ0FBQ0MsV0FDN0JuQixJQUFJZSxJQUFJLENBQUMsZUFBZUksVUFBVTtRQUNoQ1IsU0FBUztZQUFFLGdCQUFnQjtRQUFzQjtJQUNuRCxHQUFHO0FBRUUsTUFBTVMsZUFBZSxDQUFDQyxTQUMzQnJCLElBQUlpQixHQUFHLENBQUMsZUFBZTtRQUFFSTtJQUFPLEdBQUc7QUFFOUIsTUFBTUMsY0FBYyxDQUFDQyxLQUMxQnZCLElBQUlpQixHQUFHLENBQUMsQ0FBQyxZQUFZLEVBQUVNLEdBQUcsQ0FBQyxFQUFFO0FBRXhCLE1BQU1DLGlCQUFpQixDQUFDRCxJQUFJRSxPQUNqQ3pCLElBQUkwQixHQUFHLENBQUMsQ0FBQyxZQUFZLEVBQUVILEdBQUcsQ0FBQyxFQUFFRSxNQUFNO0FBRTlCLE1BQU1FLGlCQUFpQixDQUFDSixLQUM3QnZCLElBQUk0QixNQUFNLENBQUMsQ0FBQyxZQUFZLEVBQUVMLEdBQUcsQ0FBQyxFQUFFO0FBRWxDLHdEQUF3RDtBQUNqRCxNQUFNTSxrQkFBa0IsQ0FBQ0osT0FDOUJ6QixJQUFJZSxJQUFJLENBQUMsZ0JBQWdCVSxNQUFNO0FBRTFCLE1BQU1LLGdCQUFnQixDQUFDVCxTQUM1QnJCLElBQUlpQixHQUFHLENBQUMsZ0JBQWdCO1FBQUVJO0lBQU8sR0FBRztBQUUvQixNQUFNVSxlQUFlLENBQUNSLEtBQzNCdkIsSUFBSWlCLEdBQUcsQ0FBQyxDQUFDLGFBQWEsRUFBRU0sR0FBRyxDQUFDLEVBQUU7QUFFekIsTUFBTVMsa0JBQWtCLENBQUNULElBQUlFLE9BQ2xDekIsSUFBSTBCLEdBQUcsQ0FBQyxDQUFDLGFBQWEsRUFBRUgsR0FBRyxDQUFDLEVBQUVFLE1BQU07QUFFL0IsTUFBTVEsa0JBQWtCLENBQUNWLEtBQzlCdkIsSUFBSTRCLE1BQU0sQ0FBQyxDQUFDLGFBQWEsRUFBRUwsR0FBRyxDQUFDLEVBQUU7QUFFbkMscURBQXFEO0FBQzlDLE1BQU1XLGNBQWMsQ0FBQ1QsT0FDMUJ6QixJQUFJZSxJQUFJLENBQUMsYUFBYVUsTUFBTTtBQUV2QixNQUFNVSxtQkFBbUIsSUFDOUJuQyxJQUFJaUIsR0FBRyxDQUFDLDJCQUEyQjtBQUU5QixNQUFNbUIsY0FBYyxDQUFDQyxXQUFXQyxTQUNyQ3RDLElBQUlpQixHQUFHLENBQUMsQ0FBQyxVQUFVLEVBQUVvQixVQUFVLENBQUMsRUFBRTtRQUFFaEIsUUFBUTtZQUFFa0IsU0FBU0Q7UUFBTztJQUFFLEdBQUc7QUFFckUsaUVBQWV0QyxHQUFHQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2xpYi9hcGkuanM/ZmNmYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgYXhpb3MgZnJvbSAnYXhpb3MnO1xuaW1wb3J0IHsgYXV0aCB9IGZyb20gJy4vZmlyZWJhc2UnO1xuXG5jb25zdCBBUElfVVJMID0gcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNfQVBJX1VSTCB8fCAnaHR0cDovL2xvY2FsaG9zdDo1MDAwL2FwaSc7XG5cbmNvbnN0IGFwaSA9IGF4aW9zLmNyZWF0ZSh7XG4gIGJhc2VVUkw6IEFQSV9VUkwsXG59KTtcblxuLy8gQXR0YWNoIEZpcmViYXNlIElEIHRva2VuIHRvIGV2ZXJ5IHJlcXVlc3RcbmFwaS5pbnRlcmNlcHRvcnMucmVxdWVzdC51c2UoYXN5bmMgKGNvbmZpZykgPT4ge1xuICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gJ3VuZGVmaW5lZCcpIHtcbiAgICBjb25zdCB1c2VyID0gYXV0aC5jdXJyZW50VXNlcjtcbiAgICBpZiAodXNlcikge1xuICAgICAgY29uc3QgdG9rZW4gPSBhd2FpdCB1c2VyLmdldElkVG9rZW4oKTtcbiAgICAgIGNvbmZpZy5oZWFkZXJzLkF1dGhvcml6YXRpb24gPSBgQmVhcmVyICR7dG9rZW59YDtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIGNvbmZpZztcbn0pO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBBVVRIID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3QgcmVnaXN0ZXJVc2VyID0gKGRpc3BsYXlOYW1lKSA9PlxuICBhcGkucG9zdCgnL2F1dGgvcmVnaXN0ZXInLCB7IGRpc3BsYXlOYW1lIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0Q3VycmVudFVzZXIgPSAoKSA9PlxuICBhcGkuZ2V0KCcvYXV0aC9tZScpO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBMT1NUIElURU1TID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3QgY3JlYXRlTG9zdEl0ZW0gPSAoZm9ybURhdGEpID0+XG4gIGFwaS5wb3N0KCcvbG9zdC1pdGVtcycsIGZvcm1EYXRhLCB7XG4gICAgaGVhZGVyczogeyAnQ29udGVudC1UeXBlJzogJ211bHRpcGFydC9mb3JtLWRhdGEnIH0sXG4gIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0TG9zdEl0ZW1zID0gKHBhcmFtcykgPT5cbiAgYXBpLmdldCgnL2xvc3QtaXRlbXMnLCB7IHBhcmFtcyB9KTtcblxuZXhwb3J0IGNvbnN0IGdldExvc3RJdGVtID0gKGlkKSA9PlxuICBhcGkuZ2V0KGAvbG9zdC1pdGVtcy8ke2lkfWApO1xuXG5leHBvcnQgY29uc3QgdXBkYXRlTG9zdEl0ZW0gPSAoaWQsIGRhdGEpID0+XG4gIGFwaS5wdXQoYC9sb3N0LWl0ZW1zLyR7aWR9YCwgZGF0YSk7XG5cbmV4cG9ydCBjb25zdCBkZWxldGVMb3N0SXRlbSA9IChpZCkgPT5cbiAgYXBpLmRlbGV0ZShgL2xvc3QtaXRlbXMvJHtpZH1gKTtcblxuLy8gPT09PT09PT09PT09PT09PT09PT0gRk9VTkQgSVRFTVMgPT09PT09PT09PT09PT09PT09PT1cbmV4cG9ydCBjb25zdCBjcmVhdGVGb3VuZEl0ZW0gPSAoZGF0YSkgPT5cbiAgYXBpLnBvc3QoJy9mb3VuZC1pdGVtcycsIGRhdGEpO1xuXG5leHBvcnQgY29uc3QgZ2V0Rm91bmRJdGVtcyA9IChwYXJhbXMpID0+XG4gIGFwaS5nZXQoJy9mb3VuZC1pdGVtcycsIHsgcGFyYW1zIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0Rm91bmRJdGVtID0gKGlkKSA9PlxuICBhcGkuZ2V0KGAvZm91bmQtaXRlbXMvJHtpZH1gKTtcblxuZXhwb3J0IGNvbnN0IHVwZGF0ZUZvdW5kSXRlbSA9IChpZCwgZGF0YSkgPT5cbiAgYXBpLnB1dChgL2ZvdW5kLWl0ZW1zLyR7aWR9YCwgZGF0YSk7XG5cbmV4cG9ydCBjb25zdCBkZWxldGVGb3VuZEl0ZW0gPSAoaWQpID0+XG4gIGFwaS5kZWxldGUoYC9mb3VuZC1pdGVtcy8ke2lkfWApO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBNRVNTQUdFUyA9PT09PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNvbnN0IHNlbmRNZXNzYWdlID0gKGRhdGEpID0+XG4gIGFwaS5wb3N0KCcvbWVzc2FnZXMnLCBkYXRhKTtcblxuZXhwb3J0IGNvbnN0IGdldENvbnZlcnNhdGlvbnMgPSAoKSA9PlxuICBhcGkuZ2V0KCcvbWVzc2FnZXMvY29udmVyc2F0aW9ucycpO1xuXG5leHBvcnQgY29uc3QgZ2V0TWVzc2FnZXMgPSAocGFydG5lcklkLCBwb3N0SWQpID0+XG4gIGFwaS5nZXQoYC9tZXNzYWdlcy8ke3BhcnRuZXJJZH1gLCB7IHBhcmFtczogeyBwb3N0X2lkOiBwb3N0SWQgfSB9KTtcblxuZXhwb3J0IGRlZmF1bHQgYXBpO1xuIl0sIm5hbWVzIjpbImF4aW9zIiwiYXV0aCIsIkFQSV9VUkwiLCJwcm9jZXNzIiwiZW52IiwiTkVYVF9QVUJMSUNfQVBJX1VSTCIsImFwaSIsImNyZWF0ZSIsImJhc2VVUkwiLCJpbnRlcmNlcHRvcnMiLCJyZXF1ZXN0IiwidXNlIiwiY29uZmlnIiwidXNlciIsImN1cnJlbnRVc2VyIiwidG9rZW4iLCJnZXRJZFRva2VuIiwiaGVhZGVycyIsIkF1dGhvcml6YXRpb24iLCJyZWdpc3RlclVzZXIiLCJkaXNwbGF5TmFtZSIsInBvc3QiLCJnZXRDdXJyZW50VXNlciIsImdldCIsImNyZWF0ZUxvc3RJdGVtIiwiZm9ybURhdGEiLCJnZXRMb3N0SXRlbXMiLCJwYXJhbXMiLCJnZXRMb3N0SXRlbSIsImlkIiwidXBkYXRlTG9zdEl0ZW0iLCJkYXRhIiwicHV0IiwiZGVsZXRlTG9zdEl0ZW0iLCJkZWxldGUiLCJjcmVhdGVGb3VuZEl0ZW0iLCJnZXRGb3VuZEl0ZW1zIiwiZ2V0Rm91bmRJdGVtIiwidXBkYXRlRm91bmRJdGVtIiwiZGVsZXRlRm91bmRJdGVtIiwic2VuZE1lc3NhZ2UiLCJnZXRDb252ZXJzYXRpb25zIiwiZ2V0TWVzc2FnZXMiLCJwYXJ0bmVySWQiLCJwb3N0SWQiLCJwb3N0X2lkIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/lib/api.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/lib/firebase.js":
+/*!*****************************!*\
+  !*** ./src/lib/firebase.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   auth: () => (/* binding */ auth),\n/* harmony export */   db: () => (/* binding */ db),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   storage: () => (/* binding */ storage)\n/* harmony export */ });\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"(ssr)/./node_modules/firebase/app/dist/index.mjs\");\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"(ssr)/./node_modules/firebase/auth/dist/index.mjs\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/firestore */ \"(ssr)/./node_modules/firebase/firestore/dist/index.mjs\");\n/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/storage */ \"(ssr)/./node_modules/firebase/storage/dist/index.mjs\");\n\n\n\n\nconst firebaseConfig = {\n    apiKey: \"AIzaSyChvwCXfz7PYcriTdSKylKOk6tCuJ7rJL8\" || 0,\n    authDomain: \"lost-and-found-website-43962.firebaseapp.com\" || 0,\n    projectId: \"\\\"lost-and-found-website-43962\\\",\" || 0,\n    storageBucket: \"\\\"lost-and-found-website-43962.firebasestorage.app\\\",\" || 0,\n    messagingSenderId: \"\\\"1047691604725\\\",\" || 0,\n    appId: \"\\\"1:1047691604725:web:caf078e5469cc480a58bbc\\\",\" || 0\n};\n// Initialize Firebase only once\nconst app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.getApps)().length === 0 ? (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig) : (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.getApps)()[0];\nconst auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)(app);\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)(app);\nconst storage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.getStorage)(app);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (app);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvbGliL2ZpcmViYXNlLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQXNEO0FBQ2Q7QUFDVTtBQUNKO0FBRTlDLE1BQU1LLGlCQUFpQjtJQUNyQkMsUUFBUUMseUNBQXdDLElBQUk7SUFDcERHLFlBQVlILDhDQUE0QyxJQUFJO0lBQzVESyxXQUFXTCxtQ0FBMkMsSUFBSTtJQUMxRE8sZUFBZVAsdURBQStDLElBQUk7SUFDbEVTLG1CQUFtQlQsb0JBQW9ELElBQUk7SUFDM0VXLE9BQU9YLGlEQUF1QyxJQUFJO0FBQ3BEO0FBRUEsZ0NBQWdDO0FBQ2hDLE1BQU1hLE1BQU1uQixxREFBT0EsR0FBR29CLE1BQU0sS0FBSyxJQUFJckIsMkRBQWFBLENBQUNLLGtCQUFrQkoscURBQU9BLEVBQUUsQ0FBQyxFQUFFO0FBQzFFLE1BQU1xQixPQUFPcEIsc0RBQU9BLENBQUNrQixLQUFLO0FBQzFCLE1BQU1HLEtBQUtwQixnRUFBWUEsQ0FBQ2lCLEtBQUs7QUFDN0IsTUFBTUksVUFBVXBCLDREQUFVQSxDQUFDZ0IsS0FBSztBQUN2QyxpRUFBZUEsR0FBR0EsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8uL3NyYy9saWIvZmlyZWJhc2UuanM/MWRlMCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBpbml0aWFsaXplQXBwLCBnZXRBcHBzIH0gZnJvbSAnZmlyZWJhc2UvYXBwJztcbmltcG9ydCB7IGdldEF1dGggfSBmcm9tICdmaXJlYmFzZS9hdXRoJztcbmltcG9ydCB7IGdldEZpcmVzdG9yZSB9IGZyb20gJ2ZpcmViYXNlL2ZpcmVzdG9yZSc7XG5pbXBvcnQgeyBnZXRTdG9yYWdlIH0gZnJvbSAnZmlyZWJhc2Uvc3RvcmFnZSc7XG5cbmNvbnN0IGZpcmViYXNlQ29uZmlnID0ge1xuICBhcGlLZXk6IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FQSV9LRVkgfHwgJ3lvdXItYXBpLWtleScsXG4gIGF1dGhEb21haW46IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FVVEhfRE9NQUlOIHx8ICd5b3VyLXByb2plY3QuZmlyZWJhc2VhcHAuY29tJyxcbiAgcHJvamVjdElkOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9QUk9KRUNUX0lEIHx8ICd5b3VyLXByb2plY3QtaWQnLFxuICBzdG9yYWdlQnVja2V0OiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9TVE9SQUdFX0JVQ0tFVCB8fCAneW91ci1wcm9qZWN0LmFwcHNwb3QuY29tJyxcbiAgbWVzc2FnaW5nU2VuZGVySWQ6IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX01FU1NBR0lOR19TRU5ERVJfSUQgfHwgJzAwMDAwMDAwMDAwMCcsXG4gIGFwcElkOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9BUFBfSUQgfHwgJzE6MDAwMDAwMDAwMDAwOndlYjowMDAwMDAwMDAwMDAwMDAwJyxcbn07XG5cbi8vIEluaXRpYWxpemUgRmlyZWJhc2Ugb25seSBvbmNlXG5jb25zdCBhcHAgPSBnZXRBcHBzKCkubGVuZ3RoID09PSAwID8gaW5pdGlhbGl6ZUFwcChmaXJlYmFzZUNvbmZpZykgOiBnZXRBcHBzKClbMF07XG5leHBvcnQgY29uc3QgYXV0aCA9IGdldEF1dGgoYXBwKTtcbmV4cG9ydCBjb25zdCBkYiA9IGdldEZpcmVzdG9yZShhcHApO1xuZXhwb3J0IGNvbnN0IHN0b3JhZ2UgPSBnZXRTdG9yYWdlKGFwcCk7XG5leHBvcnQgZGVmYXVsdCBhcHA7XG4iXSwibmFtZXMiOlsiaW5pdGlhbGl6ZUFwcCIsImdldEFwcHMiLCJnZXRBdXRoIiwiZ2V0RmlyZXN0b3JlIiwiZ2V0U3RvcmFnZSIsImZpcmViYXNlQ29uZmlnIiwiYXBpS2V5IiwicHJvY2VzcyIsImVudiIsIk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FQSV9LRVkiLCJhdXRoRG9tYWluIiwiTkVYVF9QVUJMSUNfRklSRUJBU0VfQVVUSF9ET01BSU4iLCJwcm9qZWN0SWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9QUk9KRUNUX0lEIiwic3RvcmFnZUJ1Y2tldCIsIk5FWFRfUFVCTElDX0ZJUkVCQVNFX1NUT1JBR0VfQlVDS0VUIiwibWVzc2FnaW5nU2VuZGVySWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9NRVNTQUdJTkdfU0VOREVSX0lEIiwiYXBwSWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9BUFBfSUQiLCJhcHAiLCJsZW5ndGgiLCJhdXRoIiwiZGIiLCJzdG9yYWdlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/lib/firebase.js\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/app/globals.css":
+/*!*****************************!*\
+  !*** ./src/app/globals.css ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"288044b05286\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL2dsb2JhbHMuY3NzIiwibWFwcGluZ3MiOiI7Ozs7QUFBQSxpRUFBZSxjQUFjO0FBQzdCLElBQUksS0FBVSxFQUFFLEVBQXVCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2FwcC9nbG9iYWxzLmNzcz82OGEyIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IFwiMjg4MDQ0YjA1Mjg2XCJcbmlmIChtb2R1bGUuaG90KSB7IG1vZHVsZS5ob3QuYWNjZXB0KCkgfVxuIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(ssr)/./src/app/globals.css\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/app/register/auth.module.css":
+/*!******************************************!*\
+  !*** ./src/app/register/auth.module.css ***!
+  \******************************************/
+/***/ ((module) => {
+
+eval("// Exports\nmodule.exports = {\n\t\"container\": \"auth_container__qdCQj\",\n\t\"card\": \"auth_card__KYt1_\",\n\t\"header\": \"auth_header__AmejV\",\n\t\"form\": \"auth_form__hq9ar\",\n\t\"submitBtn\": \"auth_submitBtn__5RyAG\",\n\t\"switchText\": \"auth_switchText__VERo_\"\n};\n\nmodule.exports.__checksum = \"8a2165e8b991\"\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvYXBwL3JlZ2lzdGVyL2F1dGgubW9kdWxlLmNzcyIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRUEseUJBQXlCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2FwcC9yZWdpc3Rlci9hdXRoLm1vZHVsZS5jc3M/NmVhZiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBFeHBvcnRzXG5tb2R1bGUuZXhwb3J0cyA9IHtcblx0XCJjb250YWluZXJcIjogXCJhdXRoX2NvbnRhaW5lcl9fcWRDUWpcIixcblx0XCJjYXJkXCI6IFwiYXV0aF9jYXJkX19LWXQxX1wiLFxuXHRcImhlYWRlclwiOiBcImF1dGhfaGVhZGVyX19BbWVqVlwiLFxuXHRcImZvcm1cIjogXCJhdXRoX2Zvcm1fX2hxOWFyXCIsXG5cdFwic3VibWl0QnRuXCI6IFwiYXV0aF9zdWJtaXRCdG5fXzVSeUFHXCIsXG5cdFwic3dpdGNoVGV4dFwiOiBcImF1dGhfc3dpdGNoVGV4dF9fVkVSb19cIlxufTtcblxubW9kdWxlLmV4cG9ydHMuX19jaGVja3N1bSA9IFwiOGEyMTY1ZThiOTkxXCJcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/app/register/auth.module.css\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/components/Footer.module.css":
+/*!******************************************!*\
+  !*** ./src/components/Footer.module.css ***!
+  \******************************************/
+/***/ ((module) => {
+
+eval("// Exports\nmodule.exports = {\n\t\"footer\": \"Footer_footer__UaG1g\",\n\t\"container\": \"Footer_container__Z8cUU\",\n\t\"subtitle\": \"Footer_subtitle__hrxG2\"\n};\n\nmodule.exports.__checksum = \"824ba71071c8\"\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29tcG9uZW50cy9Gb290ZXIubW9kdWxlLmNzcyIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRUEseUJBQXlCIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvRm9vdGVyLm1vZHVsZS5jc3M/ZjhjMSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBFeHBvcnRzXG5tb2R1bGUuZXhwb3J0cyA9IHtcblx0XCJmb290ZXJcIjogXCJGb290ZXJfZm9vdGVyX19VYUcxZ1wiLFxuXHRcImNvbnRhaW5lclwiOiBcIkZvb3Rlcl9jb250YWluZXJfX1o4Y1VVXCIsXG5cdFwic3VidGl0bGVcIjogXCJGb290ZXJfc3VidGl0bGVfX2hyeEcyXCJcbn07XG5cbm1vZHVsZS5leHBvcnRzLl9fY2hlY2tzdW0gPSBcIjgyNGJhNzEwNzFjOFwiXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/components/Footer.module.css\n");
+
+/***/ }),
+
+/***/ "(ssr)/./src/components/Navbar.module.css":
+/*!******************************************!*\
+  !*** ./src/components/Navbar.module.css ***!
+  \******************************************/
+/***/ ((module) => {
+
+eval("// Exports\nmodule.exports = {\n\t\"navbar\": \"Navbar_navbar__fk_p7\",\n\t\"container\": \"Navbar_container__R6vwY\",\n\t\"brand\": \"Navbar_brand__XNsQP\",\n\t\"brandIcon\": \"Navbar_brandIcon__NlK2H\",\n\t\"links\": \"Navbar_links__lFeE5\",\n\t\"navLink\": \"Navbar_navLink__id1IU\",\n\t\"btnReportLost\": \"Navbar_btnReportLost___MLFg\",\n\t\"btnReportFound\": \"Navbar_btnReportFound__pGdHn\",\n\t\"btnRegister\": \"Navbar_btnRegister__V1_yt\",\n\t\"btnLogout\": \"Navbar_btnLogout__e9KO_\",\n\t\"brandText\": \"Navbar_brandText__S_U_v\"\n};\n\nmodule.exports.__checksum = \"36c0ce6f5c66\"\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29tcG9uZW50cy9OYXZiYXIubW9kdWxlLmNzcyIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVBLHlCQUF5QiIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8uL3NyYy9jb21wb25lbnRzL05hdmJhci5tb2R1bGUuY3NzP2UwZDQiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gRXhwb3J0c1xubW9kdWxlLmV4cG9ydHMgPSB7XG5cdFwibmF2YmFyXCI6IFwiTmF2YmFyX25hdmJhcl9fZmtfcDdcIixcblx0XCJjb250YWluZXJcIjogXCJOYXZiYXJfY29udGFpbmVyX19SNnZ3WVwiLFxuXHRcImJyYW5kXCI6IFwiTmF2YmFyX2JyYW5kX19YTnNRUFwiLFxuXHRcImJyYW5kSWNvblwiOiBcIk5hdmJhcl9icmFuZEljb25fX05sSzJIXCIsXG5cdFwibGlua3NcIjogXCJOYXZiYXJfbGlua3NfX2xGZUU1XCIsXG5cdFwibmF2TGlua1wiOiBcIk5hdmJhcl9uYXZMaW5rX19pZDFJVVwiLFxuXHRcImJ0blJlcG9ydExvc3RcIjogXCJOYXZiYXJfYnRuUmVwb3J0TG9zdF9fX01MRmdcIixcblx0XCJidG5SZXBvcnRGb3VuZFwiOiBcIk5hdmJhcl9idG5SZXBvcnRGb3VuZF9fcEdkSG5cIixcblx0XCJidG5SZWdpc3RlclwiOiBcIk5hdmJhcl9idG5SZWdpc3Rlcl9fVjFfeXRcIixcblx0XCJidG5Mb2dvdXRcIjogXCJOYXZiYXJfYnRuTG9nb3V0X19lOUtPX1wiLFxuXHRcImJyYW5kVGV4dFwiOiBcIk5hdmJhcl9icmFuZFRleHRfX1NfVV92XCJcbn07XG5cbm1vZHVsZS5leHBvcnRzLl9fY2hlY2tzdW0gPSBcIjM2YzBjZTZmNWM2NlwiXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/components/Navbar.module.css\n");
+
+/***/ }),
+
+/***/ "(rsc)/./src/app/layout.js":
+/*!***************************!*\
+  !*** ./src/app/layout.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/layout.js#default`));
+
+
+/***/ }),
+
+/***/ "(rsc)/./src/app/register/page.js":
+/*!**********************************!*\
+  !*** ./src/app/register/page.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/app/register/page.js#default`));
+
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@firebase","vendor-chunks/next","vendor-chunks/undici","vendor-chunks/@grpc","vendor-chunks/firebase","vendor-chunks/protobufjs","vendor-chunks/axios","vendor-chunks/mime-db","vendor-chunks/long","vendor-chunks/@protobufjs","vendor-chunks/follow-redirects","vendor-chunks/lodash.camelcase","vendor-chunks/debug","vendor-chunks/tslib","vendor-chunks/form-data","vendor-chunks/get-intrinsic","vendor-chunks/idb","vendor-chunks/asynckit","vendor-chunks/combined-stream","vendor-chunks/mime-types","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/supports-color","vendor-chunks/has-symbols","vendor-chunks/delayed-stream","vendor-chunks/@swc","vendor-chunks/function-bind","vendor-chunks/es-set-tostringtag","vendor-chunks/get-proto","vendor-chunks/call-bind-apply-helpers","vendor-chunks/dunder-proto","vendor-chunks/math-intrinsics","vendor-chunks/es-errors","vendor-chunks/has-flag","vendor-chunks/gopd","vendor-chunks/es-define-property","vendor-chunks/hasown","vendor-chunks/has-tostringtag","vendor-chunks/es-object-atoms"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fregister%2Fpage&page=%2Fregister%2Fpage&appPaths=%2Fregister%2Fpage&pagePath=private-next-app-dir%2Fregister%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+module.exports = __webpack_exports__;
+
+})();

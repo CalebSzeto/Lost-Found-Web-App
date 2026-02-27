@@ -1,0 +1,86 @@
+.reportPage {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.reportHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reportHeader h1 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.reportHeader p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.reportForm {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.fileInput {
+  padding: 0.75rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  background: #f9fafb;
+}
+
+.fileInput:hover {
+  border-color: var(--primary);
+}
+
+.imagePreview {
+  margin-top: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.imagePreview img {
+  max-width: 100%;
+  max-height: 250px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.removeImage {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.removeImage:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .reportForm {
+    padding: 1.25rem;
+  }
+}

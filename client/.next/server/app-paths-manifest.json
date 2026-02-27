@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/found-items/page": "app/found-items/page.js",
+  "/register/page": "app/register/page.js",
+  "/report-found/page": "app/report-found/page.js",
+  "/lost-items/page": "app/lost-items/page.js",
+  "/report-lost/page": "app/report-lost/page.js"
+}
