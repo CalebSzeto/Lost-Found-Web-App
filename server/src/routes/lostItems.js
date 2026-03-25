@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const LostItem = require('../models/LostItem');
+const Message = require('../models/Message');
 const authenticate = require('../middleware/auth');
 const { uploadImage } = require('../lib/imageUpload');
 
@@ -191,6 +192,11 @@ router.put('/:id', authenticate, async (req, res) => {
     const { status } = req.body;
     item.status = status;
     await item.save();
+
+    if (status === 'resolved') {
+      await Message.deleteMany({ related_post_id: item.lost_item_id });
+    }
+
     res.json({ message: 'Lost item updated' });
   } catch (error) {
     console.error('Update lost item error:', error);

@@ -10,11 +10,12 @@ function MessagesContent() {
   const searchParams = useSearchParams();
   const toParam = searchParams.get('to');
   const postParam = searchParams.get('post');
+  const urlConversationId = toParam ? `${toParam}_${postParam || 'general'}` : null;
 
   const { currentUser } = useAuth();
   const [conversations, setConversations] = useState([]);
   const [selectedConversationId, setSelectedConversationId] = useState(
-    toParam ? `${toParam}_${postParam || 'general'}` : null
+    urlConversationId
   );
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -34,6 +35,11 @@ function MessagesContent() {
       fetchConversations(false);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    // Keep selection in sync when the URL changes from detail-page links.
+    setSelectedConversationId(urlConversationId);
+  }, [urlConversationId]);
 
   useEffect(() => {
     if (selectedConversation?.partner_id) {
@@ -92,10 +98,10 @@ function MessagesContent() {
       const normalized = normalizeConversations(res.data);
 
       let merged = normalized;
-      if (toParam && !normalized.find((c) => c.partner_id === toParam)) {
+      if (urlConversationId && !normalized.find((c) => c.conversation_id === urlConversationId)) {
         merged = [
           {
-            conversation_id: `${toParam}_${postParam || 'general'}`,
+            conversation_id: urlConversationId,
             partner_id: toParam,
             partner_email: 'New Conversation',
             related_post_id: postParam || null,
