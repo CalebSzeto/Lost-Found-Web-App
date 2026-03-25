@@ -1,4 +1,5 @@
-const { auth } = require('../config/firebase');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
 
 const authenticate = async (req, res, next) => {
   try {
@@ -8,10 +9,11 @@ const authenticate = async (req, res, next) => {
     }
 
     const token = authHeader.split('Bearer ')[1];
-    const decodedToken = await auth.verifyIdToken(token);
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     req.user = {
       uid: decodedToken.uid,
       email: decodedToken.email,
+      displayName: decodedToken.displayName,
     };
     next();
   } catch (error) {

@@ -96,7 +96,7 @@ export default function MyPostsPage() {
           {currentItems.map((item) => (
             <PostCard
               key={activeTab === 'lost' ? item.lost_item_id : item.found_item_id}
-              item={item}
+              post={item}
               type={activeTab}
             />
           ))}

@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const fs = require('fs/promises');
+const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { db, bucket } = require('../config/firebase');
+const LostItem = require('../models/LostItem');
 const authenticate = require('../middleware/auth');
 
 // Configure multer for memory storage
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
   fileFilter: (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
       cb(null, true);
@@ -20,19 +22,37 @@ const upload = multer({
 
 const EXPIRATION_DAYS = parseInt(process.env.POST_EXPIRATION_DAYS) || 30;
 
+function handleImageUpload(req, res, next) {
+  upload.single('image')(req, res, (err) => {
+    if (!err) {
+      return next();
+    }
+
+    if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).json({ error: 'Image must be 10MB or smaller' });
+    }
+
+    return res.status(400).json({ error: err.message || 'Invalid image upload' });
+  });
+}
+
 /**
- * Upload image to Firebase Storage
+ * Save uploaded image to local storage and return public URL.
  */
 async function uploadImage(file) {
-  const fileName = `lost-items/${uuidv4()}-${file.originalname}`;
-  const fileRef = bucket.file(fileName);
+  if (process.env.VERCEL) {
+    return null;
+  }
 
-  await fileRef.save(file.buffer, {
-    metadata: { contentType: file.mimetype },
-  });
+  const imageId = uuidv4();
+  const ext = path.extname(file.originalname || '').toLowerCase() || '.jpg';
+  const uploadDir = path.join(__dirname, '../../uploads/lost-items');
+  await fs.mkdir(uploadDir, { recursive: true });
+  const localFilePath = path.join(uploadDir, `${imageId}${ext}`);
+  await fs.writeFile(localFilePath, file.buffer);
 
-  await fileRef.makePublic();
-  return `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+  const baseUrl = process.env.PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
+  return `${baseUrl}/uploads/lost-items/${imageId}${ext}`;
 }
 
 /**
@@ -44,8 +64,26 @@ function isExpired(createdAt) {
   return new Date() > expirationDate;
 }
 
+function toTimestamp(value) {
+  if (!value) return null;
+  const t = new Date(value).getTime();
+  return Number.isNaN(t) ? null : t;
+}
+
+function compareDates(aValue, bValue, direction = 'desc') {
+  const aTime = toTimestamp(aValue);
+  const bTime = toTimestamp(bValue);
+
+  // Put invalid/missing dates at the end of the list.
+  if (aTime === null && bTime === null) return 0;
+  if (aTime === null) return 1;
+  if (bTime === null) return -1;
+
+  return direction === 'asc' ? aTime - bTime : bTime - aTime;
+}
+
 // POST /api/lost-items - Create a lost item post
-router.post('/', authenticate, upload.single('image'), async (req, res) => {
+router.post('/', authenticate, handleImageUpload, async (req, res) => {
   try {
     const { title, description, location, date_lost } = req.body;
 
@@ -73,34 +111,34 @@ router.post('/', authenticate, upload.single('image'), async (req, res) => {
       created_at: new Date().toISOString(),
     };
 
-    await db.collection('lost_items').doc(lost_item_id).set(lostItem);
+    await LostItem.create(lostItem);
     res.status(201).json({ message: 'Lost item post created', item: lostItem });
   } catch (error) {
     console.error('Create lost item error:', error);
-    res.status(500).json({ error: 'Failed to create lost item post' });
+    res.status(500).json({ error: `Failed to create lost item post: ${error.message}` });
   }
 });
 
 // GET /api/lost-items - Get all active lost items
 router.get('/', async (req, res) => {
   try {
-    const { keyword, location, date, status } = req.query;
+    const { keyword, location, date, sortBy = 'most_recent' } = req.query;
 
-    let query = db.collection('lost_items').orderBy('created_at', 'desc');
-
-    const snapshot = await query.get();
+    const activeItems = await LostItem.find({ status: 'active' }).sort({ created_at: -1 }).lean();
+    const expiredIds = [];
     let items = [];
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      // Filter out expired items unless explicitly requesting them
-      if (data.status === 'active' && !isExpired(data.created_at)) {
-        items.push(data);
-      } else if (data.status === 'active' && isExpired(data.created_at)) {
-        // Auto-expire
-        db.collection('lost_items').doc(doc.id).update({ status: 'expired' });
+    activeItems.forEach((item) => {
+      if (!isExpired(item.created_at)) {
+        items.push(item);
+      } else {
+        expiredIds.push(item.lost_item_id);
       }
     });
+
+    if (expiredIds.length > 0) {
+      await LostItem.updateMany({ lost_item_id: { $in: expiredIds } }, { $set: { status: 'expired' } });
+    }
 
     // Apply filters
     if (keyword) {
@@ -116,8 +154,27 @@ router.get('/', async (req, res) => {
       items = items.filter((item) => item.location.toLowerCase().includes(loc));
     }
     if (date) {
-      items = items.filter((item) => item.date_lost === date);
+      items = items.filter((item) => {
+        // Keep items lost on or after the selected date.
+        if (!item.date_lost) return false;
+        return item.date_lost >= date;
+      });
     }
+
+    // Apply sorting (default: most recent post first)
+    items.sort((a, b) => {
+      switch (sortBy) {
+        case 'oldest_posted':
+          return compareDates(a.created_at, b.created_at, 'asc');
+        case 'date_recent':
+          return compareDates(a.date_lost, b.date_lost, 'desc');
+        case 'date_oldest':
+          return compareDates(a.date_lost, b.date_lost, 'asc');
+        case 'most_recent':
+        default:
+          return compareDates(a.created_at, b.created_at, 'desc');
+      }
+    });
 
     res.json(items);
   } catch (error) {
@@ -129,11 +186,11 @@ router.get('/', async (req, res) => {
 // GET /api/lost-items/:id - Get a single lost item
 router.get('/:id', async (req, res) => {
   try {
-    const doc = await db.collection('lost_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await LostItem.findOne({ lost_item_id: req.params.id }).lean();
+    if (!item) {
       return res.status(404).json({ error: 'Lost item not found' });
     }
-    res.json(doc.data());
+    res.json(item);
   } catch (error) {
     console.error('Get lost item error:', error);
     res.status(500).json({ error: 'Failed to get lost item' });
@@ -143,16 +200,17 @@ router.get('/:id', async (req, res) => {
 // PUT /api/lost-items/:id - Update lost item status
 router.put('/:id', authenticate, async (req, res) => {
   try {
-    const doc = await db.collection('lost_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await LostItem.findOne({ lost_item_id: req.params.id });
+    if (!item) {
       return res.status(404).json({ error: 'Lost item not found' });
     }
-    if (doc.data().user_id !== req.user.uid) {
+    if (item.user_id !== req.user.uid) {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
     const { status } = req.body;
-    await db.collection('lost_items').doc(req.params.id).update({ status });
+    item.status = status;
+    await item.save();
     res.json({ message: 'Lost item updated' });
   } catch (error) {
     console.error('Update lost item error:', error);
@@ -163,15 +221,15 @@ router.put('/:id', authenticate, async (req, res) => {
 // DELETE /api/lost-items/:id - Delete a lost item post
 router.delete('/:id', authenticate, async (req, res) => {
   try {
-    const doc = await db.collection('lost_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await LostItem.findOne({ lost_item_id: req.params.id });
+    if (!item) {
       return res.status(404).json({ error: 'Lost item not found' });
     }
-    if (doc.data().user_id !== req.user.uid) {
+    if (item.user_id !== req.user.uid) {
       return res.status(403).json({ error: 'Not authorized to delete this post' });
     }
 
-    await db.collection('lost_items').doc(req.params.id).delete();
+    await LostItem.deleteOne({ lost_item_id: req.params.id });
     res.json({ message: 'Lost item deleted successfully' });
   } catch (error) {
     console.error('Delete lost item error:', error);

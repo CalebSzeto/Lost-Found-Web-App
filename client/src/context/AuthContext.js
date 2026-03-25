@@ -1,14 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import { auth } from '@/lib/firebase';
-import { registerUser } from '@/lib/api';
+import { registerUser, loginUser, getCurrentUser, setAuthToken } from '@/lib/api';
 
 const AuthContext = createContext();
 
@@ -19,29 +12,53 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password, displayName) => {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    try {
-      await registerUser(displayName);
-    } catch (err) {
-      console.error('Backend registration error:', err);
-    }
-    return result;
+    const res = await registerUser(email, password, displayName);
+    const { token, user } = res.data;
+    setAuthToken(token);
+    setCurrentUser({
+      uid: user.user_id,
+      email: user.email,
+      displayName: user.displayName,
+    });
+    return res;
   };
 
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const login = async (email, password) => {
+    const res = await loginUser(email, password);
+    const { token, user } = res.data;
+    setAuthToken(token);
+    setCurrentUser({
+      uid: user.user_id,
+      email: user.email,
+      displayName: user.displayName,
+    });
+    return res;
   };
 
   const logout = () => {
-    return signOut(auth);
+    setAuthToken(null);
+    setCurrentUser(null);
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsubscribe;
+    const restoreSession = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data;
+        setCurrentUser({
+          uid: user.user_id,
+          email: user.email,
+          displayName: user.displayName,
+        });
+      } catch (err) {
+        setAuthToken(null);
+        setCurrentUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    restoreSession();
   }, []);
 
   const value = {

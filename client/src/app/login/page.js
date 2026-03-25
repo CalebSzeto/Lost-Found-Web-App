@@ -23,11 +23,7 @@ export default function LoginPage() {
       await login(email, password);
       router.push('/');
     } catch (err) {
-      setError(
-        err.code === 'auth/invalid-credential'
-          ? 'Invalid email or password'
-          : 'Failed to sign in. Please try again.'
-      );
+      setError(err.response?.data?.error || 'Failed to sign in. Please try again.');
     } finally {
       setLoading(false);
     }

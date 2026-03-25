@@ -1,10 +1,55 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const fs = require('fs/promises');
+const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { db } = require('../config/firebase');
+const FoundItem = require('../models/FoundItem');
 const authenticate = require('../middleware/auth');
 
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'), false);
+    }
+  },
+});
+
 const EXPIRATION_DAYS = parseInt(process.env.POST_EXPIRATION_DAYS) || 30;
+
+function handleImageUpload(req, res, next) {
+  upload.single('image')(req, res, (err) => {
+    if (!err) {
+      return next();
+    }
+
+    if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).json({ error: 'Image must be 10MB or smaller' });
+    }
+
+    return res.status(400).json({ error: err.message || 'Invalid image upload' });
+  });
+}
+
+async function uploadImage(file) {
+  if (process.env.VERCEL) {
+    return null;
+  }
+
+  const imageId = uuidv4();
+  const ext = path.extname(file.originalname || '').toLowerCase() || '.jpg';
+  const uploadDir = path.join(__dirname, '../../uploads/found-items');
+  await fs.mkdir(uploadDir, { recursive: true });
+  const localFilePath = path.join(uploadDir, `${imageId}${ext}`);
+  await fs.writeFile(localFilePath, file.buffer);
+
+  const baseUrl = process.env.PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
+  return `${baseUrl}/uploads/found-items/${imageId}${ext}`;
+}
 
 function isExpired(createdAt) {
   const created = new Date(createdAt);
@@ -12,60 +57,111 @@ function isExpired(createdAt) {
   return new Date() > expirationDate;
 }
 
+function toTimestamp(value) {
+  if (!value) return null;
+  const t = new Date(value).getTime();
+  return Number.isNaN(t) ? null : t;
+}
+
+function compareDates(aValue, bValue, direction = 'desc') {
+  const aTime = toTimestamp(aValue);
+  const bTime = toTimestamp(bValue);
+
+  // Put invalid/missing dates at the end of the list.
+  if (aTime === null && bTime === null) return 0;
+  if (aTime === null) return 1;
+  if (bTime === null) return -1;
+
+  return direction === 'asc' ? aTime - bTime : bTime - aTime;
+}
+
 // POST /api/found-items - Create a found item post
-router.post('/', authenticate, async (req, res) => {
+router.post('/', authenticate, handleImageUpload, async (req, res) => {
   try {
-    const { description, location, dropoff_time } = req.body;
+    const { title, description, location, date_found, dropoff_time } = req.body;
 
     if (!description || !location) {
       return res.status(400).json({ error: 'Description and location are required' });
     }
+
+    let image_url = null;
+    if (req.file) {
+      image_url = await uploadImage(req.file);
+    }
+
+    const normalizedDateFound = date_found || new Date().toISOString().split('T')[0];
 
     const found_item_id = uuidv4();
     const foundItem = {
       found_item_id,
       user_id: req.user.uid,
       user_email: req.user.email,
+      title: title || 'Found item',
       description,
       location,
+      date_found: normalizedDateFound,
+      image_url,
       dropoff_time: dropoff_time || null,
       status: 'active',
       created_at: new Date().toISOString(),
     };
 
-    await db.collection('found_items').doc(found_item_id).set(foundItem);
+    await FoundItem.create(foundItem);
     res.status(201).json({ message: 'Found item post created', item: foundItem });
   } catch (error) {
     console.error('Create found item error:', error);
-    res.status(500).json({ error: 'Failed to create found item post' });
+    res.status(500).json({ error: `Failed to create found item post: ${error.message}` });
   }
 });
 
 // GET /api/found-items - Get all active found items
 router.get('/', async (req, res) => {
   try {
-    const { keyword, location } = req.query;
+    const { keyword, location, sortBy = 'most_recent' } = req.query;
 
-    const snapshot = await db.collection('found_items').orderBy('created_at', 'desc').get();
+    const activeItems = await FoundItem.find({ status: 'active' }).sort({ created_at: -1 }).lean();
+    const expiredIds = [];
     let items = [];
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (data.status === 'active' && !isExpired(data.created_at)) {
-        items.push(data);
-      } else if (data.status === 'active' && isExpired(data.created_at)) {
-        db.collection('found_items').doc(doc.id).update({ status: 'expired' });
+    activeItems.forEach((item) => {
+      if (!isExpired(item.created_at)) {
+        items.push(item);
+      } else {
+        expiredIds.push(item.found_item_id);
       }
     });
 
+    if (expiredIds.length > 0) {
+      await FoundItem.updateMany({ found_item_id: { $in: expiredIds } }, { $set: { status: 'expired' } });
+    }
+
     if (keyword) {
       const kw = keyword.toLowerCase();
-      items = items.filter((item) => item.description.toLowerCase().includes(kw));
+      items = items.filter(
+        (item) =>
+          item.description.toLowerCase().includes(kw) ||
+          (item.title && item.title.toLowerCase().includes(kw))
+      );
     }
     if (location) {
       const loc = location.toLowerCase();
       items = items.filter((item) => item.location.toLowerCase().includes(loc));
     }
+
+    // Apply sorting (default: most recent post first)
+    items.sort((a, b) => {
+      switch (sortBy) {
+        case 'oldest_posted':
+          return compareDates(a.created_at, b.created_at, 'asc');
+        case 'date_recent':
+          return compareDates(a.date_found, b.date_found, 'desc');
+        case 'date_oldest':
+          return compareDates(a.date_found, b.date_found, 'asc');
+        case 'most_recent':
+        default:
+          return compareDates(a.created_at, b.created_at, 'desc');
+      }
+    });
 
     res.json(items);
   } catch (error) {
@@ -77,11 +173,11 @@ router.get('/', async (req, res) => {
 // GET /api/found-items/:id - Get a single found item
 router.get('/:id', async (req, res) => {
   try {
-    const doc = await db.collection('found_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await FoundItem.findOne({ found_item_id: req.params.id }).lean();
+    if (!item) {
       return res.status(404).json({ error: 'Found item not found' });
     }
-    res.json(doc.data());
+    res.json(item);
   } catch (error) {
     console.error('Get found item error:', error);
     res.status(500).json({ error: 'Failed to get found item' });
@@ -91,16 +187,17 @@ router.get('/:id', async (req, res) => {
 // PUT /api/found-items/:id - Update found item status
 router.put('/:id', authenticate, async (req, res) => {
   try {
-    const doc = await db.collection('found_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await FoundItem.findOne({ found_item_id: req.params.id });
+    if (!item) {
       return res.status(404).json({ error: 'Found item not found' });
     }
-    if (doc.data().user_id !== req.user.uid) {
+    if (item.user_id !== req.user.uid) {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
     const { status } = req.body;
-    await db.collection('found_items').doc(req.params.id).update({ status });
+    item.status = status;
+    await item.save();
     res.json({ message: 'Found item updated' });
   } catch (error) {
     console.error('Update found item error:', error);
@@ -111,15 +208,15 @@ router.put('/:id', authenticate, async (req, res) => {
 // DELETE /api/found-items/:id - Delete a found item post
 router.delete('/:id', authenticate, async (req, res) => {
   try {
-    const doc = await db.collection('found_items').doc(req.params.id).get();
-    if (!doc.exists) {
+    const item = await FoundItem.findOne({ found_item_id: req.params.id });
+    if (!item) {
       return res.status(404).json({ error: 'Found item not found' });
     }
-    if (doc.data().user_id !== req.user.uid) {
+    if (item.user_id !== req.user.uid) {
       return res.status(403).json({ error: 'Not authorized to delete this post' });
     }
 
-    await db.collection('found_items').doc(req.params.id).delete();
+    await FoundItem.deleteOne({ found_item_id: req.params.id });
     res.json({ message: 'Found item deleted successfully' });
   } catch (error) {
     console.error('Delete found item error:', error);

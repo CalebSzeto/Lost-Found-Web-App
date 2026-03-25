@@ -5,6 +5,13 @@ import { getLostItems } from '@/lib/api';
 import PostCard from '@/components/PostCard';
 import SearchBar from '@/components/SearchBar';
 
+const lostSortOptions = [
+  { value: 'most_recent', label: 'Most Recent (Posted)' },
+  { value: 'oldest_posted', label: 'Oldest (Posted)' },
+  { value: 'date_recent', label: 'Most Recently Lost' },
+  { value: 'date_oldest', label: 'Oldest Lost Date' },
+];
+
 export default function LostItemsPage() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +41,13 @@ export default function LostItemsPage() {
         <p>Browse items that have been reported as lost on campus.</p>
       </div>
 
-      <SearchBar onSearch={fetchItems} showDateFilter={true} />
+      <SearchBar
+        onSearch={fetchItems}
+        showDateFilter={false}
+        showSort={true}
+        sortOptions={lostSortOptions}
+        defaultSort="most_recent"
+      />
 
       {error && <div className="errorMessage">{error}</div>}
 

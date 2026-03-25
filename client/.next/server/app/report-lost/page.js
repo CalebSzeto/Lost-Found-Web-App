@@ -78,17 +78,6 @@ module.exports = require("crypto");
 
 /***/ }),
 
-/***/ "dns":
-/*!**********************!*\
-  !*** external "dns" ***!
-  \**********************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("dns");
-
-/***/ }),
-
 /***/ "events":
 /*!*************************!*\
   !*** external "events" ***!
@@ -144,17 +133,6 @@ module.exports = require("https");
 
 /***/ }),
 
-/***/ "net":
-/*!**********************!*\
-  !*** external "net" ***!
-  \**********************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("net");
-
-/***/ }),
-
 /***/ "os":
 /*!*********************!*\
   !*** external "os" ***!
@@ -177,17 +155,6 @@ module.exports = require("path");
 
 /***/ }),
 
-/***/ "process":
-/*!**************************!*\
-  !*** external "process" ***!
-  \**************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("process");
-
-/***/ }),
-
 /***/ "stream":
 /*!*************************!*\
   !*** external "stream" ***!
@@ -196,28 +163,6 @@ module.exports = require("process");
 
 "use strict";
 module.exports = require("stream");
-
-/***/ }),
-
-/***/ "string_decoder":
-/*!*********************************!*\
-  !*** external "string_decoder" ***!
-  \*********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("string_decoder");
-
-/***/ }),
-
-/***/ "tls":
-/*!**********************!*\
-  !*** external "tls" ***!
-  \**********************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("tls");
 
 /***/ }),
 
@@ -262,215 +207,6 @@ module.exports = require("util");
 
 "use strict";
 module.exports = require("zlib");
-
-/***/ }),
-
-/***/ "node:assert":
-/*!******************************!*\
-  !*** external "node:assert" ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:assert");
-
-/***/ }),
-
-/***/ "node:async_hooks":
-/*!***********************************!*\
-  !*** external "node:async_hooks" ***!
-  \***********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:async_hooks");
-
-/***/ }),
-
-/***/ "node:buffer":
-/*!******************************!*\
-  !*** external "node:buffer" ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:buffer");
-
-/***/ }),
-
-/***/ "node:console":
-/*!*******************************!*\
-  !*** external "node:console" ***!
-  \*******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:console");
-
-/***/ }),
-
-/***/ "node:crypto":
-/*!******************************!*\
-  !*** external "node:crypto" ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:crypto");
-
-/***/ }),
-
-/***/ "node:diagnostics_channel":
-/*!*******************************************!*\
-  !*** external "node:diagnostics_channel" ***!
-  \*******************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:diagnostics_channel");
-
-/***/ }),
-
-/***/ "node:events":
-/*!******************************!*\
-  !*** external "node:events" ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:events");
-
-/***/ }),
-
-/***/ "node:http":
-/*!****************************!*\
-  !*** external "node:http" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:http");
-
-/***/ }),
-
-/***/ "node:http2":
-/*!*****************************!*\
-  !*** external "node:http2" ***!
-  \*****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:http2");
-
-/***/ }),
-
-/***/ "node:net":
-/*!***************************!*\
-  !*** external "node:net" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:net");
-
-/***/ }),
-
-/***/ "node:perf_hooks":
-/*!**********************************!*\
-  !*** external "node:perf_hooks" ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:perf_hooks");
-
-/***/ }),
-
-/***/ "node:querystring":
-/*!***********************************!*\
-  !*** external "node:querystring" ***!
-  \***********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:querystring");
-
-/***/ }),
-
-/***/ "node:stream":
-/*!******************************!*\
-  !*** external "node:stream" ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:stream");
-
-/***/ }),
-
-/***/ "node:tls":
-/*!***************************!*\
-  !*** external "node:tls" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:tls");
-
-/***/ }),
-
-/***/ "node:url":
-/*!***************************!*\
-  !*** external "node:url" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:url");
-
-/***/ }),
-
-/***/ "node:util":
-/*!****************************!*\
-  !*** external "node:util" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:util");
-
-/***/ }),
-
-/***/ "node:util/types":
-/*!**********************************!*\
-  !*** external "node:util/types" ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:util/types");
-
-/***/ }),
-
-/***/ "node:worker_threads":
-/*!**************************************!*\
-  !*** external "node:worker_threads" ***!
-  \**************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:worker_threads");
-
-/***/ }),
-
-/***/ "node:zlib":
-/*!****************************!*\
-  !*** external "node:zlib" ***!
-  \****************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("node:zlib");
 
 /***/ }),
 
@@ -566,7 +302,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   AuthProvider: () => (/* binding */ AuthProvider),\n/* harmony export */   useAuth: () => (/* binding */ useAuth)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ \"(ssr)/./node_modules/firebase/auth/dist/index.mjs\");\n/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/lib/firebase */ \"(ssr)/./src/lib/firebase.js\");\n/* harmony import */ var _lib_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/lib/api */ \"(ssr)/./src/lib/api.js\");\n/* __next_internal_client_entry_do_not_use__ useAuth,AuthProvider auto */ \n\n\n\n\nconst AuthContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)();\nconst useAuth = ()=>(0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(AuthContext);\nconst AuthProvider = ({ children })=>{\n    const [currentUser, setCurrentUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);\n    const signup = async (email, password, displayName)=>{\n        const result = await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.createUserWithEmailAndPassword)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, email, password);\n        try {\n            await (0,_lib_api__WEBPACK_IMPORTED_MODULE_4__.registerUser)(displayName);\n        } catch (err) {\n            console.error(\"Backend registration error:\", err);\n        }\n        return result;\n    };\n    const login = (email, password)=>{\n        return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, email, password);\n    };\n    const logout = ()=>{\n        return (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signOut)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth);\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        const unsubscribe = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(_lib_firebase__WEBPACK_IMPORTED_MODULE_3__.auth, (user)=>{\n            setCurrentUser(user);\n            setLoading(false);\n        });\n        return unsubscribe;\n    }, []);\n    const value = {\n        currentUser,\n        signup,\n        login,\n        logout,\n        loading\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(AuthContext.Provider, {\n        value: value,\n        children: !loading && children\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/context/AuthContext.js\",\n        lineNumber: 56,\n        columnNumber: 5\n    }, undefined);\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29udGV4dC9BdXRoQ29udGV4dC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7O0FBRThFO0FBTXZEO0FBQ2U7QUFDRztBQUV6QyxNQUFNVyw0QkFBY1Ysb0RBQWFBO0FBRTFCLE1BQU1XLFVBQVUsSUFBTVYsaURBQVVBLENBQUNTLGFBQWE7QUFFOUMsTUFBTUUsZUFBZSxDQUFDLEVBQUVDLFFBQVEsRUFBRTtJQUN2QyxNQUFNLENBQUNDLGFBQWFDLGVBQWUsR0FBR2IsK0NBQVFBLENBQUM7SUFDL0MsTUFBTSxDQUFDYyxTQUFTQyxXQUFXLEdBQUdmLCtDQUFRQSxDQUFDO0lBRXZDLE1BQU1nQixTQUFTLE9BQU9DLE9BQU9DLFVBQVVDO1FBQ3JDLE1BQU1DLFNBQVMsTUFBTWxCLDZFQUE4QkEsQ0FBQ0ksK0NBQUlBLEVBQUVXLE9BQU9DO1FBQ2pFLElBQUk7WUFDRixNQUFNWCxzREFBWUEsQ0FBQ1k7UUFDckIsRUFBRSxPQUFPRSxLQUFLO1lBQ1pDLFFBQVFDLEtBQUssQ0FBQywrQkFBK0JGO1FBQy9DO1FBQ0EsT0FBT0Q7SUFDVDtJQUVBLE1BQU1JLFFBQVEsQ0FBQ1AsT0FBT0M7UUFDcEIsT0FBT2YseUVBQTBCQSxDQUFDRywrQ0FBSUEsRUFBRVcsT0FBT0M7SUFDakQ7SUFFQSxNQUFNTyxTQUFTO1FBQ2IsT0FBT3JCLHNEQUFPQSxDQUFDRSwrQ0FBSUE7SUFDckI7SUFFQUwsZ0RBQVNBLENBQUM7UUFDUixNQUFNeUIsY0FBY3JCLGlFQUFrQkEsQ0FBQ0MsK0NBQUlBLEVBQUUsQ0FBQ3FCO1lBQzVDZCxlQUFlYztZQUNmWixXQUFXO1FBQ2I7UUFDQSxPQUFPVztJQUNULEdBQUcsRUFBRTtJQUVMLE1BQU1FLFFBQVE7UUFDWmhCO1FBQ0FJO1FBQ0FRO1FBQ0FDO1FBQ0FYO0lBQ0Y7SUFFQSxxQkFDRSw4REFBQ04sWUFBWXFCLFFBQVE7UUFBQ0QsT0FBT0E7a0JBQzFCLENBQUNkLFdBQVdIOzs7Ozs7QUFHbkIsRUFBRSIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8uL3NyYy9jb250ZXh0L0F1dGhDb250ZXh0LmpzPzRiYTYiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBjbGllbnQnO1xuXG5pbXBvcnQgUmVhY3QsIHsgY3JlYXRlQ29udGV4dCwgdXNlQ29udGV4dCwgdXNlU3RhdGUsIHVzZUVmZmVjdCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7XG4gIGNyZWF0ZVVzZXJXaXRoRW1haWxBbmRQYXNzd29yZCxcbiAgc2lnbkluV2l0aEVtYWlsQW5kUGFzc3dvcmQsXG4gIHNpZ25PdXQsXG4gIG9uQXV0aFN0YXRlQ2hhbmdlZCxcbn0gZnJvbSAnZmlyZWJhc2UvYXV0aCc7XG5pbXBvcnQgeyBhdXRoIH0gZnJvbSAnQC9saWIvZmlyZWJhc2UnO1xuaW1wb3J0IHsgcmVnaXN0ZXJVc2VyIH0gZnJvbSAnQC9saWIvYXBpJztcblxuY29uc3QgQXV0aENvbnRleHQgPSBjcmVhdGVDb250ZXh0KCk7XG5cbmV4cG9ydCBjb25zdCB1c2VBdXRoID0gKCkgPT4gdXNlQ29udGV4dChBdXRoQ29udGV4dCk7XG5cbmV4cG9ydCBjb25zdCBBdXRoUHJvdmlkZXIgPSAoeyBjaGlsZHJlbiB9KSA9PiB7XG4gIGNvbnN0IFtjdXJyZW50VXNlciwgc2V0Q3VycmVudFVzZXJdID0gdXNlU3RhdGUobnVsbCk7XG4gIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKHRydWUpO1xuXG4gIGNvbnN0IHNpZ251cCA9IGFzeW5jIChlbWFpbCwgcGFzc3dvcmQsIGRpc3BsYXlOYW1lKSA9PiB7XG4gICAgY29uc3QgcmVzdWx0ID0gYXdhaXQgY3JlYXRlVXNlcldpdGhFbWFpbEFuZFBhc3N3b3JkKGF1dGgsIGVtYWlsLCBwYXNzd29yZCk7XG4gICAgdHJ5IHtcbiAgICAgIGF3YWl0IHJlZ2lzdGVyVXNlcihkaXNwbGF5TmFtZSk7XG4gICAgfSBjYXRjaCAoZXJyKSB7XG4gICAgICBjb25zb2xlLmVycm9yKCdCYWNrZW5kIHJlZ2lzdHJhdGlvbiBlcnJvcjonLCBlcnIpO1xuICAgIH1cbiAgICByZXR1cm4gcmVzdWx0O1xuICB9O1xuXG4gIGNvbnN0IGxvZ2luID0gKGVtYWlsLCBwYXNzd29yZCkgPT4ge1xuICAgIHJldHVybiBzaWduSW5XaXRoRW1haWxBbmRQYXNzd29yZChhdXRoLCBlbWFpbCwgcGFzc3dvcmQpO1xuICB9O1xuXG4gIGNvbnN0IGxvZ291dCA9ICgpID0+IHtcbiAgICByZXR1cm4gc2lnbk91dChhdXRoKTtcbiAgfTtcblxuICB1c2VFZmZlY3QoKCkgPT4ge1xuICAgIGNvbnN0IHVuc3Vic2NyaWJlID0gb25BdXRoU3RhdGVDaGFuZ2VkKGF1dGgsICh1c2VyKSA9PiB7XG4gICAgICBzZXRDdXJyZW50VXNlcih1c2VyKTtcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpO1xuICAgIH0pO1xuICAgIHJldHVybiB1bnN1YnNjcmliZTtcbiAgfSwgW10pO1xuXG4gIGNvbnN0IHZhbHVlID0ge1xuICAgIGN1cnJlbnRVc2VyLFxuICAgIHNpZ251cCxcbiAgICBsb2dpbixcbiAgICBsb2dvdXQsXG4gICAgbG9hZGluZyxcbiAgfTtcblxuICByZXR1cm4gKFxuICAgIDxBdXRoQ29udGV4dC5Qcm92aWRlciB2YWx1ZT17dmFsdWV9PlxuICAgICAgeyFsb2FkaW5nICYmIGNoaWxkcmVufVxuICAgIDwvQXV0aENvbnRleHQuUHJvdmlkZXI+XG4gICk7XG59O1xuIl0sIm5hbWVzIjpbIlJlYWN0IiwiY3JlYXRlQ29udGV4dCIsInVzZUNvbnRleHQiLCJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsImNyZWF0ZVVzZXJXaXRoRW1haWxBbmRQYXNzd29yZCIsInNpZ25JbldpdGhFbWFpbEFuZFBhc3N3b3JkIiwic2lnbk91dCIsIm9uQXV0aFN0YXRlQ2hhbmdlZCIsImF1dGgiLCJyZWdpc3RlclVzZXIiLCJBdXRoQ29udGV4dCIsInVzZUF1dGgiLCJBdXRoUHJvdmlkZXIiLCJjaGlsZHJlbiIsImN1cnJlbnRVc2VyIiwic2V0Q3VycmVudFVzZXIiLCJsb2FkaW5nIiwic2V0TG9hZGluZyIsInNpZ251cCIsImVtYWlsIiwicGFzc3dvcmQiLCJkaXNwbGF5TmFtZSIsInJlc3VsdCIsImVyciIsImNvbnNvbGUiLCJlcnJvciIsImxvZ2luIiwibG9nb3V0IiwidW5zdWJzY3JpYmUiLCJ1c2VyIiwidmFsdWUiLCJQcm92aWRlciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/context/AuthContext.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   AuthProvider: () => (/* binding */ AuthProvider),\n/* harmony export */   useAuth: () => (/* binding */ useAuth)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/lib/api */ \"(ssr)/./src/lib/api.js\");\n/* __next_internal_client_entry_do_not_use__ useAuth,AuthProvider auto */ \n\n\nconst AuthContext = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_1__.createContext)();\nconst useAuth = ()=>(0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(AuthContext);\nconst AuthProvider = ({ children })=>{\n    const [currentUser, setCurrentUser] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const [loading, setLoading] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);\n    const signup = async (email, password, displayName)=>{\n        const res = await (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.registerUser)(email, password, displayName);\n        const { token, user } = res.data;\n        (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.setAuthToken)(token);\n        setCurrentUser({\n            uid: user.user_id,\n            email: user.email,\n            displayName: user.displayName\n        });\n        return res;\n    };\n    const login = async (email, password)=>{\n        const res = await (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.loginUser)(email, password);\n        const { token, user } = res.data;\n        (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.setAuthToken)(token);\n        setCurrentUser({\n            uid: user.user_id,\n            email: user.email,\n            displayName: user.displayName\n        });\n        return res;\n    };\n    const logout = ()=>{\n        (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.setAuthToken)(null);\n        setCurrentUser(null);\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        const restoreSession = async ()=>{\n            try {\n                const res = await (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.getCurrentUser)();\n                const user = res.data;\n                setCurrentUser({\n                    uid: user.user_id,\n                    email: user.email,\n                    displayName: user.displayName\n                });\n            } catch (err) {\n                (0,_lib_api__WEBPACK_IMPORTED_MODULE_2__.setAuthToken)(null);\n                setCurrentUser(null);\n            } finally{\n                setLoading(false);\n            }\n        };\n        restoreSession();\n    }, []);\n    const value = {\n        currentUser,\n        signup,\n        login,\n        logout,\n        loading\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(AuthContext.Provider, {\n        value: value,\n        children: !loading && children\n    }, void 0, false, {\n        fileName: \"/Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2/client/src/context/AuthContext.js\",\n        lineNumber: 73,\n        columnNumber: 5\n    }, undefined);\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvY29udGV4dC9BdXRoQ29udGV4dC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUU4RTtBQUNJO0FBRWxGLE1BQU1TLDRCQUFjUixvREFBYUE7QUFFMUIsTUFBTVMsVUFBVSxJQUFNUixpREFBVUEsQ0FBQ08sYUFBYTtBQUU5QyxNQUFNRSxlQUFlLENBQUMsRUFBRUMsUUFBUSxFQUFFO0lBQ3ZDLE1BQU0sQ0FBQ0MsYUFBYUMsZUFBZSxHQUFHWCwrQ0FBUUEsQ0FBQztJQUMvQyxNQUFNLENBQUNZLFNBQVNDLFdBQVcsR0FBR2IsK0NBQVFBLENBQUM7SUFFdkMsTUFBTWMsU0FBUyxPQUFPQyxPQUFPQyxVQUFVQztRQUNyQyxNQUFNQyxNQUFNLE1BQU1oQixzREFBWUEsQ0FBQ2EsT0FBT0MsVUFBVUM7UUFDaEQsTUFBTSxFQUFFRSxLQUFLLEVBQUVDLElBQUksRUFBRSxHQUFHRixJQUFJRyxJQUFJO1FBQ2hDaEIsc0RBQVlBLENBQUNjO1FBQ2JSLGVBQWU7WUFDYlcsS0FBS0YsS0FBS0csT0FBTztZQUNqQlIsT0FBT0ssS0FBS0wsS0FBSztZQUNqQkUsYUFBYUcsS0FBS0gsV0FBVztRQUMvQjtRQUNBLE9BQU9DO0lBQ1Q7SUFFQSxNQUFNTSxRQUFRLE9BQU9ULE9BQU9DO1FBQzFCLE1BQU1FLE1BQU0sTUFBTWYsbURBQVNBLENBQUNZLE9BQU9DO1FBQ25DLE1BQU0sRUFBRUcsS0FBSyxFQUFFQyxJQUFJLEVBQUUsR0FBR0YsSUFBSUcsSUFBSTtRQUNoQ2hCLHNEQUFZQSxDQUFDYztRQUNiUixlQUFlO1lBQ2JXLEtBQUtGLEtBQUtHLE9BQU87WUFDakJSLE9BQU9LLEtBQUtMLEtBQUs7WUFDakJFLGFBQWFHLEtBQUtILFdBQVc7UUFDL0I7UUFDQSxPQUFPQztJQUNUO0lBRUEsTUFBTU8sU0FBUztRQUNicEIsc0RBQVlBLENBQUM7UUFDYk0sZUFBZTtJQUNqQjtJQUVBVixnREFBU0EsQ0FBQztRQUNSLE1BQU15QixpQkFBaUI7WUFDckIsSUFBSTtnQkFDRixNQUFNUixNQUFNLE1BQU1kLHdEQUFjQTtnQkFDaEMsTUFBTWdCLE9BQU9GLElBQUlHLElBQUk7Z0JBQ3JCVixlQUFlO29CQUNiVyxLQUFLRixLQUFLRyxPQUFPO29CQUNqQlIsT0FBT0ssS0FBS0wsS0FBSztvQkFDakJFLGFBQWFHLEtBQUtILFdBQVc7Z0JBQy9CO1lBQ0YsRUFBRSxPQUFPVSxLQUFLO2dCQUNadEIsc0RBQVlBLENBQUM7Z0JBQ2JNLGVBQWU7WUFDakIsU0FBVTtnQkFDUkUsV0FBVztZQUNiO1FBQ0Y7UUFFQWE7SUFDRixHQUFHLEVBQUU7SUFFTCxNQUFNRSxRQUFRO1FBQ1psQjtRQUNBSTtRQUNBVTtRQUNBQztRQUNBYjtJQUNGO0lBRUEscUJBQ0UsOERBQUNOLFlBQVl1QixRQUFRO1FBQUNELE9BQU9BO2tCQUMxQixDQUFDaEIsV0FBV0g7Ozs7OztBQUduQixFQUFFIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2NvbnRleHQvQXV0aENvbnRleHQuanM/NGJhNiJdLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGNsaWVudCc7XG5cbmltcG9ydCBSZWFjdCwgeyBjcmVhdGVDb250ZXh0LCB1c2VDb250ZXh0LCB1c2VTdGF0ZSwgdXNlRWZmZWN0IH0gZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgcmVnaXN0ZXJVc2VyLCBsb2dpblVzZXIsIGdldEN1cnJlbnRVc2VyLCBzZXRBdXRoVG9rZW4gfSBmcm9tICdAL2xpYi9hcGknO1xuXG5jb25zdCBBdXRoQ29udGV4dCA9IGNyZWF0ZUNvbnRleHQoKTtcblxuZXhwb3J0IGNvbnN0IHVzZUF1dGggPSAoKSA9PiB1c2VDb250ZXh0KEF1dGhDb250ZXh0KTtcblxuZXhwb3J0IGNvbnN0IEF1dGhQcm92aWRlciA9ICh7IGNoaWxkcmVuIH0pID0+IHtcbiAgY29uc3QgW2N1cnJlbnRVc2VyLCBzZXRDdXJyZW50VXNlcl0gPSB1c2VTdGF0ZShudWxsKTtcbiAgY29uc3QgW2xvYWRpbmcsIHNldExvYWRpbmddID0gdXNlU3RhdGUodHJ1ZSk7XG5cbiAgY29uc3Qgc2lnbnVwID0gYXN5bmMgKGVtYWlsLCBwYXNzd29yZCwgZGlzcGxheU5hbWUpID0+IHtcbiAgICBjb25zdCByZXMgPSBhd2FpdCByZWdpc3RlclVzZXIoZW1haWwsIHBhc3N3b3JkLCBkaXNwbGF5TmFtZSk7XG4gICAgY29uc3QgeyB0b2tlbiwgdXNlciB9ID0gcmVzLmRhdGE7XG4gICAgc2V0QXV0aFRva2VuKHRva2VuKTtcbiAgICBzZXRDdXJyZW50VXNlcih7XG4gICAgICB1aWQ6IHVzZXIudXNlcl9pZCxcbiAgICAgIGVtYWlsOiB1c2VyLmVtYWlsLFxuICAgICAgZGlzcGxheU5hbWU6IHVzZXIuZGlzcGxheU5hbWUsXG4gICAgfSk7XG4gICAgcmV0dXJuIHJlcztcbiAgfTtcblxuICBjb25zdCBsb2dpbiA9IGFzeW5jIChlbWFpbCwgcGFzc3dvcmQpID0+IHtcbiAgICBjb25zdCByZXMgPSBhd2FpdCBsb2dpblVzZXIoZW1haWwsIHBhc3N3b3JkKTtcbiAgICBjb25zdCB7IHRva2VuLCB1c2VyIH0gPSByZXMuZGF0YTtcbiAgICBzZXRBdXRoVG9rZW4odG9rZW4pO1xuICAgIHNldEN1cnJlbnRVc2VyKHtcbiAgICAgIHVpZDogdXNlci51c2VyX2lkLFxuICAgICAgZW1haWw6IHVzZXIuZW1haWwsXG4gICAgICBkaXNwbGF5TmFtZTogdXNlci5kaXNwbGF5TmFtZSxcbiAgICB9KTtcbiAgICByZXR1cm4gcmVzO1xuICB9O1xuXG4gIGNvbnN0IGxvZ291dCA9ICgpID0+IHtcbiAgICBzZXRBdXRoVG9rZW4obnVsbCk7XG4gICAgc2V0Q3VycmVudFVzZXIobnVsbCk7XG4gIH07XG5cbiAgdXNlRWZmZWN0KCgpID0+IHtcbiAgICBjb25zdCByZXN0b3JlU2Vzc2lvbiA9IGFzeW5jICgpID0+IHtcbiAgICAgIHRyeSB7XG4gICAgICAgIGNvbnN0IHJlcyA9IGF3YWl0IGdldEN1cnJlbnRVc2VyKCk7XG4gICAgICAgIGNvbnN0IHVzZXIgPSByZXMuZGF0YTtcbiAgICAgICAgc2V0Q3VycmVudFVzZXIoe1xuICAgICAgICAgIHVpZDogdXNlci51c2VyX2lkLFxuICAgICAgICAgIGVtYWlsOiB1c2VyLmVtYWlsLFxuICAgICAgICAgIGRpc3BsYXlOYW1lOiB1c2VyLmRpc3BsYXlOYW1lLFxuICAgICAgICB9KTtcbiAgICAgIH0gY2F0Y2ggKGVycikge1xuICAgICAgICBzZXRBdXRoVG9rZW4obnVsbCk7XG4gICAgICAgIHNldEN1cnJlbnRVc2VyKG51bGwpO1xuICAgICAgfSBmaW5hbGx5IHtcbiAgICAgICAgc2V0TG9hZGluZyhmYWxzZSk7XG4gICAgICB9XG4gICAgfTtcblxuICAgIHJlc3RvcmVTZXNzaW9uKCk7XG4gIH0sIFtdKTtcblxuICBjb25zdCB2YWx1ZSA9IHtcbiAgICBjdXJyZW50VXNlcixcbiAgICBzaWdudXAsXG4gICAgbG9naW4sXG4gICAgbG9nb3V0LFxuICAgIGxvYWRpbmcsXG4gIH07XG5cbiAgcmV0dXJuIChcbiAgICA8QXV0aENvbnRleHQuUHJvdmlkZXIgdmFsdWU9e3ZhbHVlfT5cbiAgICAgIHshbG9hZGluZyAmJiBjaGlsZHJlbn1cbiAgICA8L0F1dGhDb250ZXh0LlByb3ZpZGVyPlxuICApO1xufTtcbiJdLCJuYW1lcyI6WyJSZWFjdCIsImNyZWF0ZUNvbnRleHQiLCJ1c2VDb250ZXh0IiwidXNlU3RhdGUiLCJ1c2VFZmZlY3QiLCJyZWdpc3RlclVzZXIiLCJsb2dpblVzZXIiLCJnZXRDdXJyZW50VXNlciIsInNldEF1dGhUb2tlbiIsIkF1dGhDb250ZXh0IiwidXNlQXV0aCIsIkF1dGhQcm92aWRlciIsImNoaWxkcmVuIiwiY3VycmVudFVzZXIiLCJzZXRDdXJyZW50VXNlciIsImxvYWRpbmciLCJzZXRMb2FkaW5nIiwic2lnbnVwIiwiZW1haWwiLCJwYXNzd29yZCIsImRpc3BsYXlOYW1lIiwicmVzIiwidG9rZW4iLCJ1c2VyIiwiZGF0YSIsInVpZCIsInVzZXJfaWQiLCJsb2dpbiIsImxvZ291dCIsInJlc3RvcmVTZXNzaW9uIiwiZXJyIiwidmFsdWUiLCJQcm92aWRlciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./src/context/AuthContext.js\n");
 
 /***/ }),
 
@@ -577,18 +313,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createFoundItem: () => (/* binding */ createFoundItem),\n/* harmony export */   createLostItem: () => (/* binding */ createLostItem),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   deleteFoundItem: () => (/* binding */ deleteFoundItem),\n/* harmony export */   deleteLostItem: () => (/* binding */ deleteLostItem),\n/* harmony export */   getConversations: () => (/* binding */ getConversations),\n/* harmony export */   getCurrentUser: () => (/* binding */ getCurrentUser),\n/* harmony export */   getFoundItem: () => (/* binding */ getFoundItem),\n/* harmony export */   getFoundItems: () => (/* binding */ getFoundItems),\n/* harmony export */   getLostItem: () => (/* binding */ getLostItem),\n/* harmony export */   getLostItems: () => (/* binding */ getLostItems),\n/* harmony export */   getMessages: () => (/* binding */ getMessages),\n/* harmony export */   registerUser: () => (/* binding */ registerUser),\n/* harmony export */   sendMessage: () => (/* binding */ sendMessage),\n/* harmony export */   updateFoundItem: () => (/* binding */ updateFoundItem),\n/* harmony export */   updateLostItem: () => (/* binding */ updateLostItem)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ \"(ssr)/./node_modules/axios/lib/axios.js\");\n/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./firebase */ \"(ssr)/./src/lib/firebase.js\");\n\n\nconst API_URL = \"http://localhost:5000/api\" || 0;\nconst api = axios__WEBPACK_IMPORTED_MODULE_1__[\"default\"].create({\n    baseURL: API_URL\n});\n// Attach Firebase ID token to every request\napi.interceptors.request.use(async (config)=>{\n    if (false) {}\n    return config;\n});\n// ==================== AUTH ====================\nconst registerUser = (displayName)=>api.post(\"/auth/register\", {\n        displayName\n    });\nconst getCurrentUser = ()=>api.get(\"/auth/me\");\n// ==================== LOST ITEMS ====================\nconst createLostItem = (formData)=>api.post(\"/lost-items\", formData, {\n        headers: {\n            \"Content-Type\": \"multipart/form-data\"\n        }\n    });\nconst getLostItems = (params)=>api.get(\"/lost-items\", {\n        params\n    });\nconst getLostItem = (id)=>api.get(`/lost-items/${id}`);\nconst updateLostItem = (id, data)=>api.put(`/lost-items/${id}`, data);\nconst deleteLostItem = (id)=>api.delete(`/lost-items/${id}`);\n// ==================== FOUND ITEMS ====================\nconst createFoundItem = (data)=>api.post(\"/found-items\", data);\nconst getFoundItems = (params)=>api.get(\"/found-items\", {\n        params\n    });\nconst getFoundItem = (id)=>api.get(`/found-items/${id}`);\nconst updateFoundItem = (id, data)=>api.put(`/found-items/${id}`, data);\nconst deleteFoundItem = (id)=>api.delete(`/found-items/${id}`);\n// ==================== MESSAGES ====================\nconst sendMessage = (data)=>api.post(\"/messages\", data);\nconst getConversations = ()=>api.get(\"/messages/conversations\");\nconst getMessages = (partnerId, postId)=>api.get(`/messages/${partnerId}`, {\n        params: {\n            post_id: postId\n        }\n    });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (api);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvbGliL2FwaS5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBMEI7QUFDUTtBQUVsQyxNQUFNRSxVQUFVQywyQkFBK0IsSUFBSTtBQUVuRCxNQUFNRyxNQUFNTiw2Q0FBS0EsQ0FBQ08sTUFBTSxDQUFDO0lBQ3ZCQyxTQUFTTjtBQUNYO0FBRUEsNENBQTRDO0FBQzVDSSxJQUFJRyxZQUFZLENBQUNDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLE9BQU9DO0lBQ2xDLElBQUksS0FBa0IsRUFBYSxFQU1sQztJQUNELE9BQU9BO0FBQ1Q7QUFFQSxpREFBaUQ7QUFDMUMsTUFBTU8sZUFBZSxDQUFDQyxjQUMzQmQsSUFBSWUsSUFBSSxDQUFDLGtCQUFrQjtRQUFFRDtJQUFZLEdBQUc7QUFFdkMsTUFBTUUsaUJBQWlCLElBQzVCaEIsSUFBSWlCLEdBQUcsQ0FBQyxZQUFZO0FBRXRCLHVEQUF1RDtBQUNoRCxNQUFNQyxpQkFBaUIsQ0FBQ0MsV0FDN0JuQixJQUFJZSxJQUFJLENBQUMsZUFBZUksVUFBVTtRQUNoQ1IsU0FBUztZQUFFLGdCQUFnQjtRQUFzQjtJQUNuRCxHQUFHO0FBRUUsTUFBTVMsZUFBZSxDQUFDQyxTQUMzQnJCLElBQUlpQixHQUFHLENBQUMsZUFBZTtRQUFFSTtJQUFPLEdBQUc7QUFFOUIsTUFBTUMsY0FBYyxDQUFDQyxLQUMxQnZCLElBQUlpQixHQUFHLENBQUMsQ0FBQyxZQUFZLEVBQUVNLEdBQUcsQ0FBQyxFQUFFO0FBRXhCLE1BQU1DLGlCQUFpQixDQUFDRCxJQUFJRSxPQUNqQ3pCLElBQUkwQixHQUFHLENBQUMsQ0FBQyxZQUFZLEVBQUVILEdBQUcsQ0FBQyxFQUFFRSxNQUFNO0FBRTlCLE1BQU1FLGlCQUFpQixDQUFDSixLQUM3QnZCLElBQUk0QixNQUFNLENBQUMsQ0FBQyxZQUFZLEVBQUVMLEdBQUcsQ0FBQyxFQUFFO0FBRWxDLHdEQUF3RDtBQUNqRCxNQUFNTSxrQkFBa0IsQ0FBQ0osT0FDOUJ6QixJQUFJZSxJQUFJLENBQUMsZ0JBQWdCVSxNQUFNO0FBRTFCLE1BQU1LLGdCQUFnQixDQUFDVCxTQUM1QnJCLElBQUlpQixHQUFHLENBQUMsZ0JBQWdCO1FBQUVJO0lBQU8sR0FBRztBQUUvQixNQUFNVSxlQUFlLENBQUNSLEtBQzNCdkIsSUFBSWlCLEdBQUcsQ0FBQyxDQUFDLGFBQWEsRUFBRU0sR0FBRyxDQUFDLEVBQUU7QUFFekIsTUFBTVMsa0JBQWtCLENBQUNULElBQUlFLE9BQ2xDekIsSUFBSTBCLEdBQUcsQ0FBQyxDQUFDLGFBQWEsRUFBRUgsR0FBRyxDQUFDLEVBQUVFLE1BQU07QUFFL0IsTUFBTVEsa0JBQWtCLENBQUNWLEtBQzlCdkIsSUFBSTRCLE1BQU0sQ0FBQyxDQUFDLGFBQWEsRUFBRUwsR0FBRyxDQUFDLEVBQUU7QUFFbkMscURBQXFEO0FBQzlDLE1BQU1XLGNBQWMsQ0FBQ1QsT0FDMUJ6QixJQUFJZSxJQUFJLENBQUMsYUFBYVUsTUFBTTtBQUV2QixNQUFNVSxtQkFBbUIsSUFDOUJuQyxJQUFJaUIsR0FBRyxDQUFDLDJCQUEyQjtBQUU5QixNQUFNbUIsY0FBYyxDQUFDQyxXQUFXQyxTQUNyQ3RDLElBQUlpQixHQUFHLENBQUMsQ0FBQyxVQUFVLEVBQUVvQixVQUFVLENBQUMsRUFBRTtRQUFFaEIsUUFBUTtZQUFFa0IsU0FBU0Q7UUFBTztJQUFFLEdBQUc7QUFFckUsaUVBQWV0QyxHQUFHQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2xpYi9hcGkuanM/ZmNmYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgYXhpb3MgZnJvbSAnYXhpb3MnO1xuaW1wb3J0IHsgYXV0aCB9IGZyb20gJy4vZmlyZWJhc2UnO1xuXG5jb25zdCBBUElfVVJMID0gcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNfQVBJX1VSTCB8fCAnaHR0cDovL2xvY2FsaG9zdDo1MDAwL2FwaSc7XG5cbmNvbnN0IGFwaSA9IGF4aW9zLmNyZWF0ZSh7XG4gIGJhc2VVUkw6IEFQSV9VUkwsXG59KTtcblxuLy8gQXR0YWNoIEZpcmViYXNlIElEIHRva2VuIHRvIGV2ZXJ5IHJlcXVlc3RcbmFwaS5pbnRlcmNlcHRvcnMucmVxdWVzdC51c2UoYXN5bmMgKGNvbmZpZykgPT4ge1xuICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gJ3VuZGVmaW5lZCcpIHtcbiAgICBjb25zdCB1c2VyID0gYXV0aC5jdXJyZW50VXNlcjtcbiAgICBpZiAodXNlcikge1xuICAgICAgY29uc3QgdG9rZW4gPSBhd2FpdCB1c2VyLmdldElkVG9rZW4oKTtcbiAgICAgIGNvbmZpZy5oZWFkZXJzLkF1dGhvcml6YXRpb24gPSBgQmVhcmVyICR7dG9rZW59YDtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIGNvbmZpZztcbn0pO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBBVVRIID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3QgcmVnaXN0ZXJVc2VyID0gKGRpc3BsYXlOYW1lKSA9PlxuICBhcGkucG9zdCgnL2F1dGgvcmVnaXN0ZXInLCB7IGRpc3BsYXlOYW1lIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0Q3VycmVudFVzZXIgPSAoKSA9PlxuICBhcGkuZ2V0KCcvYXV0aC9tZScpO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBMT1NUIElURU1TID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3QgY3JlYXRlTG9zdEl0ZW0gPSAoZm9ybURhdGEpID0+XG4gIGFwaS5wb3N0KCcvbG9zdC1pdGVtcycsIGZvcm1EYXRhLCB7XG4gICAgaGVhZGVyczogeyAnQ29udGVudC1UeXBlJzogJ211bHRpcGFydC9mb3JtLWRhdGEnIH0sXG4gIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0TG9zdEl0ZW1zID0gKHBhcmFtcykgPT5cbiAgYXBpLmdldCgnL2xvc3QtaXRlbXMnLCB7IHBhcmFtcyB9KTtcblxuZXhwb3J0IGNvbnN0IGdldExvc3RJdGVtID0gKGlkKSA9PlxuICBhcGkuZ2V0KGAvbG9zdC1pdGVtcy8ke2lkfWApO1xuXG5leHBvcnQgY29uc3QgdXBkYXRlTG9zdEl0ZW0gPSAoaWQsIGRhdGEpID0+XG4gIGFwaS5wdXQoYC9sb3N0LWl0ZW1zLyR7aWR9YCwgZGF0YSk7XG5cbmV4cG9ydCBjb25zdCBkZWxldGVMb3N0SXRlbSA9IChpZCkgPT5cbiAgYXBpLmRlbGV0ZShgL2xvc3QtaXRlbXMvJHtpZH1gKTtcblxuLy8gPT09PT09PT09PT09PT09PT09PT0gRk9VTkQgSVRFTVMgPT09PT09PT09PT09PT09PT09PT1cbmV4cG9ydCBjb25zdCBjcmVhdGVGb3VuZEl0ZW0gPSAoZGF0YSkgPT5cbiAgYXBpLnBvc3QoJy9mb3VuZC1pdGVtcycsIGRhdGEpO1xuXG5leHBvcnQgY29uc3QgZ2V0Rm91bmRJdGVtcyA9IChwYXJhbXMpID0+XG4gIGFwaS5nZXQoJy9mb3VuZC1pdGVtcycsIHsgcGFyYW1zIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0Rm91bmRJdGVtID0gKGlkKSA9PlxuICBhcGkuZ2V0KGAvZm91bmQtaXRlbXMvJHtpZH1gKTtcblxuZXhwb3J0IGNvbnN0IHVwZGF0ZUZvdW5kSXRlbSA9IChpZCwgZGF0YSkgPT5cbiAgYXBpLnB1dChgL2ZvdW5kLWl0ZW1zLyR7aWR9YCwgZGF0YSk7XG5cbmV4cG9ydCBjb25zdCBkZWxldGVGb3VuZEl0ZW0gPSAoaWQpID0+XG4gIGFwaS5kZWxldGUoYC9mb3VuZC1pdGVtcy8ke2lkfWApO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBNRVNTQUdFUyA9PT09PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNvbnN0IHNlbmRNZXNzYWdlID0gKGRhdGEpID0+XG4gIGFwaS5wb3N0KCcvbWVzc2FnZXMnLCBkYXRhKTtcblxuZXhwb3J0IGNvbnN0IGdldENvbnZlcnNhdGlvbnMgPSAoKSA9PlxuICBhcGkuZ2V0KCcvbWVzc2FnZXMvY29udmVyc2F0aW9ucycpO1xuXG5leHBvcnQgY29uc3QgZ2V0TWVzc2FnZXMgPSAocGFydG5lcklkLCBwb3N0SWQpID0+XG4gIGFwaS5nZXQoYC9tZXNzYWdlcy8ke3BhcnRuZXJJZH1gLCB7IHBhcmFtczogeyBwb3N0X2lkOiBwb3N0SWQgfSB9KTtcblxuZXhwb3J0IGRlZmF1bHQgYXBpO1xuIl0sIm5hbWVzIjpbImF4aW9zIiwiYXV0aCIsIkFQSV9VUkwiLCJwcm9jZXNzIiwiZW52IiwiTkVYVF9QVUJMSUNfQVBJX1VSTCIsImFwaSIsImNyZWF0ZSIsImJhc2VVUkwiLCJpbnRlcmNlcHRvcnMiLCJyZXF1ZXN0IiwidXNlIiwiY29uZmlnIiwidXNlciIsImN1cnJlbnRVc2VyIiwidG9rZW4iLCJnZXRJZFRva2VuIiwiaGVhZGVycyIsIkF1dGhvcml6YXRpb24iLCJyZWdpc3RlclVzZXIiLCJkaXNwbGF5TmFtZSIsInBvc3QiLCJnZXRDdXJyZW50VXNlciIsImdldCIsImNyZWF0ZUxvc3RJdGVtIiwiZm9ybURhdGEiLCJnZXRMb3N0SXRlbXMiLCJwYXJhbXMiLCJnZXRMb3N0SXRlbSIsImlkIiwidXBkYXRlTG9zdEl0ZW0iLCJkYXRhIiwicHV0IiwiZGVsZXRlTG9zdEl0ZW0iLCJkZWxldGUiLCJjcmVhdGVGb3VuZEl0ZW0iLCJnZXRGb3VuZEl0ZW1zIiwiZ2V0Rm91bmRJdGVtIiwidXBkYXRlRm91bmRJdGVtIiwiZGVsZXRlRm91bmRJdGVtIiwic2VuZE1lc3NhZ2UiLCJnZXRDb252ZXJzYXRpb25zIiwiZ2V0TWVzc2FnZXMiLCJwYXJ0bmVySWQiLCJwb3N0SWQiLCJwb3N0X2lkIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/lib/api.js\n");
-
-/***/ }),
-
-/***/ "(ssr)/./src/lib/firebase.js":
-/*!*****************************!*\
-  !*** ./src/lib/firebase.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   auth: () => (/* binding */ auth),\n/* harmony export */   db: () => (/* binding */ db),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   storage: () => (/* binding */ storage)\n/* harmony export */ });\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ \"(ssr)/./node_modules/firebase/app/dist/index.mjs\");\n/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ \"(ssr)/./node_modules/firebase/auth/dist/index.mjs\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/firestore */ \"(ssr)/./node_modules/firebase/firestore/dist/index.mjs\");\n/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/storage */ \"(ssr)/./node_modules/firebase/storage/dist/index.mjs\");\n\n\n\n\nconst firebaseConfig = {\n    apiKey: \"AIzaSyChvwCXfz7PYcriTdSKylKOk6tCuJ7rJL8\" || 0,\n    authDomain: \"lost-and-found-website-43962.firebaseapp.com\" || 0,\n    projectId: \"\\\"lost-and-found-website-43962\\\",\" || 0,\n    storageBucket: \"\\\"lost-and-found-website-43962.firebasestorage.app\\\",\" || 0,\n    messagingSenderId: \"\\\"1047691604725\\\",\" || 0,\n    appId: \"\\\"1:1047691604725:web:caf078e5469cc480a58bbc\\\",\" || 0\n};\n// Initialize Firebase only once\nconst app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.getApps)().length === 0 ? (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig) : (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.getApps)()[0];\nconst auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)(app);\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)(app);\nconst storage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.getStorage)(app);\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (app);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvbGliL2ZpcmViYXNlLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQXNEO0FBQ2Q7QUFDVTtBQUNKO0FBRTlDLE1BQU1LLGlCQUFpQjtJQUNyQkMsUUFBUUMseUNBQXdDLElBQUk7SUFDcERHLFlBQVlILDhDQUE0QyxJQUFJO0lBQzVESyxXQUFXTCxtQ0FBMkMsSUFBSTtJQUMxRE8sZUFBZVAsdURBQStDLElBQUk7SUFDbEVTLG1CQUFtQlQsb0JBQW9ELElBQUk7SUFDM0VXLE9BQU9YLGlEQUF1QyxJQUFJO0FBQ3BEO0FBRUEsZ0NBQWdDO0FBQ2hDLE1BQU1hLE1BQU1uQixxREFBT0EsR0FBR29CLE1BQU0sS0FBSyxJQUFJckIsMkRBQWFBLENBQUNLLGtCQUFrQkoscURBQU9BLEVBQUUsQ0FBQyxFQUFFO0FBQzFFLE1BQU1xQixPQUFPcEIsc0RBQU9BLENBQUNrQixLQUFLO0FBQzFCLE1BQU1HLEtBQUtwQixnRUFBWUEsQ0FBQ2lCLEtBQUs7QUFDN0IsTUFBTUksVUFBVXBCLDREQUFVQSxDQUFDZ0IsS0FBSztBQUN2QyxpRUFBZUEsR0FBR0EsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2xvc3QtYW5kLWZvdW5kLWNsaWVudC8uL3NyYy9saWIvZmlyZWJhc2UuanM/MWRlMCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBpbml0aWFsaXplQXBwLCBnZXRBcHBzIH0gZnJvbSAnZmlyZWJhc2UvYXBwJztcbmltcG9ydCB7IGdldEF1dGggfSBmcm9tICdmaXJlYmFzZS9hdXRoJztcbmltcG9ydCB7IGdldEZpcmVzdG9yZSB9IGZyb20gJ2ZpcmViYXNlL2ZpcmVzdG9yZSc7XG5pbXBvcnQgeyBnZXRTdG9yYWdlIH0gZnJvbSAnZmlyZWJhc2Uvc3RvcmFnZSc7XG5cbmNvbnN0IGZpcmViYXNlQ29uZmlnID0ge1xuICBhcGlLZXk6IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FQSV9LRVkgfHwgJ3lvdXItYXBpLWtleScsXG4gIGF1dGhEb21haW46IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FVVEhfRE9NQUlOIHx8ICd5b3VyLXByb2plY3QuZmlyZWJhc2VhcHAuY29tJyxcbiAgcHJvamVjdElkOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9QUk9KRUNUX0lEIHx8ICd5b3VyLXByb2plY3QtaWQnLFxuICBzdG9yYWdlQnVja2V0OiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9TVE9SQUdFX0JVQ0tFVCB8fCAneW91ci1wcm9qZWN0LmFwcHNwb3QuY29tJyxcbiAgbWVzc2FnaW5nU2VuZGVySWQ6IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0ZJUkVCQVNFX01FU1NBR0lOR19TRU5ERVJfSUQgfHwgJzAwMDAwMDAwMDAwMCcsXG4gIGFwcElkOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19GSVJFQkFTRV9BUFBfSUQgfHwgJzE6MDAwMDAwMDAwMDAwOndlYjowMDAwMDAwMDAwMDAwMDAwJyxcbn07XG5cbi8vIEluaXRpYWxpemUgRmlyZWJhc2Ugb25seSBvbmNlXG5jb25zdCBhcHAgPSBnZXRBcHBzKCkubGVuZ3RoID09PSAwID8gaW5pdGlhbGl6ZUFwcChmaXJlYmFzZUNvbmZpZykgOiBnZXRBcHBzKClbMF07XG5leHBvcnQgY29uc3QgYXV0aCA9IGdldEF1dGgoYXBwKTtcbmV4cG9ydCBjb25zdCBkYiA9IGdldEZpcmVzdG9yZShhcHApO1xuZXhwb3J0IGNvbnN0IHN0b3JhZ2UgPSBnZXRTdG9yYWdlKGFwcCk7XG5leHBvcnQgZGVmYXVsdCBhcHA7XG4iXSwibmFtZXMiOlsiaW5pdGlhbGl6ZUFwcCIsImdldEFwcHMiLCJnZXRBdXRoIiwiZ2V0RmlyZXN0b3JlIiwiZ2V0U3RvcmFnZSIsImZpcmViYXNlQ29uZmlnIiwiYXBpS2V5IiwicHJvY2VzcyIsImVudiIsIk5FWFRfUFVCTElDX0ZJUkVCQVNFX0FQSV9LRVkiLCJhdXRoRG9tYWluIiwiTkVYVF9QVUJMSUNfRklSRUJBU0VfQVVUSF9ET01BSU4iLCJwcm9qZWN0SWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9QUk9KRUNUX0lEIiwic3RvcmFnZUJ1Y2tldCIsIk5FWFRfUFVCTElDX0ZJUkVCQVNFX1NUT1JBR0VfQlVDS0VUIiwibWVzc2FnaW5nU2VuZGVySWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9NRVNTQUdJTkdfU0VOREVSX0lEIiwiYXBwSWQiLCJORVhUX1BVQkxJQ19GSVJFQkFTRV9BUFBfSUQiLCJhcHAiLCJsZW5ndGgiLCJhdXRoIiwiZGIiLCJzdG9yYWdlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/lib/firebase.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createFoundItem: () => (/* binding */ createFoundItem),\n/* harmony export */   createLostItem: () => (/* binding */ createLostItem),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   deleteFoundItem: () => (/* binding */ deleteFoundItem),\n/* harmony export */   deleteLostItem: () => (/* binding */ deleteLostItem),\n/* harmony export */   getConversations: () => (/* binding */ getConversations),\n/* harmony export */   getCurrentUser: () => (/* binding */ getCurrentUser),\n/* harmony export */   getFoundItem: () => (/* binding */ getFoundItem),\n/* harmony export */   getFoundItems: () => (/* binding */ getFoundItems),\n/* harmony export */   getLostItem: () => (/* binding */ getLostItem),\n/* harmony export */   getLostItems: () => (/* binding */ getLostItems),\n/* harmony export */   getMessages: () => (/* binding */ getMessages),\n/* harmony export */   loginUser: () => (/* binding */ loginUser),\n/* harmony export */   registerUser: () => (/* binding */ registerUser),\n/* harmony export */   sendMessage: () => (/* binding */ sendMessage),\n/* harmony export */   setAuthToken: () => (/* binding */ setAuthToken),\n/* harmony export */   updateFoundItem: () => (/* binding */ updateFoundItem),\n/* harmony export */   updateLostItem: () => (/* binding */ updateLostItem)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"(ssr)/./node_modules/axios/lib/axios.js\");\n\nconst API_URL = \"http://localhost:5000/api\" || 0;\nconst AUTH_TOKEN_KEY = \"authToken\";\nconst api = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n    baseURL: API_URL\n});\napi.interceptors.request.use((config)=>{\n    if (false) {}\n    return config;\n});\n// ==================== AUTH ====================\nconst setAuthToken = (token)=>{\n    if (false) {}\n};\nconst registerUser = (email, password, displayName)=>api.post(\"/auth/register\", {\n        email,\n        password,\n        displayName\n    });\nconst loginUser = (email, password)=>api.post(\"/auth/login\", {\n        email,\n        password\n    });\nconst getCurrentUser = ()=>api.get(\"/auth/me\");\n// ==================== LOST ITEMS ====================\nconst createLostItem = (formData)=>api.post(\"/lost-items\", formData);\nconst getLostItems = (params)=>api.get(\"/lost-items\", {\n        params\n    });\nconst getLostItem = (id)=>api.get(`/lost-items/${id}`);\nconst updateLostItem = (id, data)=>api.put(`/lost-items/${id}`, data);\nconst deleteLostItem = (id)=>api.delete(`/lost-items/${id}`);\n// ==================== FOUND ITEMS ====================\nconst createFoundItem = (data)=>api.post(\"/found-items\", data);\nconst getFoundItems = (params)=>api.get(\"/found-items\", {\n        params\n    });\nconst getFoundItem = (id)=>api.get(`/found-items/${id}`);\nconst updateFoundItem = (id, data)=>api.put(`/found-items/${id}`, data);\nconst deleteFoundItem = (id)=>api.delete(`/found-items/${id}`);\n// ==================== MESSAGES ====================\nconst sendMessage = (data)=>api.post(\"/messages\", data);\nconst getConversations = ()=>api.get(\"/messages/conversations\");\nconst getMessages = (partnerId, postId)=>api.get(`/messages/${partnerId}`, {\n        params: {\n            post_id: postId\n        }\n    });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (api);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9zcmMvbGliL2FwaS5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQTBCO0FBRTFCLE1BQU1DLFVBQVVDLDJCQUErQixJQUFJO0FBQ25ELE1BQU1HLGlCQUFpQjtBQUV2QixNQUFNQyxNQUFNTiw2Q0FBS0EsQ0FBQ08sTUFBTSxDQUFDO0lBQ3ZCQyxTQUFTUDtBQUNYO0FBRUFLLElBQUlHLFlBQVksQ0FBQ0MsT0FBTyxDQUFDQyxHQUFHLENBQUMsQ0FBQ0M7SUFDNUIsSUFBSSxLQUFrQixFQUFhLEVBS2xDO0lBQ0QsT0FBT0E7QUFDVDtBQUVBLGlEQUFpRDtBQUMxQyxNQUFNTSxlQUFlLENBQUNMO0lBQzNCLElBQUksS0FBa0IsRUFBYSxFQU1sQztBQUNILEVBQUU7QUFFSyxNQUFNUSxlQUFlLENBQUNDLE9BQU9DLFVBQVVDLGNBQzVDbEIsSUFBSW1CLElBQUksQ0FBQyxrQkFBa0I7UUFBRUg7UUFBT0M7UUFBVUM7SUFBWSxHQUFHO0FBRXhELE1BQU1FLFlBQVksQ0FBQ0osT0FBT0MsV0FDL0JqQixJQUFJbUIsSUFBSSxDQUFDLGVBQWU7UUFBRUg7UUFBT0M7SUFBUyxHQUFHO0FBRXhDLE1BQU1JLGlCQUFpQixJQUM1QnJCLElBQUlzQixHQUFHLENBQUMsWUFBWTtBQUV0Qix1REFBdUQ7QUFDaEQsTUFBTUMsaUJBQWlCLENBQUNDLFdBQzdCeEIsSUFBSW1CLElBQUksQ0FBQyxlQUFlSyxVQUFVO0FBRTdCLE1BQU1DLGVBQWUsQ0FBQ0MsU0FDM0IxQixJQUFJc0IsR0FBRyxDQUFDLGVBQWU7UUFBRUk7SUFBTyxHQUFHO0FBRTlCLE1BQU1DLGNBQWMsQ0FBQ0MsS0FDMUI1QixJQUFJc0IsR0FBRyxDQUFDLENBQUMsWUFBWSxFQUFFTSxHQUFHLENBQUMsRUFBRTtBQUV4QixNQUFNQyxpQkFBaUIsQ0FBQ0QsSUFBSUUsT0FDakM5QixJQUFJK0IsR0FBRyxDQUFDLENBQUMsWUFBWSxFQUFFSCxHQUFHLENBQUMsRUFBRUUsTUFBTTtBQUU5QixNQUFNRSxpQkFBaUIsQ0FBQ0osS0FDN0I1QixJQUFJaUMsTUFBTSxDQUFDLENBQUMsWUFBWSxFQUFFTCxHQUFHLENBQUMsRUFBRTtBQUVsQyx3REFBd0Q7QUFDakQsTUFBTU0sa0JBQWtCLENBQUNKLE9BQzlCOUIsSUFBSW1CLElBQUksQ0FBQyxnQkFBZ0JXLE1BQU07QUFFMUIsTUFBTUssZ0JBQWdCLENBQUNULFNBQzVCMUIsSUFBSXNCLEdBQUcsQ0FBQyxnQkFBZ0I7UUFBRUk7SUFBTyxHQUFHO0FBRS9CLE1BQU1VLGVBQWUsQ0FBQ1IsS0FDM0I1QixJQUFJc0IsR0FBRyxDQUFDLENBQUMsYUFBYSxFQUFFTSxHQUFHLENBQUMsRUFBRTtBQUV6QixNQUFNUyxrQkFBa0IsQ0FBQ1QsSUFBSUUsT0FDbEM5QixJQUFJK0IsR0FBRyxDQUFDLENBQUMsYUFBYSxFQUFFSCxHQUFHLENBQUMsRUFBRUUsTUFBTTtBQUUvQixNQUFNUSxrQkFBa0IsQ0FBQ1YsS0FDOUI1QixJQUFJaUMsTUFBTSxDQUFDLENBQUMsYUFBYSxFQUFFTCxHQUFHLENBQUMsRUFBRTtBQUVuQyxxREFBcUQ7QUFDOUMsTUFBTVcsY0FBYyxDQUFDVCxPQUMxQjlCLElBQUltQixJQUFJLENBQUMsYUFBYVcsTUFBTTtBQUV2QixNQUFNVSxtQkFBbUIsSUFDOUJ4QyxJQUFJc0IsR0FBRyxDQUFDLDJCQUEyQjtBQUU5QixNQUFNbUIsY0FBYyxDQUFDQyxXQUFXQyxTQUNyQzNDLElBQUlzQixHQUFHLENBQUMsQ0FBQyxVQUFVLEVBQUVvQixVQUFVLENBQUMsRUFBRTtRQUFFaEIsUUFBUTtZQUFFa0IsU0FBU0Q7UUFBTztJQUFFLEdBQUc7QUFFckUsaUVBQWUzQyxHQUFHQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vbG9zdC1hbmQtZm91bmQtY2xpZW50Ly4vc3JjL2xpYi9hcGkuanM/ZmNmYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgYXhpb3MgZnJvbSAnYXhpb3MnO1xuXG5jb25zdCBBUElfVVJMID0gcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNfQVBJX1VSTCB8fCAnaHR0cDovL2xvY2FsaG9zdDo1MDAwL2FwaSc7XG5jb25zdCBBVVRIX1RPS0VOX0tFWSA9ICdhdXRoVG9rZW4nO1xuXG5jb25zdCBhcGkgPSBheGlvcy5jcmVhdGUoe1xuICBiYXNlVVJMOiBBUElfVVJMLFxufSk7XG5cbmFwaS5pbnRlcmNlcHRvcnMucmVxdWVzdC51c2UoKGNvbmZpZykgPT4ge1xuICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gJ3VuZGVmaW5lZCcpIHtcbiAgICBjb25zdCB0b2tlbiA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKEFVVEhfVE9LRU5fS0VZKTtcbiAgICBpZiAodG9rZW4pIHtcbiAgICAgIGNvbmZpZy5oZWFkZXJzLkF1dGhvcml6YXRpb24gPSBgQmVhcmVyICR7dG9rZW59YDtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIGNvbmZpZztcbn0pO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBBVVRIID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3Qgc2V0QXV0aFRva2VuID0gKHRva2VuKSA9PiB7XG4gIGlmICh0eXBlb2Ygd2luZG93ICE9PSAndW5kZWZpbmVkJykge1xuICAgIGlmICh0b2tlbikge1xuICAgICAgbG9jYWxTdG9yYWdlLnNldEl0ZW0oQVVUSF9UT0tFTl9LRVksIHRva2VuKTtcbiAgICB9IGVsc2Uge1xuICAgICAgbG9jYWxTdG9yYWdlLnJlbW92ZUl0ZW0oQVVUSF9UT0tFTl9LRVkpO1xuICAgIH1cbiAgfVxufTtcblxuZXhwb3J0IGNvbnN0IHJlZ2lzdGVyVXNlciA9IChlbWFpbCwgcGFzc3dvcmQsIGRpc3BsYXlOYW1lKSA9PlxuICBhcGkucG9zdCgnL2F1dGgvcmVnaXN0ZXInLCB7IGVtYWlsLCBwYXNzd29yZCwgZGlzcGxheU5hbWUgfSk7XG5cbmV4cG9ydCBjb25zdCBsb2dpblVzZXIgPSAoZW1haWwsIHBhc3N3b3JkKSA9PlxuICBhcGkucG9zdCgnL2F1dGgvbG9naW4nLCB7IGVtYWlsLCBwYXNzd29yZCB9KTtcblxuZXhwb3J0IGNvbnN0IGdldEN1cnJlbnRVc2VyID0gKCkgPT5cbiAgYXBpLmdldCgnL2F1dGgvbWUnKTtcblxuLy8gPT09PT09PT09PT09PT09PT09PT0gTE9TVCBJVEVNUyA9PT09PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNvbnN0IGNyZWF0ZUxvc3RJdGVtID0gKGZvcm1EYXRhKSA9PlxuICBhcGkucG9zdCgnL2xvc3QtaXRlbXMnLCBmb3JtRGF0YSk7XG5cbmV4cG9ydCBjb25zdCBnZXRMb3N0SXRlbXMgPSAocGFyYW1zKSA9PlxuICBhcGkuZ2V0KCcvbG9zdC1pdGVtcycsIHsgcGFyYW1zIH0pO1xuXG5leHBvcnQgY29uc3QgZ2V0TG9zdEl0ZW0gPSAoaWQpID0+XG4gIGFwaS5nZXQoYC9sb3N0LWl0ZW1zLyR7aWR9YCk7XG5cbmV4cG9ydCBjb25zdCB1cGRhdGVMb3N0SXRlbSA9IChpZCwgZGF0YSkgPT5cbiAgYXBpLnB1dChgL2xvc3QtaXRlbXMvJHtpZH1gLCBkYXRhKTtcblxuZXhwb3J0IGNvbnN0IGRlbGV0ZUxvc3RJdGVtID0gKGlkKSA9PlxuICBhcGkuZGVsZXRlKGAvbG9zdC1pdGVtcy8ke2lkfWApO1xuXG4vLyA9PT09PT09PT09PT09PT09PT09PSBGT1VORCBJVEVNUyA9PT09PT09PT09PT09PT09PT09PVxuZXhwb3J0IGNvbnN0IGNyZWF0ZUZvdW5kSXRlbSA9IChkYXRhKSA9PlxuICBhcGkucG9zdCgnL2ZvdW5kLWl0ZW1zJywgZGF0YSk7XG5cbmV4cG9ydCBjb25zdCBnZXRGb3VuZEl0ZW1zID0gKHBhcmFtcykgPT5cbiAgYXBpLmdldCgnL2ZvdW5kLWl0ZW1zJywgeyBwYXJhbXMgfSk7XG5cbmV4cG9ydCBjb25zdCBnZXRGb3VuZEl0ZW0gPSAoaWQpID0+XG4gIGFwaS5nZXQoYC9mb3VuZC1pdGVtcy8ke2lkfWApO1xuXG5leHBvcnQgY29uc3QgdXBkYXRlRm91bmRJdGVtID0gKGlkLCBkYXRhKSA9PlxuICBhcGkucHV0KGAvZm91bmQtaXRlbXMvJHtpZH1gLCBkYXRhKTtcblxuZXhwb3J0IGNvbnN0IGRlbGV0ZUZvdW5kSXRlbSA9IChpZCkgPT5cbiAgYXBpLmRlbGV0ZShgL2ZvdW5kLWl0ZW1zLyR7aWR9YCk7XG5cbi8vID09PT09PT09PT09PT09PT09PT09IE1FU1NBR0VTID09PT09PT09PT09PT09PT09PT09XG5leHBvcnQgY29uc3Qgc2VuZE1lc3NhZ2UgPSAoZGF0YSkgPT5cbiAgYXBpLnBvc3QoJy9tZXNzYWdlcycsIGRhdGEpO1xuXG5leHBvcnQgY29uc3QgZ2V0Q29udmVyc2F0aW9ucyA9ICgpID0+XG4gIGFwaS5nZXQoJy9tZXNzYWdlcy9jb252ZXJzYXRpb25zJyk7XG5cbmV4cG9ydCBjb25zdCBnZXRNZXNzYWdlcyA9IChwYXJ0bmVySWQsIHBvc3RJZCkgPT5cbiAgYXBpLmdldChgL21lc3NhZ2VzLyR7cGFydG5lcklkfWAsIHsgcGFyYW1zOiB7IHBvc3RfaWQ6IHBvc3RJZCB9IH0pO1xuXG5leHBvcnQgZGVmYXVsdCBhcGk7XG4iXSwibmFtZXMiOlsiYXhpb3MiLCJBUElfVVJMIiwicHJvY2VzcyIsImVudiIsIk5FWFRfUFVCTElDX0FQSV9VUkwiLCJBVVRIX1RPS0VOX0tFWSIsImFwaSIsImNyZWF0ZSIsImJhc2VVUkwiLCJpbnRlcmNlcHRvcnMiLCJyZXF1ZXN0IiwidXNlIiwiY29uZmlnIiwidG9rZW4iLCJsb2NhbFN0b3JhZ2UiLCJnZXRJdGVtIiwiaGVhZGVycyIsIkF1dGhvcml6YXRpb24iLCJzZXRBdXRoVG9rZW4iLCJzZXRJdGVtIiwicmVtb3ZlSXRlbSIsInJlZ2lzdGVyVXNlciIsImVtYWlsIiwicGFzc3dvcmQiLCJkaXNwbGF5TmFtZSIsInBvc3QiLCJsb2dpblVzZXIiLCJnZXRDdXJyZW50VXNlciIsImdldCIsImNyZWF0ZUxvc3RJdGVtIiwiZm9ybURhdGEiLCJnZXRMb3N0SXRlbXMiLCJwYXJhbXMiLCJnZXRMb3N0SXRlbSIsImlkIiwidXBkYXRlTG9zdEl0ZW0iLCJkYXRhIiwicHV0IiwiZGVsZXRlTG9zdEl0ZW0iLCJkZWxldGUiLCJjcmVhdGVGb3VuZEl0ZW0iLCJnZXRGb3VuZEl0ZW1zIiwiZ2V0Rm91bmRJdGVtIiwidXBkYXRlRm91bmRJdGVtIiwiZGVsZXRlRm91bmRJdGVtIiwic2VuZE1lc3NhZ2UiLCJnZXRDb252ZXJzYXRpb25zIiwiZ2V0TWVzc2FnZXMiLCJwYXJ0bmVySWQiLCJwb3N0SWQiLCJwb3N0X2lkIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./src/lib/api.js\n");
 
 /***/ }),
 
@@ -676,7 +401,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/@firebase","vendor-chunks/next","vendor-chunks/undici","vendor-chunks/@grpc","vendor-chunks/firebase","vendor-chunks/protobufjs","vendor-chunks/axios","vendor-chunks/mime-db","vendor-chunks/long","vendor-chunks/@protobufjs","vendor-chunks/follow-redirects","vendor-chunks/lodash.camelcase","vendor-chunks/debug","vendor-chunks/tslib","vendor-chunks/form-data","vendor-chunks/get-intrinsic","vendor-chunks/idb","vendor-chunks/asynckit","vendor-chunks/combined-stream","vendor-chunks/mime-types","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/supports-color","vendor-chunks/has-symbols","vendor-chunks/delayed-stream","vendor-chunks/@swc","vendor-chunks/function-bind","vendor-chunks/es-set-tostringtag","vendor-chunks/get-proto","vendor-chunks/call-bind-apply-helpers","vendor-chunks/dunder-proto","vendor-chunks/math-intrinsics","vendor-chunks/es-errors","vendor-chunks/has-flag","vendor-chunks/gopd","vendor-chunks/es-define-property","vendor-chunks/hasown","vendor-chunks/has-tostringtag","vendor-chunks/es-object-atoms"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Freport-lost%2Fpage&page=%2Freport-lost%2Fpage&appPaths=%2Freport-lost%2Fpage&pagePath=private-next-app-dir%2Freport-lost%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/axios","vendor-chunks/mime-db","vendor-chunks/follow-redirects","vendor-chunks/debug","vendor-chunks/form-data","vendor-chunks/get-intrinsic","vendor-chunks/asynckit","vendor-chunks/combined-stream","vendor-chunks/mime-types","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/supports-color","vendor-chunks/has-symbols","vendor-chunks/delayed-stream","vendor-chunks/@swc","vendor-chunks/function-bind","vendor-chunks/es-set-tostringtag","vendor-chunks/get-proto","vendor-chunks/call-bind-apply-helpers","vendor-chunks/dunder-proto","vendor-chunks/math-intrinsics","vendor-chunks/es-errors","vendor-chunks/has-flag","vendor-chunks/gopd","vendor-chunks/es-define-property","vendor-chunks/hasown","vendor-chunks/has-tostringtag","vendor-chunks/es-object-atoms"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Freport-lost%2Fpage&page=%2Freport-lost%2Fpage&appPaths=%2Freport-lost%2Fpage&pagePath=private-next-app-dir%2Freport-lost%2Fpage.js&appDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient%2Fsrc%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fcalebszeto%2Fvscode-school-projects%2Fcsschoolproject%2FCS4800HWA2%2Fclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();

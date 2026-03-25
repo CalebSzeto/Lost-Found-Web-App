@@ -1,150 +1,202 @@
 # Campus Lost & Found Web Platform
 
-A centralized web application that enables students to report lost items, notify others about found items, and message each other to facilitate item recovery.
+A centralized web app for students to report lost items, post found items, and message each other for recovery.
 
-## Tech Stack
+## Current Tech Stack
 
-- **Frontend:** React (with React Router)
-- **Backend:** Node.js + Express.js
-- **Database:** Firebase Firestore
-- **File Storage:** Firebase Storage
-- **Authentication:** Firebase Authentication
-- **Deployment Target:** AWS
+- Frontend: Next.js 14 + React
+- Backend: Node.js + Express
+- Database: MongoDB (Atlas or local)
+- Authentication: JWT (email/password)
+- Image Uploads: Local file uploads served from `/uploads`
 
 ## Project Structure
 
-```
+```text
 CS4800HWA2/
-├── client/                 # React frontend
-│   ├── public/
+├── client/                 # Next.js frontend
+│   ├── src/
+│   │   ├── app/            # App Router pages
+│   │   ├── components/     # Reusable UI components
+│   │   ├── context/        # Auth context
+│   │   └── lib/            # API client and helpers
+├── server/                 # Express backend
 │   └── src/
-│       ├── components/     # Reusable UI components
-│       │   ├── Auth/       # Login & Register
-│       │   ├── Common/     # SearchBar, etc.
-│       │   ├── Layout/     # Navbar & Footer
-│       │   └── Posts/      # PostCard
-│       ├── context/        # AuthContext (React Context)
-│       ├── pages/          # Page-level components
-│       ├── services/       # Firebase config & API client
-│       ├── App.js
-│       └── index.js
-├── server/                 # Node.js backend
-│   └── src/
-│       ├── config/         # Firebase Admin config
-│       ├── middleware/      # Auth middleware
+│       ├── config/         # MongoDB config
+│       ├── middleware/     # JWT auth middleware
+│       ├── models/         # Mongoose models
 │       ├── routes/         # API routes
-│       └── index.js        # Express server entry
+│       └── index.js        # Server entry
 ├── package.json            # Root scripts
 └── README.md
 ```
 
-## Getting Started
+## Beginner Setup (Step by Step)
 
-### Prerequisites
+### 1. Install prerequisites
 
-- Node.js >= 18
+- Node.js 18 or newer
 - npm
-- Firebase project (Firestore, Auth, Storage enabled)
+- MongoDB (choose one):
+  - MongoDB Atlas (cloud, easiest for beginners)
+  - Local MongoDB Community Server on your machine
 
-### 1. Firebase Setup
-
-1. Go to [Firebase Console](https://console.firebase.google.com/) and create a new project.
-2. Enable **Authentication** (Email/Password provider).
-3. Create a **Firestore Database**.
-4. Enable **Firebase Storage**.
-5. Generate a **Service Account Key** (Project Settings → Service Accounts → Generate New Private Key).
-
-### 2. Environment Variables
-
-**Server** – copy `server/.env.example` to `server/.env` and fill in:
-
-```env
-PORT=5000
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@your-project.iam.gserviceaccount.com
-FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-POST_EXPIRATION_DAYS=30
-```
-
-**Client** – copy `client/.env.example` to `client/.env` and fill in your Firebase web config:
-
-```env
-REACT_APP_FIREBASE_API_KEY=your-api-key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-REACT_APP_FIREBASE_PROJECT_ID=your-project-id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=000000000000
-REACT_APP_FIREBASE_APP_ID=1:000000000000:web:0000000000000000
-REACT_APP_API_URL=http://localhost:5000/api
-```
-
-### 3. Install Dependencies
+### 2. Download and open the project
 
 ```bash
-# Install all dependencies (root + server + client)
+cd /Users/calebszeto/vscode-school-projects/csschoolproject/CS4800HWA2
+```
+
+### 3. Install dependencies
+
+Run at the project root:
+
+```bash
 npm install
 npm run install-all
 ```
 
-### 4. Run in Development
+### 4. Set up server environment variables
+
+1. Create `server/.env` (copy from `server/.env.example`).
+2. Fill values like this:
+
+```env
+PORT=5000
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<db>?retryWrites=true&w=majority
+MONGODB_DB_NAME=lost_and_found
+JWT_SECRET=replace-with-a-long-random-secret
+PUBLIC_BASE_URL=http://localhost:5000
+POST_EXPIRATION_DAYS=30
+```
+
+If using local MongoDB, you can use:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017/lost_and_found
+```
+
+### 5. Set up client environment variables
+
+1. Create `client/.env.local`.
+2. Add:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
+
+Notes:
+- `client/.env.example` still includes old Firebase variables. They are optional for the current MongoDB/JWT flow.
+- The important value for the frontend is `NEXT_PUBLIC_API_URL`.
+
+### 6. Start the app in development
+
+From the root folder:
 
 ```bash
-# Run both server and client concurrently
 npm run dev
 ```
 
-Or run separately:
+This starts:
+- Backend on port 5000
+- Frontend on port 3000
+
+You can also run each separately:
 
 ```bash
-# Terminal 1 - Backend (port 5000)
+# Backend
 npm run server
 
-# Terminal 2 - Frontend (port 3000)
+# Frontend
 npm run client
 ```
 
-### 5. Open the App
+### 7. Verify everything is running
 
-Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+1. Open backend health check:
+   - http://localhost:5000/api/health
+2. Open frontend:
+   - http://localhost:3000
+3. In the app:
+   - Register an account
+   - Login
+   - Create a lost item post
+   - Create a found item post
+   - Try an image upload
 
 ## API Endpoints
 
-| Method | Endpoint                  | Auth | Description                   |
-|--------|---------------------------|------|-------------------------------|
-| POST   | /api/auth/register        | Yes  | Register user in Firestore    |
-| GET    | /api/auth/me              | Yes  | Get current user profile      |
-| POST   | /api/lost-items           | Yes  | Create lost item post         |
-| GET    | /api/lost-items           | No   | Get all active lost items     |
-| GET    | /api/lost-items/:id       | No   | Get single lost item          |
-| PUT    | /api/lost-items/:id       | Yes  | Update lost item status       |
-| DELETE | /api/lost-items/:id       | Yes  | Delete lost item post         |
-| POST   | /api/found-items          | Yes  | Create found item post        |
-| GET    | /api/found-items          | No   | Get all active found items    |
-| GET    | /api/found-items/:id      | No   | Get single found item         |
-| PUT    | /api/found-items/:id      | Yes  | Update found item status      |
-| DELETE | /api/found-items/:id      | Yes  | Delete found item post        |
-| POST   | /api/messages             | Yes  | Send a message                |
-| GET    | /api/messages/conversations| Yes | Get user conversations        |
-| GET    | /api/messages/:partnerId  | Yes  | Get messages with a user      |
+| Method | Endpoint                   | Auth Required | Description |
+|--------|----------------------------|---------------|-------------|
+| POST   | /api/auth/register         | No            | Register user |
+| POST   | /api/auth/login            | No            | Login user |
+| GET    | /api/auth/me               | Yes           | Get current user |
+| POST   | /api/lost-items            | Yes           | Create lost item post |
+| GET    | /api/lost-items            | No            | List active lost items |
+| GET    | /api/lost-items/:id        | No            | Get lost item detail |
+| PUT    | /api/lost-items/:id        | Yes           | Update lost item |
+| DELETE | /api/lost-items/:id        | Yes           | Delete lost item |
+| POST   | /api/found-items           | Yes           | Create found item post |
+| GET    | /api/found-items           | No            | List active found items |
+| GET    | /api/found-items/:id       | No            | Get found item detail |
+| PUT    | /api/found-items/:id       | Yes           | Update found item |
+| DELETE | /api/found-items/:id       | Yes           | Delete found item |
+| POST   | /api/messages              | Yes           | Send message |
+| GET    | /api/messages/conversations| Yes           | List conversations |
+| GET    | /api/messages/:partnerId   | Yes           | Get messages with a user |
 
-## Features
+## Common Beginner Issues
 
-- **User Authentication** – Register/login with email & password via Firebase Auth
-- **Lost Item Reporting** – Post lost items with title, description, location, date, and optional image
-- **Found Item Reporting** – Post found items with brief description and drop-off info
-- **Direct Messaging** – Message other users about specific posts
-- **Search & Filter** – Filter posts by keyword, location, and date
-- **Post Management** – Delete your own posts, mark as resolved
-- **Auto Expiration** – Posts automatically expire after 30 days
-- **Responsive Design** – Works on desktop, tablet, and mobile
+### MongoDB connection fails
 
-## Deployment (AWS)
+- Check `MONGODB_URI` is correct.
+- If using Atlas:
+  - Make sure your DB user/password are correct.
+  - Add your current IP to Atlas network access.
+- If using local MongoDB:
+  - Ensure MongoDB service is running.
 
-For production deployment to AWS:
+### Login/register fails
 
-1. Build the React app: `cd client && npm run build`
-2. Deploy the backend to AWS EC2 or Elastic Beanstalk
-3. Serve the React build via S3 + CloudFront or from the Express server
-4. Configure environment variables on the server
-5. Enable HTTPS via AWS Certificate Manager
+- Check `JWT_SECRET` exists in `server/.env`.
+- Restart server after changing `.env`.
+
+### Frontend cannot reach backend
+
+- Ensure `NEXT_PUBLIC_API_URL=http://localhost:5000/api` in `client/.env.local`.
+- Restart frontend after `.env.local` changes.
+
+### Image upload fails
+
+- Ensure backend is running.
+- Ensure form includes an image file.
+- Uploaded files are served from `/uploads` by the backend.
+
+## Helpful Commands
+
+Run from project root:
+
+```bash
+npm run dev           # run backend + frontend
+npm run server        # backend only
+npm run client        # frontend only
+```
+
+Run from server folder:
+
+```bash
+npm run dev           # nodemon server
+npm start             # plain node server
+```
+
+## Production Notes
+
+For deployment, set production values for:
+- `MONGODB_URI`
+- `MONGODB_DB_NAME`
+- `JWT_SECRET`
+- `PUBLIC_BASE_URL`
+- `NEXT_PUBLIC_API_URL`
+
+Also configure secure CORS, HTTPS, and a persistent file storage strategy if you do not want local disk uploads in production.
+

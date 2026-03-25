@@ -5,6 +5,10 @@ import Link from 'next/link';
 import styles from './PostCard.module.css';
 
 const PostCard = ({ post, type }) => {
+  if (!post) {
+    return null;
+  }
+
   const isLost = type === 'lost';
 
   const formatDate = (dateStr) => {

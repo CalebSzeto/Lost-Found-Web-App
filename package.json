@@ -13,6 +13,6 @@
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "firebase": "^12.9.0"
+    "mongodb": "^7.1.0"
   }
 }

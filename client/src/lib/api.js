@@ -1,18 +1,16 @@
 import axios from 'axios';
-import { auth } from './firebase';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const AUTH_TOKEN_KEY = 'authToken';
 
 const api = axios.create({
   baseURL: API_URL,
 });
 
-// Attach Firebase ID token to every request
-api.interceptors.request.use(async (config) => {
+api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
-    const user = auth.currentUser;
-    if (user) {
-      const token = await user.getIdToken();
+    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
   }
@@ -20,17 +18,28 @@ api.interceptors.request.use(async (config) => {
 });
 
 // ==================== AUTH ====================
-export const registerUser = (displayName) =>
-  api.post('/auth/register', { displayName });
+export const setAuthToken = (token) => {
+  if (typeof window !== 'undefined') {
+    if (token) {
+      localStorage.setItem(AUTH_TOKEN_KEY, token);
+    } else {
+      localStorage.removeItem(AUTH_TOKEN_KEY);
+    }
+  }
+};
+
+export const registerUser = (email, password, displayName) =>
+  api.post('/auth/register', { email, password, displayName });
+
+export const loginUser = (email, password) =>
+  api.post('/auth/login', { email, password });
 
 export const getCurrentUser = () =>
   api.get('/auth/me');
 
 // ==================== LOST ITEMS ====================
 export const createLostItem = (formData) =>
-  api.post('/lost-items', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
+  api.post('/lost-items', formData);
 
 export const getLostItems = (params) =>
   api.get('/lost-items', { params });

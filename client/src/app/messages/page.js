@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getConversations, getMessages, sendMessage } from '@/lib/api';
@@ -13,85 +13,204 @@ function MessagesContent() {
 
   const { currentUser } = useAuth();
   const [conversations, setConversations] = useState([]);
-  const [selectedPartner, setSelectedPartner] = useState(toParam || null);
-  const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState(
-    postParam ? `Hi! I'm reaching out about a post (ID: ${postParam}).` : ''
+  const [selectedConversationId, setSelectedConversationId] = useState(
+    toParam ? `${toParam}_${postParam || 'general'}` : null
   );
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
   const [loadingConvos, setLoadingConvos] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [error, setError] = useState('');
-  const messagesEndRef = useRef(null);
+  const chatMessagesRef = useRef(null);
+  const lastSentAtRef = useRef(0);
+
+  const selectedConversation = useMemo(
+    () => conversations.find((c) => c.conversation_id === selectedConversationId),
+    [conversations, selectedConversationId]
+  );
 
   useEffect(() => {
     if (currentUser) {
-      fetchConversations();
+      fetchConversations(false);
     }
   }, [currentUser]);
 
   useEffect(() => {
-    if (selectedPartner) {
-      fetchMessages(selectedPartner);
+    if (selectedConversation?.partner_id) {
+      fetchMessages(
+        selectedConversation.partner_id,
+        selectedConversation.related_post_id,
+        false
+      );
     }
-  }, [selectedPartner]);
+  }, [selectedConversation?.partner_id, selectedConversation?.related_post_id]);
 
   useEffect(() => {
-    scrollToBottom();
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
   }, [messages]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  useEffect(() => {
+    if (!currentUser) return;
 
-  const fetchConversations = async () => {
+    const intervalId = setInterval(() => {
+      fetchConversations(true);
+      if (selectedConversation?.partner_id) {
+        fetchMessages(
+          selectedConversation.partner_id,
+          selectedConversation.related_post_id,
+          true
+        );
+      }
+    }, 4000);
+
+    return () => clearInterval(intervalId);
+  }, [currentUser, selectedConversation?.partner_id, selectedConversation?.related_post_id]);
+
+  const normalizeConversations = (items) =>
+    (items || []).map((c) => {
+      const partnerId = c.partner_id || c.partnerId;
+      const relatedPostId = c.related_post_id || null;
+
+      return {
+        conversation_id: c.conversation_id || `${partnerId}_${relatedPostId || 'general'}`,
+        partner_id: partnerId,
+        partner_email: c.partner_email || c.partnerEmail || partnerId,
+        related_post_id: relatedPostId,
+        related_post_type: c.related_post_type || null,
+        last_message: c.last_message || '',
+        unread: c.unread || 0,
+      };
+    });
+
+  const fetchConversations = async (silent = false) => {
     try {
-      setLoadingConvos(true);
-      const res = await getConversations();
-      setConversations(res.data);
+      if (!silent) setLoadingConvos(true);
 
-      // If we have a "to" param but it's not in conversations, add a placeholder
-      if (toParam && !res.data.find((c) => c.partner_id === toParam)) {
-        setConversations([
-          { partner_id: toParam, partner_email: 'New Conversation', last_message: '' },
-          ...res.data,
-        ]);
+      const res = await getConversations();
+      const normalized = normalizeConversations(res.data);
+
+      let merged = normalized;
+      if (toParam && !normalized.find((c) => c.partner_id === toParam)) {
+        merged = [
+          {
+            conversation_id: `${toParam}_${postParam || 'general'}`,
+            partner_id: toParam,
+            partner_email: 'New Conversation',
+            related_post_id: postParam || null,
+            related_post_type: null,
+            last_message: '',
+            unread: 0,
+          },
+          ...normalized,
+        ];
+      }
+
+      setConversations(merged);
+
+      if (!selectedConversationId && merged.length > 0) {
+        setSelectedConversationId(merged[0].conversation_id);
       }
     } catch (err) {
       setError('Failed to load conversations');
     } finally {
-      setLoadingConvos(false);
+      if (!silent) setLoadingConvos(false);
     }
   };
 
-  const fetchMessages = async (partnerId) => {
+  const fetchMessages = async (partnerId, postId, silent = false) => {
     try {
-      setLoadingMessages(true);
-      const res = await getMessages(partnerId);
-      setMessages(res.data);
+      // Keep a freshly sent optimistic message visible for a short time.
+      if (silent && Date.now() - lastSentAtRef.current < 3000) {
+        return;
+      }
+
+      if (!silent) setLoadingMessages(true);
+
+      const res = await getMessages(partnerId, postId || undefined);
+      const normalized = (res.data || []).map((m) => ({
+        ...m,
+        content: m.content || m.message_text || '',
+        created_at: m.created_at || m.timestamp,
+      }));
+
+      setMessages(normalized);
     } catch (err) {
-      // New conversation — no messages yet
-      setMessages([]);
+      if (!silent) setMessages([]);
     } finally {
-      setLoadingMessages(false);
+      if (!silent) setLoadingMessages(false);
     }
   };
 
   const handleSend = async (e) => {
     e.preventDefault();
-    if (!newMessage.trim() || !selectedPartner) return;
+    if (!selectedConversation?.partner_id || !newMessage.trim()) return;
+
+    const text = newMessage.trim();
+    const conversationPostId = selectedConversation.conversation_id.split('_').slice(1).join('_');
+    const activePostId =
+      selectedConversation.related_post_id ||
+      (conversationPostId && conversationPostId !== 'general' ? conversationPostId : null) ||
+      postParam ||
+      undefined;
+
+    const tempId = `temp-${Date.now()}`;
+
+    const optimisticMessage = {
+      message_id: tempId,
+      sender_id: currentUser.uid,
+      sender_email: currentUser.email,
+      related_post_id: activePostId || null,
+      content: text,
+      created_at: new Date().toISOString(),
+    };
+
+    setMessages((prev) => [...prev, optimisticMessage]);
+    setConversations((prev) =>
+      prev.map((c) =>
+        c.conversation_id === selectedConversation.conversation_id
+          ? { ...c, last_message: text }
+          : c
+      )
+    );
+    setNewMessage('');
+    lastSentAtRef.current = Date.now();
 
     try {
-      await sendMessage({
-        receiver_id: selectedPartner,
-        content: newMessage.trim(),
+      const res = await sendMessage({
+        receiver_id: selectedConversation.partner_id,
+        related_post_id: activePostId,
+        message_text: text,
       });
-      setNewMessage('');
-      fetchMessages(selectedPartner);
-      fetchConversations();
+
+      const saved = res?.data?.data;
+      if (saved) {
+        const confirmedMessage = {
+          ...saved,
+          content: saved.message_text || text,
+          created_at: saved.timestamp || new Date().toISOString(),
+        };
+
+        setMessages((prev) =>
+          prev.map((m) => (m.message_id === tempId ? confirmedMessage : m))
+        );
+      }
+
+      setError('');
+      // Refresh sidebar metadata now; polling keeps thread synced.
+      fetchConversations(true);
     } catch (err) {
       setError('Failed to send message');
+      fetchMessages(selectedConversation.partner_id, activePostId, true);
     }
   };
+
+  const selectedConversationType = selectedConversation?.related_post_type
+    ? selectedConversation.related_post_type === 'lost'
+      ? 'Lost Item'
+      : 'Found Item'
+    : 'General';
 
   if (!currentUser) {
     return (
@@ -107,10 +226,9 @@ function MessagesContent() {
   return (
     <div className="pageContainer">
       <div className={styles.messagesPage}>
-        <h1>💬 Messages</h1>
+        <h1>Messages</h1>
 
         <div className={styles.messagesLayout}>
-          {/* Conversations Sidebar */}
           <div className={styles.sidebar}>
             <h3>Conversations</h3>
             {loadingConvos ? (
@@ -123,17 +241,24 @@ function MessagesContent() {
               <div className={styles.conversationList}>
                 {conversations.map((convo) => (
                   <div
-                    key={convo.partner_id}
+                    key={convo.conversation_id}
                     className={`${styles.conversationItem} ${
-                      selectedPartner === convo.partner_id ? styles.active : ''
+                      selectedConversationId === convo.conversation_id ? styles.active : ''
                     }`}
-                    onClick={() => setSelectedPartner(convo.partner_id)}
+                    onClick={() => setSelectedConversationId(convo.conversation_id)}
                   >
                     <div className={styles.convoAvatar}>
                       {(convo.partner_email || '?')[0].toUpperCase()}
                     </div>
                     <div className={styles.convoInfo}>
                       <span className={styles.convoEmail}>{convo.partner_email}</span>
+                      <span className={styles.convoType}>
+                        {convo.related_post_type === 'lost'
+                          ? 'Lost Item'
+                          : convo.related_post_type === 'found'
+                            ? 'Found Item'
+                            : 'General'}
+                      </span>
                       <span className={styles.convoPreview}>
                         {convo.last_message
                           ? convo.last_message.substring(0, 40) + (convo.last_message.length > 40 ? '...' : '')
@@ -146,16 +271,22 @@ function MessagesContent() {
             )}
           </div>
 
-          {/* Messages Panel */}
           <div className={styles.chatPanel}>
-            {!selectedPartner ? (
+            {!selectedConversation?.partner_id ? (
               <div className={styles.chatEmpty}>
                 <h3>Select a conversation</h3>
                 <p>Choose a conversation from the sidebar or message someone from an item post.</p>
               </div>
             ) : (
               <>
-                <div className={styles.chatMessages}>
+                <div className={styles.chatHeader}>
+                  <div>
+                    <h3 className={styles.chatTitle}>{selectedConversation.partner_email}</h3>
+                    <span className={styles.chatSubtitle}>Conversation type: {selectedConversationType}</span>
+                  </div>
+                </div>
+
+                <div className={styles.chatMessages} ref={chatMessagesRef}>
                   {loadingMessages ? (
                     <div className={styles.chatLoading}>Loading messages...</div>
                   ) : messages.length === 0 ? (
@@ -165,9 +296,12 @@ function MessagesContent() {
                   ) : (
                     messages.map((msg, index) => (
                       <div
-                        key={index}
+                        key={msg.message_id || index}
                         className={`${styles.message} ${
-                          msg.sender_id === currentUser.uid ? styles.sent : styles.received
+                          String(msg.sender_id) === String(currentUser.uid) ||
+                          (msg.sender_email && msg.sender_email === currentUser.email)
+                            ? styles.sent
+                            : styles.received
                         }`}
                       >
                         <div className={styles.messageBubble}>
@@ -179,7 +313,6 @@ function MessagesContent() {
                       </div>
                     ))
                   )}
-                  <div ref={messagesEndRef} />
                 </div>
 
                 <form onSubmit={handleSend} className={styles.chatInput}>
@@ -206,14 +339,16 @@ function MessagesContent() {
 
 export default function MessagesPage() {
   return (
-    <Suspense fallback={
-      <div className="pageContainer">
-        <div className="loadingSpinner">
-          <div className="spinner"></div>
-          <p>Loading messages...</p>
+    <Suspense
+      fallback={
+        <div className="pageContainer">
+          <div className="loadingSpinner">
+            <div className="spinner"></div>
+            <p>Loading messages...</p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <MessagesContent />
     </Suspense>
   );

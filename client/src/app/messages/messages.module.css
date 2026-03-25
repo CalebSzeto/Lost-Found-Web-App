@@ -13,6 +13,7 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   height: 70vh;
   min-height: 500px;
+  min-width: 0;
 }
 
 /* Sidebar */
@@ -21,6 +22,8 @@
   display: flex;
   flex-direction: column;
   background: #f9fafb;
+  min-height: 0;
+  min-width: 0;
 }
 
 .sidebar h3 {
@@ -41,6 +44,8 @@
 .conversationList {
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
+  scrollbar-gutter: stable;
 }
 
 .conversationItem {
@@ -66,7 +71,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary, #6d28d9);
   color: white;
   display: flex;
   align-items: center;
@@ -91,6 +96,11 @@
   text-overflow: ellipsis;
 }
 
+.convoType {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
 .convoPreview {
   font-size: 0.8rem;
   color: #9ca3af;
@@ -103,6 +113,28 @@
 .chatPanel {
   display: flex;
   flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chatHeader {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.chatTitle {
+  margin: 0;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.chatSubtitle {
+  margin-top: 0.25rem;
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #6b7280;
 }
 
 .chatEmpty {
@@ -136,10 +168,41 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-height: 0;
+  scrollbar-gutter: stable;
+}
+
+.conversationList::-webkit-scrollbar,
+.chatMessages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.conversationList::-webkit-scrollbar-track,
+.chatMessages::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.conversationList::-webkit-scrollbar-thumb,
+.chatMessages::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.conversationList::-webkit-scrollbar-thumb:hover,
+.chatMessages::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .message {
   display: flex;
+}
+
+.sent {
+  justify-content: flex-end;
+}
+
+.received {
+  justify-content: flex-start;
 }
 
 .message.sent {
@@ -158,7 +221,7 @@
 }
 
 .sent .messageBubble {
-  background: var(--primary);
+  background: var(--primary, #6d28d9);
   color: white;
   border-bottom-right-radius: 4px;
 }
