@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const fs = require('fs/promises');
-const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const LostItem = require('../models/LostItem');
 const authenticate = require('../middleware/auth');
+const { uploadImage } = require('../lib/imageUpload');
 
 // Configure multer for memory storage
 const upload = multer({
@@ -34,25 +33,6 @@ function handleImageUpload(req, res, next) {
 
     return res.status(400).json({ error: err.message || 'Invalid image upload' });
   });
-}
-
-/**
- * Save uploaded image to local storage and return public URL.
- */
-async function uploadImage(file) {
-  if (process.env.VERCEL) {
-    return null;
-  }
-
-  const imageId = uuidv4();
-  const ext = path.extname(file.originalname || '').toLowerCase() || '.jpg';
-  const uploadDir = path.join(__dirname, '../../uploads/lost-items');
-  await fs.mkdir(uploadDir, { recursive: true });
-  const localFilePath = path.join(uploadDir, `${imageId}${ext}`);
-  await fs.writeFile(localFilePath, file.buffer);
-
-  const baseUrl = process.env.PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
-  return `${baseUrl}/uploads/lost-items/${imageId}${ext}`;
 }
 
 /**
@@ -94,7 +74,7 @@ router.post('/', authenticate, handleImageUpload, async (req, res) => {
 
     let image_url = null;
     if (req.file) {
-      image_url = await uploadImage(req.file);
+      image_url = await uploadImage(req.file, 'lost-items');
     }
 
     const lost_item_id = uuidv4();

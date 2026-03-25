@@ -8,6 +8,7 @@ node_modules/
 
 # Build
 client/build/
+client/.next/
 
 # IDE
 .vscode/

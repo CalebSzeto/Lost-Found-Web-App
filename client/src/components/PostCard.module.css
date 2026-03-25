@@ -36,6 +36,15 @@
   object-fit: cover;
 }
 
+.noImageBanner {
+  background: #F3F4F6;
+  color: #6B7280;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
 .content {
   padding: 1.25rem;
 }

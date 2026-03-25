@@ -68,6 +68,7 @@ MONGODB_DB_NAME=lost_and_found
 JWT_SECRET=replace-with-a-long-random-secret
 PUBLIC_BASE_URL=http://localhost:5000
 POST_EXPIRATION_DAYS=30
+BLOB_READ_WRITE_TOKEN=<vercel-blob-token>
 ```
 
 If using local MongoDB, you can use:
@@ -75,6 +76,8 @@ If using local MongoDB, you can use:
 ```env
 MONGODB_URI=mongodb://127.0.0.1:27017/lost_and_found
 ```
+
+For Vercel deployment, set `BLOB_READ_WRITE_TOKEN` in the backend project environment variables so image uploads are stored in Vercel Blob.
 
 ### 5. Set up client environment variables
 
@@ -187,6 +190,26 @@ Run from server folder:
 ```bash
 npm run dev           # nodemon server
 npm start             # plain node server
+npm run backfill:images:dry   # preview legacy image URL migrations
+npm run backfill:images       # upload legacy local images to Vercel Blob and update DB
+```
+
+### Backfill Existing Image URLs to Vercel Blob
+
+If older posts stored image URLs like `http://localhost:5000/uploads/...`, you can migrate them:
+
+1. Set `BLOB_READ_WRITE_TOKEN` in `server/.env`.
+2. Run a dry-run first:
+
+```bash
+cd server
+npm run backfill:images:dry
+```
+
+3. If the dry-run summary looks correct, run the write mode:
+
+```bash
+npm run backfill:images
 ```
 
 ## Production Notes

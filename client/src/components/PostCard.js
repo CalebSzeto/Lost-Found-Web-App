@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './PostCard.module.css';
+import { resolveImageUrl } from '@/lib/image';
 
 const PostCard = ({ post, type }) => {
   if (!post) {
@@ -10,6 +11,7 @@ const PostCard = ({ post, type }) => {
   }
 
   const isLost = type === 'lost';
+  const [showImage, setShowImage] = React.useState(true);
 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -21,14 +23,28 @@ const PostCard = ({ post, type }) => {
 
   const id = isLost ? post.lost_item_id : post.found_item_id;
   const href = isLost ? `/lost-items/${id}` : `/found-items/${id}`;
+  const imageUrl = resolveImageUrl(post.image_url);
+
+  React.useEffect(() => {
+    setShowImage(true);
+  }, [post?.image_url]);
 
   return (
     <Link href={href} className={styles.cardLink}>
       <div className={`${styles.card} ${isLost ? styles.cardLost : styles.cardFound}`}>
-        {isLost && post.image_url && (
+        {imageUrl && showImage && (
           <div className={styles.imageWrap}>
-            <img src={post.image_url} alt={post.title} className={styles.image} />
+            <img
+              src={imageUrl}
+              alt={post.title || 'Item image'}
+              className={styles.image}
+              onError={() => setShowImage(false)}
+            />
           </div>
+        )}
+
+        {!imageUrl && (
+          <div className={styles.noImageBanner}>No image uploaded</div>
         )}
 
         <div className={styles.content}>
