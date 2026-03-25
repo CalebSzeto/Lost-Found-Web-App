@@ -215,6 +215,7 @@ router.delete('/:id', authenticate, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to delete this post' });
     }
 
+    await Message.deleteMany({ related_post_id: item.lost_item_id });
     await LostItem.deleteOne({ lost_item_id: req.params.id });
     res.json({ message: 'Lost item deleted successfully' });
   } catch (error) {
