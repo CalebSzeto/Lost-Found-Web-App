@@ -3,7 +3,15 @@
 import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { getConversations, getMessages, sendMessage } from '@/lib/api';
+import {
+  blockUser,
+  endConversation,
+  getBlockedUsers,
+  getConversations,
+  getMessages,
+  sendMessage,
+  unblockUser,
+} from '@/lib/api';
 import styles from './messages.module.css';
 
 function MessagesContent() {
@@ -22,6 +30,8 @@ function MessagesContent() {
   const [loadingConvos, setLoadingConvos] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [error, setError] = useState('');
+  const [blockedUserIds, setBlockedUserIds] = useState([]);
+  const [busyAction, setBusyAction] = useState(false);
   const chatMessagesRef = useRef(null);
   const lastSentAtRef = useRef(0);
 
@@ -33,6 +43,7 @@ function MessagesContent() {
   useEffect(() => {
     if (currentUser) {
       fetchConversations(false);
+      fetchBlockedUsers();
     }
   }, [currentUser]);
 
@@ -85,10 +96,20 @@ function MessagesContent() {
         partner_email: c.partner_email || c.partnerEmail || partnerId,
         related_post_id: relatedPostId,
         related_post_type: c.related_post_type || null,
+        related_post_title: c.related_post_title || null,
         last_message: c.last_message || '',
         unread: c.unread || 0,
       };
     });
+
+  const fetchBlockedUsers = async () => {
+    try {
+      const res = await getBlockedUsers();
+      setBlockedUserIds((res.data || []).map((u) => String(u.user_id)));
+    } catch (err) {
+      setBlockedUserIds([]);
+    }
+  };
 
   const fetchConversations = async (silent = false) => {
     try {
@@ -106,6 +127,7 @@ function MessagesContent() {
             partner_email: 'New Conversation',
             related_post_id: postParam || null,
             related_post_type: null,
+            related_post_title: null,
             last_message: '',
             unread: 0,
           },
@@ -152,6 +174,10 @@ function MessagesContent() {
   const handleSend = async (e) => {
     e.preventDefault();
     if (!selectedConversation?.partner_id || !newMessage.trim()) return;
+    if (blockedUserIds.includes(String(selectedConversation.partner_id))) {
+      setError('You blocked this user. Unblock to send messages.');
+      return;
+    }
 
     const text = newMessage.trim();
     const conversationPostId = selectedConversation.conversation_id.split('_').slice(1).join('_');
@@ -212,11 +238,71 @@ function MessagesContent() {
     }
   };
 
+  const handleToggleBlock = async () => {
+    if (!selectedConversation?.partner_id) return;
+
+    const partnerId = String(selectedConversation.partner_id);
+    const blocked = blockedUserIds.includes(partnerId);
+    const question = blocked
+      ? 'Unblock this user?'
+      : 'Block this user? They will not be able to message you.';
+
+    if (!window.confirm(question)) return;
+
+    try {
+      setBusyAction(true);
+      if (blocked) {
+        await unblockUser(partnerId);
+        setBlockedUserIds((prev) => prev.filter((id) => id !== partnerId));
+      } else {
+        await blockUser(partnerId);
+        setBlockedUserIds((prev) => [...new Set([...prev, partnerId])]);
+      }
+      fetchConversations(true);
+      setError('');
+    } catch (err) {
+      setError('Failed to update block status');
+    } finally {
+      setBusyAction(false);
+    }
+  };
+
+  const handleEndConversation = async () => {
+    if (!selectedConversation?.partner_id) return;
+
+    if (!window.confirm('End this conversation for both users? This cannot be undone.')) {
+      return;
+    }
+
+    try {
+      setBusyAction(true);
+      await endConversation(
+        selectedConversation.partner_id,
+        selectedConversation.related_post_id || undefined
+      );
+
+      const removedId = selectedConversation.conversation_id;
+      const nextConversations = conversations.filter((c) => c.conversation_id !== removedId);
+      setConversations(nextConversations);
+      setMessages([]);
+      setSelectedConversationId(nextConversations[0]?.conversation_id || null);
+      setError('');
+    } catch (err) {
+      setError('Failed to end conversation');
+    } finally {
+      setBusyAction(false);
+    }
+  };
+
   const selectedConversationType = selectedConversation?.related_post_type
     ? selectedConversation.related_post_type === 'lost'
       ? 'Lost Item'
       : 'Found Item'
     : 'General';
+  const selectedConversationTitle = selectedConversation?.related_post_title;
+  const isPartnerBlocked = selectedConversation
+    ? blockedUserIds.includes(String(selectedConversation.partner_id))
+    : false;
 
   if (!currentUser) {
     return (
@@ -265,6 +351,9 @@ function MessagesContent() {
                             ? 'Found Item'
                             : 'General'}
                       </span>
+                      {convo.related_post_title && (
+                        <span className={styles.convoItemTitle}>Item: {convo.related_post_title}</span>
+                      )}
                       <span className={styles.convoPreview}>
                         {convo.last_message
                           ? convo.last_message.substring(0, 40) + (convo.last_message.length > 40 ? '...' : '')
@@ -289,6 +378,27 @@ function MessagesContent() {
                   <div>
                     <h3 className={styles.chatTitle}>{selectedConversation.partner_email}</h3>
                     <span className={styles.chatSubtitle}>Conversation type: {selectedConversationType}</span>
+                    {selectedConversationTitle && (
+                      <span className={styles.chatSubtitle}>Item: {selectedConversationTitle}</span>
+                    )}
+                  </div>
+                  <div className={styles.chatActions}>
+                    <button
+                      type="button"
+                      className="btn btnDanger"
+                      onClick={handleEndConversation}
+                      disabled={busyAction}
+                    >
+                      End Conversation
+                    </button>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={handleToggleBlock}
+                      disabled={busyAction}
+                    >
+                      {isPartnerBlocked ? 'Unblock User' : 'Block User'}
+                    </button>
                   </div>
                 </div>
 
@@ -322,13 +432,19 @@ function MessagesContent() {
                 </div>
 
                 <form onSubmit={handleSend} className={styles.chatInput}>
+                  {isPartnerBlocked && (
+                    <p className={styles.blockedNotice}>
+                      This user is blocked. Unblock them to send messages.
+                    </p>
+                  )}
                   <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder="Type a message..."
+                    disabled={isPartnerBlocked}
                   />
-                  <button type="submit" className="btn btnPrimary" disabled={!newMessage.trim()}>
+                  <button type="submit" className="btn btnPrimary" disabled={!newMessage.trim() || isPartnerBlocked}>
                     Send
                   </button>
                 </form>

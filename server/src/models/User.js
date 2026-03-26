@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  blocked_user_ids: {
+    type: [String],
+    default: [],
+  },
   created_at: {
     type: String,
     default: () => new Date().toISOString(),

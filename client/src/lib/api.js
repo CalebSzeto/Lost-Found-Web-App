@@ -79,4 +79,16 @@ export const getConversations = () =>
 export const getMessages = (partnerId, postId) =>
   api.get(`/messages/${partnerId}`, { params: { post_id: postId } });
 
+export const blockUser = (userId) =>
+  api.post(`/messages/block/${userId}`);
+
+export const unblockUser = (userId) =>
+  api.delete(`/messages/block/${userId}`);
+
+export const getBlockedUsers = () =>
+  api.get('/messages/blocked');
+
+export const endConversation = (partnerId, postId) =>
+  api.delete(`/messages/conversation/${partnerId}`, { params: { post_id: postId } });
+
 export default api;
