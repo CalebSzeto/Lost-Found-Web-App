@@ -20,9 +20,19 @@ const SearchBar = ({
   const [date, setDate] = useState('');
   const [sortBy, setSortBy] = useState(defaultSort);
 
+  const runSearch = (overrides = {}) => {
+    onSearch({
+      keyword,
+      location,
+      date,
+      sortBy,
+      ...overrides,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch({ keyword, location, date, sortBy });
+    runSearch();
   };
 
   const handleClear = () => {
@@ -61,7 +71,11 @@ const SearchBar = ({
         {showSort && (
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => {
+              const nextSortBy = e.target.value;
+              setSortBy(nextSortBy);
+              runSearch({ sortBy: nextSortBy });
+            }}
             className={styles.input}
           >
             {sortOptions.map((option) => (
