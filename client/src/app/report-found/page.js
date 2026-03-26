@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { createFoundItem } from '@/lib/api';
+import { prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -40,14 +41,6 @@ export default function ReportFoundPage() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > MAX_IMAGE_SIZE_BYTES) {
-        setError('Image must be 4MB or smaller');
-        setImage(null);
-        setImagePreview(null);
-        e.target.value = '';
-        return;
-      }
-
       setError('');
       setImage(file);
       const reader = new FileReader();
@@ -73,7 +66,8 @@ export default function ReportFoundPage() {
       data.append('location', formData.location);
       data.append('date_found', formData.date_found);
       if (image) {
-        data.append('image', image);
+        const uploadableImage = await prepareImageForUpload(image, MAX_IMAGE_SIZE_BYTES);
+        data.append('image', uploadableImage);
       }
       await createFoundItem(data);
       router.push('/found-items');
@@ -82,7 +76,9 @@ export default function ReportFoundPage() {
       const serverError = err.response?.data?.error;
 
       if (status === 413) {
-        setError('Image is too large. Please upload an image smaller than 4MB.');
+        setError('Image is too large even after optimization. Try a smaller image.');
+      } else if (err.message?.toLowerCase().includes('too large')) {
+        setError('Image is too large even after optimization. Try a smaller image.');
       } else {
         setError(serverError || 'Failed to create post');
       }
