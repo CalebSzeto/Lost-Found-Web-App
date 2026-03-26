@@ -6,6 +6,8 @@ import { useAuth } from '@/context/AuthContext';
 import { createFoundItem } from '@/lib/api';
 import styles from './report.module.css';
 
+const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
+
 export default function ReportFoundPage() {
   const { currentUser } = useAuth();
   const router = useRouter();
@@ -38,6 +40,15 @@ export default function ReportFoundPage() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > MAX_IMAGE_SIZE_BYTES) {
+        setError('Image must be 4MB or smaller');
+        setImage(null);
+        setImagePreview(null);
+        e.target.value = '';
+        return;
+      }
+
+      setError('');
       setImage(file);
       const reader = new FileReader();
       reader.onloadend = () => setImagePreview(reader.result);
@@ -67,7 +78,14 @@ export default function ReportFoundPage() {
       await createFoundItem(data);
       router.push('/found-items');
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to create post');
+      const status = err.response?.status;
+      const serverError = err.response?.data?.error;
+
+      if (status === 413) {
+        setError('Image is too large. Please upload an image smaller than 4MB.');
+      } else {
+        setError(serverError || 'Failed to create post');
+      }
     } finally {
       setLoading(false);
     }

@@ -7,9 +7,11 @@ const Message = require('../models/Message');
 const authenticate = require('../middleware/auth');
 const { uploadImage } = require('../lib/imageUpload');
 
+const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
+
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 },
+  limits: { fileSize: MAX_IMAGE_SIZE_BYTES },
   fileFilter: (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
       cb(null, true);
@@ -28,7 +30,7 @@ function handleImageUpload(req, res, next) {
     }
 
     if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
-      return res.status(400).json({ error: 'Image must be 10MB or smaller' });
+          return res.status(400).json({ error: 'Image must be 4MB or smaller' });
     }
 
     return res.status(400).json({ error: err.message || 'Invalid image upload' });
