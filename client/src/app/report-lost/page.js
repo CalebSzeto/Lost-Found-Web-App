@@ -9,6 +9,33 @@ import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
 
+function getSubmitErrorMessage(err) {
+  const status = err?.response?.status;
+  const serverError = err?.response?.data?.error;
+
+  if (status === 401) {
+    return 'Your session expired. Please log in again.';
+  }
+  if (status === 413) {
+    return 'Image is too large even after optimization. Try a smaller image.';
+  }
+  if (status >= 500) {
+    return serverError || 'Server error while creating post. Please try again.';
+  }
+  if (status >= 400) {
+    return serverError || 'Invalid post data. Please review your input.';
+  }
+
+  if (err?.message?.toLowerCase().includes('too large')) {
+    return 'Image is too large even after optimization. Try a smaller image.';
+  }
+  if (err?.message === 'Network Error') {
+    return 'Cannot reach the server. Check your connection and try again.';
+  }
+
+  return serverError || err?.message || 'Failed to create post';
+}
+
 export default function ReportLostPage() {
   const { currentUser } = useAuth();
   const router = useRouter();
@@ -72,16 +99,7 @@ export default function ReportLostPage() {
       await createLostItem(data);
       router.push('/lost-items');
     } catch (err) {
-      const status = err.response?.status;
-      const serverError = err.response?.data?.error;
-
-      if (status === 413) {
-        setError('Image is too large even after optimization. Try a smaller image.');
-      } else if (err.message?.toLowerCase().includes('too large')) {
-        setError('Image is too large even after optimization. Try a smaller image.');
-      } else {
-        setError(serverError || 'Failed to create post');
-      }
+      setError(getSubmitErrorMessage(err));
     } finally {
       setLoading(false);
     }
