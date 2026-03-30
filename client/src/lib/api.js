@@ -37,6 +37,9 @@ export const loginUser = (email, password) =>
 export const getCurrentUser = () =>
   api.get('/auth/me');
 
+export const resetRequiredPassword = (email, currentPassword, newPassword) =>
+  api.post('/auth/reset-required', { email, currentPassword, newPassword });
+
 // ==================== LOST ITEMS ====================
 export const createLostItem = (formData) =>
   api.post('/lost-items', formData);
@@ -90,5 +93,39 @@ export const getBlockedUsers = () =>
 
 export const endConversation = (partnerId, postId) =>
   api.delete(`/messages/conversation/${partnerId}`, { params: { post_id: postId } });
+
+// ==================== ADMIN ====================
+export const adminListUsers = () =>
+  api.get('/admin/users');
+
+export const adminSetUserStatus = (userId, data) =>
+  api.patch(`/admin/users/${userId}/status`, data);
+
+export const adminForceLogout = (userId, reason) =>
+  api.post(`/admin/users/${userId}/force-logout`, { reason });
+
+export const adminForcePasswordReset = (userId, reason) =>
+  api.post(`/admin/users/${userId}/force-password-reset`, { reason });
+
+export const adminDeleteUser = (userId, reason) =>
+  api.delete(`/admin/users/${userId}`, { data: { reason } });
+
+export const adminModerateLostPost = (postId, payload) =>
+  api.patch(`/admin/posts/lost/${postId}`, payload);
+
+export const adminModerateFoundPost = (postId, payload) =>
+  api.patch(`/admin/posts/found/${postId}`, payload);
+
+export const adminGetPostHistory = (type, id) =>
+  api.get(`/admin/posts/${type}/${id}/history`);
+
+export const adminListMessages = (params) =>
+  api.get('/admin/messages', { params });
+
+export const adminDeleteMessage = (messageId, reason) =>
+  api.delete(`/admin/messages/${messageId}`, { data: { reason } });
+
+export const adminListAuditLogs = (params) =>
+  api.get('/admin/audit-logs', { params });
 
 export default api;

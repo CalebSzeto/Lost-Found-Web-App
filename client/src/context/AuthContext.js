@@ -19,6 +19,9 @@ export const AuthProvider = ({ children }) => {
       uid: user.user_id,
       email: user.email,
       displayName: user.displayName,
+      role: user.role,
+      account_status: user.account_status,
+      password_reset_required: user.password_reset_required,
     });
     return res;
   };
@@ -31,6 +34,9 @@ export const AuthProvider = ({ children }) => {
       uid: user.user_id,
       email: user.email,
       displayName: user.displayName,
+      role: user.role,
+      account_status: user.account_status,
+      password_reset_required: user.password_reset_required,
     });
     return res;
   };
@@ -49,6 +55,9 @@ export const AuthProvider = ({ children }) => {
           uid: user.user_id,
           email: user.email,
           displayName: user.displayName,
+          role: user.role,
+          account_status: user.account_status,
+          password_reset_required: user.password_reset_required,
         });
       } catch (err) {
         setAuthToken(null);

@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth');
 const lostItemRoutes = require('./routes/lostItems');
 const foundItemRoutes = require('./routes/foundItems');
 const messageRoutes = require('./routes/messages');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -54,6 +55,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/lost-items', lostItemRoutes);
 app.use('/api/found-items', foundItemRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

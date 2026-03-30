@@ -43,6 +43,28 @@ const foundItemSchema = new mongoose.Schema({
   status: {
     type: String,
     default: 'active',
+    index: true,
+  },
+  is_pinned: {
+    type: Boolean,
+    default: false,
+    index: true,
+  },
+  moderated_by_user_id: {
+    type: String,
+    default: null,
+  },
+  moderation_reason: {
+    type: String,
+    default: null,
+  },
+  moderation_action: {
+    type: String,
+    default: null,
+  },
+  moderated_at: {
+    type: String,
+    default: null,
   },
   created_at: {
     type: String,

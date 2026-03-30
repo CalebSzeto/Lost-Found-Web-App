@@ -21,6 +21,42 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+    index: true,
+  },
+  account_status: {
+    type: String,
+    enum: ['active', 'restricted', 'banned'],
+    default: 'active',
+    index: true,
+  },
+  ban_reason: {
+    type: String,
+    default: null,
+  },
+  ban_expires_at: {
+    type: String,
+    default: null,
+  },
+  moderated_by_user_id: {
+    type: String,
+    default: null,
+  },
+  last_moderated_at: {
+    type: String,
+    default: null,
+  },
+  password_reset_required: {
+    type: Boolean,
+    default: false,
+  },
+  token_version: {
+    type: Number,
+    default: 0,
+  },
   created_at: {
     type: String,
     default: () => new Date().toISOString(),

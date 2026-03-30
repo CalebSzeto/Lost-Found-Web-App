@@ -31,6 +31,7 @@ function MessagesContent() {
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [error, setError] = useState('');
   const [blockedUserIds, setBlockedUserIds] = useState([]);
+  const [blockedUsers, setBlockedUsers] = useState([]);
   const [busyAction, setBusyAction] = useState(false);
   const chatMessagesRef = useRef(null);
   const lastSentAtRef = useRef(0);
@@ -105,8 +106,11 @@ function MessagesContent() {
   const fetchBlockedUsers = async () => {
     try {
       const res = await getBlockedUsers();
-      setBlockedUserIds((res.data || []).map((u) => String(u.user_id)));
+      const users = res.data || [];
+      setBlockedUsers(users);
+      setBlockedUserIds(users.map((u) => String(u.user_id)));
     } catch (err) {
+      setBlockedUsers([]);
       setBlockedUserIds([]);
     }
   };
@@ -253,15 +257,30 @@ function MessagesContent() {
       setBusyAction(true);
       if (blocked) {
         await unblockUser(partnerId);
-        setBlockedUserIds((prev) => prev.filter((id) => id !== partnerId));
+        await fetchBlockedUsers();
       } else {
         await blockUser(partnerId);
-        setBlockedUserIds((prev) => [...new Set([...prev, partnerId])]);
+        await fetchBlockedUsers();
       }
       fetchConversations(true);
       setError('');
     } catch (err) {
       setError('Failed to update block status');
+    } finally {
+      setBusyAction(false);
+    }
+  };
+
+  const handleUnblockFromList = async (userId) => {
+    try {
+      setBusyAction(true);
+      await unblockUser(userId);
+      await fetchBlockedUsers();
+      if (selectedConversation?.partner_id && String(selectedConversation.partner_id) === String(userId)) {
+        setError('');
+      }
+    } catch (err) {
+      setError('Failed to unblock user');
     } finally {
       setBusyAction(false);
     }
@@ -323,6 +342,28 @@ function MessagesContent() {
         <div className={styles.messagesLayout}>
           <div className={styles.sidebar}>
             <h3>Conversations</h3>
+            <div className={styles.blockedPanel}>
+              <h4>Blocked Users</h4>
+              {blockedUsers.length === 0 ? (
+                <p className={styles.blockedEmpty}>No blocked users</p>
+              ) : (
+                <div className={styles.blockedList}>
+                  {blockedUsers.map((user) => (
+                    <div key={user.user_id} className={styles.blockedItem}>
+                      <span className={styles.blockedEmail}>{user.email}</span>
+                      <button
+                        type="button"
+                        className="btn"
+                        onClick={() => handleUnblockFromList(user.user_id)}
+                        disabled={busyAction}
+                      >
+                        Unblock
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             {loadingConvos ? (
               <div className={styles.sidebarLoading}>Loading...</div>
             ) : conversations.length === 0 ? (

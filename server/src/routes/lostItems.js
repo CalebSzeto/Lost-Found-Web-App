@@ -4,7 +4,7 @@ const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const LostItem = require('../models/LostItem');
 const Message = require('../models/Message');
-const authenticate = require('../middleware/auth');
+const { authenticate, requireActiveUser } = require('../middleware/auth');
 const { uploadImage } = require('../lib/imageUpload');
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -66,7 +66,7 @@ function compareDates(aValue, bValue, direction = 'desc') {
 }
 
 // POST /api/lost-items - Create a lost item post
-router.post('/', authenticate, handleImageUpload, async (req, res) => {
+router.post('/', authenticate, requireActiveUser, handleImageUpload, async (req, res) => {
   try {
     const { title, description, location, date_lost } = req.body;
 
@@ -91,6 +91,7 @@ router.post('/', authenticate, handleImageUpload, async (req, res) => {
       date_lost,
       image_url,
       status: 'active',
+      is_pinned: false,
       created_at: new Date().toISOString(),
     };
 
@@ -107,7 +108,7 @@ router.get('/', async (req, res) => {
   try {
     const { keyword, location, date, sortBy = 'most_recent' } = req.query;
 
-    const activeItems = await LostItem.find({ status: 'active' }).sort({ created_at: -1 }).lean();
+    const activeItems = await LostItem.find({ status: 'active' }).sort({ is_pinned: -1, created_at: -1 }).lean();
     const expiredIds = [];
     let items = [];
 
@@ -146,6 +147,10 @@ router.get('/', async (req, res) => {
 
     // Apply sorting (default: most recent post first)
     items.sort((a, b) => {
+      if (a.is_pinned !== b.is_pinned) {
+        return a.is_pinned ? -1 : 1;
+      }
+
       switch (sortBy) {
         case 'oldest_posted':
           return compareDates(a.created_at, b.created_at, 'asc');
@@ -181,7 +186,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // PUT /api/lost-items/:id - Update lost item status
-router.put('/:id', authenticate, async (req, res) => {
+router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
   try {
     const item = await LostItem.findOne({ lost_item_id: req.params.id });
     if (!item) {
@@ -207,7 +212,7 @@ router.put('/:id', authenticate, async (req, res) => {
 });
 
 // DELETE /api/lost-items/:id - Delete a lost item post
-router.delete('/:id', authenticate, async (req, res) => {
+router.delete('/:id', authenticate, requireActiveUser, async (req, res) => {
   try {
     const item = await LostItem.findOne({ lost_item_id: req.params.id });
     if (!item) {

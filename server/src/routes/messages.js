@@ -5,7 +5,7 @@ const Message = require('../models/Message');
 const User = require('../models/User');
 const LostItem = require('../models/LostItem');
 const FoundItem = require('../models/FoundItem');
-const authenticate = require('../middleware/auth');
+const { authenticate, requireActiveUser } = require('../middleware/auth');
 
 async function getBlockContext(uid) {
   const [currentUser, blockedByUsers] = await Promise.all([
@@ -21,7 +21,7 @@ async function getBlockContext(uid) {
 }
 
 // POST /api/messages - Send a message
-router.post('/', authenticate, async (req, res) => {
+router.post('/', authenticate, requireActiveUser, async (req, res) => {
   try {
     const { receiver_id, related_post_id, message_text } = req.body;
 
@@ -74,7 +74,7 @@ router.post('/', authenticate, async (req, res) => {
 });
 
 // GET /api/messages/conversations - Get all conversations for current user
-router.get('/conversations', authenticate, async (req, res) => {
+router.get('/conversations', authenticate, requireActiveUser, async (req, res) => {
   try {
     const uid = req.user.uid;
 
@@ -180,7 +180,7 @@ router.get('/conversations', authenticate, async (req, res) => {
 });
 
 // POST /api/messages/block/:userId - Block a user
-router.post('/block/:userId', authenticate, async (req, res) => {
+router.post('/block/:userId', authenticate, requireActiveUser, async (req, res) => {
   try {
     const uid = req.user.uid;
     const targetUserId = req.params.userId;
@@ -203,7 +203,7 @@ router.post('/block/:userId', authenticate, async (req, res) => {
 });
 
 // DELETE /api/messages/block/:userId - Unblock a user
-router.delete('/block/:userId', authenticate, async (req, res) => {
+router.delete('/block/:userId', authenticate, requireActiveUser, async (req, res) => {
   try {
     const uid = req.user.uid;
     const targetUserId = req.params.userId;
@@ -217,7 +217,7 @@ router.delete('/block/:userId', authenticate, async (req, res) => {
 });
 
 // GET /api/messages/blocked - List users blocked by current user
-router.get('/blocked', authenticate, async (req, res) => {
+router.get('/blocked', authenticate, requireActiveUser, async (req, res) => {
   try {
     const user = await User.findById(req.user.uid).select('blocked_user_ids').lean();
     const blockedIds = (user?.blocked_user_ids || []).map(String);
@@ -240,7 +240,7 @@ router.get('/blocked', authenticate, async (req, res) => {
 });
 
 // DELETE /api/messages/conversation/:partnerId - End a conversation for both users
-router.delete('/conversation/:partnerId', authenticate, async (req, res) => {
+router.delete('/conversation/:partnerId', authenticate, requireActiveUser, async (req, res) => {
   try {
     const uid = req.user.uid;
     const partnerId = req.params.partnerId;
@@ -274,7 +274,7 @@ router.delete('/conversation/:partnerId', authenticate, async (req, res) => {
 });
 
 // GET /api/messages/:partnerId - Get messages with a specific user
-router.get('/:partnerId', authenticate, async (req, res) => {
+router.get('/:partnerId', authenticate, requireActiveUser, async (req, res) => {
   try {
     const uid = req.user.uid;
     const partnerId = req.params.partnerId;

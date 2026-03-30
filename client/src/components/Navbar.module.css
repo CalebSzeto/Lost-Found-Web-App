@@ -71,6 +71,16 @@
   background: #059669;
 }
 
+.btnAdmin {
+  background: #111827;
+  color: white !important;
+  font-weight: 600;
+}
+
+.btnAdmin:hover {
+  background: #030712;
+}
+
 .btnRegister {
   background: rgba(255, 255, 255, 0.2);
   font-weight: 600;

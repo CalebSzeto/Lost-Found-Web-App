@@ -39,6 +39,11 @@ const Navbar = () => {
               <Link href="/report-found" className={`${styles.navLink} ${styles.btnReportFound}`}>
                 Report Found
               </Link>
+              {currentUser.role === 'admin' && (
+                <Link href="/admin" className={`${styles.navLink} ${styles.btnAdmin}`}>
+                  Admin
+                </Link>
+              )}
               <Link href="/messages" className={styles.navLink}>Messages</Link>
               <Link href="/my-posts" className={styles.navLink}>My Posts</Link>
               <button onClick={handleLogout} className={styles.btnLogout}>
