@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { getLostItem, deleteLostItem, updateLostItem } from '@/lib/api';
+import { resolveImageUrl } from '@/lib/image';
 import styles from './detail.module.css';
 
 export default function LostItemDetailPage() {
@@ -15,6 +16,7 @@ export default function LostItemDetailPage() {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showImage, setShowImage] = useState(true);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -29,6 +31,10 @@ export default function LostItemDetailPage() {
     };
     if (id) fetchItem();
   }, [id]);
+
+  useEffect(() => {
+    setShowImage(true);
+  }, [item?.image_url]);
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
@@ -73,6 +79,7 @@ export default function LostItemDetailPage() {
   }
 
   const isOwner = currentUser && currentUser.uid === item.user_id;
+  const imageUrl = resolveImageUrl(item.image_url);
 
   return (
     <div className="pageContainer">
@@ -80,9 +87,9 @@ export default function LostItemDetailPage() {
         <Link href="/lost-items" className={styles.backLink}>← Back to Lost Items</Link>
 
         <div className={styles.detailCard}>
-          {item.image_url && (
+          {imageUrl && showImage && (
             <div className={styles.detailImage}>
-              <img src={item.image_url} alt={item.title} />
+              <img src={imageUrl} alt={item.title} onError={() => setShowImage(false)} />
             </div>
           )}
 
