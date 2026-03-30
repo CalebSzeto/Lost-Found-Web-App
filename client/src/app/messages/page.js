@@ -145,7 +145,14 @@ function MessagesContent() {
         setSelectedConversationId(merged[0].conversation_id);
       }
     } catch (err) {
-      setError('Failed to load conversations');
+      const accountStatus = err?.response?.data?.account_status;
+      if (accountStatus === 'restricted') {
+        setError('Your account is restricted and cannot use messaging.');
+      } else if (accountStatus === 'banned') {
+        setError('Your account has been banned and cannot use messaging.');
+      } else {
+        setError('Failed to load conversations');
+      }
     } finally {
       if (!silent) setLoadingConvos(false);
     }
@@ -237,7 +244,14 @@ function MessagesContent() {
       // Refresh sidebar metadata now; polling keeps thread synced.
       fetchConversations(true);
     } catch (err) {
-      setError('Failed to send message');
+      const accountStatus = err?.response?.data?.account_status;
+      if (accountStatus === 'restricted') {
+        setError('Your account is restricted and cannot send messages.');
+      } else if (accountStatus === 'banned') {
+        setError('Your account has been banned and cannot send messages.');
+      } else {
+        setError('Failed to send message');
+      }
       fetchMessages(selectedConversation.partner_id, activePostId, true);
     }
   };
@@ -265,7 +279,14 @@ function MessagesContent() {
       fetchConversations(true);
       setError('');
     } catch (err) {
-      setError('Failed to update block status');
+      const accountStatus = err?.response?.data?.account_status;
+      if (accountStatus === 'restricted') {
+        setError('Your account is restricted and cannot perform this action.');
+      } else if (accountStatus === 'banned') {
+        setError('Your account has been banned and cannot perform this action.');
+      } else {
+        setError('Failed to update block status');
+      }
     } finally {
       setBusyAction(false);
     }
