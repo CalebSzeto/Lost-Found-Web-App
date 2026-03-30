@@ -129,6 +129,12 @@ a {
   font-size: 1rem;
 }
 
+.btnSmall {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
 .btnBlock {
   width: 100%;
 }

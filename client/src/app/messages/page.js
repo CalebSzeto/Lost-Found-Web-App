@@ -33,6 +33,7 @@ function MessagesContent() {
   const [blockedUserIds, setBlockedUserIds] = useState([]);
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [busyAction, setBusyAction] = useState(false);
+  const [showBlockedList, setShowBlockedList] = useState(false);
   const chatMessagesRef = useRef(null);
   const lastSentAtRef = useRef(0);
 
@@ -363,28 +364,6 @@ function MessagesContent() {
         <div className={styles.messagesLayout}>
           <div className={styles.sidebar}>
             <h3>Conversations</h3>
-            <div className={styles.blockedPanel}>
-              <h4>Blocked Users</h4>
-              {blockedUsers.length === 0 ? (
-                <p className={styles.blockedEmpty}>No blocked users</p>
-              ) : (
-                <div className={styles.blockedList}>
-                  {blockedUsers.map((user) => (
-                    <div key={user.user_id} className={styles.blockedItem}>
-                      <span className={styles.blockedEmail}>{user.email}</span>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={() => handleUnblockFromList(user.user_id)}
-                        disabled={busyAction}
-                      >
-                        Unblock
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
             {loadingConvos ? (
               <div className={styles.sidebarLoading}>Loading...</div>
             ) : conversations.length === 0 ? (
@@ -429,6 +408,36 @@ function MessagesContent() {
           </div>
 
           <div className={styles.chatPanel}>
+            {blockedUsers.length > 0 && (
+              <div className={styles.blockedUsersBanner}>
+                <button
+                  type="button"
+                  className={styles.blockedUsersToggle}
+                  onClick={() => setShowBlockedList(!showBlockedList)}
+                >
+                  <span className={styles.blockedBadge}>{blockedUsers.length}</span>
+                  <span>Blocked Users</span>
+                  <span className={styles.toggleIcon}>{showBlockedList ? '▼' : '▶'}</span>
+                </button>
+                {showBlockedList && (
+                  <div className={styles.blockedUsersDropdown}>
+                    {blockedUsers.map((user) => (
+                      <div key={user.user_id} className={styles.blockedUserRow}>
+                        <span>{user.email}</span>
+                        <button
+                          type="button"
+                          className="btn btnSmall"
+                          onClick={() => handleUnblockFromList(user.user_id)}
+                          disabled={busyAction}
+                        >
+                          Unblock
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             {!selectedConversation?.partner_id ? (
               <div className={styles.chatEmpty}>
                 <h3>Select a conversation</h3>
