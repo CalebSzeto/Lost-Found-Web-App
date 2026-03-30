@@ -45,17 +45,36 @@
   border-color: var(--primary);
 }
 
+.uploadHint {
+  margin: 0.4rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
 .imagePreview {
   margin-top: 1rem;
   position: relative;
-  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+}
+
+.imagePreviewFrame {
+  width: 100%;
+  height: 250px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .imagePreview img {
   max-width: 100%;
-  max-height: 250px;
-  border-radius: 8px;
-  object-fit: cover;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .removeImage {

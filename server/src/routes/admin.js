@@ -164,9 +164,6 @@ router.post('/users/:id/force-password-reset', async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-    if (user.role === 'admin') {
-      return res.status(403).json({ error: 'Cannot reset another admin password' });
-    }
 
     const beforeState = {
       password_reset_required: user.password_reset_required,

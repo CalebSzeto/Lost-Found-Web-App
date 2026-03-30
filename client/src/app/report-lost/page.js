@@ -8,6 +8,7 @@ import { prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
+const MAX_IMAGE_SIZE_MB = Math.floor(MAX_IMAGE_SIZE_BYTES / (1024 * 1024));
 
 function getSubmitErrorMessage(err) {
   const status = err?.response?.status;
@@ -68,6 +69,13 @@ export default function ReportLostPage() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > MAX_IMAGE_SIZE_BYTES) {
+        setImage(null);
+        setImagePreview(null);
+        setError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
+        return;
+      }
+
       setError('');
       setImage(file);
       const reader = new FileReader();
@@ -171,6 +179,7 @@ export default function ReportLostPage() {
 
           <div className="formGroup">
             <label htmlFor="image">Upload Image (optional)</label>
+            <p className={styles.uploadHint}>Maximum file size: {MAX_IMAGE_SIZE_MB}MB</p>
             <input
               type="file"
               id="image"
@@ -180,7 +189,9 @@ export default function ReportLostPage() {
             />
             {imagePreview && (
               <div className={styles.imagePreview}>
-                <img src={imagePreview} alt="Preview" />
+                <div className={styles.imagePreviewFrame}>
+                  <img src={imagePreview} alt="Preview" />
+                </div>
                 <button
                   type="button"
                   onClick={() => { setImage(null); setImagePreview(null); }}

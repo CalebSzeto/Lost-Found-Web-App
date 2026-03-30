@@ -256,7 +256,7 @@ export default function AdminDashboardPage() {
                             type="button"
                             className="btn"
                             onClick={() => runAction(user, 'force-password-reset')}
-                            disabled={isBusy || isAdminUser}
+                            disabled={isBusy}
                           >
                             Force Reset
                           </button>
