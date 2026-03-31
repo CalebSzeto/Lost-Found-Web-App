@@ -30,8 +30,17 @@ export default function Home() {
     <main className={styles.page}>
       <section className={styles.searchSection}>
         <div className={styles.searchHeader}>
-          <h1>Campus Lost and Found</h1>
-          <p>Search first, then report or message if you find a match.</p>
+          <h1>Welcome to Your Campus Lost and Found Platform</h1>
+          <p className={styles.introLead}>
+            This website helps students safely reconnect lost items with their owners. Start by
+            searching current posts, then create a report if your item is not listed.
+          </p>
+          <ul className={styles.introList}>
+            <li>Use the search tabs below to filter Lost Items or Found Items by keywords and location.</li>
+            <li>If you find a possible match, open the post details and message the other user directly.</li>
+            <li>Post clear descriptions, locations, and dates to increase the chance of a successful return.</li>
+            <li>Use your profile for account settings, your own posts, and your unblock list tools.</li>
+          </ul>
         </div>
 
         <div className={styles.searchTypeTabs}>

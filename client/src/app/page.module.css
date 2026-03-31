@@ -26,6 +26,19 @@
   color: var(--text-muted);
 }
 
+.introLead {
+  margin-top: 0.25rem;
+  line-height: 1.55;
+}
+
+.introList {
+  margin: 0.7rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  display: grid;
+  gap: 0.32rem;
+}
+
 .searchTypeTabs {
   display: inline-flex;
   background: #f3f6ef;
