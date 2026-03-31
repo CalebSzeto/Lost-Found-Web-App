@@ -124,7 +124,6 @@ export default function FoundItemDetailPage() {
     }
 
     if (editImageError) {
-      setError(editImageError);
       return;
     }
 
@@ -165,7 +164,7 @@ export default function FoundItemDetailPage() {
     );
   }
 
-  if (error || !item) {
+  if (!item) {
     return (
       <div className="pageContainer">
         <div className="emptyState">
@@ -204,6 +203,7 @@ export default function FoundItemDetailPage() {
       <div className={styles.detailPage}>
         <Link href="/found-items" className={styles.backLink}>← Back to Found Items</Link>
 
+        {error && <div className="errorMessage">{error}</div>}
         <div className={styles.detailCard}>
           {imageUrl && showImage && (
             <div className={styles.detailImage}>

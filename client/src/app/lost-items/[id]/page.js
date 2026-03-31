@@ -122,7 +122,6 @@ export default function LostItemDetailPage() {
     }
 
     if (editImageError) {
-      setError(editImageError);
       return;
     }
 
@@ -162,7 +161,7 @@ export default function LostItemDetailPage() {
     );
   }
 
-  if (error || !item) {
+  if (!item) {
     return (
       <div className="pageContainer">
         <div className="emptyState">
@@ -201,6 +200,7 @@ export default function LostItemDetailPage() {
       <div className={styles.detailPage}>
         <Link href="/lost-items" className={styles.backLink}>← Back to Lost Items</Link>
 
+        {error && <div className="errorMessage">{error}</div>}
         <div className={styles.detailCard}>
           {imageUrl && showImage && (
             <div className={styles.detailImage}>
