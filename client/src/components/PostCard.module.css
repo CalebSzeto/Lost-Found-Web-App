@@ -9,9 +9,9 @@
   background: white;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #d4dbe3;
+  border: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -19,15 +19,17 @@
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.12);
+  box-shadow: 0 12px 26px rgba(17, 24, 39, 0.1);
 }
 
 .cardLost {
-  border: 2px solid #EF4444;
+  border: 1px solid #e2e8f0;
+  box-shadow: inset 0 3px 0 rgba(239, 68, 68, 0.25);
 }
 
 .cardFound {
-  border: 2px solid #10B981;
+  border: 1px solid #e2e8f0;
+  box-shadow: inset 0 3px 0 rgba(16, 185, 129, 0.22);
 }
 
 .imageWrap {
