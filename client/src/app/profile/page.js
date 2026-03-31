@@ -1,12 +1,90 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { changePassword, getBlockedUsers, setAuthToken, unblockUser } from '@/lib/api';
 import styles from './profile.module.css';
 
 export default function ProfilePage() {
-  const { currentUser } = useAuth();
+  const router = useRouter();
+  const { currentUser, logout } = useAuth();
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [blockedUsers, setBlockedUsers] = useState([]);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [changingPassword, setChangingPassword] = useState(false);
+  const [unblockingId, setUnblockingId] = useState(null);
+
+  useEffect(() => {
+    if (currentUser) {
+      fetchBlockedUsers();
+    }
+  }, [currentUser]);
+
+  const fetchBlockedUsers = async () => {
+    try {
+      const res = await getBlockedUsers();
+      setBlockedUsers(res.data || []);
+    } catch (err) {
+      setBlockedUsers([]);
+    }
+  };
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      setError('Please fill in all password fields');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      setError('New password must be at least 6 characters');
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setError('New password and confirmation do not match');
+      return;
+    }
+
+    try {
+      setChangingPassword(true);
+      await changePassword(currentPassword, newPassword);
+      setSuccess('Password changed successfully. Please log in again.');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+
+      setAuthToken(null);
+      await logout();
+      router.push('/login');
+    } catch (err) {
+      setError(err?.response?.data?.error || 'Failed to change password');
+    } finally {
+      setChangingPassword(false);
+    }
+  };
+
+  const handleUnblock = async (userId) => {
+    try {
+      setUnblockingId(userId);
+      await unblockUser(userId);
+      setSuccess('User unblocked');
+      setError('');
+      await fetchBlockedUsers();
+    } catch (err) {
+      setError(err?.response?.data?.error || 'Failed to unblock user');
+    } finally {
+      setUnblockingId(null);
+    }
+  };
 
   if (!currentUser) {
     return (
@@ -24,37 +102,106 @@ export default function ProfilePage() {
       <div className={styles.profilePage}>
         <div className={styles.header}>
           <h1>Profile & Settings</h1>
-          <p>Choose an option below. Each setting is on its own page.</p>
+          <p>All account options are available on this page.</p>
         </div>
 
-        <div className={styles.optionsGrid}>
-          <Link href="/profile/account-info" className={styles.optionCard}>
-            <h2>Account Info</h2>
-            <p>View your email, role, and account status.</p>
-          </Link>
-
-          <Link href="/profile/reset-password" className={styles.optionCard}>
-            <h2>Reset Password</h2>
-            <p>Change your password for this account.</p>
-          </Link>
-
-          <Link href="/profile/unblock-list" className={styles.optionCard}>
-            <h2>Unblock List</h2>
-            <p>See blocked users and unblock them.</p>
-          </Link>
-
-          <Link href="/my-posts" className={styles.optionCard}>
-            <h2>My Posts</h2>
-            <p>View all posts you previously created.</p>
-          </Link>
-
+        <div className={styles.quickLinks}>
+          <Link href="/my-posts" className="btn">My Posts</Link>
           {currentUser.role === 'admin' && (
-            <Link href="/admin" className={styles.optionCard}>
-              <h2>Admin Dashboard</h2>
-              <p>Admin-only moderation and account controls.</p>
-            </Link>
+            <Link href="/admin" className="btn btnPrimary">Admin Dashboard</Link>
           )}
         </div>
+
+        {error && <div className="errorMessage">{error}</div>}
+        {success && <div className={styles.successMessage}>{success}</div>}
+
+        <section className={styles.sectionCard}>
+          <h2>Account Info</h2>
+          <div className={styles.infoGrid}>
+            <div>
+              <span className={styles.label}>Email</span>
+              <p>{currentUser.email}</p>
+            </div>
+            <div>
+              <span className={styles.label}>Display Name</span>
+              <p>{currentUser.displayName}</p>
+            </div>
+            <div>
+              <span className={styles.label}>Role</span>
+              <p>{currentUser.role}</p>
+            </div>
+            <div>
+              <span className={styles.label}>Account Status</span>
+              <p>{currentUser.account_status}</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2>Reset Password</h2>
+          <p className={styles.helperText}>Works for every account type, including admins.</p>
+          <form className={styles.form} onSubmit={handleChangePassword}>
+            <div className="formGroup">
+              <label htmlFor="currentPassword">Current Password</label>
+              <input
+                type="password"
+                id="currentPassword"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="newPassword">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                minLength={6}
+              />
+            </div>
+            <div className="formGroup">
+              <label htmlFor="confirmPassword">Confirm New Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                minLength={6}
+              />
+            </div>
+            <button type="submit" className="btn btnPrimary" disabled={changingPassword}>
+              {changingPassword ? 'Updating...' : 'Reset Password'}
+            </button>
+          </form>
+        </section>
+
+        <section className={styles.sectionCard}>
+          <h2>Unblock Users List</h2>
+          {blockedUsers.length === 0 ? (
+            <p className={styles.helperText}>No blocked users.</p>
+          ) : (
+            <div className={styles.blockedList}>
+              {blockedUsers.map((user) => (
+                <div key={user.user_id} className={styles.blockedRow}>
+                  <span>{user.email}</span>
+                  <button
+                    type="button"
+                    className="btn btnSmall"
+                    onClick={() => handleUnblock(user.user_id)}
+                    disabled={unblockingId === user.user_id}
+                  >
+                    {unblockingId === user.user_id ? 'Unblocking...' : 'Unblock'}
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+        
       </div>
     </div>
   );
