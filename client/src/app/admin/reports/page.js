@@ -37,6 +37,7 @@ export default function AdminReportsPage() {
   const [updatingId, setUpdatingId] = useState(null);
   const [openingReportId, setOpeningReportId] = useState(null);
   const [openingOwnerReportId, setOpeningOwnerReportId] = useState(null);
+  const [openingReporterReportId, setOpeningReporterReportId] = useState(null);
   const [error, setError] = useState('');
 
   const isAdmin = currentUser?.role === 'admin';
@@ -241,6 +242,17 @@ export default function AdminReportsPage() {
     }
   };
 
+  const handleOpenReporterPosts = (report) => {
+    if (!report?.reporter_id) {
+      return;
+    }
+
+    setOpeningReporterReportId(report._id);
+    setError('');
+    window.open(`/admin/users/${report.reporter_id}/posts`, '_blank', 'noopener,noreferrer');
+    setOpeningReporterReportId(null);
+  };
+
   return (
     <div className="pageContainer">
       <main className={styles.container}>
@@ -317,7 +329,17 @@ export default function AdminReportsPage() {
                   <div className={styles.reportDetails}>
                     <div className={styles.detailSection}>
                       <h4>Reporter</h4>
-                      <p>{report.reporter_email}</p>
+                      <div className={styles.relatedPostRow}>
+                        <p>{report.reporter_email}</p>
+                        <button
+                          type="button"
+                          className={styles.secondaryLinkButton}
+                          onClick={() => handleOpenReporterPosts(report)}
+                          disabled={openingReporterReportId === report._id}
+                        >
+                          {openingReporterReportId === report._id ? 'Opening...' : 'Reporter Posts'}
+                        </button>
+                      </div>
                     </div>
 
                     <div className={styles.detailSection}>
