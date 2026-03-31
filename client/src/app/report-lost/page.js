@@ -70,8 +70,6 @@ export default function ReportLostPage() {
     const file = e.target.files[0];
     if (file) {
       if (file.size > MAX_IMAGE_SIZE_BYTES) {
-        setImage(null);
-        setImagePreview(null);
         setError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
         return;
       }
