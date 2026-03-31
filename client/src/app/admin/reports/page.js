@@ -36,6 +36,7 @@ export default function AdminReportsPage() {
   const [responseText, setResponseText] = useState('');
   const [updatingId, setUpdatingId] = useState(null);
   const [openingReportId, setOpeningReportId] = useState(null);
+  const [openingOwnerReportId, setOpeningOwnerReportId] = useState(null);
   const [error, setError] = useState('');
 
   const isAdmin = currentUser?.role === 'admin';
@@ -94,10 +95,20 @@ export default function AdminReportsPage() {
     }
 
     try {
+      const responseAt = new Date().toISOString();
       setUpdatingId(reportId);
       await adminRespondToReport(reportId, responseText.trim());
       setReports((prev) =>
-        prev.map((r) => (r._id === reportId ? { ...r, status: 'in-progress' } : r))
+        prev.map((r) =>
+          r._id === reportId
+            ? {
+                ...r,
+                status: 'in-progress',
+                last_response_at: responseAt,
+                last_response_by: currentUser.uid,
+              }
+            : r
+        )
       );
       setRespondingToId(null);
       setResponseText('');
@@ -184,6 +195,52 @@ export default function AdminReportsPage() {
     }
   };
 
+  const handleOpenOwnerPosts = async (report) => {
+    if (!report?.related_post_id) {
+      return;
+    }
+
+    setOpeningOwnerReportId(report._id);
+    setError('');
+
+    try {
+      const res = await getLostItem(report.related_post_id);
+      const ownerId = res?.data?.user_id;
+      if (ownerId) {
+        window.open(`/admin/users/${ownerId}/posts`, '_blank', 'noopener,noreferrer');
+        setOpeningOwnerReportId(null);
+        return;
+      }
+    } catch (err) {
+      if (err?.response?.status && err.response.status !== 404) {
+        console.error('Error checking lost post owner:', err);
+        setError('Failed to load post owner');
+        setOpeningOwnerReportId(null);
+        return;
+      }
+    }
+
+    try {
+      const res = await getFoundItem(report.related_post_id);
+      const ownerId = res?.data?.user_id;
+      if (ownerId) {
+        window.open(`/admin/users/${ownerId}/posts`, '_blank', 'noopener,noreferrer');
+        setOpeningOwnerReportId(null);
+        return;
+      }
+      setError('Post owner not found');
+    } catch (err) {
+      if (err?.response?.status && err.response.status !== 404) {
+        console.error('Error checking found post owner:', err);
+        setError('Failed to load post owner');
+      } else {
+        setError('Post owner not found');
+      }
+    } finally {
+      setOpeningOwnerReportId(null);
+    }
+  };
+
   return (
     <div className="pageContainer">
       <main className={styles.container}>
@@ -243,6 +300,9 @@ export default function AdminReportsPage() {
                         {report.status}
                       </span>
                       <span className={styles.categoryBadge}>{CATEGORY_LABELS[report.category]}</span>
+                      {report.last_response_at && (
+                        <span className={styles.respondedBadge}>Responded</span>
+                      )}
                       <span className={styles.date}>
                         {new Date(report.created_at).toLocaleDateString()}
                       </span>
@@ -270,14 +330,24 @@ export default function AdminReportsPage() {
                         <h4>Related Post ID</h4>
                         <div className={styles.relatedPostRow}>
                           <p>{report.related_post_id}</p>
-                          <button
-                            type="button"
-                            className={styles.linkButton}
-                            onClick={() => handleOpenRelatedPost(report)}
-                            disabled={openingReportId === report._id}
-                          >
-                            {openingReportId === report._id ? 'Opening...' : 'Open Post'}
-                          </button>
+                          <div className={styles.relatedPostActions}>
+                            <button
+                              type="button"
+                              className={styles.linkButton}
+                              onClick={() => handleOpenRelatedPost(report)}
+                              disabled={openingReportId === report._id}
+                            >
+                              {openingReportId === report._id ? 'Opening...' : 'Open Post'}
+                            </button>
+                            <button
+                              type="button"
+                              className={styles.secondaryLinkButton}
+                              onClick={() => handleOpenOwnerPosts(report)}
+                              disabled={openingOwnerReportId === report._id}
+                            >
+                              {openingOwnerReportId === report._id ? 'Opening...' : 'Owner Posts'}
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -293,6 +363,13 @@ export default function AdminReportsPage() {
                       <div className={styles.detailSection}>
                         <h4>Admin Notes</h4>
                         <p>{report.admin_notes}</p>
+                      </div>
+                    )}
+
+                    {report.last_response_at && (
+                      <div className={styles.detailSection}>
+                        <h4>Last Response</h4>
+                        <p>{new Date(report.last_response_at).toLocaleString()}</p>
                       </div>
                     )}
 

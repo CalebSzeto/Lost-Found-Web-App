@@ -52,6 +52,14 @@ const reportSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  last_response_at: {
+    type: String,
+    default: null,
+  },
+  last_response_by: {
+    type: String,
+    default: null,
+  },
   created_at: {
     type: String,
     default: () => new Date().toISOString(),

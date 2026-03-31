@@ -101,6 +101,9 @@ export const endConversation = (partnerId, postId) =>
 export const adminListUsers = () =>
   api.get('/admin/users');
 
+export const adminGetUserPosts = (userId) =>
+  api.get(`/admin/users/${userId}/posts`);
+
 export const adminSetUserStatus = (userId, data) =>
   api.patch(`/admin/users/${userId}/status`, data);
 

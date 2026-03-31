@@ -143,7 +143,13 @@ const Navbar = () => {
                         <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
                           Admin Dashboard
                         </Link>
-                        <Link href="/admin/reports" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                        <Link
+                          href="/admin/reports"
+                          className={styles.profileMenuItem}
+                          onClick={() => setMenuOpen(false)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           Admin Reports
                         </Link>
                       </>

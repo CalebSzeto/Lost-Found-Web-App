@@ -126,6 +126,15 @@
   font-size: 0.85rem;
 }
 
+.respondedBadge {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .date {
   color: var(--text-muted);
   font-size: 0.85rem;
@@ -273,6 +282,12 @@
   flex-wrap: wrap;
 }
 
+.relatedPostActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .relatedPostRow p {
   margin: 0;
   word-break: break-word;
@@ -294,6 +309,26 @@
 }
 
 .linkButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.secondaryLinkButton {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+  background-color: white;
+  color: var(--text-main);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.secondaryLinkButton:hover:not(:disabled) {
+  background-color: #f2f2f2;
+}
+
+.secondaryLinkButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

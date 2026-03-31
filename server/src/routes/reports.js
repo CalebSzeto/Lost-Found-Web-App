@@ -172,12 +172,14 @@ router.post(
 
       await message.save();
 
-      // Update report status if it's still open
+      // Update report status and response metadata
       if (report.status === 'open') {
         report.status = 'in-progress';
-        report.updated_at = new Date().toISOString();
-        await report.save();
       }
+      report.last_response_at = new Date().toISOString();
+      report.last_response_by = req.user.uid;
+      report.updated_at = new Date().toISOString();
+      await report.save();
 
       res.json({
         message_id: message.message_id,
