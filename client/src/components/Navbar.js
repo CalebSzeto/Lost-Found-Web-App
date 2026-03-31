@@ -47,11 +47,22 @@ const Navbar = () => {
       }
     };
 
+    const handleReadRefresh = () => {
+      loadUnreadCount();
+    };
+
     loadUnreadCount();
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('messages:read', handleReadRefresh);
+    }
 
     if (!currentUser) {
       return () => {
         disposed = true;
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('messages:read', handleReadRefresh);
+        }
       };
     }
 
@@ -59,6 +70,9 @@ const Navbar = () => {
     return () => {
       disposed = true;
       clearInterval(intervalId);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('messages:read', handleReadRefresh);
+      }
     };
   }, [currentUser]);
 

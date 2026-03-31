@@ -176,6 +176,17 @@ function MessagesContent() {
       }));
 
       setMessages(normalized);
+      setConversations((prev) =>
+        prev.map((c) =>
+          c.conversation_id === selectedConversationId
+            ? { ...c, unread: 0 }
+            : c
+        )
+      );
+      fetchConversations(true);
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('messages:read'));
+      }
     } catch (err) {
       if (!silent) setMessages([]);
     } finally {
@@ -378,7 +389,16 @@ function MessagesContent() {
                     className={`${styles.conversationItem} ${
                       selectedConversationId === convo.conversation_id ? styles.active : ''
                     }`}
-                    onClick={() => setSelectedConversationId(convo.conversation_id)}
+                    onClick={() => {
+                      setSelectedConversationId(convo.conversation_id);
+                      setConversations((prev) =>
+                        prev.map((c) =>
+                          c.conversation_id === convo.conversation_id
+                            ? { ...c, unread: 0 }
+                            : c
+                        )
+                      );
+                    }}
                   >
                     <div className={styles.convoAvatar}>
                       {(convo.partner_email || '?')[0].toUpperCase()}
@@ -401,6 +421,9 @@ function MessagesContent() {
                           : 'Start a conversation'}
                       </span>
                     </div>
+                    {convo.unread > 0 && (
+                      <span className={styles.unreadBadge}>{convo.unread}</span>
+                    )}
                   </div>
                 ))}
               </div>

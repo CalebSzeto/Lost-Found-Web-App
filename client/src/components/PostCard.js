@@ -78,18 +78,16 @@ const PostCard = ({ post, type }) => {
             <span className={styles.date}>{formatDate(post.created_at)}</span>
           </div>
 
-          {isLost && (
-            <div className={styles.metaRow}>
-              <span>📍 {post.location}</span>
-              <button
-                type="button"
-                className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
-                onClick={handleCopyId}
-              >
-                {copied ? 'Copied' : 'Copy ID'}
-              </button>
-            </div>
-          )}
+          <div className={styles.metaRow}>
+            <span>📍 {post.location}</span>
+            <button
+              type="button"
+              className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+              onClick={handleCopyId}
+            >
+              {copied ? 'Copied' : 'Copy ID'}
+            </button>
+          </div>
 
           {isLost && <h3 className={styles.title}>{post.title}</h3>}
 
@@ -98,19 +96,6 @@ const PostCard = ({ post, type }) => {
               ? post.description.substring(0, 120) + '...'
               : post.description}
           </p>
-
-          {!isLost && (
-            <div className={styles.metaRow}>
-              <span>📍 {post.location}</span>
-              <button
-                type="button"
-                className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
-                onClick={handleCopyId}
-              >
-                {copied ? 'Copied' : 'Copy ID'}
-              </button>
-            </div>
-          )}
 
           <div className={styles.meta}>
             {!isLost && post.dropoff_time && (

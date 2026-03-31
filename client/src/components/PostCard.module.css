@@ -9,9 +9,9 @@
   background: white;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #E5E7EB;
+  border: 1px solid #d4dbe3;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -19,7 +19,7 @@
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.12);
 }
 
 .cardLost {
