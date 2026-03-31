@@ -96,7 +96,7 @@ export default function AdminReportsPage() {
     }
 
     try {
-      const responseAt = new Date().toISOString();
+        const responseAt = new Date().toISOString();
       setUpdatingId(reportId);
       await adminRespondToReport(reportId, responseText.trim());
       setReports((prev) =>
@@ -107,6 +107,7 @@ export default function AdminReportsPage() {
                 status: 'in-progress',
                 last_response_at: responseAt,
                 last_response_by: currentUser.uid,
+                  last_response_text: responseText.trim(),
               }
             : r
         )
@@ -388,12 +389,21 @@ export default function AdminReportsPage() {
                       </div>
                     )}
 
-                    {report.last_response_at && (
-                      <div className={styles.detailSection}>
-                        <h4>Last Response</h4>
-                        <p>{new Date(report.last_response_at).toLocaleString()}</p>
-                      </div>
-                    )}
+                    <div className={styles.detailSection}>
+                      <h4>Admin Response</h4>
+                      {report.last_response_text ? (
+                        <>
+                          <p style={{ whiteSpace: 'pre-wrap' }}>{report.last_response_text}</p>
+                          {report.last_response_at && (
+                            <p className={styles.responseMeta}>
+                              Sent: {new Date(report.last_response_at).toLocaleString()}
+                            </p>
+                          )}
+                        </>
+                      ) : (
+                        <p className={styles.responseMeta}>No response sent yet.</p>
+                      )}
+                    </div>
 
                     <div className={styles.actions}>
                       <div className={styles.statusActions}>

@@ -178,6 +178,7 @@ router.post(
       }
       report.last_response_at = new Date().toISOString();
       report.last_response_by = req.user.uid;
+      report.last_response_text = message_text;
       report.updated_at = new Date().toISOString();
       await report.save();
 
