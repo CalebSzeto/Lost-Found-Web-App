@@ -4,12 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { getConversations } from '@/lib/api';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [unreadCount, setUnreadCount] = React.useState(0);
   const profileMenuRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -22,6 +24,43 @@ const Navbar = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  React.useEffect(() => {
+    let disposed = false;
+
+    const loadUnreadCount = async () => {
+      if (!currentUser) {
+        setUnreadCount(0);
+        return;
+      }
+
+      try {
+        const res = await getConversations();
+        const totalUnread = (res.data || []).reduce((sum, convo) => sum + (Number(convo.unread) || 0), 0);
+        if (!disposed) {
+          setUnreadCount(totalUnread);
+        }
+      } catch (err) {
+        if (!disposed) {
+          setUnreadCount(0);
+        }
+      }
+    };
+
+    loadUnreadCount();
+
+    if (!currentUser) {
+      return () => {
+        disposed = true;
+      };
+    }
+
+    const intervalId = setInterval(loadUnreadCount, 30000);
+    return () => {
+      disposed = true;
+      clearInterval(intervalId);
+    };
+  }, [currentUser]);
 
   const handleLogout = async () => {
     try {
@@ -52,7 +91,14 @@ const Navbar = () => {
               <Link href="/report-found" className={`${styles.navLink} ${styles.btnReportFound}`}>
                 Report Found
               </Link>
-              <Link href="/messages" className={styles.navLink}>Messages</Link>
+              <Link href="/messages" className={`${styles.navLink} ${styles.messagesLink}`}>
+                Messages
+                {unreadCount > 0 && (
+                  <span className={styles.messageBadge}>
+                    {unreadCount > 99 ? '99+' : unreadCount}
+                  </span>
+                )}
+              </Link>
               <div className={styles.profileMenuWrap} ref={profileMenuRef}>
                 <button
                   type="button"

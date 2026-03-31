@@ -4,72 +4,64 @@
   padding: 2rem;
 }
 
-.searchSection {
+.introSection {
   background: #fbfcf8;
   border: 1px solid #dce7dd;
   border-radius: 16px;
   padding: 1.4rem;
 }
 
-.searchHeader {
+.introHeader {
   margin-bottom: 1rem;
 }
 
-.searchHeader h1 {
+.introHeader h1 {
   margin: 0 0 0.35rem;
   font-size: 2rem;
   color: var(--text-main);
 }
 
-.searchHeader p {
-  margin: 0;
-  color: var(--text-muted);
-}
-
 .introLead {
   margin-top: 0.25rem;
   line-height: 1.55;
-}
-
-.introList {
-  margin: 0.7rem 0 0;
-  padding-left: 1.1rem;
   color: var(--text-muted);
+}
+
+.infoGrid {
   display: grid;
-  gap: 0.32rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
 }
 
-.searchTypeTabs {
-  display: inline-flex;
-  background: #f3f6ef;
-  border: 1px solid #dfe7d8;
-  border-radius: 999px;
-  padding: 0.22rem;
-  gap: 0.2rem;
-  margin-bottom: 0.9rem;
-}
-
-.searchTypeTab {
-  border: none;
-  background: transparent;
-  color: #47635c;
-  font-weight: 600;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.activeTab {
-  background: #fff;
-  color: var(--primary-dark);
-  box-shadow: 0 1px 3px rgba(18, 37, 32, 0.14);
-}
-
-.searchCard {
+.infoCard {
   background: #fff;
   border: 1px solid #e3e9df;
   border-radius: 12px;
-  padding: 0.2rem;
+  padding: 1rem;
+}
+
+.infoCard h2 {
+  margin: 0 0 0.5rem;
+  color: var(--text-main);
+  font-size: 1.04rem;
+}
+
+.infoCard ul,
+.infoCard ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  display: grid;
+  gap: 0.34rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.ctaRow {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .quickActions {
@@ -119,20 +111,12 @@
     padding: 1rem;
   }
 
-  .searchHeader h1 {
+  .introHeader h1 {
     font-size: 1.55rem;
   }
 
-  .searchTypeTabs {
-    display: flex;
-    width: 100%;
-  }
-
-  .searchTypeTab {
-    flex: 1;
-    text-align: center;
-    padding: 0.55rem 0.5rem;
-    font-size: 0.88rem;
+  .infoGrid {
+    grid-template-columns: 1fr;
   }
 
   .actionGrid {

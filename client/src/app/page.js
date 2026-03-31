@@ -1,72 +1,69 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import SearchBar from '@/components/SearchBar';
 import styles from './page.module.css';
 
 export default function Home() {
   const { currentUser } = useAuth();
-  const router = useRouter();
-  const [searchType, setSearchType] = useState('lost');
-
-  const handleSearch = (filters) => {
-    const basePath = searchType === 'found' ? '/found-items' : '/lost-items';
-    const params = new URLSearchParams();
-
-    Object.entries(filters || {}).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && String(value).trim() !== '') {
-        params.set(key, String(value));
-      }
-    });
-
-    const query = params.toString();
-    router.push(query ? `${basePath}?${query}` : basePath);
-  };
 
   return (
     <main className={styles.page}>
-      <section className={styles.searchSection}>
-        <div className={styles.searchHeader}>
+      <section className={styles.introSection}>
+        <div className={styles.introHeader}>
           <h1>Welcome to Your Campus Lost and Found Platform</h1>
           <p className={styles.introLead}>
-            This website helps students safely reconnect lost items with their owners. Start by
-            searching current posts, then create a report if your item is not listed.
+            This website helps students quickly recover lost belongings and return found items to
+            the right owner. Everything is designed for fast posting, direct communication, and
+            clear account tools.
           </p>
-          <ul className={styles.introList}>
-            <li>Use the search tabs below to filter Lost Items or Found Items by keywords and location.</li>
-            <li>If you find a possible match, open the post details and message the other user directly.</li>
-            <li>Post clear descriptions, locations, and dates to increase the chance of a successful return.</li>
-            <li>Use your profile for account settings, your own posts, and your unblock list tools.</li>
-          </ul>
         </div>
 
-        <div className={styles.searchTypeTabs}>
-          <button
-            type="button"
-            className={`${styles.searchTypeTab} ${searchType === 'lost' ? styles.activeTab : ''}`}
-            onClick={() => setSearchType('lost')}
-          >
-            Search Lost Items
-          </button>
-          <button
-            type="button"
-            className={`${styles.searchTypeTab} ${searchType === 'found' ? styles.activeTab : ''}`}
-            onClick={() => setSearchType('found')}
-          >
-            Search Found Items
-          </button>
+        <div className={styles.infoGrid}>
+          <article className={styles.infoCard}>
+            <h2>Core Features</h2>
+            <ul>
+              <li>Browse all lost and found reports with latest-first sorting.</li>
+              <li>Create lost or found item posts with descriptions and images.</li>
+              <li>Open any post and message the other user directly.</li>
+              <li>Manage your posts and account settings from Profile.</li>
+            </ul>
+          </article>
+
+          <article className={styles.infoCard}>
+            <h2>How to Use It</h2>
+            <ol>
+              <li>Start in Lost Items or Found Items and look for a match.</li>
+              <li>If no match exists, submit a detailed report post.</li>
+              <li>Use Messages to coordinate pickup and verify ownership.</li>
+              <li>Mark your process complete once the item is returned.</li>
+            </ol>
+          </article>
+
+          <article className={styles.infoCard}>
+            <h2>Important Notes</h2>
+            <ul>
+              <li>Use clear item details, date, and location to improve matching.</li>
+              <li>Check your Messages tab regularly for new replies.</li>
+              <li>Use Unblock List in Profile if you accidentally block someone.</li>
+              <li>Contact an admin if you have account-access issues.</li>
+            </ul>
+          </article>
         </div>
 
-        <div className={styles.searchCard}>
-          <SearchBar
-            onSearch={handleSearch}
-            showDateFilter={false}
-            showSort={true}
-            defaultSort="most_recent"
-          />
+        <div className={styles.ctaRow}>
+          {currentUser ? (
+            <>
+              <Link href="/lost-items" className="btn btnPrimary">Go to Lost Items</Link>
+              <Link href="/found-items" className="btn btnPrimary">Go to Found Items</Link>
+            </>
+          ) : (
+            <>
+              <Link href="/register" className="btn btnPrimary">Create Account</Link>
+              <Link href="/login" className="btn btnOutline">Sign In</Link>
+            </>
+          )}
         </div>
       </section>
 
