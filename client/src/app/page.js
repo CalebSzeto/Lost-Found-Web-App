@@ -84,10 +84,6 @@ export default function Home() {
                 <h3>Report a Found Item</h3>
                 <p>Post details so the owner can contact you.</p>
               </Link>
-              <Link href="/messages" className={styles.actionCard}>
-                <h3>Report to Admin</h3>
-                <p>Use Messages to send a report with post link, user, and reason.</p>
-              </Link>
             </>
           ) : (
             <>
@@ -98,10 +94,6 @@ export default function Home() {
               <Link href="/login" className={styles.actionCard}>
                 <h3>Sign In</h3>
                 <p>Access your profile, posts, and messages.</p>
-              </Link>
-              <Link href="/login" className={styles.actionCard}>
-                <h3>Report to Admin</h3>
-                <p>Sign in first, then report suspicious activity through Messages.</p>
               </Link>
             </>
           )}

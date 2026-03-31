@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { adminListReports, adminUpdateReport, adminRespondToReport } from '@/lib/api';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import styles from './reports.module.css';
 
 const STATUS_COLORS = {
@@ -61,12 +59,10 @@ export default function AdminReportsPage() {
   if (!isAdmin) {
     return (
       <div className="pageContainer">
-        <Navbar />
         <div className="emptyState">
           <h3>Access Denied</h3>
           <p>Only admin accounts can access this page.</p>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -126,7 +122,6 @@ export default function AdminReportsPage() {
 
   return (
     <div className="pageContainer">
-      <Navbar />
       <main className={styles.container}>
         <h1>Admin Reports Dashboard</h1>
 
@@ -298,7 +293,6 @@ export default function AdminReportsPage() {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }
