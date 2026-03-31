@@ -131,4 +131,20 @@ export const adminDeleteMessage = (messageId, reason) =>
 export const adminListAuditLogs = (params) =>
   api.get('/admin/audit-logs', { params });
 
+// ==================== REPORTS ====================
+export const createReport = (data) =>
+  api.post('/reports', data);
+
+export const getMyReports = () =>
+  api.get('/reports/my-reports');
+
+export const adminListReports = (params) =>
+  api.get('/admin/reports', { params });
+
+export const adminUpdateReport = (reportId, data) =>
+  api.patch(`/admin/reports/${reportId}`, data);
+
+export const adminRespondToReport = (reportId, messageText) =>
+  api.post(`/admin/reports/${reportId}/respond`, { message_text: messageText });
+
 export default api;

@@ -99,6 +99,9 @@ const Navbar = () => {
                   </span>
                 )}
               </Link>
+              <Link href="/report-issue" className={styles.navLink}>
+                Report Issue
+              </Link>
               <div className={styles.profileMenuWrap} ref={profileMenuRef}>
                 <button
                   type="button"
@@ -122,9 +125,14 @@ const Navbar = () => {
                       My Posts
                     </Link>
                     {currentUser.role === 'admin' && (
-                      <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                        Admin Dashboard
-                      </Link>
+                      <>
+                        <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                          Admin Dashboard
+                        </Link>
+                        <Link href="/admin/reports" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                          Admin Reports
+                        </Link>
+                      </>
                     )}
                     <button
                       type="button"
