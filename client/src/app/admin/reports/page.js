@@ -3,7 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { adminListReports, adminUpdateReport, adminRespondToReport } from '@/lib/api';
+import {
+  adminListReports,
+  adminUpdateReport,
+  adminRespondToReport,
+  getFoundItem,
+  getLostItem,
+} from '@/lib/api';
 import styles from './reports.module.css';
 
 const STATUS_COLORS = {
@@ -27,10 +33,11 @@ export default function AdminReportsPage() {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('open');
-  const [expandedReportId, setExpandedReportId] = useState(null);
+  const [expandedReportIds, setExpandedReportIds] = useState([]);
   const [respondingToId, setRespondingToId] = useState(null);
   const [responseText, setResponseText] = useState('');
   const [updatingId, setUpdatingId] = useState(null);
+  const [openingReportId, setOpeningReportId] = useState(null);
   const [error, setError] = useState('');
 
   const isAdmin = currentUser?.role === 'admin';
@@ -120,6 +127,65 @@ export default function AdminReportsPage() {
     }
   };
 
+  const handleUnassign = async (reportId) => {
+    try {
+      setUpdatingId(reportId);
+      await adminUpdateReport(reportId, { assigned_admin_id: null });
+      setReports((prev) =>
+        prev.map((r) => (r._id === reportId ? { ...r, assigned_admin_id: null } : r))
+      );
+    } catch (err) {
+      console.error('Error unassigning report:', err);
+      setError('Failed to unassign report');
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
+  const handleToggleReport = (reportId) => {
+    setExpandedReportIds((prev) =>
+      prev.includes(reportId) ? prev.filter((id) => id !== reportId) : [...prev, reportId]
+    );
+  };
+
+  const handleOpenRelatedPost = async (report) => {
+    if (!report?.related_post_id) {
+      return;
+    }
+
+    setOpeningReportId(report._id);
+    setError('');
+
+    try {
+      await getLostItem(report.related_post_id);
+      setOpeningReportId(null);
+      router.push(`/lost-items/${report.related_post_id}`);
+      return;
+    } catch (err) {
+      if (err?.response?.status && err.response.status !== 404) {
+        console.error('Error checking lost post:', err);
+        setError('Failed to load related post');
+        setOpeningReportId(null);
+        return;
+      }
+    }
+
+    try {
+      await getFoundItem(report.related_post_id);
+      router.push(`/found-items/${report.related_post_id}`);
+      return;
+    } catch (err) {
+      if (err?.response?.status && err.response.status !== 404) {
+        console.error('Error checking found post:', err);
+        setError('Failed to load related post');
+      } else {
+        setError('Related post not found');
+      }
+    } finally {
+      setOpeningReportId(null);
+    }
+  };
+
   return (
     <div className="pageContainer">
       <main className={styles.container}>
@@ -157,7 +223,18 @@ export default function AdminReportsPage() {
           <div className={styles.reportsList}>
             {reports.map((report) => (
               <div key={report._id} className={styles.reportCard}>
-                <div className={styles.reportHeader}>
+                <div
+                  className={styles.reportHeader}
+                  onClick={() => handleToggleReport(report._id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleToggleReport(report._id);
+                    }
+                  }}
+                >
                   <div className={styles.reportInfo}>
                     <h3>{report.title}</h3>
                     <div className={styles.meta}>
@@ -173,18 +250,12 @@ export default function AdminReportsPage() {
                       </span>
                     </div>
                   </div>
-
-                  <button
-                    className={styles.toggleButton}
-                    onClick={() =>
-                      setExpandedReportId(expandedReportId === report._id ? null : report._id)
-                    }
-                  >
-                    {expandedReportId === report._id ? '▼' : '▶'}
-                  </button>
+                  <span className={styles.chevron}>
+                    {expandedReportIds.includes(report._id) ? '▼' : '▶'}
+                  </span>
                 </div>
 
-                {expandedReportId === report._id && (
+                {expandedReportIds.includes(report._id) && (
                   <div className={styles.reportDetails}>
                     <div className={styles.detailSection}>
                       <h4>Reporter</h4>
@@ -199,7 +270,17 @@ export default function AdminReportsPage() {
                     {report.related_post_id && (
                       <div className={styles.detailSection}>
                         <h4>Related Post ID</h4>
-                        <p>{report.related_post_id}</p>
+                        <div className={styles.relatedPostRow}>
+                          <p>{report.related_post_id}</p>
+                          <button
+                            type="button"
+                            className={styles.linkButton}
+                            onClick={() => handleOpenRelatedPost(report)}
+                            disabled={openingReportId === report._id}
+                          >
+                            {openingReportId === report._id ? 'Opening...' : 'Open Post'}
+                          </button>
+                        </div>
                       </div>
                     )}
 
@@ -243,7 +324,16 @@ export default function AdminReportsPage() {
                       )}
 
                       {report.assigned_admin_id === currentUser.uid && (
-                        <span className={styles.assignedBadge}>Assigned to you</span>
+                        <>
+                          <span className={styles.assignedBadge}>Assigned to you</span>
+                          <button
+                            className={styles.unassignButton}
+                            onClick={() => handleUnassign(report._id)}
+                            disabled={updatingId === report._id}
+                          >
+                            Unassign
+                          </button>
+                        </>
                       )}
 
                       <button

@@ -131,13 +131,9 @@
   font-size: 0.85rem;
 }
 
-.toggleButton {
-  background: none;
-  border: none;
+.chevron {
   font-size: 1.2rem;
   color: var(--primary);
-  cursor: pointer;
-  padding: 0;
   flex-shrink: 0;
 }
 
@@ -246,6 +242,60 @@
   border-radius: 4px;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.unassignButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid #cfcfcf;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  background-color: white;
+  color: var(--text-main);
+  transition: all 0.2s;
+}
+
+.unassignButton:hover:not(:disabled) {
+  background-color: #f2f2f2;
+}
+
+.unassignButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.relatedPostRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.relatedPostRow p {
+  margin: 0;
+  word-break: break-word;
+}
+
+.linkButton {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.linkButton:hover:not(:disabled) {
+  background-color: var(--primary-soft);
+}
+
+.linkButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .responseForm {
