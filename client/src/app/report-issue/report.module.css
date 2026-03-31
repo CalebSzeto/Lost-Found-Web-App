@@ -84,17 +84,7 @@
   font-size: 0.85rem;
 }
 
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
 @media (max-width: 600px) {
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-
   .formWrapper {
     padding: 1.5rem;
   }

@@ -4,8 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { createReport } from '@/lib/api';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import styles from './report.module.css';
 
 export default function ReportIssuePage() {
@@ -16,7 +14,6 @@ export default function ReportIssuePage() {
     description: '',
     category: 'other',
     related_post_id: '',
-    related_user_id: '',
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -25,7 +22,6 @@ export default function ReportIssuePage() {
   if (!currentUser) {
     return (
       <div className="pageContainer">
-        <Navbar />
         <div className="emptyState">
           <h3>Authentication Required</h3>
           <p>Please log in or register to report issues.</p>
@@ -33,7 +29,6 @@ export default function ReportIssuePage() {
             Go to Login
           </button>
         </div>
-        <Footer />
       </div>
     );
   }
@@ -50,8 +45,8 @@ export default function ReportIssuePage() {
     e.preventDefault();
     setError('');
 
-    if (!formData.title.trim() || !formData.description.trim()) {
-      setError('Title and description are required');
+    if (!formData.title.trim() || !formData.description.trim() || !formData.related_post_id.trim()) {
+      setError('Title, description, and related post ID are required');
       return;
     }
 
@@ -62,14 +57,16 @@ export default function ReportIssuePage() {
         title: formData.title.trim(),
         description: formData.description.trim(),
         category: formData.category,
-        related_post_id: formData.related_post_id || null,
-        related_user_id: formData.related_user_id || null,
+        related_post_id: formData.related_post_id.trim(),
       });
 
       setSuccess(true);
-      setTimeout(() => {
-        router.push('/my-reports');
-      }, 2000);
+      setFormData((prev) => ({
+        ...prev,
+        title: '',
+        description: '',
+        related_post_id: '',
+      }));
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to submit report. Please try again.');
       console.error('Report submission error:', err);
@@ -80,7 +77,6 @@ export default function ReportIssuePage() {
 
   return (
     <div className="pageContainer">
-      <Navbar />
       <main className={styles.container}>
         <div className={styles.formWrapper}>
           <h1>Report an Issue</h1>
@@ -92,7 +88,7 @@ export default function ReportIssuePage() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           {success && (
             <div className={styles.successMessage}>
-              ✓ Report submitted successfully! Redirecting...
+              ✓ Report submitted successfully!
             </div>
           )}
 
@@ -145,30 +141,17 @@ export default function ReportIssuePage() {
               <small>{formData.description.length}/2000</small>
             </div>
 
-            <div className={styles.formRow}>
-              <div className={styles.formGroup}>
-                <label htmlFor="related_post_id">Related Post ID (optional)</label>
-                <input
-                  id="related_post_id"
-                  type="text"
-                  name="related_post_id"
-                  placeholder="If available"
-                  value={formData.related_post_id}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="related_user_id">Related User ID (optional)</label>
-                <input
-                  id="related_user_id"
-                  type="text"
-                  name="related_user_id"
-                  placeholder="If reporting a user"
-                  value={formData.related_user_id}
-                  onChange={handleChange}
-                />
-              </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="related_post_id">Related Post ID *</label>
+              <input
+                id="related_post_id"
+                type="text"
+                name="related_post_id"
+                placeholder="Required - copy from a post card"
+                value={formData.related_post_id}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className={styles.buttonGroup}>
@@ -187,7 +170,6 @@ export default function ReportIssuePage() {
           </form>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

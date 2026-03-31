@@ -62,6 +62,44 @@
   margin-bottom: 0.75rem;
 }
 
+.idRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  color: #6B7280;
+  flex-wrap: wrap;
+}
+
+.idLabel {
+  word-break: break-all;
+}
+
+.copyButton {
+  border: 1px solid #d1d5db;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.copyButton:hover {
+  background: #e5e7eb;
+  border-color: #cbd5f5;
+}
+
+.copied {
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
+}
+
 .badge {
   padding: 0.25rem 0.75rem;
   border-radius: 20px;

@@ -12,6 +12,7 @@ const PostCard = ({ post, type }) => {
 
   const isLost = type === 'lost';
   const [showImage, setShowImage] = React.useState(true);
+  const [copied, setCopied] = React.useState(false);
 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -24,6 +25,28 @@ const PostCard = ({ post, type }) => {
   const id = isLost ? post.lost_item_id : post.found_item_id;
   const href = isLost ? `/lost-items/${id}` : `/found-items/${id}`;
   const imageUrl = resolveImageUrl(post.image_url);
+
+  const handleCopyId = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(id);
+      } else {
+        const tempInput = document.createElement('input');
+        tempInput.value = id;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (error) {
+      console.error('Failed to copy post ID:', error);
+    }
+  };
 
   React.useEffect(() => {
     setShowImage(true);
@@ -53,6 +76,17 @@ const PostCard = ({ post, type }) => {
               {isLost ? '🔴 Lost' : '🟢 Found'}
             </span>
             <span className={styles.date}>{formatDate(post.created_at)}</span>
+          </div>
+
+          <div className={styles.idRow}>
+            <span className={styles.idLabel}>Post ID: {id}</span>
+            <button
+              type="button"
+              className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+              onClick={handleCopyId}
+            >
+              {copied ? 'Copied' : 'Copy ID'}
+            </button>
           </div>
 
           {isLost && <h3 className={styles.title}>{post.title}</h3>}

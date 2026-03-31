@@ -9,10 +9,10 @@ const { authenticate, requireActiveUser, requireAdmin } = require('../middleware
 // POST /api/reports - Create a new report
 router.post('/', authenticate, requireActiveUser, async (req, res) => {
   try {
-    const { title, description, category, related_post_id, related_user_id } = req.body;
+    const { title, description, category, related_post_id } = req.body;
 
-    if (!title || !description || !category) {
-      return res.status(400).json({ error: 'Title, description, and category are required' });
+    if (!title || !description || !category || !related_post_id) {
+      return res.status(400).json({ error: 'Title, description, category, and related post ID are required' });
     }
 
     const reportId = uuidv4();
@@ -30,7 +30,6 @@ router.post('/', authenticate, requireActiveUser, async (req, res) => {
       description,
       category,
       related_post_id: related_post_id || null,
-      related_user_id: related_user_id || null,
     });
 
     await report.save();
