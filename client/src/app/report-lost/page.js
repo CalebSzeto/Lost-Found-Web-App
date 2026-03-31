@@ -205,7 +205,7 @@ export default function ReportLostPage() {
               onChange={handleImageChange}
               className={styles.fileInput}
             />
-            {imageError && <p className={styles.uploadHint}>{imageError}</p>}
+            {imageError && <p className={styles.uploadError}>{imageError}</p>}
             {imagePreview && (
               <div className={styles.imagePreview}>
                 <div className={styles.imagePreviewFrame}>
