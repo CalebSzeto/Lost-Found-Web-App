@@ -89,6 +89,14 @@ const PostCard = ({ post, type }) => {
             </button>
           </div>
 
+          <div className={styles.dateRow}>
+            {isLost ? (
+              <span>📅 Lost: {post.date_lost ? formatDate(post.date_lost) : 'Unknown'}</span>
+            ) : (
+              <span>📅 Found: {post.date_found ? formatDate(post.date_found) : 'Unknown'}</span>
+            )}
+          </div>
+
           {isLost && <h3 className={styles.title}>{post.title}</h3>}
 
           <p className={styles.description}>

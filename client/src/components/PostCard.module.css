@@ -88,6 +88,12 @@
   flex-wrap: wrap;
 }
 
+.dateRow {
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
+  color: #6B7280;
+}
+
 .copyButton {
   border: 1px solid #d1d5db;
   background: #f3f4f6;
