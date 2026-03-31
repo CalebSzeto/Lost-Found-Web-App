@@ -112,13 +112,8 @@ export default function FoundItemDetailPage() {
       reader.onloadend = () => setEditPreview(reader.result);
       reader.readAsDataURL(normalized);
     } catch (err) {
-      if (String(err?.message || '').includes('HEIC conversion failed')) {
-        setEditImageError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
-        setError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
-      } else {
-        setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
-        setError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
-      }
+      setEditImageError('Unsupported image type. Use JPG, PNG, or WEBP.');
+      setError('Unsupported image type. Use JPG, PNG, or WEBP.');
     }
   };
 
@@ -293,7 +288,7 @@ export default function FoundItemDetailPage() {
                     accept="image/*"
                     onChange={handleEditImageChange}
                   />
-                  <p className={styles.uploadHint}>Supported types: JPG, PNG, WEBP, HEIC.</p>
+                  <p className={styles.uploadHint}>Supported types: JPG, PNG, WEBP.</p>
                   {editImageError && <p className={styles.uploadError}>{editImageError}</p>}
                   {editPreview && !removeImage && (
                     <div className={styles.editPreviewFrame}>

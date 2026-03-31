@@ -85,11 +85,7 @@ export default function ReportFoundPage() {
         reader.onloadend = () => setImagePreview(reader.result);
         reader.readAsDataURL(normalized);
       } catch (err) {
-        if (String(err?.message || '').includes('HEIC conversion failed')) {
-          setImageError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
-        } else {
-          setImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
-        }
+        setImageError('Unsupported image type. Use JPG, PNG, or WEBP.');
         setError('');
       }
     }
@@ -196,7 +192,7 @@ export default function ReportFoundPage() {
           <div className="formGroup">
             <label htmlFor="image">Upload Image (optional)</label>
             <p className={styles.uploadHint}>
-              Supported types: JPG, PNG, WEBP, HEIC. Maximum file size: {MAX_IMAGE_SIZE_MB}MB
+              Supported types: JPG, PNG, WEBP. Maximum file size: {MAX_IMAGE_SIZE_MB}MB
             </p>
             <input
               type="file"

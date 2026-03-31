@@ -2,14 +2,11 @@ const DEFAULT_MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const DEFAULT_MAX_DIMENSION = 2200;
 const MIN_QUALITY = 0.55;
 
-const HEIC_TYPES = new Set(['image/heic', 'image/heif']);
 const SUPPORTED_TYPES = new Set([
   'image/jpeg',
   'image/jpg',
   'image/png',
   'image/webp',
-  'image/heic',
-  'image/heif',
 ]);
 
 function getFileExtension(name) {
@@ -17,18 +14,12 @@ function getFileExtension(name) {
   return dot >= 0 ? name.slice(dot).toLowerCase() : '';
 }
 
-function isHeicFile(file) {
-  const type = file?.type?.toLowerCase();
-  const ext = getFileExtension(file?.name || '');
-  return HEIC_TYPES.has(type) || ext === '.heic' || ext === '.heif';
-}
-
 export function isSupportedImageFile(file) {
   if (!file) return false;
   const type = file?.type?.toLowerCase();
   if (type && SUPPORTED_TYPES.has(type)) return true;
   const ext = getFileExtension(file?.name || '');
-  return ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif'].includes(ext);
+  return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
 }
 
 function loadImageFromFile(file) {
@@ -59,30 +50,10 @@ function getOutputName(originalName, mimeType) {
   return `${base}.png`;
 }
 
-async function convertHeicToJpeg(file) {
-  if (typeof window === 'undefined') {
-    throw new Error('HEIC conversion is only supported in the browser');
-  }
-
-  try {
-    const { default: heic2any } = await import('heic2any');
-    const result = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
-    const blob = Array.isArray(result) ? result[0] : result;
-    return new File([blob], getOutputName(file.name || 'image', 'image/jpeg'), { type: 'image/jpeg' });
-  } catch (error) {
-    throw new Error('HEIC conversion failed');
-  }
-}
-
 export async function normalizeImageFile(file) {
   if (!isSupportedImageFile(file)) {
     throw new Error('Unsupported image type');
   }
-
-  if (isHeicFile(file)) {
-    return convertHeicToJpeg(file);
-  }
-
   return file;
 }
 
