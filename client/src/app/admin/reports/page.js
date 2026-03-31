@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import {
   adminListReports,
@@ -28,7 +27,6 @@ const CATEGORY_LABELS = {
 };
 
 export default function AdminReportsPage() {
-  const router = useRouter();
   const { currentUser } = useAuth();
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -159,7 +157,7 @@ export default function AdminReportsPage() {
     try {
       await getLostItem(report.related_post_id);
       setOpeningReportId(null);
-      router.push(`/lost-items/${report.related_post_id}`);
+      window.open(`/lost-items/${report.related_post_id}`, '_blank', 'noopener,noreferrer');
       return;
     } catch (err) {
       if (err?.response?.status && err.response.status !== 404) {
@@ -172,7 +170,7 @@ export default function AdminReportsPage() {
 
     try {
       await getFoundItem(report.related_post_id);
-      router.push(`/found-items/${report.related_post_id}`);
+      window.open(`/found-items/${report.related_post_id}`, '_blank', 'noopener,noreferrer');
       return;
     } catch (err) {
       if (err?.response?.status && err.response.status !== 404) {
