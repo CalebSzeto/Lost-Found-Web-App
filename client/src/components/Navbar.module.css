@@ -102,6 +102,60 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
+.profileMenuWrap {
+  position: relative;
+}
+
+.profileTrigger {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 190px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.profileMenu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 220px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 1200;
+}
+
+.profileMenuItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border: none;
+  background: white;
+  color: #1f2937;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.profileMenuItem:hover {
+  background: #f9fafb;
+}
+
+.profileLogout {
+  color: #b91c1c;
+  border-top: 1px solid #f3f4f6;
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 0 1rem;
@@ -117,6 +171,15 @@
   .links {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .profileTrigger {
+    max-width: 140px;
+  }
+
+  .profileMenu {
+    right: auto;
+    left: 0;
   }
 
   .brandText {

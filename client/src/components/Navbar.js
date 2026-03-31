@@ -9,6 +9,13 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const router = useRouter();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleClickOutside = () => setMenuOpen(false);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -45,10 +52,40 @@ const Navbar = () => {
                 </Link>
               )}
               <Link href="/messages" className={styles.navLink}>Messages</Link>
-              <Link href="/my-posts" className={styles.navLink}>My Posts</Link>
-              <button onClick={handleLogout} className={styles.btnLogout}>
-                Logout
-              </button>
+              <div className={styles.profileMenuWrap} onClick={(e) => e.stopPropagation()}>
+                <button
+                  type="button"
+                  className={styles.profileTrigger}
+                  onClick={() => setMenuOpen((prev) => !prev)}
+                >
+                  {currentUser.displayName || currentUser.email}
+                </button>
+                {menuOpen && (
+                  <div className={styles.profileMenu}>
+                    <Link href="/profile" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Profile & Settings
+                    </Link>
+                    <Link href="/my-posts" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      My Posts
+                    </Link>
+                    <Link href="/messages" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Messages
+                    </Link>
+                    {currentUser.role === 'admin' && (
+                      <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                        Admin Dashboard
+                      </Link>
+                    )}
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className={`${styles.profileMenuItem} ${styles.profileLogout}`}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>

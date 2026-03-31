@@ -175,4 +175,38 @@ router.post('/reset-required', async (req, res) => {
   }
 });
 
+// POST /api/auth/change-password - Authenticated password change for any account
+router.post('/change-password', authenticate, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'currentPassword and newPassword are required' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'New password must be at least 6 characters' });
+    }
+
+    const user = await User.findById(req.user.uid);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const passwordMatches = await bcrypt.compare(currentPassword, user.password_hash);
+    if (!passwordMatches) {
+      return res.status(401).json({ error: 'Invalid current password' });
+    }
+
+    user.password_hash = await bcrypt.hash(newPassword, 10);
+    user.password_reset_required = false;
+    user.token_version = (user.token_version || 0) + 1;
+    await user.save();
+
+    return res.json({ message: 'Password changed successfully. Please login again.' });
+  } catch (error) {
+    console.error('Change password error:', error);
+    return res.status(500).json({ error: 'Failed to change password' });
+  }
+});
+
 module.exports = router;

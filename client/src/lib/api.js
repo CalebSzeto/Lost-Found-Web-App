@@ -40,6 +40,9 @@ export const getCurrentUser = () =>
 export const resetRequiredPassword = (email, currentPassword, newPassword) =>
   api.post('/auth/reset-required', { email, currentPassword, newPassword });
 
+export const changePassword = (currentPassword, newPassword) =>
+  api.post('/auth/change-password', { currentPassword, newPassword });
+
 // ==================== LOST ITEMS ====================
 export const createLostItem = (formData) =>
   api.post('/lost-items', formData);
