@@ -65,7 +65,9 @@ const PostCard = ({ post, type }) => {
             />
           </div>
         ) : (
-          <div className={styles.noImageBanner}>No image uploaded</div>
+          <div className={styles.imageWrap}>
+            <div className={styles.noImageBanner}>No image uploaded</div>
+          </div>
         )}
 
         <div className={styles.content}>
