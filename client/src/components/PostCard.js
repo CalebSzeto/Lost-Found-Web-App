@@ -80,6 +80,15 @@ const PostCard = ({ post, type }) => {
 
           <div className={styles.metaRow}>
             <span>📍 {post.location}</span>
+            <span className={styles.dateInline}>
+              {isLost
+                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
+                : `📅 Found: ${post.date_found ? formatDate(post.date_found) : 'Unknown'}`}
+            </span>
+          </div>
+
+          <div className={styles.metaRow}>
+            <span className={styles.copyHint}>Post ID</span>
             <button
               type="button"
               className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
@@ -87,14 +96,6 @@ const PostCard = ({ post, type }) => {
             >
               {copied ? 'Copied' : 'Copy ID'}
             </button>
-          </div>
-
-          <div className={styles.dateRow}>
-            {isLost ? (
-              <span>📅 Lost: {post.date_lost ? formatDate(post.date_lost) : 'Unknown'}</span>
-            ) : (
-              <span>📅 Found: {post.date_found ? formatDate(post.date_found) : 'Unknown'}</span>
-            )}
           </div>
 
           {isLost && <h3 className={styles.title}>{post.title}</h3>}
