@@ -71,12 +71,20 @@ router.get('/users/:id/history', async (req, res) => {
 router.get('/users/:id/posts', async (req, res) => {
   try {
     const targetId = req.params.id;
-    const [lostPosts, foundPosts] = await Promise.all([
+    const [owner, lostPosts, foundPosts] = await Promise.all([
+      User.findById(targetId).select('email displayName').lean(),
       LostItem.find({ user_id: targetId }).sort({ created_at: -1 }).lean(),
       FoundItem.find({ user_id: targetId }).sort({ created_at: -1 }).lean(),
     ]);
 
     return res.json({
+      owner: owner
+        ? {
+            user_id: owner._id.toString(),
+            email: owner.email,
+            displayName: owner.displayName,
+          }
+        : null,
       lost: lostPosts,
       found: foundPosts,
     });

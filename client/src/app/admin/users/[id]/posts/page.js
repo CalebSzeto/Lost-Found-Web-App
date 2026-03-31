@@ -21,6 +21,7 @@ export default function AdminUserPostsPage() {
   const [error, setError] = useState('');
   const [lostPosts, setLostPosts] = useState([]);
   const [foundPosts, setFoundPosts] = useState([]);
+  const [owner, setOwner] = useState(null);
 
   const isAdmin = currentUser?.role === 'admin';
 
@@ -35,6 +36,7 @@ export default function AdminUserPostsPage() {
         setLoading(true);
         setError('');
         const res = await adminGetUserPosts(userId);
+        setOwner(res.data?.owner || null);
         setLostPosts(res.data?.lost || []);
         setFoundPosts(res.data?.found || []);
       } catch (err) {
@@ -77,6 +79,11 @@ export default function AdminUserPostsPage() {
           <div>
             <h1>User Post History</h1>
             <p className={styles.subheading}>User ID: {userId || 'Unknown'}</p>
+            {owner && (
+              <p className={styles.ownerLine}>
+                Owner: {owner.displayName || 'Unknown'} ({owner.email || 'No email'})
+              </p>
+            )}
           </div>
           <div className={styles.counts}>
             <span>{lostPosts.length} lost</span>
