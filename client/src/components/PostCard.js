@@ -32,16 +32,16 @@ const PostCard = ({ post, type }) => {
   return (
     <Link href={href} className={styles.cardLink}>
       <div className={`${styles.card} ${isLost ? styles.cardLost : styles.cardFound}`}>
-        {imageUrl && showImage && (
-          <div className={styles.metaRow}>
-            <span>
-              {isLost
-                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
-                : `📍 ${post.location}`}
-            </span>
-            <span className={styles.postId}>Post ID: {id}</span>
+        {imageUrl && showImage ? (
+          <div className={styles.imageWrap}>
+            <img
+              src={imageUrl}
+              alt={post.title || 'Item image'}
+              className={styles.image}
+              onError={() => setShowImage(false)}
+            />
           </div>
-        {!imageUrl && (
+        ) : (
           <div className={styles.noImageBanner}>No image uploaded</div>
         )}
 
@@ -49,16 +49,17 @@ const PostCard = ({ post, type }) => {
           <div className={styles.badgeRow}>
             <span className={`${styles.badge} ${isLost ? styles.badgeLost : styles.badgeFound}`}>
               {isLost ? '🔴 Lost' : '🟢 Found'}
-            {isLost && <span>📍 {post.location}</span>}
-          <div className={styles.idRow}>
-            <span className={styles.idLabel}>Post ID: {id}</span>
-            <button
-              type="button"
-              className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
-              onClick={handleCopyId}
-            >
-              {copied ? 'Copied' : 'Copy ID'}
-            </button>
+            </span>
+            <span className={styles.date}>{formatDate(post.created_at)}</span>
+          </div>
+
+          <div className={styles.metaRow}>
+            <span>
+              {isLost
+                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
+                : `📍 ${post.location}`}
+            </span>
+            <span className={styles.postId}>Post ID: {id}</span>
           </div>
 
           {isLost && <h3 className={styles.title}>{post.title}</h3>}
@@ -70,10 +71,7 @@ const PostCard = ({ post, type }) => {
           </p>
 
           <div className={styles.meta}>
-            <span>📍 {post.location}</span>
-            {isLost && post.date_lost && (
-              <span>📅 Lost: {formatDate(post.date_lost)}</span>
-            )}
+            {isLost && <span>📍 {post.location}</span>}
             {!isLost && post.dropoff_time && (
               <span>🕐 Drop-off: {post.dropoff_time}</span>
             )}
