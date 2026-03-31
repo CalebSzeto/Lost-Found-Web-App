@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --primary: #0b4f3f;
-  --primary-dark: #07392e;
-  --primary-soft: #e7f3ef;
-  --accent: #f4b400;
-  --accent-dark: #d59b00;
-  --text-main: #16332d;
-  --text-muted: #5d6f69;
-  --surface: #f5f7ef;
+  --primary: #2f6a58;
+  --primary-dark: #245244;
+  --primary-soft: #edf4ef;
+  --accent: #e4bf5a;
+  --accent-dark: #d2ad48;
+  --text-main: #1f3a32;
+  --text-muted: #677b74;
+  --surface: #f8faf6;
 }
 
 * {

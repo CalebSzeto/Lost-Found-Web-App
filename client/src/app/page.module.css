@@ -1,142 +1,128 @@
-.hero {
-  background:
-    radial-gradient(circle at 15% 20%, rgba(244, 180, 0, 0.24), transparent 45%),
-    linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  padding: 5rem 2rem;
-  text-align: center;
-}
-
-.heroContent {
-  max-width: 700px;
+.page {
+  max-width: 1180px;
   margin: 0 auto;
-}
-
-.heroContent h1 {
-  font-size: 2.75rem;
-  font-weight: 800;
-  margin: 0 0 1rem;
-  line-height: 1.2;
-}
-
-.heroSubtitle {
-  font-size: 1.15rem;
-  opacity: 0.9;
-  line-height: 1.6;
-  margin: 0 0 2rem;
-}
-
-.heroActions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Sections */
-.section {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.sectionTitle {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--text-main);
-  margin-bottom: 2.5rem;
-}
-
-/* Steps */
-.stepsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.stepCard {
-  background: white;
-  border-radius: 14px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  border: 1px solid #E5E7EB;
-}
-
-.stepNumber {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0 auto 1rem;
-}
-
-.stepCard h3 {
-  color: var(--text-main);
-  margin: 0 0 0.5rem;
-}
-
-.stepCard p {
-  color: #6B7280;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-/* Quick Links */
-.quickLinksSection {
-  background: #eef3eb;
-  padding: 4rem 2rem;
-}
-
-.quickLinksGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.quickLinkCard {
-  background: white;
-  border-radius: 14px;
   padding: 2rem;
-  text-decoration: none;
-  text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #E5E7EB;
 }
 
-.quickLinkCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.searchSection {
+  background: #fbfcf8;
+  border: 1px solid #dce7dd;
+  border-radius: 16px;
+  padding: 1.4rem;
 }
 
-.qlIcon {
-  font-size: 2.5rem;
-  display: block;
+.searchHeader {
   margin-bottom: 1rem;
 }
 
-.quickLinkCard h3 {
+.searchHeader h1 {
+  margin: 0 0 0.35rem;
+  font-size: 2rem;
   color: var(--text-main);
-  margin: 0 0 0.5rem;
 }
 
-.quickLinkCard p {
-  color: #6B7280;
-  font-size: 0.9rem;
+.searchHeader p {
   margin: 0;
+  color: var(--text-muted);
+}
+
+.searchTypeTabs {
+  display: inline-flex;
+  background: #f3f6ef;
+  border: 1px solid #dfe7d8;
+  border-radius: 999px;
+  padding: 0.22rem;
+  gap: 0.2rem;
+  margin-bottom: 0.9rem;
+}
+
+.searchTypeTab {
+  border: none;
+  background: transparent;
+  color: #47635c;
+  font-weight: 600;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.activeTab {
+  background: #fff;
+  color: var(--primary-dark);
+  box-shadow: 0 1px 3px rgba(18, 37, 32, 0.14);
+}
+
+.searchCard {
+  background: #fff;
+  border: 1px solid #e3e9df;
+  border-radius: 12px;
+  padding: 0.2rem;
+}
+
+.quickActions {
+  margin-top: 1.4rem;
+}
+
+.quickActions h2 {
+  margin: 0 0 0.9rem;
+  color: var(--text-main);
+  font-size: 1.35rem;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.actionCard {
+  background: #fff;
+  border: 1px solid #e3e9df;
+  border-radius: 12px;
+  padding: 1rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.actionCard:hover {
+  border-color: #c9d9c7;
+  box-shadow: 0 8px 20px rgba(12, 34, 28, 0.06);
+}
+
+.actionCard h3 {
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
+  font-size: 1.02rem;
+}
+
+.actionCard p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
 }
 
 @media (max-width: 768px) {
-  .heroContent h1 {
-    font-size: 2rem;
+  .page {
+    padding: 1rem;
+  }
+
+  .searchHeader h1 {
+    font-size: 1.55rem;
+  }
+
+  .searchTypeTabs {
+    display: flex;
+    width: 100%;
+  }
+
+  .searchTypeTab {
+    flex: 1;
+    text-align: center;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.88rem;
+  }
+
+  .actionGrid {
+    grid-template-columns: 1fr;
   }
 }
