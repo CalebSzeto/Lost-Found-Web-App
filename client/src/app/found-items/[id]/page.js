@@ -289,7 +289,7 @@ export default function FoundItemDetailPage() {
                     onChange={handleEditImageChange}
                   />
                   <p className={styles.uploadHint}>Supported types: JPG, PNG, WEBP, HEIC.</p>
-                  {editImageError && <p className={styles.uploadHint}>{editImageError}</p>}
+                  {editImageError && <p className={styles.uploadError}>{editImageError}</p>}
                   {editPreview && !removeImage && (
                     <div className={styles.editPreviewFrame}>
                       <img src={editPreview} alt="Preview" />
