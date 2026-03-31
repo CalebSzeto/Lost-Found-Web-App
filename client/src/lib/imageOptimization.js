@@ -1,5 +1,3 @@
-import heic2any from 'heic2any';
-
 const DEFAULT_MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const DEFAULT_MAX_DIMENSION = 2200;
 const MIN_QUALITY = 0.55;
@@ -62,6 +60,11 @@ function getOutputName(originalName, mimeType) {
 }
 
 async function convertHeicToJpeg(file) {
+  if (typeof window === 'undefined') {
+    throw new Error('HEIC conversion is only supported in the browser');
+  }
+
+  const { default: heic2any } = await import('heic2any');
   const result = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
   const blob = Array.isArray(result) ? result[0] : result;
   return new File([blob], getOutputName(file.name || 'image', 'image/jpeg'), { type: 'image/jpeg' });
