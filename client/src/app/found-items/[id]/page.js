@@ -112,7 +112,7 @@ export default function FoundItemDetailPage() {
       reader.onloadend = () => setEditPreview(reader.result);
       reader.readAsDataURL(normalized);
     } catch (err) {
-      setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, GIF, or HEIC.');
+      setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
       setError('');
     }
   };
@@ -288,6 +288,8 @@ export default function FoundItemDetailPage() {
                     accept="image/*"
                     onChange={handleEditImageChange}
                   />
+                  <p className={styles.uploadHint}>Supported types: JPG, PNG, WEBP, HEIC.</p>
+                  {editImageError && <p className={styles.uploadHint}>{editImageError}</p>}
                   {editPreview && !removeImage && (
                     <div className={styles.editPreviewFrame}>
                       <img src={editPreview} alt="Preview" />

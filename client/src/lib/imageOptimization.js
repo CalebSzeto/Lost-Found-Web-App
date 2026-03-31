@@ -10,7 +10,6 @@ const SUPPORTED_TYPES = new Set([
   'image/jpg',
   'image/png',
   'image/webp',
-  'image/gif',
   'image/heic',
   'image/heif',
 ]);
@@ -31,7 +30,7 @@ export function isSupportedImageFile(file) {
   const type = file?.type?.toLowerCase();
   if (type && SUPPORTED_TYPES.has(type)) return true;
   const ext = getFileExtension(file?.name || '');
-  return ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.heic', '.heif'].includes(ext);
+  return ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif'].includes(ext);
 }
 
 function loadImageFromFile(file) {

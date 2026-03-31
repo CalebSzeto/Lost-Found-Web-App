@@ -256,6 +256,12 @@
   justify-content: flex-end;
 }
 
+.uploadHint {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
 @media (max-width: 768px) {
   .detailContent {
     padding: 1.25rem;

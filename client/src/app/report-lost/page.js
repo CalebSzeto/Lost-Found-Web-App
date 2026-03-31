@@ -85,7 +85,7 @@ export default function ReportLostPage() {
         reader.onloadend = () => setImagePreview(reader.result);
         reader.readAsDataURL(normalized);
       } catch (err) {
-        setImageError('Unsupported image type. Use JPG, PNG, WEBP, GIF, or HEIC.');
+        setImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
         setError('');
       }
     }
@@ -191,7 +191,9 @@ export default function ReportLostPage() {
 
           <div className="formGroup">
             <label htmlFor="image">Upload Image (optional)</label>
-            <p className={styles.uploadHint}>Maximum file size: {MAX_IMAGE_SIZE_MB}MB</p>
+            <p className={styles.uploadHint}>
+              Supported types: JPG, PNG, WEBP, HEIC. Maximum file size: {MAX_IMAGE_SIZE_MB}MB
+            </p>
             <input
               type="file"
               id="image"
@@ -199,6 +201,7 @@ export default function ReportLostPage() {
               onChange={handleImageChange}
               className={styles.fileInput}
             />
+            {imageError && <p className={styles.uploadHint}>{imageError}</p>}
             {imagePreview && (
               <div className={styles.imagePreview}>
                 <div className={styles.imagePreviewFrame}>
