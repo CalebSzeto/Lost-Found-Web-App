@@ -176,9 +176,17 @@ router.post(
       if (report.status === 'open') {
         report.status = 'in-progress';
       }
-      report.last_response_at = new Date().toISOString();
+      const responseAt = new Date().toISOString();
+      const responseEntry = {
+        text: message_text,
+        at: responseAt,
+        by: req.user.uid,
+        by_email: adminUser.email,
+      };
+      report.last_response_at = responseAt;
       report.last_response_by = req.user.uid;
       report.last_response_text = message_text;
+      report.response_history = [...(report.response_history || []), responseEntry];
       report.updated_at = new Date().toISOString();
       await report.save();
 

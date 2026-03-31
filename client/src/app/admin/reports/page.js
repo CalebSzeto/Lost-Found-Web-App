@@ -97,6 +97,12 @@ export default function AdminReportsPage() {
 
     try {
         const responseAt = new Date().toISOString();
+        const responseEntry = {
+          text: responseText.trim(),
+          at: responseAt,
+          by: currentUser.uid,
+          by_email: currentUser.email,
+        };
       setUpdatingId(reportId);
       await adminRespondToReport(reportId, responseText.trim());
       setReports((prev) =>
@@ -108,6 +114,7 @@ export default function AdminReportsPage() {
                 last_response_at: responseAt,
                 last_response_by: currentUser.uid,
                   last_response_text: responseText.trim(),
+                  response_history: [...(r.response_history || []), responseEntry],
               }
             : r
         )
@@ -390,16 +397,22 @@ export default function AdminReportsPage() {
                     )}
 
                     <div className={styles.detailSection}>
-                      <h4>Admin Response</h4>
-                      {report.last_response_text ? (
-                        <>
-                          <p style={{ whiteSpace: 'pre-wrap' }}>{report.last_response_text}</p>
-                          {report.last_response_at && (
-                            <p className={styles.responseMeta}>
-                              Sent: {new Date(report.last_response_at).toLocaleString()}
-                            </p>
-                          )}
-                        </>
+                      <h4>Admin Responses</h4>
+                      {report.response_history && report.response_history.length > 0 ? (
+                        <div className={styles.responseList}>
+                          {report.response_history
+                            .slice()
+                            .reverse()
+                            .map((entry, index) => (
+                              <div key={`${entry.at}-${index}`} className={styles.responseItem}>
+                                <p style={{ whiteSpace: 'pre-wrap' }}>{entry.text}</p>
+                                <p className={styles.responseMeta}>
+                                  Sent: {entry.at ? new Date(entry.at).toLocaleString() : 'Unknown'}
+                                  {entry.by_email ? ` · ${entry.by_email}` : ''}
+                                </p>
+                              </div>
+                            ))}
+                        </div>
                       ) : (
                         <p className={styles.responseMeta}>No response sent yet.</p>
                       )}

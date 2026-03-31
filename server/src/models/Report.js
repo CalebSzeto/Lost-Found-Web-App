@@ -64,6 +64,17 @@ const reportSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  response_history: {
+    type: [
+      {
+        text: String,
+        at: String,
+        by: String,
+        by_email: String,
+      },
+    ],
+    default: [],
+  },
   created_at: {
     type: String,
     default: () => new Date().toISOString(),
