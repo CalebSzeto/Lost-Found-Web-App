@@ -1,6 +1,38 @@
+import heic2any from 'heic2any';
+
 const DEFAULT_MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
 const DEFAULT_MAX_DIMENSION = 2200;
 const MIN_QUALITY = 0.55;
+
+const HEIC_TYPES = new Set(['image/heic', 'image/heif']);
+const SUPPORTED_TYPES = new Set([
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+  'image/heic',
+  'image/heif',
+]);
+
+function getFileExtension(name) {
+  const dot = name?.lastIndexOf('.') ?? -1;
+  return dot >= 0 ? name.slice(dot).toLowerCase() : '';
+}
+
+function isHeicFile(file) {
+  const type = file?.type?.toLowerCase();
+  const ext = getFileExtension(file?.name || '');
+  return HEIC_TYPES.has(type) || ext === '.heic' || ext === '.heif';
+}
+
+export function isSupportedImageFile(file) {
+  if (!file) return false;
+  const type = file?.type?.toLowerCase();
+  if (type && SUPPORTED_TYPES.has(type)) return true;
+  const ext = getFileExtension(file?.name || '');
+  return ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.heic', '.heif'].includes(ext);
+}
 
 function loadImageFromFile(file) {
   return new Promise((resolve, reject) => {
@@ -30,12 +62,32 @@ function getOutputName(originalName, mimeType) {
   return `${base}.png`;
 }
 
-export async function prepareImageForUpload(file, maxBytes = DEFAULT_MAX_UPLOAD_BYTES) {
-  if (!file || file.size <= maxBytes) {
-    return file;
+async function convertHeicToJpeg(file) {
+  const result = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
+  const blob = Array.isArray(result) ? result[0] : result;
+  return new File([blob], getOutputName(file.name || 'image', 'image/jpeg'), { type: 'image/jpeg' });
+}
+
+export async function normalizeImageFile(file) {
+  if (!isSupportedImageFile(file)) {
+    throw new Error('Unsupported image type');
   }
 
-  const image = await loadImageFromFile(file);
+  if (isHeicFile(file)) {
+    return convertHeicToJpeg(file);
+  }
+
+  return file;
+}
+
+export async function prepareImageForUpload(file, maxBytes = DEFAULT_MAX_UPLOAD_BYTES) {
+  if (!file) return file;
+
+  const normalizedFile = await normalizeImageFile(file);
+  if (normalizedFile.size <= maxBytes) {
+    return normalizedFile;
+  }
+  const image = await loadImageFromFile(normalizedFile);
   const ratio = Math.min(1, DEFAULT_MAX_DIMENSION / Math.max(image.width, image.height));
 
   let width = Math.max(1, Math.round(image.width * ratio));
@@ -83,5 +135,5 @@ export async function prepareImageForUpload(file, maxBytes = DEFAULT_MAX_UPLOAD_
     throw new Error('Image is too large even after optimization');
   }
 
-  return new File([bestBlob], getOutputName(file.name, bestMimeType), { type: bestMimeType });
+  return new File([bestBlob], getOutputName(normalizedFile.name, bestMimeType), { type: bestMimeType });
 }

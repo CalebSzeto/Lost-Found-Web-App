@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { createLostItem } from '@/lib/api';
-import { prepareImageForUpload } from '@/lib/imageOptimization';
+import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -67,21 +67,27 @@ export default function ReportLostPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      if (file.size > MAX_IMAGE_SIZE_BYTES) {
-        setImageError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
-        setError('');
-        return;
-      }
+      try {
+        const normalized = await normalizeImageFile(file);
+        if (normalized.size > MAX_IMAGE_SIZE_BYTES) {
+          setImageError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
+          setError('');
+          return;
+        }
 
-      setImageError('');
-      setError('');
-      setImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
+        setImageError('');
+        setError('');
+        setImage(normalized);
+        const reader = new FileReader();
+        reader.onloadend = () => setImagePreview(reader.result);
+        reader.readAsDataURL(normalized);
+      } catch (err) {
+        setImageError('Unsupported image type. Use JPG, PNG, WEBP, GIF, or HEIC.');
+        setError('');
+      }
     }
   };
 

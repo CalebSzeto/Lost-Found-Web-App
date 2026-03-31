@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { getFoundItem, deleteFoundItem, updateFoundItem } from '@/lib/api';
 import { resolveImageUrl } from '@/lib/image';
-import { prepareImageForUpload } from '@/lib/imageOptimization';
+import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -92,23 +92,29 @@ export default function FoundItemDetailPage() {
     setEditData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleEditImageChange = (e) => {
+  const handleEditImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    if (file.size > MAX_IMAGE_SIZE_BYTES) {
-      setEditImageError('Image must be 4MB or smaller');
-      setError('');
-      return;
-    }
+    try {
+      const normalized = await normalizeImageFile(file);
+      if (normalized.size > MAX_IMAGE_SIZE_BYTES) {
+        setEditImageError('Image must be 4MB or smaller');
+        setError('');
+        return;
+      }
 
-    setEditImageError('');
-    setError('');
-    setRemoveImage(false);
-    setEditImage(file);
-    const reader = new FileReader();
-    reader.onloadend = () => setEditPreview(reader.result);
-    reader.readAsDataURL(file);
+      setEditImageError('');
+      setError('');
+      setRemoveImage(false);
+      setEditImage(normalized);
+      const reader = new FileReader();
+      reader.onloadend = () => setEditPreview(reader.result);
+      reader.readAsDataURL(normalized);
+    } catch (err) {
+      setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, GIF, or HEIC.');
+      setError('');
+    }
   };
 
   const handleSaveEdit = async () => {
