@@ -68,11 +68,8 @@ const Navbar = () => {
                 </button>
                 {menuOpen && (
                   <div className={styles.profileMenu}>
-                    <Link href="/my-posts" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      My Posts
-                    </Link>
-                    <Link href="/lost-items" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      Posts
+                    <Link href="/profile" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Profile
                     </Link>
                     {currentUser.role === 'admin' && (
                       <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>

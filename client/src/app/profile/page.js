@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import {
@@ -109,14 +108,6 @@ export default function ProfilePage() {
         <div className={styles.header}>
           <h1>Profile & Settings</h1>
           <p>Manage your account, password, and blocked users.</p>
-        </div>
-
-        <div className={styles.quickActions}>
-          <Link href="/messages" className="btn">Messages</Link>
-          <Link href="/my-posts" className="btn">My Posts</Link>
-          {currentUser.role === 'admin' && (
-            <Link href="/admin" className="btn btnPrimary">Admin Dashboard</Link>
-          )}
         </div>
 
         {error && <div className="errorMessage">{error}</div>}
