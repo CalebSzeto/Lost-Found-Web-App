@@ -73,11 +73,11 @@ router.patch('/users/:id/status', async (req, res) => {
     const targetId = req.params.id;
     const { account_status, reason, ban_expires_at = null } = req.body;
 
-    if (!['active', 'restricted', 'banned'].includes(account_status)) {
+    if (!['active', 'banned'].includes(account_status)) {
       return res.status(400).json({ error: 'Invalid account_status' });
     }
 
-    if ((account_status === 'restricted' || account_status === 'banned') && !requireReason(reason, res)) {
+    if (account_status === 'banned' && !requireReason(reason, res)) {
       return;
     }
 

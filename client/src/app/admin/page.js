@@ -11,7 +11,7 @@ import {
 } from '@/lib/api';
 import styles from './admin.module.css';
 
-const STATUS_OPTIONS = ['active', 'restricted', 'banned'];
+const STATUS_OPTIONS = ['active', 'banned'];
 
 export default function AdminDashboardPage() {
   const { currentUser } = useAuth();
@@ -72,8 +72,8 @@ export default function AdminDashboardPage() {
     const reason = reasonDrafts[user.user_id] || '';
     const banExpiry = banExpiryDrafts[user.user_id] || null;
 
-    if ((nextStatus === 'restricted' || nextStatus === 'banned') && !reason.trim()) {
-      setError('Reason is required for restricted or banned status');
+    if (nextStatus === 'banned' && !reason.trim()) {
+      setError('Reason is required for banned status');
       return;
     }
 
@@ -212,7 +212,7 @@ export default function AdminDashboardPage() {
                       <td>
                         <input
                           type="text"
-                          placeholder="Required for restriction/ban/delete"
+                          placeholder="Required for ban/delete"
                           value={reasonDrafts[user.user_id] || ''}
                           onChange={(e) =>
                             setReasonDrafts((prev) => ({ ...prev, [user.user_id]: e.target.value }))
