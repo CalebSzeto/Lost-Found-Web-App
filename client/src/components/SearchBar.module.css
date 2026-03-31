@@ -27,8 +27,8 @@
 }
 
 .input:focus {
-  border-color: #4F46E5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(11, 79, 63, 0.12);
 }
 
 .actions {
@@ -37,7 +37,7 @@
 }
 
 .btnSearch {
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
   border: none;
   padding: 0.7rem 1.5rem;
@@ -53,9 +53,9 @@
 }
 
 .btnClear {
-  background: #F3F4F6;
-  color: #6B7280;
-  border: 1px solid #D1D5DB;
+  background: #f7f4e7;
+  color: #5f4b06;
+  border: 1px solid #ebdfb3;
   padding: 0.7rem 1.5rem;
   border-radius: 10px;
   font-weight: 500;
@@ -65,5 +65,5 @@
 }
 
 .btnClear:hover {
-  background: #E5E7EB;
+  background: #f1e8c8;
 }

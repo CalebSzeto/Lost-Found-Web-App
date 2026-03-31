@@ -1,5 +1,7 @@
 .hero {
-  background: linear-gradient(135deg, #4F46E5, #7C3AED, #9333EA);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(244, 180, 0, 0.24), transparent 45%),
+    linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
   padding: 5rem 2rem;
   text-align: center;
@@ -41,7 +43,7 @@
 .sectionTitle {
   text-align: center;
   font-size: 2rem;
-  color: #1E1B3A;
+  color: var(--text-main);
   margin-bottom: 2.5rem;
 }
 
@@ -64,7 +66,7 @@
 .stepNumber {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
   border-radius: 50%;
   display: flex;
@@ -76,7 +78,7 @@
 }
 
 .stepCard h3 {
-  color: #1E1B3A;
+  color: var(--text-main);
   margin: 0 0 0.5rem;
 }
 
@@ -88,7 +90,7 @@
 
 /* Quick Links */
 .quickLinksSection {
-  background: #F3F4F6;
+  background: #eef3eb;
   padding: 4rem 2rem;
 }
 
@@ -123,7 +125,7 @@
 }
 
 .quickLinkCard h3 {
-  color: #1E1B3A;
+  color: var(--text-main);
   margin: 0 0 0.5rem;
 }
 

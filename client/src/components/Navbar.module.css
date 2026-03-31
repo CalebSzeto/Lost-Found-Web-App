@@ -1,5 +1,5 @@
 .navbar {
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   padding: 0 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -82,8 +82,14 @@
 }
 
 .btnRegister {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--accent);
+  color: #173327;
   font-weight: 600;
+}
+
+.btnRegister:hover {
+  background: var(--accent-dark);
+  color: #102b20;
 }
 
 .btnLogout {

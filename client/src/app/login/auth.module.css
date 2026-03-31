@@ -4,7 +4,7 @@
   align-items: center;
   min-height: calc(100vh - 140px);
   padding: 2rem;
-  background: #F3F4F6;
+  background: #eef3eb;
 }
 
 .card {
@@ -23,7 +23,7 @@
 
 .header h2 {
   font-size: 1.75rem;
-  color: #1E1B3A;
+  color: var(--text-main);
   margin: 0 0 0.5rem;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .submitBtn {
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
   border: none;
   padding: 0.85rem;
@@ -73,7 +73,7 @@
 }
 
 .switchText a {
-  color: #4F46E5;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 600;
 }
