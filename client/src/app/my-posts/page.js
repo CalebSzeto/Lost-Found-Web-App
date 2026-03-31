@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import PostCard from '@/components/PostCard';
 import { getLostItems, getFoundItems } from '@/lib/api';
@@ -51,6 +52,12 @@ export default function MyPostsPage() {
 
   return (
     <div className="pageContainer">
+      <div className={styles.backRow}>
+        <Link href="/profile" className={styles.backLink}>
+          ← Back to Profile
+        </Link>
+      </div>
+
       <div className="pageHeader">
         <h1>📋 My Posts</h1>
         <p>Manage your lost and found item reports.</p>

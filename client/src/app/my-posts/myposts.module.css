@@ -1,3 +1,20 @@
+.backRow {
+  margin-bottom: 0.75rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #4b5563;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.backLink:hover {
+  color: #111827;
+}
+
 .tabs {
   display: flex;
   gap: 0;
