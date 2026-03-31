@@ -145,8 +145,7 @@ export default function ReportFoundPage() {
               value={formData.title}
               onChange={handleChange}
               placeholder="e.g., Black iPhone Charger"
-            {imageError && <p className={styles.uploadError}>{imageError}</p>}
-            {imagePreview && (
+              required
             />
           </div>
 

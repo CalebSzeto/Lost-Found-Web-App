@@ -145,8 +145,7 @@ export default function ReportLostPage() {
               value={formData.title}
               onChange={handleChange}
               placeholder="e.g., Blue Hydro Flask Water Bottle"
-            {imageError && <p className={styles.uploadError}>{imageError}</p>}
-            {imagePreview && (
+              required
             />
           </div>
 
