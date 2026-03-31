@@ -12,7 +12,6 @@ const PostCard = ({ post, type }) => {
 
   const isLost = type === 'lost';
   const [showImage, setShowImage] = React.useState(true);
-  const [copied, setCopied] = React.useState(false);
 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -26,28 +25,6 @@ const PostCard = ({ post, type }) => {
   const href = isLost ? `/lost-items/${id}` : `/found-items/${id}`;
   const imageUrl = resolveImageUrl(post.image_url);
 
-  const handleCopyId = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(id);
-      } else {
-        const tempInput = document.createElement('input');
-        tempInput.value = id;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-      }
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch (error) {
-      console.error('Failed to copy post ID:', error);
-    }
-  };
-
   React.useEffect(() => {
     setShowImage(true);
   }, [post?.image_url]);
@@ -56,16 +33,14 @@ const PostCard = ({ post, type }) => {
     <Link href={href} className={styles.cardLink}>
       <div className={`${styles.card} ${isLost ? styles.cardLost : styles.cardFound}`}>
         {imageUrl && showImage && (
-          <div className={styles.imageWrap}>
-            <img
-              src={imageUrl}
-              alt={post.title || 'Item image'}
-              className={styles.image}
-              onError={() => setShowImage(false)}
-            />
+          <div className={styles.metaRow}>
+            <span>
+              {isLost
+                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
+                : `📍 ${post.location}`}
+            </span>
+            <span className={styles.postId}>Post ID: {id}</span>
           </div>
-        )}
-
         {!imageUrl && (
           <div className={styles.noImageBanner}>No image uploaded</div>
         )}
@@ -74,10 +49,7 @@ const PostCard = ({ post, type }) => {
           <div className={styles.badgeRow}>
             <span className={`${styles.badge} ${isLost ? styles.badgeLost : styles.badgeFound}`}>
               {isLost ? '🔴 Lost' : '🟢 Found'}
-            </span>
-            <span className={styles.date}>{formatDate(post.created_at)}</span>
-          </div>
-
+            {isLost && <span>📍 {post.location}</span>}
           <div className={styles.idRow}>
             <span className={styles.idLabel}>Post ID: {id}</span>
             <button

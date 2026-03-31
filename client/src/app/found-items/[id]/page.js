@@ -17,6 +17,7 @@ export default function FoundItemDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showImage, setShowImage] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -80,6 +81,26 @@ export default function FoundItemDetailPage() {
 
   const isOwner = currentUser && currentUser.uid === item.user_id;
   const imageUrl = resolveImageUrl(item.image_url);
+  const postId = item.found_item_id;
+
+  const handleCopyId = async () => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(postId);
+      } else {
+        const tempInput = document.createElement('input');
+        tempInput.value = postId;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (error) {
+      console.error('Failed to copy post ID:', error);
+    }
+  };
 
   return (
     <div className="pageContainer">
@@ -95,10 +116,22 @@ export default function FoundItemDetailPage() {
 
           <div className={styles.detailContent}>
             <div className={styles.badgeRow}>
-              <span className={styles.badgeFound}>🟢 Found Item</span>
-              <span className={`${styles.statusBadge} ${styles[`status_${item.status}`]}`}>
-                {item.status}
-              </span>
+              <div className={styles.badgeGroup}>
+                <span className={styles.badgeFound}>🟢 Found Item</span>
+                <span className={`${styles.statusBadge} ${styles[`status_${item.status}`]}`}>
+                  {item.status}
+                </span>
+              </div>
+              <div className={styles.postIdWrap}>
+                <span className={styles.postIdLabel}>Post ID: {postId}</span>
+                <button
+                  type="button"
+                  className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+                  onClick={handleCopyId}
+                >
+                  {copied ? 'Copied' : 'Copy ID'}
+                </button>
+              </div>
             </div>
 
             <h1>{item.title}</h1>
