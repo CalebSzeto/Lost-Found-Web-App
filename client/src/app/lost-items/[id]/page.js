@@ -98,7 +98,7 @@ export default function LostItemDetailPage() {
       const normalized = await normalizeImageFile(file);
       if (normalized.size > MAX_IMAGE_SIZE_BYTES) {
         setEditImageError('Image must be 4MB or smaller');
-        setError('');
+        setError('Image must be 4MB or smaller');
         return;
       }
 
@@ -111,7 +111,7 @@ export default function LostItemDetailPage() {
       reader.readAsDataURL(normalized);
     } catch (err) {
       setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
-      setError('');
+      setError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
     }
   };
 
