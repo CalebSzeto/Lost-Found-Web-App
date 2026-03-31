@@ -1,0 +1,81 @@
+.page {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.backLink {
+  text-decoration: none;
+  color: var(--primary, #4f46e5);
+  font-weight: 600;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.1rem;
+}
+
+.card h1 {
+  margin: 0 0 0.55rem;
+  color: #111827;
+  font-size: 1.4rem;
+}
+
+.helper {
+  margin: 0 0 0.8rem;
+  color: #6b7280;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.label {
+  display: block;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.infoGrid p {
+  margin: 0.25rem 0 0;
+  color: #111827;
+  font-weight: 600;
+}
+
+.form {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.blockedList {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.blockedRow {
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.blockedRow span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}

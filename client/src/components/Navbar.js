@@ -52,11 +52,6 @@ const Navbar = () => {
               <Link href="/report-found" className={`${styles.navLink} ${styles.btnReportFound}`}>
                 Report Found
               </Link>
-              {currentUser.role === 'admin' && (
-                <Link href="/admin" className={`${styles.navLink} ${styles.btnAdmin}`}>
-                  Admin
-                </Link>
-              )}
               <Link href="/messages" className={styles.navLink}>Messages</Link>
               <div className={styles.profileMenuWrap} ref={profileMenuRef}>
                 <button
@@ -71,11 +66,6 @@ const Navbar = () => {
                     <Link href="/profile" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
                       Profile
                     </Link>
-                    {currentUser.role === 'admin' && (
-                      <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                        Admin Dashboard
-                      </Link>
-                    )}
                     <button
                       type="button"
                       onClick={handleLogout}
