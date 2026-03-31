@@ -26,6 +26,10 @@ const Navbar = () => {
   }, []);
 
   React.useEffect(() => {
+    setMenuOpen(false);
+  }, [currentUser?.uid, currentUser?.role]);
+
+  React.useEffect(() => {
     let disposed = false;
 
     const loadUnreadCount = async () => {
