@@ -16,6 +16,40 @@
   color: #6b7280;
 }
 
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.optionCard {
+  display: block;
+  text-decoration: none;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.optionCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+  border-color: #d1d5db;
+}
+
+.optionCard h2 {
+  margin: 0 0 0.35rem;
+  color: #111827;
+  font-size: 1.02rem;
+}
+
+.optionCard p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.94rem;
+}
+
 .sectionCard {
   background: white;
   border: 1px solid #e5e7eb;
@@ -86,6 +120,10 @@
 }
 
 @media (max-width: 768px) {
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
   .infoGrid {
     grid-template-columns: 1fr;
   }
