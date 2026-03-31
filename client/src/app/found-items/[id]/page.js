@@ -18,6 +18,14 @@ export default function FoundItemDetailPage() {
   const [error, setError] = useState('');
   const [showImage, setShowImage] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editData, setEditData] = useState({
+    title: '',
+    description: '',
+    location: '',
+    date_found: '',
+    dropoff_time: '',
+  });
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -32,6 +40,18 @@ export default function FoundItemDetailPage() {
     };
     if (id) fetchItem();
   }, [id]);
+
+  useEffect(() => {
+    if (item) {
+      setEditData({
+        title: item.title || '',
+        description: item.description || '',
+        location: item.location || '',
+        date_found: item.date_found ? item.date_found.split('T')[0] : '',
+        dropoff_time: item.dropoff_time || '',
+      });
+    }
+  }, [item]);
 
   useEffect(() => {
     setShowImage(true);
@@ -54,6 +74,33 @@ export default function FoundItemDetailPage() {
       setItem({ ...item, status: 'resolved' });
     } catch (err) {
       setError('Failed to update status');
+    }
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editData.description || !editData.location || !editData.date_found) {
+      setError('Please fill in all required fields');
+      return;
+    }
+
+    try {
+      const res = await updateFoundItem(id, {
+        title: editData.title,
+        description: editData.description,
+        location: editData.location,
+        date_found: editData.date_found,
+        dropoff_time: editData.dropoff_time,
+      });
+      setItem(res.data.item || { ...item, ...editData });
+      setIsEditing(false);
+      setError('');
+    } catch (err) {
+      setError(err?.response?.data?.error || 'Failed to update post');
     }
   };
 
@@ -134,7 +181,67 @@ export default function FoundItemDetailPage() {
               </div>
             </div>
 
-            <h1>{item.title}</h1>
+            {isEditing ? (
+              <div className={styles.editForm}>
+                <div className={styles.editRow}>
+                  <label htmlFor="title">Title</label>
+                  <input
+                    id="title"
+                    name="title"
+                    value={editData.title}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className={styles.editRow}>
+                  <label htmlFor="location">Location *</label>
+                  <input
+                    id="location"
+                    name="location"
+                    value={editData.location}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className={styles.editRow}>
+                  <label htmlFor="date_found">Date Found *</label>
+                  <input
+                    id="date_found"
+                    type="date"
+                    name="date_found"
+                    value={editData.date_found}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className={styles.editRow}>
+                  <label htmlFor="dropoff_time">Drop-off Time</label>
+                  <input
+                    id="dropoff_time"
+                    name="dropoff_time"
+                    value={editData.dropoff_time}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className={styles.editRow}>
+                  <label htmlFor="description">Description *</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    rows={5}
+                    value={editData.description}
+                    onChange={handleEditChange}
+                  />
+                </div>
+                <div className={styles.editActions}>
+                  <button type="button" className="btn" onClick={() => setIsEditing(false)}>
+                    Cancel
+                  </button>
+                  <button type="button" className="btn btnPrimary" onClick={handleSaveEdit}>
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h1>{item.title}</h1>
 
             <div className={styles.meta}>
               <span>📍 {item.location}</span>
@@ -143,10 +250,12 @@ export default function FoundItemDetailPage() {
               <span>📧 Posted by: {item.user_email}</span>
             </div>
 
-            <div className={styles.description}>
-              <h3>Description</h3>
-              <p>{item.description}</p>
-            </div>
+                <div className={styles.description}>
+                  <h3>Description</h3>
+                  <p>{item.description}</p>
+                </div>
+              </>
+            )}
 
             <div className={styles.actions}>
               {currentUser && !isOwner && (
@@ -159,6 +268,11 @@ export default function FoundItemDetailPage() {
               )}
               {isOwner && item.status === 'active' && (
                 <>
+                  {!isEditing && (
+                    <button type="button" onClick={() => setIsEditing(true)} className="btn">
+                      ✏️ Edit Post
+                    </button>
+                  )}
                   <button onClick={handleResolve} className="btn btnSuccess">
                     ✅ Mark as Returned
                   </button>

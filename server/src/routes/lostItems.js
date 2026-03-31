@@ -185,7 +185,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// PUT /api/lost-items/:id - Update lost item status
+// PUT /api/lost-items/:id - Update lost item
 router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
   try {
     const item = await LostItem.findOne({ lost_item_id: req.params.id });
@@ -196,15 +196,24 @@ router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
-    const { status } = req.body;
-    item.status = status;
+    const { status, title, description, location, date_lost } = req.body;
+
+    if (typeof title === 'string') item.title = title.trim();
+    if (typeof description === 'string') item.description = description.trim();
+    if (typeof location === 'string') item.location = location.trim();
+    if (typeof date_lost === 'string') item.date_lost = date_lost;
+    if (typeof status === 'string') item.status = status;
+
+    if (!item.title || !item.description || !item.location || !item.date_lost) {
+      return res.status(400).json({ error: 'Title, description, location, and date_lost are required' });
+    }
     await item.save();
 
     if (status === 'resolved') {
       await Message.deleteMany({ related_post_id: item.lost_item_id });
     }
 
-    res.json({ message: 'Lost item updated' });
+    res.json({ message: 'Lost item updated', item });
   } catch (error) {
     console.error('Update lost item error:', error);
     res.status(500).json({ error: 'Failed to update lost item' });

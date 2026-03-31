@@ -175,7 +175,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// PUT /api/found-items/:id - Update found item status
+// PUT /api/found-items/:id - Update found item
 router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
   try {
     const item = await FoundItem.findOne({ found_item_id: req.params.id });
@@ -186,15 +186,25 @@ router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
-    const { status } = req.body;
-    item.status = status;
+    const { status, title, description, location, date_found, dropoff_time } = req.body;
+
+    if (typeof title === 'string') item.title = title.trim();
+    if (typeof description === 'string') item.description = description.trim();
+    if (typeof location === 'string') item.location = location.trim();
+    if (typeof date_found === 'string') item.date_found = date_found;
+    if (typeof dropoff_time === 'string') item.dropoff_time = dropoff_time.trim();
+    if (typeof status === 'string') item.status = status;
+
+    if (!item.description || !item.location || !item.date_found) {
+      return res.status(400).json({ error: 'Description, location, and date_found are required' });
+    }
     await item.save();
 
     if (status === 'resolved') {
       await Message.deleteMany({ related_post_id: item.found_item_id });
     }
 
-    res.json({ message: 'Found item updated' });
+    res.json({ message: 'Found item updated', item });
   } catch (error) {
     console.error('Update found item error:', error);
     res.status(500).json({ error: 'Failed to update found item' });

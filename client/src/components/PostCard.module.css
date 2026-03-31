@@ -23,11 +23,11 @@
 }
 
 .cardLost {
-  border-left: 4px solid #EF4444;
+  border: 2px solid #EF4444;
 }
 
 .cardFound {
-  border-left: 4px solid #10B981;
+  border: 2px solid #10B981;
 }
 
 .imageWrap {
