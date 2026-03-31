@@ -75,7 +75,7 @@ const PostCard = ({ post, type }) => {
             <span className={`${styles.badge} ${isLost ? styles.badgeLost : styles.badgeFound}`}>
               {isLost ? '🔴 Lost' : '🟢 Found'}
             </span>
-            <span className={styles.date}>{formatDate(post.created_at)}</span>
+            <span className={styles.date}>Posted: {formatDate(post.created_at)}</span>
           </div>
 
           <div className={styles.metaRow}>
