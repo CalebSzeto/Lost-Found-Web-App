@@ -16,12 +16,6 @@
   color: #6b7280;
 }
 
-.quickLinks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
 .sectionCard {
   background: white;
   border: 1px solid #e5e7eb;

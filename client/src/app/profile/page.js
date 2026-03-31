@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { changePassword, getBlockedUsers, setAuthToken, unblockUser } from '@/lib/api';
@@ -105,17 +104,10 @@ export default function ProfilePage() {
           <p>All account options are available on this page.</p>
         </div>
 
-        <div className={styles.quickLinks}>
-          <Link href="/my-posts" className="btn">My Posts</Link>
-          {currentUser.role === 'admin' && (
-            <Link href="/admin" className="btn btnPrimary">Admin Dashboard</Link>
-          )}
-        </div>
-
         {error && <div className="errorMessage">{error}</div>}
         {success && <div className={styles.successMessage}>{success}</div>}
 
-        <section className={styles.sectionCard}>
+        <section className={styles.sectionCard} id="account-info">
           <h2>Account Info</h2>
           <div className={styles.infoGrid}>
             <div>
@@ -137,7 +129,7 @@ export default function ProfilePage() {
           </div>
         </section>
 
-        <section className={styles.sectionCard}>
+        <section className={styles.sectionCard} id="reset-password">
           <h2>Reset Password</h2>
           <p className={styles.helperText}>Works for every account type, including admins.</p>
           <form className={styles.form} onSubmit={handleChangePassword}>
@@ -179,7 +171,7 @@ export default function ProfilePage() {
           </form>
         </section>
 
-        <section className={styles.sectionCard}>
+        <section className={styles.sectionCard} id="unblock-list">
           <h2>Unblock Users List</h2>
           {blockedUsers.length === 0 ? (
             <p className={styles.helperText}>No blocked users.</p>

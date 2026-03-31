@@ -63,9 +63,23 @@ const Navbar = () => {
                 </button>
                 {menuOpen && (
                   <div className={styles.profileMenu}>
-                    <Link href="/profile" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      Profile
+                    <Link href="/profile#account-info" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Account Info
                     </Link>
+                    <Link href="/profile#reset-password" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Reset Password
+                    </Link>
+                    <Link href="/profile#unblock-list" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Unblock Users List
+                    </Link>
+                    <Link href="/my-posts" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      My Posts
+                    </Link>
+                    {currentUser.role === 'admin' && (
+                      <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                        Admin Dashboard
+                      </Link>
+                    )}
                     <button
                       type="button"
                       onClick={handleLogout}
