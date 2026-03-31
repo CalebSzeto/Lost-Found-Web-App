@@ -42,8 +42,8 @@ export default function AdminReportsPage() {
       try {
         setLoading(true);
         const params = filter !== 'all' ? { status: filter } : {};
-        const data = await adminListReports(params);
-        setReports(data);
+        const res = await adminListReports(params);
+        setReports(res.data || []);
         setError('');
       } catch (err) {
         console.error('Error fetching reports:', err);
