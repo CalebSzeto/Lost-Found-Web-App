@@ -14,56 +14,52 @@ export default function Home() {
         <div className={styles.introHeader}>
           <h1>Welcome to Your Campus Lost and Found Platform</h1>
           <p className={styles.introLead}>
-            This website helps students quickly recover lost belongings and return found items to
-            the right owner. Everything is designed for fast posting, direct communication, and
-            clear account tools.
+            This website helps students recover lost items, return found belongings, and communicate
+            safely. Below is a complete guide to the key features so new users can understand exactly
+            what to do from their first visit.
           </p>
         </div>
 
         <div className={styles.infoGrid}>
           <article className={styles.infoCard}>
-            <h2>Core Features</h2>
+            <h2>1) Browsing and Posting</h2>
             <ul>
-              <li>Browse all lost and found reports with latest-first sorting.</li>
-              <li>Create lost or found item posts with descriptions and images.</li>
-              <li>Open any post and message the other user directly.</li>
-              <li>Manage your posts and account settings from Profile.</li>
+              <li>Browse Lost Items and Found Items pages to check current reports.</li>
+              <li>Use filters and sort options to narrow results by your needs.</li>
+              <li>Report Lost and Report Found pages let you publish a new post with details and images.</li>
+              <li>Include title, location, date, and unique identifiers to improve match quality.</li>
             </ul>
           </article>
 
           <article className={styles.infoCard}>
-            <h2>How to Use It</h2>
+            <h2>2) How to Message Post Owners</h2>
             <ol>
-              <li>Start in Lost Items or Found Items and look for a match.</li>
-              <li>If no match exists, submit a detailed report post.</li>
-              <li>Use Messages to coordinate pickup and verify ownership.</li>
-              <li>Mark your process complete once the item is returned.</li>
+              <li>Open the post details page for the item you think is relevant.</li>
+              <li>Use the message action on that post to start a conversation.</li>
+              <li>Explain why you believe it is a match and share verification details.</li>
+              <li>Check the Messages page and navbar unread badge for replies.</li>
             </ol>
           </article>
 
           <article className={styles.infoCard}>
-            <h2>Important Notes</h2>
+            <h2>3) Report to Admin</h2>
             <ul>
-              <li>Use clear item details, date, and location to improve matching.</li>
-              <li>Check your Messages tab regularly for new replies.</li>
-              <li>Use Unblock List in Profile if you accidentally block someone.</li>
-              <li>Contact an admin if you have account-access issues.</li>
+              <li>If you see abuse, spam, or suspicious activity, report it to admin immediately.</li>
+              <li>Include the post link, user details, and a short reason in your report.</li>
+              <li>Admins can moderate accounts, posts, and messages from the Admin Dashboard.</li>
+              <li>For urgent issues, report first and avoid direct confrontation in chat.</li>
             </ul>
           </article>
-        </div>
 
-        <div className={styles.ctaRow}>
-          {currentUser ? (
-            <>
-              <Link href="/lost-items" className="btn btnPrimary">Go to Lost Items</Link>
-              <Link href="/found-items" className="btn btnPrimary">Go to Found Items</Link>
-            </>
-          ) : (
-            <>
-              <Link href="/register" className="btn btnPrimary">Create Account</Link>
-              <Link href="/login" className="btn btnOutline">Sign In</Link>
-            </>
-          )}
+          <article className={styles.infoCard}>
+            <h2>4) Profile and Tools</h2>
+            <ul>
+              <li>Account Info shows your role and account status.</li>
+              <li>Reset Password updates credentials for account security.</li>
+              <li>Unblock List lets you reverse accidental blocks.</li>
+              <li>My Posts helps you monitor and manage all your submissions.</li>
+            </ul>
+          </article>
         </div>
       </section>
 
@@ -88,6 +84,10 @@ export default function Home() {
                 <h3>Report a Found Item</h3>
                 <p>Post details so the owner can contact you.</p>
               </Link>
+              <Link href="/messages" className={styles.actionCard}>
+                <h3>Report to Admin</h3>
+                <p>Use Messages to send a report with post link, user, and reason.</p>
+              </Link>
             </>
           ) : (
             <>
@@ -98,6 +98,10 @@ export default function Home() {
               <Link href="/login" className={styles.actionCard}>
                 <h3>Sign In</h3>
                 <p>Access your profile, posts, and messages.</p>
+              </Link>
+              <Link href="/login" className={styles.actionCard}>
+                <h3>Report to Admin</h3>
+                <p>Sign in first, then report suspicious activity through Messages.</p>
               </Link>
             </>
           )}

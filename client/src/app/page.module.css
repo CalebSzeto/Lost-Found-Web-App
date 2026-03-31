@@ -57,13 +57,6 @@
   line-height: 1.45;
 }
 
-.ctaRow {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
 .quickActions {
   margin-top: 1.4rem;
 }
