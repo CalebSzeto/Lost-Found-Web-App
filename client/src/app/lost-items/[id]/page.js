@@ -110,8 +110,13 @@ export default function LostItemDetailPage() {
       reader.onloadend = () => setEditPreview(reader.result);
       reader.readAsDataURL(normalized);
     } catch (err) {
-      setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
-      setError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
+      if (String(err?.message || '').includes('HEIC conversion failed')) {
+        setEditImageError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
+        setError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
+      } else {
+        setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
+        setError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
+      }
     }
   };
 

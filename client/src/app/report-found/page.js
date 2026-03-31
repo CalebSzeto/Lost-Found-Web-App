@@ -85,7 +85,11 @@ export default function ReportFoundPage() {
         reader.onloadend = () => setImagePreview(reader.result);
         reader.readAsDataURL(normalized);
       } catch (err) {
-        setImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
+        if (String(err?.message || '').includes('HEIC conversion failed')) {
+          setImageError('HEIC conversion failed in this browser. Please convert to JPG/PNG.');
+        } else {
+          setImageError('Unsupported image type. Use JPG, PNG, WEBP, or HEIC.');
+        }
         setError('');
       }
     }

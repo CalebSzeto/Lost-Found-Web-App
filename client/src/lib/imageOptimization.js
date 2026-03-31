@@ -64,10 +64,14 @@ async function convertHeicToJpeg(file) {
     throw new Error('HEIC conversion is only supported in the browser');
   }
 
-  const { default: heic2any } = await import('heic2any');
-  const result = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
-  const blob = Array.isArray(result) ? result[0] : result;
-  return new File([blob], getOutputName(file.name || 'image', 'image/jpeg'), { type: 'image/jpeg' });
+  try {
+    const { default: heic2any } = await import('heic2any');
+    const result = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 });
+    const blob = Array.isArray(result) ? result[0] : result;
+    return new File([blob], getOutputName(file.name || 'image', 'image/jpeg'), { type: 'image/jpeg' });
+  } catch (error) {
+    throw new Error('HEIC conversion failed');
+  }
 }
 
 export async function normalizeImageFile(file) {
