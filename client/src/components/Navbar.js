@@ -10,11 +10,17 @@ const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const profileMenuRef = React.useRef(null);
 
   React.useEffect(() => {
-    const handleClickOutside = () => setMenuOpen(false);
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    const handleClickOutside = (event) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const handleLogout = async () => {
@@ -52,24 +58,21 @@ const Navbar = () => {
                 </Link>
               )}
               <Link href="/messages" className={styles.navLink}>Messages</Link>
-              <div className={styles.profileMenuWrap} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.profileMenuWrap} ref={profileMenuRef}>
                 <button
                   type="button"
                   className={styles.profileTrigger}
                   onClick={() => setMenuOpen((prev) => !prev)}
                 >
-                  {currentUser.displayName || currentUser.email}
+                  Profile
                 </button>
                 {menuOpen && (
                   <div className={styles.profileMenu}>
-                    <Link href="/profile" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      Profile & Settings
-                    </Link>
                     <Link href="/my-posts" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
                       My Posts
                     </Link>
-                    <Link href="/messages" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      Messages
+                    <Link href="/lost-items" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      Posts
                     </Link>
                     {currentUser.role === 'admin' && (
                       <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
@@ -81,7 +84,7 @@ const Navbar = () => {
                       onClick={handleLogout}
                       className={`${styles.profileMenuItem} ${styles.profileLogout}`}
                     >
-                      Logout
+                      Sign out
                     </button>
                   </div>
                 )}
