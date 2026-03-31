@@ -38,6 +38,13 @@ function handleImageUpload(req, res, next) {
   });
 }
 
+function maybeHandleImageUpload(req, res, next) {
+  if (req.is('multipart/form-data')) {
+    return handleImageUpload(req, res, next);
+  }
+  return next();
+}
+
 /**
  * Check if a post is expired
  */
@@ -186,7 +193,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // PUT /api/lost-items/:id - Update lost item
-router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
+router.put('/:id', authenticate, requireActiveUser, maybeHandleImageUpload, async (req, res) => {
   try {
     const item = await LostItem.findOne({ lost_item_id: req.params.id });
     if (!item) {
@@ -196,13 +203,21 @@ router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
-    const { status, title, description, location, date_lost } = req.body;
+    const { status, title, description, location, date_lost, remove_image } = req.body;
 
     if (typeof title === 'string') item.title = title.trim();
     if (typeof description === 'string') item.description = description.trim();
     if (typeof location === 'string') item.location = location.trim();
     if (typeof date_lost === 'string') item.date_lost = date_lost;
     if (typeof status === 'string') item.status = status;
+
+    if (remove_image === 'true') {
+      item.image_url = null;
+    }
+
+    if (req.file) {
+      item.image_url = await uploadImage(req.file, 'lost-items');
+    }
 
     if (!item.title || !item.description || !item.location || !item.date_lost) {
       return res.status(400).json({ error: 'Title, description, location, and date_lost are required' });

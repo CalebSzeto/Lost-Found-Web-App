@@ -37,6 +37,13 @@ function handleImageUpload(req, res, next) {
   });
 }
 
+function maybeHandleImageUpload(req, res, next) {
+  if (req.is('multipart/form-data')) {
+    return handleImageUpload(req, res, next);
+  }
+  return next();
+}
+
 function isExpired(createdAt) {
   const created = new Date(createdAt);
   const expirationDate = new Date(created.getTime() + EXPIRATION_DAYS * 24 * 60 * 60 * 1000);
@@ -176,7 +183,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // PUT /api/found-items/:id - Update found item
-router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
+router.put('/:id', authenticate, requireActiveUser, maybeHandleImageUpload, async (req, res) => {
   try {
     const item = await FoundItem.findOne({ found_item_id: req.params.id });
     if (!item) {
@@ -186,14 +193,24 @@ router.put('/:id', authenticate, requireActiveUser, async (req, res) => {
       return res.status(403).json({ error: 'Not authorized to update this post' });
     }
 
-    const { status, title, description, location, date_found, dropoff_time } = req.body;
+    const { status, title, description, location, date_found, dropoff_time, remove_image } = req.body;
 
     if (typeof title === 'string') item.title = title.trim();
     if (typeof description === 'string') item.description = description.trim();
     if (typeof location === 'string') item.location = location.trim();
     if (typeof date_found === 'string') item.date_found = date_found;
-    if (typeof dropoff_time === 'string') item.dropoff_time = dropoff_time.trim();
+    if (typeof dropoff_time === 'string') {
+      item.dropoff_time = dropoff_time.trim() || null;
+    }
     if (typeof status === 'string') item.status = status;
+
+    if (remove_image === 'true') {
+      item.image_url = null;
+    }
+
+    if (req.file) {
+      item.image_url = await uploadImage(req.file, 'found-items');
+    }
 
     if (!item.description || !item.location || !item.date_found) {
       return res.status(400).json({ error: 'Description, location, and date_found are required' });

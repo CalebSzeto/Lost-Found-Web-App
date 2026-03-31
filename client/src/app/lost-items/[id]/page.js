@@ -6,7 +6,10 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { getLostItem, deleteLostItem, updateLostItem } from '@/lib/api';
 import { resolveImageUrl } from '@/lib/image';
+import { prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
+
+const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
 
 export default function LostItemDetailPage() {
   const params = useParams();
@@ -25,6 +28,9 @@ export default function LostItemDetailPage() {
     location: '',
     date_lost: '',
   });
+  const [editImage, setEditImage] = useState(null);
+  const [editPreview, setEditPreview] = useState(null);
+  const [removeImage, setRemoveImage] = useState(false);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -48,6 +54,9 @@ export default function LostItemDetailPage() {
         location: item.location || '',
         date_lost: item.date_lost ? item.date_lost.split('T')[0] : '',
       });
+      setEditImage(null);
+      setEditPreview(item.image_url ? resolveImageUrl(item.image_url) : null);
+      setRemoveImage(false);
     }
   }, [item]);
 
@@ -80,6 +89,23 @@ export default function LostItemDetailPage() {
     setEditData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleEditImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > MAX_IMAGE_SIZE_BYTES) {
+      setError('Image must be 4MB or smaller');
+      return;
+    }
+
+    setError('');
+    setRemoveImage(false);
+    setEditImage(file);
+    const reader = new FileReader();
+    reader.onloadend = () => setEditPreview(reader.result);
+    reader.readAsDataURL(file);
+  };
+
   const handleSaveEdit = async () => {
     if (!editData.title || !editData.description || !editData.location || !editData.date_lost) {
       setError('Please fill in all required fields');
@@ -87,12 +113,22 @@ export default function LostItemDetailPage() {
     }
 
     try {
-      const res = await updateLostItem(id, {
-        title: editData.title,
-        description: editData.description,
-        location: editData.location,
-        date_lost: editData.date_lost,
-      });
+      const data = new FormData();
+      data.append('title', editData.title);
+      data.append('description', editData.description);
+      data.append('location', editData.location);
+      data.append('date_lost', editData.date_lost);
+
+      if (removeImage) {
+        data.append('remove_image', 'true');
+      }
+
+      if (editImage) {
+        const uploadableImage = await prepareImageForUpload(editImage, MAX_IMAGE_SIZE_BYTES);
+        data.append('image', uploadableImage);
+      }
+
+      const res = await updateLostItem(id, data);
       setItem(res.data.item || { ...item, ...editData });
       setIsEditing(false);
       setError('');
@@ -217,6 +253,33 @@ export default function LostItemDetailPage() {
                     value={editData.description}
                     onChange={handleEditChange}
                   />
+                </div>
+                <div className={styles.editRow}>
+                  <label htmlFor="edit_image">Item Image</label>
+                  <input
+                    id="edit_image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEditImageChange}
+                  />
+                  {editPreview && !removeImage && (
+                    <div className={styles.editPreviewFrame}>
+                      <img src={editPreview} alt="Preview" />
+                    </div>
+                  )}
+                  {item.image_url && (
+                    <button
+                      type="button"
+                      className={styles.removeImage}
+                      onClick={() => {
+                        setRemoveImage(true);
+                        setEditImage(null);
+                        setEditPreview(null);
+                      }}
+                    >
+                      Remove Image
+                    </button>
+                  )}
                 </div>
                 <div className={styles.editActions}>
                   <button type="button" className="btn" onClick={() => setIsEditing(false)}>
