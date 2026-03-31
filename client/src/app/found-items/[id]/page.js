@@ -32,6 +32,7 @@ export default function FoundItemDetailPage() {
   const [editImage, setEditImage] = useState(null);
   const [editPreview, setEditPreview] = useState(null);
   const [removeImage, setRemoveImage] = useState(false);
+  const [editImageError, setEditImageError] = useState('');
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -96,10 +97,12 @@ export default function FoundItemDetailPage() {
     if (!file) return;
 
     if (file.size > MAX_IMAGE_SIZE_BYTES) {
-      setError('Image must be 4MB or smaller');
+      setEditImageError('Image must be 4MB or smaller');
+      setError('');
       return;
     }
 
+    setEditImageError('');
     setError('');
     setRemoveImage(false);
     setEditImage(file);
@@ -111,6 +114,11 @@ export default function FoundItemDetailPage() {
   const handleSaveEdit = async () => {
     if (!editData.description || !editData.location || !editData.date_found) {
       setError('Please fill in all required fields');
+      return;
+    }
+
+    if (editImageError) {
+      setError(editImageError);
       return;
     }
 

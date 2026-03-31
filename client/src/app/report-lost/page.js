@@ -48,6 +48,7 @@ export default function ReportLostPage() {
   });
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [imageError, setImageError] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -70,10 +71,12 @@ export default function ReportLostPage() {
     const file = e.target.files[0];
     if (file) {
       if (file.size > MAX_IMAGE_SIZE_BYTES) {
-        setError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
+        setImageError(`Image exceeds ${MAX_IMAGE_SIZE_MB}MB limit. Please choose a smaller image.`);
+        setError('');
         return;
       }
 
+      setImageError('');
       setError('');
       setImage(file);
       const reader = new FileReader();
@@ -85,6 +88,11 @@ export default function ReportLostPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (imageError) {
+      setError(imageError);
+      return;
+    }
 
     if (!formData.title || !formData.description || !formData.location || !formData.date_lost) {
       setError('Please fill in all required fields');
