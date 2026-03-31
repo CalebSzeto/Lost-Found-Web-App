@@ -20,10 +20,22 @@ export default function UnblockListPage() {
 
   const fetchBlockedUsers = async () => {
     try {
+      setError('');
       const res = await getBlockedUsers();
       setBlockedUsers(res.data || []);
     } catch (err) {
-      setError('Failed to load blocked users');
+      const apiError = err?.response?.data?.error;
+      const accountStatus = err?.response?.data?.account_status;
+
+      if (accountStatus === 'banned') {
+        setError(apiError || 'Your account is banned. Unblock list is unavailable.');
+      } else if (accountStatus === 'restricted') {
+        setError(apiError || 'Your account is restricted. Unblock list is unavailable.');
+      } else {
+        setError(apiError || 'Failed to load blocked users');
+      }
+
+      setBlockedUsers([]);
     }
   };
 
@@ -58,24 +70,26 @@ export default function UnblockListPage() {
         <div className={styles.card}>
           <h1>Unblock List</h1>
           {error && <div className="errorMessage">{error}</div>}
-          {blockedUsers.length === 0 ? (
+          {!error && blockedUsers.length === 0 ? (
             <p className={styles.helper}>No blocked users.</p>
           ) : (
-            <div className={styles.blockedList}>
-              {blockedUsers.map((user) => (
-                <div key={user.user_id} className={styles.blockedRow}>
-                  <span>{user.email}</span>
-                  <button
-                    type="button"
-                    className="btn btnSmall"
-                    onClick={() => handleUnblock(user.user_id)}
-                    disabled={busyId === user.user_id}
-                  >
-                    {busyId === user.user_id ? 'Unblocking...' : 'Unblock'}
-                  </button>
-                </div>
-              ))}
-            </div>
+            !error && (
+              <div className={styles.blockedList}>
+                {blockedUsers.map((user) => (
+                  <div key={user.user_id} className={styles.blockedRow}>
+                    <span>{user.email}</span>
+                    <button
+                      type="button"
+                      className="btn btnSmall"
+                      onClick={() => handleUnblock(user.user_id)}
+                      disabled={busyId === user.user_id}
+                    >
+                      {busyId === user.user_id ? 'Unblocking...' : 'Unblock'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )
           )}
         </div>
       </div>

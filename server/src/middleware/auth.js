@@ -18,6 +18,24 @@ const authenticate = async (req, res, next) => {
     }
 
     if ((decodedToken.token_version || 0) !== (user.token_version || 0)) {
+      if (user.account_status === 'banned') {
+        return res.status(403).json({
+          error: user.ban_reason
+            ? `Your account has been banned: ${user.ban_reason}`
+            : 'Your account has been banned. Contact an admin for help.',
+          account_status: 'banned',
+        });
+      }
+
+      if (user.account_status === 'restricted') {
+        return res.status(403).json({
+          error: user.ban_reason
+            ? `Your account is restricted: ${user.ban_reason}`
+            : 'Your account is restricted. Contact an admin for help.',
+          account_status: 'restricted',
+        });
+      }
+
       return res.status(401).json({ error: 'Unauthorized: Session expired' });
     }
 
@@ -49,6 +67,26 @@ const requireAdmin = (req, res, next) => {
 const requireActiveUser = (req, res, next) => {
   const accountStatus = req.user?.account_status || 'active';
   if (accountStatus !== 'active') {
+    const reason = req.userDoc?.ban_reason;
+
+    if (accountStatus === 'banned') {
+      return res.status(403).json({
+        error: reason
+          ? `Your account has been banned: ${reason}`
+          : 'Your account has been banned. Contact an admin for help.',
+        account_status: accountStatus,
+      });
+    }
+
+    if (accountStatus === 'restricted') {
+      return res.status(403).json({
+        error: reason
+          ? `Your account is restricted: ${reason}`
+          : 'Your account is restricted. Contact an admin for help.',
+        account_status: accountStatus,
+      });
+    }
+
     return res.status(403).json({
       error: 'Your account cannot perform this action',
       account_status: accountStatus,

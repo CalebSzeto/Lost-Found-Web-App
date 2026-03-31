@@ -87,6 +87,24 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
+    if (user.account_status === 'banned') {
+      return res.status(403).json({
+        error: user.ban_reason
+          ? `Your account has been banned: ${user.ban_reason}`
+          : 'Your account has been banned. Contact an admin for help.',
+        account_status: 'banned',
+      });
+    }
+
+    if (user.account_status === 'restricted') {
+      return res.status(403).json({
+        error: user.ban_reason
+          ? `Your account is restricted: ${user.ban_reason}`
+          : 'Your account is restricted. Contact an admin for help.',
+        account_status: 'restricted',
+      });
+    }
+
     if (user.password_reset_required) {
       return res.status(403).json({
         error: 'Password reset required',
