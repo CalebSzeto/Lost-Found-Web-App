@@ -3,7 +3,6 @@ const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const Report = require('../models/Report');
 const User = require('../models/User');
-const Message = require('../models/Message');
 const { authenticate, requireActiveUser, requireAdmin } = require('../middleware/auth');
 
 // POST /api/reports - Create a new report
@@ -151,33 +150,6 @@ router.post(
 
       // Get admin user for email
       const adminUser = await User.findById(req.user.uid).select('email').lean();
-      const reporterUser = await User.findById(report.reporter_id).lean();
-
-      if (!reporterUser) {
-        return res.status(404).json({ error: 'Reporter not found' });
-      }
-
-      const isAdminToAdmin = reporterUser.role === 'admin';
-      const isSelfResponse = String(report.reporter_id) === String(req.user.uid);
-      const shouldSendMessage = !isAdminToAdmin && !isSelfResponse;
-
-      let message = null;
-      if (shouldSendMessage) {
-        const messageId = uuidv4();
-        message = new Message({
-          message_id: messageId,
-          sender_id: req.user.uid,
-          sender_email: adminUser.email,
-          receiver_id: report.reporter_id,
-          related_post_id: `report:${report.report_id}`,
-          message_text: `[ADMIN RESPONSE]\n\n${message_text}`,
-          read: false,
-          timestamp: new Date().toISOString(),
-        });
-
-        await message.save();
-      }
-
       // Update report status and response metadata
       if (report.status === 'open') {
         report.status = 'in-progress';
@@ -197,10 +169,10 @@ router.post(
       await report.save();
 
       res.json({
-        delivery: shouldSendMessage ? 'messages-and-reports' : 'reports-only',
-        message_id: message?.message_id || null,
-        message_text: shouldSendMessage ? message?.message_text : null,
-        timestamp: shouldSendMessage ? message?.timestamp : responseAt,
+        delivery: 'reports-only',
+        message_id: null,
+        message_text: null,
+        timestamp: responseAt,
       });
     } catch (error) {
       console.error('Error responding to report:', error);

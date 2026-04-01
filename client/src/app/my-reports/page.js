@@ -282,7 +282,7 @@ export default function MyReportsPage() {
                               ))}
                           </div>
                         ) : (
-                          <p className={styles.responseMeta}>No response yet. Check Messages for replies.</p>
+                          <p className={styles.responseMeta}>No response yet. Admin replies will appear here.</p>
                         )}
                       </div>
                     </div>

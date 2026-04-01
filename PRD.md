@@ -35,7 +35,7 @@ Campus communities need a trusted, simple workflow for lost-and-found that is fa
 1. Open Report Issue page.
 2. Provide related post ID and reason.
 3. Submit report for admin review.
-4. Receive admin response in My Reports / Messages.
+4. Receive admin response in My Reports.
 
 ## 5. Functional Requirements
 ### Authentication and accounts
