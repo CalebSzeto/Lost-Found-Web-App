@@ -142,7 +142,6 @@ npm run client
 | POST | /api/auth/register | No | Register user |
 | POST | /api/auth/login | No | Login user |
 | GET | /api/auth/me | Yes | Get current user |
-| POST | /api/auth/reset-required | No | Reset password when reset is required |
 | POST | /api/auth/change-password | Yes | Change password |
 | POST | /api/lost-items | Yes | Create lost item post |
 | GET | /api/lost-items | No | List active lost items |
@@ -171,7 +170,6 @@ npm run client
 | GET | /api/admin/users/:id/posts | Admin | User post history |
 | PATCH | /api/admin/users/:id/status | Admin | Set user status |
 | POST | /api/admin/users/:id/force-logout | Admin | Force logout user |
-| POST | /api/admin/users/:id/force-password-reset | Admin | Require password reset |
 | DELETE | /api/admin/users/:id | Admin | Delete user and related data |
 | PATCH | /api/admin/posts/lost/:id | Admin | Moderate lost post |
 | PATCH | /api/admin/posts/found/:id | Admin | Moderate found post |

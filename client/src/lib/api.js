@@ -37,9 +37,6 @@ export const loginUser = (email, password) =>
 export const getCurrentUser = () =>
   api.get('/auth/me');
 
-export const resetRequiredPassword = (email, currentPassword, newPassword) =>
-  api.post('/auth/reset-required', { email, currentPassword, newPassword });
-
 export const changePassword = (currentPassword, newPassword) =>
   api.post('/auth/change-password', { currentPassword, newPassword });
 
@@ -109,9 +106,6 @@ export const adminSetUserStatus = (userId, data) =>
 
 export const adminForceLogout = (userId, reason) =>
   api.post(`/admin/users/${userId}/force-logout`, { reason });
-
-export const adminForcePasswordReset = (userId, reason) =>
-  api.post(`/admin/users/${userId}/force-password-reset`, { reason });
 
 export const adminDeleteUser = (userId, reason) =>
   api.delete(`/admin/users/${userId}`, { data: { reason } });

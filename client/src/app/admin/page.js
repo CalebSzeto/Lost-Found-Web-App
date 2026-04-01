@@ -5,7 +5,6 @@ import { useAuth } from '@/context/AuthContext';
 import {
   adminDeleteUser,
   adminForceLogout,
-  adminForcePasswordReset,
   adminListUsers,
   adminSetUserStatus,
 } from '@/lib/api';
@@ -100,10 +99,6 @@ export default function AdminDashboardPage() {
       if (action === 'force-logout') {
         await adminForceLogout(user.user_id, 'Administrative session reset');
         setSuccess(`Forced logout for ${user.email}`);
-      }
-      if (action === 'force-password-reset') {
-        await adminForcePasswordReset(user.user_id, 'Administrative password reset required');
-        setSuccess(`Password reset required set for ${user.email}`);
       }
       if (action === 'delete') {
         const reason = reasonDrafts[user.user_id] || '';
@@ -251,14 +246,6 @@ export default function AdminDashboardPage() {
                             disabled={isBusy || isAdminUser}
                           >
                             Force Logout
-                          </button>
-                          <button
-                            type="button"
-                            className="btn"
-                            onClick={() => runAction(user, 'force-password-reset')}
-                            disabled={isBusy}
-                          >
-                            Force Reset
                           </button>
                           <button
                             type="button"

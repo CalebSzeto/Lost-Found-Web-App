@@ -76,7 +76,6 @@ function toPublicUser(user) {
     displayName: user.displayName,
     role: user.role,
     account_status: user.account_status,
-    password_reset_required: user.password_reset_required,
     ban_reason: user.ban_reason,
     ban_expires_at: user.ban_expires_at,
     created_at: user.created_at,
@@ -217,44 +216,6 @@ router.post('/users/:id/force-logout', async (req, res) => {
   } catch (error) {
     console.error('Admin force logout error:', error);
     return res.status(500).json({ error: 'Failed to force logout user' });
-  }
-});
-
-router.post('/users/:id/force-password-reset', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    const beforeState = {
-      password_reset_required: user.password_reset_required,
-      token_version: user.token_version || 0,
-    };
-
-    user.password_reset_required = true;
-    user.token_version = (user.token_version || 0) + 1;
-    user.moderated_by_user_id = req.user.uid;
-    user.last_moderated_at = new Date().toISOString();
-    await user.save();
-
-    await logAdminAction({
-      actorAdminId: req.user.uid,
-      action: 'force_password_reset',
-      targetType: 'user',
-      targetId: user._id.toString(),
-      reason: req.body?.reason || null,
-      beforeState,
-      afterState: {
-        password_reset_required: user.password_reset_required,
-        token_version: user.token_version,
-      },
-    });
-
-    return res.json({ message: 'User must reset password at next login' });
-  } catch (error) {
-    console.error('Admin force password reset error:', error);
-    return res.status(500).json({ error: 'Failed to set password reset requirement' });
   }
 });
 
