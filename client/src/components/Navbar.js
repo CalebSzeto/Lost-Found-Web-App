@@ -7,7 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 import { adminListReports, getConversations, getMyReports } from '@/lib/api';
 import styles from './Navbar.module.css';
 
-const ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX = 'adminReports:lastSeenAt:';
+const ADMIN_REPORTS_SEEN_MAP_KEY_PREFIX = 'adminReports:seenMap:';
 const ADMIN_REPORTS_SEEN_EVENT = 'admin-reports:seen';
 
 const Navbar = () => {
@@ -96,14 +96,18 @@ const Navbar = () => {
       }
 
       try {
-        const key = `${ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX}${currentUser.uid}`;
+        const key = `${ADMIN_REPORTS_SEEN_MAP_KEY_PREFIX}${currentUser.uid}`;
         const seenRaw = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
-        const lastSeenAt = seenRaw ? new Date(seenRaw).getTime() : 0;
+        let seenMap = {};
+        try {
+          seenMap = seenRaw ? JSON.parse(seenRaw) : {};
+        } catch {
+          seenMap = {};
+        }
         const res = await adminListReports({ status: 'open' });
         const reports = Array.isArray(res.data) ? res.data : [];
         const count = reports.reduce((sum, report) => {
-          const createdAt = report?.created_at ? new Date(report.created_at).getTime() : 0;
-          return createdAt > lastSeenAt ? sum + 1 : sum;
+          return seenMap?.[report._id] ? sum : sum + 1;
         }, 0);
 
         if (!disposed) {

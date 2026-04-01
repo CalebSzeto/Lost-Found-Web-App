@@ -11,7 +11,7 @@ import {
 } from '@/lib/api';
 import styles from './reports.module.css';
 
-const ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX = 'adminReports:lastSeenAt:';
+const ADMIN_REPORTS_SEEN_MAP_KEY_PREFIX = 'adminReports:seenMap:';
 const ADMIN_REPORTS_SEEN_EVENT = 'admin-reports:seen';
 
 const STATUS_COLORS = {
@@ -43,7 +43,7 @@ export default function AdminReportsPage() {
   const [openingReporterReportId, setOpeningReporterReportId] = useState(null);
   const [error, setError] = useState('');
   const [pendingFocusReportId, setPendingFocusReportId] = useState(null);
-  const [seenSinceAt, setSeenSinceAt] = useState(0);
+  const [seenReportMap, setSeenReportMap] = useState({});
   const [newOpenCount, setNewOpenCount] = useState(0);
 
   const isAdmin = currentUser?.role === 'admin';
@@ -81,11 +81,19 @@ export default function AdminReportsPage() {
       return;
     }
 
-    const key = `${ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX}${currentUser.uid}`;
-    const nowIso = new Date().toISOString();
-    localStorage.setItem(key, nowIso);
-    setSeenSinceAt(new Date(nowIso).getTime());
-    window.dispatchEvent(new Event(ADMIN_REPORTS_SEEN_EVENT));
+    const key = `${ADMIN_REPORTS_SEEN_MAP_KEY_PREFIX}${currentUser.uid}`;
+    const raw = localStorage.getItem(key);
+    if (!raw) {
+      setSeenReportMap({});
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      setSeenReportMap(parsed && typeof parsed === 'object' ? parsed : {});
+    } catch {
+      setSeenReportMap({});
+    }
   }, [isAdmin, currentUser?.uid]);
 
   useEffect(() => {
@@ -112,19 +120,13 @@ export default function AdminReportsPage() {
   }, [isAdmin, fetchReports]);
 
   useEffect(() => {
-    if (!seenSinceAt) {
-      setNewOpenCount(0);
-      return;
-    }
-
     const unseenOpenReports = reports.filter((report) => {
       if (report?.status !== 'open') return false;
-      const createdAt = report?.created_at ? new Date(report.created_at).getTime() : 0;
-      return createdAt > seenSinceAt;
+      return !seenReportMap?.[report._id];
     });
 
     setNewOpenCount(unseenOpenReports.length);
-  }, [reports, seenSinceAt]);
+  }, [reports, seenReportMap]);
 
   useEffect(() => {
     if (!pendingFocusReportId) return;
@@ -256,10 +258,31 @@ export default function AdminReportsPage() {
     }
   };
 
-  const handleToggleReport = (reportId) => {
-    setExpandedReportIds((prev) =>
-      prev.includes(reportId) ? prev.filter((id) => id !== reportId) : [...prev, reportId]
-    );
+  const handleToggleReport = (report) => {
+    const reportId = report?._id;
+    if (!reportId) return;
+
+    setExpandedReportIds((prev) => {
+      const isExpanded = prev.includes(reportId);
+      if (isExpanded) {
+        return prev.filter((id) => id !== reportId);
+      }
+
+      if (report.status === 'open' && !seenReportMap?.[reportId] && currentUser?.uid && typeof window !== 'undefined') {
+        const nextSeenMap = {
+          ...seenReportMap,
+          [reportId]: new Date().toISOString(),
+        };
+        setSeenReportMap(nextSeenMap);
+        localStorage.setItem(
+          `${ADMIN_REPORTS_SEEN_MAP_KEY_PREFIX}${currentUser.uid}`,
+          JSON.stringify(nextSeenMap)
+        );
+        window.dispatchEvent(new Event(ADMIN_REPORTS_SEEN_EVENT));
+      }
+
+      return [...prev, reportId];
+    });
   };
 
   const handleOpenRelatedPost = async (report) => {
@@ -409,13 +432,13 @@ export default function AdminReportsPage() {
               <div id={`report-${report._id}`} key={report._id} className={styles.reportCard}>
                 <div
                   className={styles.reportHeader}
-                  onClick={() => handleToggleReport(report._id)}
+                  onClick={() => handleToggleReport(report)}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      handleToggleReport(report._id);
+                      handleToggleReport(report);
                     }
                   }}
                 >
@@ -432,7 +455,7 @@ export default function AdminReportsPage() {
                       {report.last_response_at && (
                         <span className={styles.respondedBadge}>Responded</span>
                       )}
-                      {seenSinceAt > 0 && report.status === 'open' && report.created_at && new Date(report.created_at).getTime() > seenSinceAt && (
+                      {report.status === 'open' && !seenReportMap?.[report._id] && (
                         <span className={styles.newBadge}>New</span>
                       )}
                       <span className={styles.date}>
