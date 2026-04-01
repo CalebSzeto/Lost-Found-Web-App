@@ -39,6 +39,7 @@ export default function AdminReportsPage() {
   const [openingOwnerReportId, setOpeningOwnerReportId] = useState(null);
   const [openingReporterReportId, setOpeningReporterReportId] = useState(null);
   const [error, setError] = useState('');
+  const [pendingFocusReportId, setPendingFocusReportId] = useState(null);
 
   const isAdmin = currentUser?.role === 'admin';
 
@@ -70,6 +71,16 @@ export default function AdminReportsPage() {
     fetchReports();
   }, [fetchReports]);
 
+  useEffect(() => {
+    if (!pendingFocusReportId) return;
+
+    const target = document.getElementById(`report-${pendingFocusReportId}`);
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setPendingFocusReportId(null);
+  }, [reports, pendingFocusReportId]);
+
   if (!isAdmin) {
     return (
       <div className="pageContainer">
@@ -82,18 +93,28 @@ export default function AdminReportsPage() {
   }
 
   const handleStatusChange = async (reportId, newStatus) => {
+    const shouldSwitchFilter = filter !== 'all' && filter !== newStatus;
+
     try {
       setUpdatingId(reportId);
+      setPendingFocusReportId(reportId);
+      setExpandedReportIds((prev) => (prev.includes(reportId) ? prev : [...prev, reportId]));
       await adminUpdateReport(reportId, { status: newStatus });
       setReports((prev) =>
         prev.map((r) => (r._id === reportId ? { ...r, status: newStatus } : r))
       );
+
+      if (shouldSwitchFilter) {
+        setFilter(newStatus);
+      }
     } catch (err) {
       console.error('Error updating report:', err);
       setError('Failed to update report status');
     } finally {
       setUpdatingId(null);
-      fetchReports({ showLoading: false });
+      if (!shouldSwitchFilter) {
+        fetchReports({ showLoading: false });
+      }
     }
   };
 
@@ -102,6 +123,8 @@ export default function AdminReportsPage() {
       setError('Response text is required');
       return;
     }
+
+    const shouldSwitchFilter = filter !== 'all' && filter !== 'in-progress';
 
     try {
       const responseAt = new Date().toISOString();
@@ -112,6 +135,8 @@ export default function AdminReportsPage() {
         by_email: currentUser.email,
       };
       setUpdatingId(reportId);
+      setPendingFocusReportId(reportId);
+      setExpandedReportIds((prev) => (prev.includes(reportId) ? prev : [...prev, reportId]));
       await adminRespondToReport(reportId, responseText.trim());
       setReports((prev) =>
         prev.map((r) =>
@@ -127,6 +152,9 @@ export default function AdminReportsPage() {
             : r
         )
       );
+      if (shouldSwitchFilter) {
+        setFilter('in-progress');
+      }
       setRespondingToId(null);
       setResponseText('');
       setError('');
@@ -135,7 +163,9 @@ export default function AdminReportsPage() {
       setError('Failed to send response');
     } finally {
       setUpdatingId(null);
-      fetchReports({ showLoading: false });
+      if (!shouldSwitchFilter) {
+        fetchReports({ showLoading: false });
+      }
     }
   };
 
@@ -316,7 +346,7 @@ export default function AdminReportsPage() {
         ) : (
           <div className={styles.reportsList}>
             {reports.map((report) => (
-              <div key={report._id} className={styles.reportCard}>
+              <div id={`report-${report._id}`} key={report._id} className={styles.reportCard}>
                 <div
                   className={styles.reportHeader}
                   onClick={() => handleToggleReport(report._id)}
