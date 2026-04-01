@@ -1,7 +1,7 @@
 {
   "name": "lost-and-found-server",
   "version": "1.0.0",
-  "description": "School Lost & Found Backend API",
+  "description": "Reunite Backend API",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

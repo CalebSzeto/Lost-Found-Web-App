@@ -1,7 +1,7 @@
 {
   "name": "school-lost-and-found",
   "version": "1.0.0",
-  "description": "School Lost & Found Web Platform",
+  "description": "Reunite Web Platform",
   "private": true,
   "scripts": {
     "install-all": "cd server && npm install && cd ../client && npm install",

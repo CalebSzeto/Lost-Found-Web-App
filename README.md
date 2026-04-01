@@ -10,11 +10,12 @@ Reunite is the official product name used across the app and documentation.
 
 ## Current Tech Stack
 
-- Frontend: Next.js 14 + React
-- Backend: Node.js + Express
-- Database: MongoDB (Atlas or local)
-- Authentication: JWT (email/password)
-- Image Uploads: Local file uploads served from `/uploads`
+- Frontend: Next.js 14.2.5 + React 18.3.1
+- Backend: Node.js + Express 4.21.0
+- Database: MongoDB (Atlas or local) with Mongoose 8.9.5
+- Authentication: JWT (email/password) with `jsonwebtoken`
+- API Client: Axios 1.7.4
+- Image Uploads: Local file uploads served from `/uploads`, with optional Vercel Blob migration/storage
 
 ## Project Structure
 
@@ -95,8 +96,8 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
 Notes:
-- `client/.env.example` still includes old Firebase variables. They are optional for the current MongoDB/JWT flow.
-- The important value for the frontend is `NEXT_PUBLIC_API_URL`.
+- `client/.env.example` contains the same key for convenience.
+- `NEXT_PUBLIC_API_URL` is the required frontend API base URL.
 
 ### 6. Start the app in development
 
@@ -135,6 +136,50 @@ npm run client
 
 ## API Endpoints
 
+| Method | Endpoint | Auth Required | Description |
+|--------|----------|---------------|-------------|
+| GET | /api/health | No | Health check |
+| POST | /api/auth/register | No | Register user |
+| POST | /api/auth/login | No | Login user |
+| GET | /api/auth/me | Yes | Get current user |
+| POST | /api/auth/reset-required | No | Reset password when reset is required |
+| POST | /api/auth/change-password | Yes | Change password |
+| POST | /api/lost-items | Yes | Create lost item post |
+| GET | /api/lost-items | No | List active lost items |
+| GET | /api/lost-items/:id | No | Get lost item detail |
+| PUT | /api/lost-items/:id | Yes | Update lost item |
+| DELETE | /api/lost-items/:id | Yes | Delete lost item |
+| POST | /api/found-items | Yes | Create found item post |
+| GET | /api/found-items | No | List active found items |
+| GET | /api/found-items/:id | No | Get found item detail |
+| PUT | /api/found-items/:id | Yes | Update found item |
+| DELETE | /api/found-items/:id | Yes | Delete found item |
+| POST | /api/messages | Yes | Send message |
+| GET | /api/messages/conversations | Yes | List conversations |
+| GET | /api/messages/:partnerId | Yes | Get messages with a user |
+| POST | /api/messages/block/:userId | Yes | Block a user |
+| DELETE | /api/messages/block/:userId | Yes | Unblock a user |
+| GET | /api/messages/blocked | Yes | List blocked users |
+| DELETE | /api/messages/conversation/:partnerId | Yes | End a conversation |
+| POST | /api/reports | Yes | Create a report |
+| GET | /api/reports/my-reports | Yes | Get current user's reports |
+| GET | /api/reports/admin/reports | Admin | List reports for admins |
+| PATCH | /api/reports/admin/reports/:id | Admin | Update report status/details |
+| POST | /api/reports/admin/reports/:id/respond | Admin | Send admin response to report |
+| GET | /api/admin/users | Admin | List users |
+| GET | /api/admin/users/:id/history | Admin | User moderation history |
+| GET | /api/admin/users/:id/posts | Admin | User post history |
+| PATCH | /api/admin/users/:id/status | Admin | Set user status |
+| POST | /api/admin/users/:id/force-logout | Admin | Force logout user |
+| POST | /api/admin/users/:id/force-password-reset | Admin | Require password reset |
+| DELETE | /api/admin/users/:id | Admin | Delete user and related data |
+| PATCH | /api/admin/posts/lost/:id | Admin | Moderate lost post |
+| PATCH | /api/admin/posts/found/:id | Admin | Moderate found post |
+| GET | /api/admin/posts/:type/:id/history | Admin | Post moderation history |
+| GET | /api/admin/messages | Admin | List messages for moderation |
+| DELETE | /api/admin/messages/:id | Admin | Delete message |
+| GET | /api/admin/audit-logs | Admin | List admin audit logs |
+
 ## User Guide (App Usage)
 
 ### Edit your own post
@@ -158,26 +203,6 @@ npm run client
 ### Report to admin (requires post ID)
 - Reporting an issue requires a Related Post ID.
 - On a post card, click Copy ID to copy the post ID, then paste it into the report form.
-
-
-| Method | Endpoint                   | Auth Required | Description |
-|--------|----------------------------|---------------|-------------|
-| POST   | /api/auth/register         | No            | Register user |
-| POST   | /api/auth/login            | No            | Login user |
-| GET    | /api/auth/me               | Yes           | Get current user |
-| POST   | /api/lost-items            | Yes           | Create lost item post |
-| GET    | /api/lost-items            | No            | List active lost items |
-| GET    | /api/lost-items/:id        | No            | Get lost item detail |
-| PUT    | /api/lost-items/:id        | Yes           | Update lost item |
-| DELETE | /api/lost-items/:id        | Yes           | Delete lost item |
-| POST   | /api/found-items           | Yes           | Create found item post |
-| GET    | /api/found-items           | No            | List active found items |
-| GET    | /api/found-items/:id       | No            | Get found item detail |
-| PUT    | /api/found-items/:id       | Yes           | Update found item |
-| DELETE | /api/found-items/:id       | Yes           | Delete found item |
-| POST   | /api/messages              | Yes           | Send message |
-| GET    | /api/messages/conversations| Yes           | List conversations |
-| GET    | /api/messages/:partnerId   | Yes           | Get messages with a user |
 
 ## Common Beginner Issues
 
