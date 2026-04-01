@@ -196,7 +196,15 @@ npm run client
 ### Profile and My Reports
 - Profile menu includes My Reports for tracking admin responses to your reports.
 - New responses show a badge in the profile menu and a "New Response" label per report.
-- Open a report to read the full response history and reply in Messages.
+- Open a report to read the full response history.
+
+### Admin report notifications
+- Admin accounts see new open report indicators in both Profile and Admin Reports.
+- New indicators are cleared per report when that report is opened, not when the dashboard is merely visited.
+
+### Admin enforcement session behavior
+- Force Logout invalidates a user's active session and redirects them to the home page on the next API check.
+- Deleting a user account also invalidates session access and redirects the deleted user to the home page with a notice.
 
 ### Report to admin (requires post ID)
 - Reporting an issue requires a Related Post ID.

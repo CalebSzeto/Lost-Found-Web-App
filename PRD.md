@@ -58,7 +58,10 @@ Campus communities need a trusted, simple workflow for lost-and-found that is fa
 ### Reporting and moderation
 - Users can submit reports tied to a related post ID.
 - Admins can review reports and respond.
+- Admin report responses are delivered through My Reports (not direct Messages).
+- Admin report notifications are tracked per report and cleared when that specific report is opened.
 - Admins can manage user account status and enforcement actions.
+- Admin force logout and account deletion invalidate affected user sessions.
 
 ### Media handling
 - Supported image types: JPG, PNG, WEBP.
