@@ -170,8 +170,8 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link href="/" className={styles.brand}>
-          <img className={styles.brandIcon} src="/logo.svg" alt="Campus Lost and Found" />
-          <span className={styles.brandText}>Campus Lost & Found</span>
+          <img className={styles.brandIcon} src="/logo.svg" alt="Reunite" />
+          <span className={styles.brandText}>Reunite</span>
         </Link>
 
         <div className={styles.links}>

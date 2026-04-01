@@ -1,4 +1,4 @@
-# Campus Lost & Found Web Platform
+# Reunite Web Platform
 
 A centralized web app for students to report lost items, post found items, and message each other for recovery.
 

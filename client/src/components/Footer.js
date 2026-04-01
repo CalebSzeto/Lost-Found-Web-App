@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p>© {new Date().getFullYear()} Campus Lost & Found. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Reunite. All rights reserved.</p>
         <p className={styles.subtitle}>Helping students recover their belongings.</p>
       </div>
     </footer>

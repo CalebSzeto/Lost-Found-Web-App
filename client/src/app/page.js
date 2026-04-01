@@ -12,7 +12,7 @@ export default function Home() {
     <main className={styles.page}>
       <section className={styles.introSection}>
         <div className={styles.introHeader}>
-          <h1>Welcome to Your Campus Lost and Found Platform</h1>
+          <h1>Welcome to Reunite</h1>
           <p className={styles.introLead}>
             This website helps students recover lost items, return found belongings, and communicate
             safely. Below is a complete guide to the key features so new users can understand exactly

@@ -44,7 +44,7 @@ export default function RegisterPage() {
       <div className={styles.card}>
         <div className={styles.header}>
           <h2>Create Account</h2>
-          <p>Join Campus Lost & Found</p>
+          <p>Join Reunite</p>
         </div>
 
         {error && <div className="errorMessage">{error}</div>}
