@@ -170,7 +170,7 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Link href="/" className={styles.brand}>
-          <span className={styles.brandIcon}>🎒</span>
+          <span className={styles.brandIcon}>🔍</span>
           <span className={styles.brandText}>Campus Lost & Found</span>
         </Link>
 
