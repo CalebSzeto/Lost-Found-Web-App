@@ -161,7 +161,9 @@ const Navbar = () => {
     };
   }, [currentUser]);
 
-  const profileBadgeCount = currentUser?.role === 'admin' ? adminReportCount : reportResponseCount;
+  const profileBadgeCount = currentUser?.role === 'admin'
+    ? adminReportCount + reportResponseCount
+    : reportResponseCount;
 
   React.useEffect(() => {
     let disposed = false;
