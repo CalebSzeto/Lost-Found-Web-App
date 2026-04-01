@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 const AUTH_TOKEN_KEY = 'authToken';
-const FORCED_LOGOUT_NOTICE_KEY = 'reunite.forcedLogoutNotice';
-const FORCED_LOGOUT_EVENT = 'auth:logout-notice';
+const AUTH_NOTICE_KEY = 'reunite.authNotice';
+const AUTH_NOTICE_EVENT = 'auth:logout-notice';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -24,20 +24,24 @@ api.interceptors.response.use(
   (error) => {
     if (typeof window !== 'undefined') {
       const status = error?.response?.status;
+      const errorMessage = String(error?.response?.data?.error || '').toLowerCase();
       const hadToken = Boolean(localStorage.getItem(AUTH_TOKEN_KEY));
 
       if (status === 401 && hadToken && !window.__reuniteAuthRedirecting) {
         window.__reuniteAuthRedirecting = true;
         localStorage.removeItem(AUTH_TOKEN_KEY);
+        const noticeMessage = errorMessage.includes('user not found')
+          ? 'Your account was deleted by an admin.'
+          : 'You were logged out by an admin. Please sign in again.';
         sessionStorage.setItem(
-          FORCED_LOGOUT_NOTICE_KEY,
-          'You were logged out by an admin. Please sign in again.'
+          AUTH_NOTICE_KEY,
+          noticeMessage
         );
 
         if (window.location.pathname !== '/') {
           window.location.assign('/');
         } else {
-          window.dispatchEvent(new Event(FORCED_LOGOUT_EVENT));
+          window.dispatchEvent(new Event(AUTH_NOTICE_EVENT));
         }
       }
     }

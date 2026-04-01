@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import styles from './page.module.css';
 
-const FORCED_LOGOUT_NOTICE_KEY = 'reunite.forcedLogoutNotice';
-const FORCED_LOGOUT_EVENT = 'auth:logout-notice';
+const AUTH_NOTICE_KEY = 'reunite.authNotice';
+const AUTH_NOTICE_EVENT = 'auth:logout-notice';
 
 export default function Home() {
   const { currentUser } = useAuth();
@@ -16,16 +16,16 @@ export default function Home() {
     const syncNotice = () => {
       if (typeof window === 'undefined') return;
 
-      const message = sessionStorage.getItem(FORCED_LOGOUT_NOTICE_KEY);
+      const message = sessionStorage.getItem(AUTH_NOTICE_KEY);
       if (message) {
         setLogoutNotice(message);
-        sessionStorage.removeItem(FORCED_LOGOUT_NOTICE_KEY);
+        sessionStorage.removeItem(AUTH_NOTICE_KEY);
       }
     };
 
     syncNotice();
-    window.addEventListener(FORCED_LOGOUT_EVENT, syncNotice);
-    return () => window.removeEventListener(FORCED_LOGOUT_EVENT, syncNotice);
+    window.addEventListener(AUTH_NOTICE_EVENT, syncNotice);
+    return () => window.removeEventListener(AUTH_NOTICE_EVENT, syncNotice);
   }, []);
 
   return (
