@@ -75,14 +75,19 @@ export default function MyReportsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [expandedIds, setExpandedIds] = useState([]);
+  const [lastSeenMap, setLastSeenMapState] = useState({});
 
   const sortedReports = useMemo(() =>
     [...reports].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
   [reports]);
 
-  const lastSeenMap = useMemo(() =>
-    (currentUser ? getLastSeenMap(currentUser.uid) : {}),
-  [currentUser]);
+  useEffect(() => {
+    if (!currentUser) {
+      setLastSeenMapState({});
+      return;
+    }
+    setLastSeenMapState(getLastSeenMap(currentUser.uid));
+  }, [currentUser]);
 
   useEffect(() => {
     if (!currentUser) {
@@ -95,7 +100,12 @@ export default function MyReportsPage() {
         setLoading(true);
         setError('');
         const res = await getMyReports();
-        setReports(res.data || []);
+          const nextReports = res.data || [];
+          setReports(nextReports);
+          const validIds = new Set(
+            nextReports.map((report) => report._id || report.report_id).filter(Boolean)
+          );
+          setExpandedIds((prev) => prev.filter((id) => validIds.has(id)));
       } catch (err) {
         console.error('Failed to load reports:', err);
         setError('Failed to load reports');
@@ -111,9 +121,12 @@ export default function MyReportsPage() {
     setExpandedIds((prev) => {
       const isOpen = prev.includes(reportId);
       if (!isOpen && currentUser) {
-        const map = getLastSeenMap(currentUser.uid);
-        map[reportId] = new Date().toISOString();
-        setLastSeenMap(currentUser.uid, map);
+        const updated = {
+          ...lastSeenMap,
+          [reportId]: new Date().toISOString(),
+        };
+        setLastSeenMapState(updated);
+        setLastSeenMap(currentUser.uid, updated);
       }
       return isOpen ? prev.filter((id) => id !== reportId) : [...prev, reportId];
     });
@@ -159,23 +172,26 @@ export default function MyReportsPage() {
           <div className={styles.reportsList}>
             {sortedReports.map((report) => {
               const responses = normalizeResponses(report);
-              const isOpen = expandedIds.includes(report._id);
+              const reportKey = report._id || report.report_id;
+              const isOpen = reportKey ? expandedIds.includes(reportKey) : false;
               const lastResponse = getLastResponseTimestamp(report);
-              const lastSeen = lastSeenMap[report._id]
-                ? new Date(lastSeenMap[report._id]).getTime()
+              const lastSeen = reportKey && lastSeenMap[reportKey]
+                ? new Date(lastSeenMap[reportKey]).getTime()
                 : 0;
               const hasNewResponse = lastResponse > lastSeen;
               return (
                 <div key={report._id} className={styles.reportCard}>
                   <div
                     className={styles.reportHeader}
-                    onClick={() => toggleReport(report._id)}
+                    onClick={() => reportKey && toggleReport(reportKey)}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        toggleReport(report._id);
+                        if (reportKey) {
+                          toggleReport(reportKey);
+                        }
                       }
                     }}
                   >
