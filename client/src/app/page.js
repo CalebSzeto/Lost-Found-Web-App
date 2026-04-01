@@ -5,11 +5,37 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import styles from './page.module.css';
 
+const FORCED_LOGOUT_NOTICE_KEY = 'reunite.forcedLogoutNotice';
+const FORCED_LOGOUT_EVENT = 'auth:logout-notice';
+
 export default function Home() {
   const { currentUser } = useAuth();
+  const [logoutNotice, setLogoutNotice] = React.useState('');
+
+  React.useEffect(() => {
+    const syncNotice = () => {
+      if (typeof window === 'undefined') return;
+
+      const message = sessionStorage.getItem(FORCED_LOGOUT_NOTICE_KEY);
+      if (message) {
+        setLogoutNotice(message);
+        sessionStorage.removeItem(FORCED_LOGOUT_NOTICE_KEY);
+      }
+    };
+
+    syncNotice();
+    window.addEventListener(FORCED_LOGOUT_EVENT, syncNotice);
+    return () => window.removeEventListener(FORCED_LOGOUT_EVENT, syncNotice);
+  }, []);
 
   return (
     <main className={styles.page}>
+      {logoutNotice && (
+        <div className={styles.logoutNotice} role="status" aria-live="polite">
+          {logoutNotice}
+        </div>
+      )}
+
       <section className={styles.introSection}>
         <div className={styles.introHeader}>
           <h1>Welcome to Reunite</h1>

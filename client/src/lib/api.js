@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 const AUTH_TOKEN_KEY = 'authToken';
+const FORCED_LOGOUT_NOTICE_KEY = 'reunite.forcedLogoutNotice';
+const FORCED_LOGOUT_EVENT = 'auth:logout-notice';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -16,6 +18,33 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (typeof window !== 'undefined') {
+      const status = error?.response?.status;
+      const hadToken = Boolean(localStorage.getItem(AUTH_TOKEN_KEY));
+
+      if (status === 401 && hadToken && !window.__reuniteAuthRedirecting) {
+        window.__reuniteAuthRedirecting = true;
+        localStorage.removeItem(AUTH_TOKEN_KEY);
+        sessionStorage.setItem(
+          FORCED_LOGOUT_NOTICE_KEY,
+          'You were logged out by an admin. Please sign in again.'
+        );
+
+        if (window.location.pathname !== '/') {
+          window.location.assign('/');
+        } else {
+          window.dispatchEvent(new Event(FORCED_LOGOUT_EVENT));
+        }
+      }
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 // ==================== AUTH ====================
 export const setAuthToken = (token) => {

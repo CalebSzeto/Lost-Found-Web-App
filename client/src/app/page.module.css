@@ -4,6 +4,16 @@
   padding: 2rem;
 }
 
+.logoutNotice {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #bfd8c9;
+  background: #edf7f0;
+  color: #1f513a;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
 .introSection {
   background: #fbfcf8;
   border: 1px solid #dce7dd;
