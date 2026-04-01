@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getConversations, getMyReports } from '@/lib/api';
 import styles from './Navbar.module.css';
@@ -10,7 +10,6 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [unreadCount, setUnreadCount] = React.useState(0);
   const [reportResponseCount, setReportResponseCount] = React.useState(0);
@@ -31,14 +30,6 @@ const Navbar = () => {
     setMenuOpen(false);
   }, [currentUser?.uid, currentUser?.role]);
 
-  React.useEffect(() => {
-    if (!currentUser || !pathname) return;
-    if (pathname === '/my-reports' && typeof window !== 'undefined') {
-      const key = `reports:lastSeen:${currentUser.uid}`;
-      localStorage.setItem(key, new Date().toISOString());
-      setReportResponseCount(0);
-    }
-  }, [pathname, currentUser]);
 
   React.useEffect(() => {
     let disposed = false;
@@ -115,11 +106,18 @@ const Navbar = () => {
       try {
         const res = await getMyReports();
         const reports = res.data || [];
-        const key = `reports:lastSeen:${currentUser.uid}`;
-        const lastSeenRaw = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
-        const lastSeen = lastSeenRaw ? new Date(lastSeenRaw).getTime() : 0;
+        const key = `reports:lastSeenMap:${currentUser.uid}`;
+        const stored = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
+        let lastSeenMap = {};
+        try {
+          lastSeenMap = stored ? JSON.parse(stored) : {};
+        } catch (parseError) {
+          lastSeenMap = {};
+        }
         const count = reports.reduce((sum, report) => {
           const latestResponse = getLastResponseTimestamp(report);
+          const lastSeenRaw = lastSeenMap?.[report._id];
+          const lastSeen = lastSeenRaw ? new Date(lastSeenRaw).getTime() : 0;
           return latestResponse > lastSeen ? sum + 1 : sum;
         }, 0);
 

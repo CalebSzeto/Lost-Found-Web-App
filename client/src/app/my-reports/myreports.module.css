@@ -114,6 +114,15 @@
   text-transform: capitalize;
 }
 
+.newBadge {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .categoryBadge {
   background-color: var(--primary-soft);
   color: var(--primary);

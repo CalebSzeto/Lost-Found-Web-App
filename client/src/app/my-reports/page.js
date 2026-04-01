@@ -40,6 +40,35 @@ function normalizeResponses(report) {
   return [];
 }
 
+function getLastResponseTimestamp(report) {
+  const history = Array.isArray(report.response_history) ? report.response_history : [];
+  if (history.length > 0) {
+    return history.reduce((latest, entry) => {
+      const value = entry?.at ? new Date(entry.at).getTime() : 0;
+      return value > latest ? value : latest;
+    }, 0);
+  }
+
+  return report.last_response_at ? new Date(report.last_response_at).getTime() : 0;
+}
+
+function getLastSeenMap(userId) {
+  if (!userId || typeof window === 'undefined') return {};
+  const key = `reports:lastSeenMap:${userId}`;
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : {};
+  } catch (err) {
+    return {};
+  }
+}
+
+function setLastSeenMap(userId, map) {
+  if (!userId || typeof window === 'undefined') return;
+  const key = `reports:lastSeenMap:${userId}`;
+  localStorage.setItem(key, JSON.stringify(map));
+}
+
 export default function MyReportsPage() {
   const { currentUser } = useAuth();
   const [reports, setReports] = useState([]);
@@ -50,6 +79,10 @@ export default function MyReportsPage() {
   const sortedReports = useMemo(() =>
     [...reports].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
   [reports]);
+
+  const lastSeenMap = useMemo(() =>
+    (currentUser ? getLastSeenMap(currentUser.uid) : {}),
+  [currentUser]);
 
   useEffect(() => {
     if (!currentUser) {
@@ -74,16 +107,16 @@ export default function MyReportsPage() {
     loadReports();
   }, [currentUser]);
 
-  useEffect(() => {
-    if (!currentUser || typeof window === 'undefined') return;
-    const key = `reports:lastSeen:${currentUser.uid}`;
-    localStorage.setItem(key, new Date().toISOString());
-  }, [currentUser]);
-
   const toggleReport = (reportId) => {
-    setExpandedIds((prev) =>
-      prev.includes(reportId) ? prev.filter((id) => id !== reportId) : [...prev, reportId]
-    );
+    setExpandedIds((prev) => {
+      const isOpen = prev.includes(reportId);
+      if (!isOpen && currentUser) {
+        const map = getLastSeenMap(currentUser.uid);
+        map[reportId] = new Date().toISOString();
+        setLastSeenMap(currentUser.uid, map);
+      }
+      return isOpen ? prev.filter((id) => id !== reportId) : [...prev, reportId];
+    });
   };
 
   if (!currentUser) {
@@ -127,6 +160,11 @@ export default function MyReportsPage() {
             {sortedReports.map((report) => {
               const responses = normalizeResponses(report);
               const isOpen = expandedIds.includes(report._id);
+              const lastResponse = getLastResponseTimestamp(report);
+              const lastSeen = lastSeenMap[report._id]
+                ? new Date(lastSeenMap[report._id]).getTime()
+                : 0;
+              const hasNewResponse = lastResponse > lastSeen;
               return (
                 <div key={report._id} className={styles.reportCard}>
                   <div
@@ -150,6 +188,9 @@ export default function MyReportsPage() {
                         >
                           {report.status}
                         </span>
+                        {hasNewResponse && (
+                          <span className={styles.newBadge}>New Response</span>
+                        )}
                         <span className={styles.categoryBadge}>
                           {CATEGORY_LABELS[report.category] || 'Other'}
                         </span>
