@@ -120,13 +120,16 @@ export default function MyReportsPage() {
   const toggleReport = (reportId) => {
     setExpandedIds((prev) => {
       const isOpen = prev.includes(reportId);
-      if (isOpen && currentUser) {
+      if (!isOpen && currentUser) {
         const updated = {
           ...lastSeenMap,
           [reportId]: new Date().toISOString(),
         };
         setLastSeenMapState(updated);
         setLastSeenMap(currentUser.uid, updated);
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('reports:read'));
+        }
       }
       return isOpen ? prev.filter((id) => id !== reportId) : [...prev, reportId];
     });

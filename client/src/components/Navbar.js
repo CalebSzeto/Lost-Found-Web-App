@@ -131,7 +131,15 @@ const Navbar = () => {
       }
     };
 
+    const handleReportRead = () => {
+      loadReportResponses();
+    };
+
     loadReportResponses();
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('reports:read', handleReportRead);
+    }
 
     if (!currentUser) {
       return () => {
@@ -143,6 +151,9 @@ const Navbar = () => {
     return () => {
       disposed = true;
       clearInterval(intervalId);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('reports:read', handleReportRead);
+      }
     };
   }, [currentUser]);
 
