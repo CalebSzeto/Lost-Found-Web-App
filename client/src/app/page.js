@@ -25,7 +25,8 @@ export default function Home() {
             <h2>1) Browsing and Posting</h2>
             <ul>
               <li>Browse Lost Items and Found Items pages to check current reports.</li>
-              <li>Use the filters (keyword, location, date, sort) to narrow results. Remember to click search to apply filters when searching by keyword or location, and click clear to remove filters</li>
+              <li>Use the filters (keyword, location, date, sort) to narrow results.</li>
+              <li>Click Search to apply keyword or location filters, and Clear to reset filters.</li>
               <li>Report Lost and Report Found pages let you publish a new post with details and images.</li>
               <li>Include title, location, date, and unique identifiers to improve match quality.</li>
             </ul>
@@ -60,7 +61,7 @@ export default function Home() {
               <li>Unblock List lets you reverse accidental blocks.</li>
               <li>My Posts lets you edit your own posts by clicking a post card (title, description, location, date, and image).</li>
               <li>Images support JPG, PNG, WEBP up to 4MB.</li>
-              <li>My Reports shows admin responses with a New Response badge per report.</li>
+              <li>My Reports shows admin responses to your report issue.</li>
             </ul>
           </article>
         </div>
