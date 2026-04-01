@@ -216,7 +216,12 @@ const Navbar = () => {
                       My Posts
                     </Link>
                     <Link href="/my-reports" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
-                      My Reports
+                      <span>My Reports</span>
+                      {reportResponseCount > 0 && (
+                        <span className={styles.reportMenuBadge}>
+                          {reportResponseCount > 99 ? '99+' : reportResponseCount}
+                        </span>
+                      )}
                     </Link>
                     {currentUser.role === 'admin' && (
                       <>
