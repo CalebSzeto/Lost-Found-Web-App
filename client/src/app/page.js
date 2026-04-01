@@ -25,7 +25,7 @@ export default function Home() {
             <h2>1) Browsing and Posting</h2>
             <ul>
               <li>Browse Lost Items and Found Items pages to check current reports.</li>
-              <li>Use the filters (keyword, location, date, sort) to narrow results.</li>
+              <li>Use the filters (keyword, location, date, sort) to narrow results. Remember to click search to apply filters when searching by keyword or location, and click clear to remove filters</li>
               <li>Report Lost and Report Found pages let you publish a new post with details and images.</li>
               <li>Include title, location, date, and unique identifiers to improve match quality.</li>
             </ul>

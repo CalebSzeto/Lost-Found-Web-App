@@ -131,30 +131,27 @@ npm run client
 
 ## User Guide (App Usage)
 
-### Filters and search
-- Open Lost Items or Found Items.
-- Use the filter controls at the top to narrow results (keyword, location, date, sort order).
-- Results update after you apply or change a filter.
-
 ### Edit your own post
 - Open a lost or found item detail page.
 - If you are the owner, use the Edit button to update title, description, location, and date.
 - You can replace or remove the image in the edit form.
-- Supported image types: JPG, PNG, WEBP. Max size: 4MB.
+
+### Filters and search
+- Use the filters on the Lost Items or Found Items pages to narrow results.
+- Common filters include keyword, location, date, and sort order (most recent).
 
 ### Image upload limits and supported types
 - Max image size: 4MB per upload.
 - Supported types: JPG, PNG, and WEBP.
 
-### Report to admin (requires post ID)
-- Reports require a Related Post ID.
-- On any post card, click Copy ID to copy the post ID, then paste it into the report form.
-- Include a short reason in the description so admins can act quickly.
-
 ### Profile and My Reports
 - Profile menu includes My Reports for tracking admin responses to your reports.
 - New responses show a badge in the profile menu and a "New Response" label per report.
 - Open a report to read the full response history and reply in Messages.
+
+### Report to admin (requires post ID)
+- Reporting an issue requires a Related Post ID.
+- On a post card, click Copy ID to copy the post ID, then paste it into the report form.
 
 
 | Method | Endpoint                   | Auth Required | Description |
