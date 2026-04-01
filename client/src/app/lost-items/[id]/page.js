@@ -4,7 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import { getLostItem, deleteLostItem, updateLostItem } from '@/lib/api';
+import {
+  getLostItem,
+  deleteLostItem,
+  updateLostItem,
+  adminModerateLostPost,
+} from '@/lib/api';
 import { resolveImageUrl } from '@/lib/image';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
@@ -32,6 +37,8 @@ export default function LostItemDetailPage() {
   const [editPreview, setEditPreview] = useState(null);
   const [removeImage, setRemoveImage] = useState(false);
   const [editImageError, setEditImageError] = useState('');
+  const isOwner = Boolean(currentUser && item && currentUser.uid === item.user_id);
+  const canAdminModerate = Boolean(currentUser?.role === 'admin' && item && !isOwner);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -68,6 +75,17 @@ export default function LostItemDetailPage() {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
+        if (canAdminModerate) {
+          const reason = window.prompt('Reason for deleting this post (required):', 'Policy violation');
+          if (!reason || !reason.trim()) {
+            setError('A moderation reason is required to delete this post.');
+            return;
+          }
+          await adminModerateLostPost(id, { action: 'hard_delete', reason: reason.trim() });
+          router.push('/lost-items');
+          return;
+        }
+
         await deleteLostItem(id);
         router.push('/lost-items');
       } catch (err) {
@@ -78,6 +96,12 @@ export default function LostItemDetailPage() {
 
   const handleResolve = async () => {
     try {
+      if (canAdminModerate) {
+        await adminModerateLostPost(id, { action: 'resolve' });
+        setItem((prev) => ({ ...prev, status: 'resolved' }));
+        return;
+      }
+
       await updateLostItem(id, { status: 'resolved' });
       setItem({ ...item, status: 'resolved' });
     } catch (err) {
@@ -126,6 +150,23 @@ export default function LostItemDetailPage() {
     }
 
     try {
+      if (canAdminModerate) {
+        const res = await adminModerateLostPost(id, {
+          action: 'edit',
+          updates: {
+            title: editData.title,
+            description: editData.description,
+            location: editData.location,
+            date_lost: editData.date_lost,
+          },
+          reason: 'Admin edit',
+        });
+        setItem(res.data.item || { ...item, ...editData });
+        setIsEditing(false);
+        setError('');
+        return;
+      }
+
       const data = new FormData();
       data.append('title', editData.title);
       data.append('description', editData.description);
@@ -172,7 +213,6 @@ export default function LostItemDetailPage() {
     );
   }
 
-  const isOwner = currentUser && currentUser.uid === item.user_id;
   const imageUrl = resolveImageUrl(item.image_url);
   const postId = item.lost_item_id;
 
@@ -333,7 +373,7 @@ export default function LostItemDetailPage() {
                   💬 Message Owner
                 </Link>
               )}
-              {isOwner && item.status === 'active' && (
+              {(isOwner || canAdminModerate) && item.status === 'active' && (
                 <>
                   {!isEditing && (
                     <button type="button" onClick={() => setIsEditing(true)} className="btn">

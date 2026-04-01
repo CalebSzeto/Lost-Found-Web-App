@@ -4,7 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import { getFoundItem, deleteFoundItem, updateFoundItem } from '@/lib/api';
+import {
+  getFoundItem,
+  deleteFoundItem,
+  updateFoundItem,
+  adminModerateFoundPost,
+} from '@/lib/api';
 import { resolveImageUrl } from '@/lib/image';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
@@ -33,6 +38,8 @@ export default function FoundItemDetailPage() {
   const [editPreview, setEditPreview] = useState(null);
   const [removeImage, setRemoveImage] = useState(false);
   const [editImageError, setEditImageError] = useState('');
+  const isOwner = Boolean(currentUser && item && currentUser.uid === item.user_id);
+  const canAdminModerate = Boolean(currentUser?.role === 'admin' && item && !isOwner);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -70,6 +77,17 @@ export default function FoundItemDetailPage() {
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
+        if (canAdminModerate) {
+          const reason = window.prompt('Reason for deleting this post (required):', 'Policy violation');
+          if (!reason || !reason.trim()) {
+            setError('A moderation reason is required to delete this post.');
+            return;
+          }
+          await adminModerateFoundPost(id, { action: 'hard_delete', reason: reason.trim() });
+          router.push('/found-items');
+          return;
+        }
+
         await deleteFoundItem(id);
         router.push('/found-items');
       } catch (err) {
@@ -80,6 +98,12 @@ export default function FoundItemDetailPage() {
 
   const handleResolve = async () => {
     try {
+      if (canAdminModerate) {
+        await adminModerateFoundPost(id, { action: 'resolve' });
+        setItem((prev) => ({ ...prev, status: 'resolved' }));
+        return;
+      }
+
       await updateFoundItem(id, { status: 'resolved' });
       setItem({ ...item, status: 'resolved' });
     } catch (err) {
@@ -128,6 +152,24 @@ export default function FoundItemDetailPage() {
     }
 
     try {
+      if (canAdminModerate) {
+        const res = await adminModerateFoundPost(id, {
+          action: 'edit',
+          updates: {
+            title: editData.title,
+            description: editData.description,
+            location: editData.location,
+            date_found: editData.date_found,
+            dropoff_time: editData.dropoff_time,
+          },
+          reason: 'Admin edit',
+        });
+        setItem(res.data.item || { ...item, ...editData });
+        setIsEditing(false);
+        setError('');
+        return;
+      }
+
       const data = new FormData();
       data.append('title', editData.title);
       data.append('description', editData.description);
@@ -175,7 +217,6 @@ export default function FoundItemDetailPage() {
     );
   }
 
-  const isOwner = currentUser && currentUser.uid === item.user_id;
   const imageUrl = resolveImageUrl(item.image_url);
   const postId = item.found_item_id;
 
@@ -345,7 +386,7 @@ export default function FoundItemDetailPage() {
                   💬 Message Finder
                 </Link>
               )}
-              {isOwner && item.status === 'active' && (
+              {(isOwner || canAdminModerate) && item.status === 'active' && (
                 <>
                   {!isEditing && (
                     <button type="button" onClick={() => setIsEditing(true)} className="btn">
