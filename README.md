@@ -129,6 +129,31 @@ npm run client
 
 ## API Endpoints
 
+## User Guide (App Usage)
+
+### Edit your own post
+- Open a lost or found item detail page.
+- If you are the owner, use the Edit button to update title, description, location, and date.
+- You can replace or remove the image in the edit form.
+
+### Filters and search
+- Use the filters on the Lost Items or Found Items pages to narrow results.
+- Common filters include keyword, location, date, and sort order (most recent).
+
+### Image upload limits and supported types
+- Max image size: 4MB per upload.
+- Supported types: JPG, PNG, and WEBP.
+
+### Profile and My Reports
+- Profile menu includes My Reports for tracking admin responses to your reports.
+- New responses show a badge in the profile menu and a "New Response" label per report.
+- Open a report to read the full response history and reply in Messages.
+
+### Report to admin (requires post ID)
+- Reporting an issue requires a Related Post ID.
+- On a post card, click Copy ID to copy the post ID, then paste it into the report form.
+
+
 | Method | Endpoint                   | Auth Required | Description |
 |--------|----------------------------|---------------|-------------|
 | POST   | /api/auth/register         | No            | Register user |
