@@ -25,7 +25,7 @@ export default function Home() {
             <h2>1) Browsing and Posting</h2>
             <ul>
               <li>Browse Lost Items and Found Items pages to check current reports.</li>
-              <li>Use filters and sort options to narrow results by your needs.</li>
+              <li>Use the filters (keyword, location, date, sort) to narrow results.</li>
               <li>Report Lost and Report Found pages let you publish a new post with details and images.</li>
               <li>Include title, location, date, and unique identifiers to improve match quality.</li>
             </ul>
@@ -45,7 +45,8 @@ export default function Home() {
             <h2>3) Report to Admin</h2>
             <ul>
               <li>If you see abuse, spam, or suspicious activity, report it to admin immediately.</li>
-              <li>Include the post link, user details, and a short reason in your report.</li>
+              <li>Reports require a Related Post ID. Click Copy ID on the post card, then paste it into the report.</li>
+              <li>Include a short reason in the description so admins can act quickly.</li>
               <li>Admins can moderate accounts, posts, and messages from the Admin Dashboard.</li>
               <li>For urgent issues, report first and avoid direct confrontation in chat.</li>
             </ul>
@@ -57,7 +58,9 @@ export default function Home() {
               <li>Account Info shows your role and account status.</li>
               <li>Reset Password updates credentials for account security.</li>
               <li>Unblock List lets you reverse accidental blocks.</li>
-              <li>My Posts helps you monitor and manage all your submissions.</li>
+              <li>My Posts lets you edit your own posts (title, description, location, date, and image).</li>
+              <li>Images support JPG, PNG, WEBP up to 4MB.</li>
+              <li>My Reports shows admin responses with a New Response badge per report.</li>
             </ul>
           </article>
         </div>
