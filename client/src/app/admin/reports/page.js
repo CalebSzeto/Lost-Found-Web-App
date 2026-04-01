@@ -11,6 +11,9 @@ import {
 } from '@/lib/api';
 import styles from './reports.module.css';
 
+const ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX = 'adminReports:lastSeenAt:';
+const ADMIN_REPORTS_SEEN_EVENT = 'admin-reports:seen';
+
 const STATUS_COLORS = {
   open: '#e4bf5a',
   'in-progress': '#ff9800',
@@ -40,6 +43,8 @@ export default function AdminReportsPage() {
   const [openingReporterReportId, setOpeningReporterReportId] = useState(null);
   const [error, setError] = useState('');
   const [pendingFocusReportId, setPendingFocusReportId] = useState(null);
+  const [seenSinceAt, setSeenSinceAt] = useState(0);
+  const [newOpenCount, setNewOpenCount] = useState(0);
 
   const isAdmin = currentUser?.role === 'admin';
 
@@ -70,6 +75,56 @@ export default function AdminReportsPage() {
   useEffect(() => {
     fetchReports();
   }, [fetchReports]);
+
+  useEffect(() => {
+    if (!isAdmin || !currentUser?.uid || typeof window === 'undefined') {
+      return;
+    }
+
+    const key = `${ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX}${currentUser.uid}`;
+    const nowIso = new Date().toISOString();
+    localStorage.setItem(key, nowIso);
+    setSeenSinceAt(new Date(nowIso).getTime());
+    window.dispatchEvent(new Event(ADMIN_REPORTS_SEEN_EVENT));
+  }, [isAdmin, currentUser?.uid]);
+
+  useEffect(() => {
+    if (!isAdmin) return;
+
+    const intervalId = setInterval(() => {
+      fetchReports({ showLoading: false });
+    }, 5000);
+
+    const handleVisibilityRefresh = () => {
+      if (document.visibilityState === 'visible') {
+        fetchReports({ showLoading: false });
+      }
+    };
+
+    window.addEventListener('focus', handleVisibilityRefresh);
+    document.addEventListener('visibilitychange', handleVisibilityRefresh);
+
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener('focus', handleVisibilityRefresh);
+      document.removeEventListener('visibilitychange', handleVisibilityRefresh);
+    };
+  }, [isAdmin, fetchReports]);
+
+  useEffect(() => {
+    if (!seenSinceAt) {
+      setNewOpenCount(0);
+      return;
+    }
+
+    const unseenOpenReports = reports.filter((report) => {
+      if (report?.status !== 'open') return false;
+      const createdAt = report?.created_at ? new Date(report.created_at).getTime() : 0;
+      return createdAt > seenSinceAt;
+    });
+
+    setNewOpenCount(unseenOpenReports.length);
+  }, [reports, seenSinceAt]);
 
   useEffect(() => {
     if (!pendingFocusReportId) return;
@@ -322,6 +377,11 @@ export default function AdminReportsPage() {
 
           <div className={styles.stats}>
             <span>{reports.length} report(s)</span>
+            {newOpenCount > 0 && (
+              <span className={styles.newReportIndicator}>
+                {newOpenCount > 99 ? '99+' : newOpenCount} new open report(s)
+              </span>
+            )}
             <button
               type="button"
               className={styles.refreshButton}
@@ -371,6 +431,9 @@ export default function AdminReportsPage() {
                       <span className={styles.categoryBadge}>{CATEGORY_LABELS[report.category]}</span>
                       {report.last_response_at && (
                         <span className={styles.respondedBadge}>Responded</span>
+                      )}
+                      {seenSinceAt > 0 && report.status === 'open' && report.created_at && new Date(report.created_at).getTime() > seenSinceAt && (
+                        <span className={styles.newBadge}>New</span>
                       )}
                       <span className={styles.date}>
                         {new Date(report.created_at).toLocaleDateString()}

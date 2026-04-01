@@ -4,8 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { getConversations, getMyReports } from '@/lib/api';
+import { adminListReports, getConversations, getMyReports } from '@/lib/api';
 import styles from './Navbar.module.css';
+
+const ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX = 'adminReports:lastSeenAt:';
+const ADMIN_REPORTS_SEEN_EVENT = 'admin-reports:seen';
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
@@ -13,6 +16,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [unreadCount, setUnreadCount] = React.useState(0);
   const [reportResponseCount, setReportResponseCount] = React.useState(0);
+  const [adminReportCount, setAdminReportCount] = React.useState(0);
   const profileMenuRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -81,6 +85,79 @@ const Navbar = () => {
       }
     };
   }, [currentUser]);
+
+  React.useEffect(() => {
+    let disposed = false;
+
+    const loadAdminReportCount = async () => {
+      if (!currentUser || currentUser.role !== 'admin') {
+        setAdminReportCount(0);
+        return;
+      }
+
+      try {
+        const key = `${ADMIN_REPORTS_LAST_SEEN_KEY_PREFIX}${currentUser.uid}`;
+        const seenRaw = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
+        const lastSeenAt = seenRaw ? new Date(seenRaw).getTime() : 0;
+        const res = await adminListReports({ status: 'open' });
+        const reports = Array.isArray(res.data) ? res.data : [];
+        const count = reports.reduce((sum, report) => {
+          const createdAt = report?.created_at ? new Date(report.created_at).getTime() : 0;
+          return createdAt > lastSeenAt ? sum + 1 : sum;
+        }, 0);
+
+        if (!disposed) {
+          setAdminReportCount(count);
+        }
+      } catch (err) {
+        if (!disposed) {
+          setAdminReportCount(0);
+        }
+      }
+    };
+
+    const handleSeen = () => {
+      loadAdminReportCount();
+    };
+
+    const handleVisibilityRefresh = () => {
+      if (document.visibilityState === 'visible') {
+        loadAdminReportCount();
+      }
+    };
+
+    loadAdminReportCount();
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener(ADMIN_REPORTS_SEEN_EVENT, handleSeen);
+      window.addEventListener('focus', handleVisibilityRefresh);
+      document.addEventListener('visibilitychange', handleVisibilityRefresh);
+    }
+
+    if (!currentUser || currentUser.role !== 'admin') {
+      return () => {
+        disposed = true;
+        if (typeof window !== 'undefined') {
+          window.removeEventListener(ADMIN_REPORTS_SEEN_EVENT, handleSeen);
+          window.removeEventListener('focus', handleVisibilityRefresh);
+          document.removeEventListener('visibilitychange', handleVisibilityRefresh);
+        }
+      };
+    }
+
+    const intervalId = setInterval(loadAdminReportCount, 5000);
+    return () => {
+      disposed = true;
+      clearInterval(intervalId);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener(ADMIN_REPORTS_SEEN_EVENT, handleSeen);
+        window.removeEventListener('focus', handleVisibilityRefresh);
+        document.removeEventListener('visibilitychange', handleVisibilityRefresh);
+      }
+    };
+  }, [currentUser]);
+
+  const profileBadgeCount = currentUser?.role === 'admin' ? adminReportCount : reportResponseCount;
 
   React.useEffect(() => {
     let disposed = false;
@@ -204,9 +281,9 @@ const Navbar = () => {
                   onClick={() => setMenuOpen((prev) => !prev)}
                 >
                   Profile
-                  {reportResponseCount > 0 && (
+                  {profileBadgeCount > 0 && (
                     <span className={styles.reportBadge}>
-                      {reportResponseCount > 99 ? '99+' : reportResponseCount}
+                      {profileBadgeCount > 99 ? '99+' : profileBadgeCount}
                     </span>
                   )}
                 </button>
@@ -244,7 +321,12 @@ const Navbar = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Admin Reports
+                          <span>Admin Reports</span>
+                          {adminReportCount > 0 && (
+                            <span className={styles.adminReportMenuBadge}>
+                              {adminReportCount > 99 ? '99+' : adminReportCount}
+                            </span>
+                          )}
                         </Link>
                       </>
                     )}
