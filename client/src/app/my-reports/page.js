@@ -120,7 +120,7 @@ export default function MyReportsPage() {
   const toggleReport = (reportId) => {
     setExpandedIds((prev) => {
       const isOpen = prev.includes(reportId);
-      if (!isOpen && currentUser) {
+      if (isOpen && currentUser) {
         const updated = {
           ...lastSeenMap,
           [reportId]: new Date().toISOString(),
@@ -241,6 +241,9 @@ export default function MyReportsPage() {
                               .reverse()
                               .map((entry, index) => (
                                 <div key={`${entry.at}-${index}`} className={styles.responseItem}>
+                                  {entry.at && new Date(entry.at).getTime() > lastSeen && (
+                                    <span className={styles.responseNewBadge}>New</span>
+                                  )}
                                   <p style={{ whiteSpace: 'pre-wrap' }}>{entry.text}</p>
                                   {entry.at && (
                                     <p className={styles.responseMeta}>
