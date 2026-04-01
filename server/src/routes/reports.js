@@ -131,7 +131,7 @@ router.patch(
   }
 );
 
-// POST /api/admin/reports/:id/respond - Admin responds to report via message
+// POST /api/admin/reports/:id/respond - Admin responds to report
 router.post(
   '/admin/reports/:id/respond',
   authenticate,
@@ -157,20 +157,26 @@ router.post(
         return res.status(404).json({ error: 'Reporter not found' });
       }
 
-      // Create a message from admin to reporter
-      const messageId = uuidv4();
-      const message = new Message({
-        message_id: messageId,
-        sender_id: req.user.uid,
-        sender_email: adminUser.email,
-        receiver_id: report.reporter_id,
-        related_post_id: `report:${report.report_id}`,
-        message_text: `[ADMIN RESPONSE]\n\n${message_text}`,
-        read: false,
-        timestamp: new Date().toISOString(),
-      });
+      const isAdminToAdmin = reporterUser.role === 'admin';
+      const isSelfResponse = String(report.reporter_id) === String(req.user.uid);
+      const shouldSendMessage = !isAdminToAdmin && !isSelfResponse;
 
-      await message.save();
+      let message = null;
+      if (shouldSendMessage) {
+        const messageId = uuidv4();
+        message = new Message({
+          message_id: messageId,
+          sender_id: req.user.uid,
+          sender_email: adminUser.email,
+          receiver_id: report.reporter_id,
+          related_post_id: `report:${report.report_id}`,
+          message_text: `[ADMIN RESPONSE]\n\n${message_text}`,
+          read: false,
+          timestamp: new Date().toISOString(),
+        });
+
+        await message.save();
+      }
 
       // Update report status and response metadata
       if (report.status === 'open') {
@@ -191,9 +197,10 @@ router.post(
       await report.save();
 
       res.json({
-        message_id: message.message_id,
-        message_text: message.message_text,
-        timestamp: message.timestamp,
+        delivery: shouldSendMessage ? 'messages-and-reports' : 'reports-only',
+        message_id: message?.message_id || null,
+        message_text: shouldSendMessage ? message?.message_text : null,
+        timestamp: shouldSendMessage ? message?.timestamp : responseAt,
       });
     } catch (error) {
       console.error('Error responding to report:', error);

@@ -481,14 +481,14 @@ export default function AdminReportsPage() {
                           setRespondingToId(respondingToId === report._id ? null : report._id)
                         }
                       >
-                        {respondingToId === report._id ? 'Cancel' : 'Send Message'}
+                        {respondingToId === report._id ? 'Cancel' : 'Respond'}
                       </button>
                     </div>
 
                     {respondingToId === report._id && (
                       <div className={styles.responseForm}>
                         <textarea
-                          placeholder="Type your response to send to the reporter..."
+                          placeholder="Type your response for this report..."
                           value={responseText}
                           onChange={(e) => setResponseText(e.target.value)}
                           maxLength="2000"

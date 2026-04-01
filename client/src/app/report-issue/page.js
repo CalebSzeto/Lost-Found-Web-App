@@ -88,14 +88,7 @@ export default function ReportIssuePage() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           {success && (
             <div className={styles.successMessage}>
-              ✓ Report submitted successfully! Admin responses arrive in Messages.
-              <button
-                type="button"
-                className={styles.primaryButton}
-                onClick={() => router.push('/messages')}
-              >
-                Go to Messages
-              </button>
+              ✓ Report submitted successfully! Track updates in My Reports.
             </div>
           )}
 
