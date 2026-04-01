@@ -151,16 +151,24 @@ export default function LostItemDetailPage() {
 
     try {
       if (canAdminModerate) {
-        const res = await adminModerateLostPost(id, {
-          action: 'edit',
-          updates: {
-            title: editData.title,
-            description: editData.description,
-            location: editData.location,
-            date_lost: editData.date_lost,
-          },
-          reason: 'Admin edit',
-        });
+        const adminData = new FormData();
+        adminData.append('action', 'edit');
+        adminData.append('reason', 'Admin edit');
+        adminData.append('title', editData.title);
+        adminData.append('description', editData.description);
+        adminData.append('location', editData.location);
+        adminData.append('date_lost', editData.date_lost);
+
+        if (removeImage) {
+          adminData.append('remove_image', 'true');
+        }
+
+        if (editImage) {
+          const uploadableImage = await prepareImageForUpload(editImage, MAX_IMAGE_SIZE_BYTES);
+          adminData.append('image', uploadableImage);
+        }
+
+        const res = await adminModerateLostPost(id, adminData);
         setItem(res.data.item || { ...item, ...editData });
         setIsEditing(false);
         setError('');

@@ -1,15 +1,51 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const multer = require('multer');
 const User = require('../models/User');
 const LostItem = require('../models/LostItem');
 const FoundItem = require('../models/FoundItem');
 const Message = require('../models/Message');
 const AuditLog = require('../models/AuditLog');
 const { authenticate, requireAdmin } = require('../middleware/auth');
+const { uploadImage } = require('../lib/imageUpload');
 
 const router = express.Router();
+const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: MAX_IMAGE_SIZE_BYTES },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'), false);
+    }
+  },
+});
 
 router.use(authenticate, requireAdmin);
+
+function handleImageUpload(req, res, next) {
+  upload.single('image')(req, res, (err) => {
+    if (!err) {
+      return next();
+    }
+
+    if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+      return res.status(400).json({ error: 'Image must be 4MB or smaller' });
+    }
+
+    return res.status(400).json({ error: err.message || 'Invalid image upload' });
+  });
+}
+
+function maybeHandleImageUpload(req, res, next) {
+  if (req.is('multipart/form-data')) {
+    return handleImageUpload(req, res, next);
+  }
+  return next();
+}
 
 function requireReason(reason, res) {
   if (!reason || !String(reason).trim()) {
@@ -286,9 +322,18 @@ router.delete('/users/:id', async (req, res) => {
   }
 });
 
-router.patch('/posts/lost/:id', async (req, res) => {
+router.patch('/posts/lost/:id', maybeHandleImageUpload, async (req, res) => {
   try {
-    const { action, reason, updates } = req.body;
+    const { action, reason } = req.body;
+    const updates = typeof req.body.updates === 'string'
+      ? (() => {
+          try {
+            return JSON.parse(req.body.updates);
+          } catch {
+            return {};
+          }
+        })()
+      : (req.body.updates || {});
     const item = await LostItem.findOne({ lost_item_id: req.params.id });
 
     if (!item) {
@@ -318,13 +363,30 @@ router.patch('/posts/lost/:id', async (req, res) => {
         item.is_pinned = false;
         break;
       case 'edit':
-        if (updates && typeof updates === 'object') {
+        {
+          const mergedUpdates = {
+            ...updates,
+            title: req.body.title ?? updates.title,
+            description: req.body.description ?? updates.description,
+            location: req.body.location ?? updates.location,
+            date_lost: req.body.date_lost ?? updates.date_lost,
+            status: req.body.status ?? updates.status,
+          };
+
           const editableFields = ['title', 'description', 'location', 'date_lost', 'status'];
           editableFields.forEach((field) => {
-            if (updates[field] !== undefined) {
-              item[field] = updates[field];
+            if (mergedUpdates[field] !== undefined) {
+              item[field] = mergedUpdates[field];
             }
           });
+
+          if (req.body.remove_image === 'true') {
+            item.image_url = null;
+          }
+
+          if (req.file) {
+            item.image_url = await uploadImage(req.file, 'lost-items');
+          }
         }
         break;
       case 'hard_delete':
@@ -367,9 +429,18 @@ router.patch('/posts/lost/:id', async (req, res) => {
   }
 });
 
-router.patch('/posts/found/:id', async (req, res) => {
+router.patch('/posts/found/:id', maybeHandleImageUpload, async (req, res) => {
   try {
-    const { action, reason, updates } = req.body;
+    const { action, reason } = req.body;
+    const updates = typeof req.body.updates === 'string'
+      ? (() => {
+          try {
+            return JSON.parse(req.body.updates);
+          } catch {
+            return {};
+          }
+        })()
+      : (req.body.updates || {});
     const item = await FoundItem.findOne({ found_item_id: req.params.id });
 
     if (!item) {
@@ -399,13 +470,31 @@ router.patch('/posts/found/:id', async (req, res) => {
         item.is_pinned = false;
         break;
       case 'edit':
-        if (updates && typeof updates === 'object') {
+        {
+          const mergedUpdates = {
+            ...updates,
+            title: req.body.title ?? updates.title,
+            description: req.body.description ?? updates.description,
+            location: req.body.location ?? updates.location,
+            date_found: req.body.date_found ?? updates.date_found,
+            dropoff_time: req.body.dropoff_time ?? updates.dropoff_time,
+            status: req.body.status ?? updates.status,
+          };
+
           const editableFields = ['title', 'description', 'location', 'date_found', 'dropoff_time', 'status'];
           editableFields.forEach((field) => {
-            if (updates[field] !== undefined) {
-              item[field] = updates[field];
+            if (mergedUpdates[field] !== undefined) {
+              item[field] = mergedUpdates[field];
             }
           });
+
+          if (req.body.remove_image === 'true') {
+            item.image_url = null;
+          }
+
+          if (req.file) {
+            item.image_url = await uploadImage(req.file, 'found-items');
+          }
         }
         break;
       case 'hard_delete':
