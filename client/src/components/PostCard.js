@@ -25,6 +25,7 @@ const PostCard = ({ post, type }) => {
   const id = isLost ? post.lost_item_id : post.found_item_id;
   const href = isLost ? `/lost-items/${id}` : `/found-items/${id}`;
   const imageUrl = resolveImageUrl(post.image_url);
+  const displayTitle = (post.title || '').trim() || (isLost ? 'Lost item' : 'Found item');
 
   const handleCopyId = async (event) => {
     event.preventDefault();
@@ -98,7 +99,7 @@ const PostCard = ({ post, type }) => {
             </button>
           </div>
 
-          {isLost && <h3 className={styles.title}>{post.title}</h3>}
+          <h3 className={styles.title}>{displayTitle}</h3>
 
           <p className={styles.description}>
             {post.description?.length > 120
