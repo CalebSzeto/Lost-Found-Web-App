@@ -74,6 +74,12 @@ export default function MyReportsPage() {
     loadReports();
   }, [currentUser]);
 
+  useEffect(() => {
+    if (!currentUser || typeof window === 'undefined') return;
+    const key = `reports:lastSeen:${currentUser.uid}`;
+    localStorage.setItem(key, new Date().toISOString());
+  }, [currentUser]);
+
   const toggleReport = (reportId) => {
     setExpandedIds((prev) =>
       prev.includes(reportId) ? prev.filter((id) => id !== reportId) : [...prev, reportId]

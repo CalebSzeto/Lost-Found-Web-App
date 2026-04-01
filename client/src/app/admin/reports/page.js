@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import {
   adminListReports,
@@ -42,12 +42,14 @@ export default function AdminReportsPage() {
 
   const isAdmin = currentUser?.role === 'admin';
 
-  useEffect(() => {
-    if (!isAdmin) return;
+  const fetchReports = useCallback(
+    async (options = { showLoading: true }) => {
+      if (!isAdmin) return;
 
-    const fetchReports = async () => {
       try {
-        setLoading(true);
+        if (options.showLoading) {
+          setLoading(true);
+        }
         const params = filter !== 'all' ? { status: filter } : {};
         const res = await adminListReports(params);
         setReports(res.data || []);
@@ -56,12 +58,17 @@ export default function AdminReportsPage() {
         console.error('Error fetching reports:', err);
         setError('Failed to load reports');
       } finally {
-        setLoading(false);
+        if (options.showLoading) {
+          setLoading(false);
+        }
       }
-    };
+    },
+    [isAdmin, filter]
+  );
 
+  useEffect(() => {
     fetchReports();
-  }, [isAdmin, filter]);
+  }, [fetchReports]);
 
   if (!isAdmin) {
     return (
@@ -86,6 +93,7 @@ export default function AdminReportsPage() {
       setError('Failed to update report status');
     } finally {
       setUpdatingId(null);
+      fetchReports({ showLoading: false });
     }
   };
 
@@ -96,13 +104,13 @@ export default function AdminReportsPage() {
     }
 
     try {
-        const responseAt = new Date().toISOString();
-        const responseEntry = {
-          text: responseText.trim(),
-          at: responseAt,
-          by: currentUser.uid,
-          by_email: currentUser.email,
-        };
+      const responseAt = new Date().toISOString();
+      const responseEntry = {
+        text: responseText.trim(),
+        at: responseAt,
+        by: currentUser.uid,
+        by_email: currentUser.email,
+      };
       setUpdatingId(reportId);
       await adminRespondToReport(reportId, responseText.trim());
       setReports((prev) =>
@@ -113,8 +121,8 @@ export default function AdminReportsPage() {
                 status: 'in-progress',
                 last_response_at: responseAt,
                 last_response_by: currentUser.uid,
-                  last_response_text: responseText.trim(),
-                  response_history: [...(r.response_history || []), responseEntry],
+                last_response_text: responseText.trim(),
+                response_history: [...(r.response_history || []), responseEntry],
               }
             : r
         )
@@ -127,6 +135,7 @@ export default function AdminReportsPage() {
       setError('Failed to send response');
     } finally {
       setUpdatingId(null);
+      fetchReports({ showLoading: false });
     }
   };
 
@@ -142,6 +151,7 @@ export default function AdminReportsPage() {
       setError('Failed to assign report');
     } finally {
       setUpdatingId(null);
+      fetchReports({ showLoading: false });
     }
   };
 
@@ -157,6 +167,7 @@ export default function AdminReportsPage() {
       setError('Failed to unassign report');
     } finally {
       setUpdatingId(null);
+      fetchReports({ showLoading: false });
     }
   };
 
@@ -281,6 +292,14 @@ export default function AdminReportsPage() {
 
           <div className={styles.stats}>
             <span>{reports.length} report(s)</span>
+            <button
+              type="button"
+              className={styles.refreshButton}
+              onClick={() => fetchReports()}
+              disabled={loading}
+            >
+              {loading ? 'Refreshing...' : 'Refresh'}
+            </button>
           </div>
         </div>
 

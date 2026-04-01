@@ -2,16 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { getConversations } from '@/lib/api';
+import { getConversations, getMyReports } from '@/lib/api';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [unreadCount, setUnreadCount] = React.useState(0);
+  const [reportResponseCount, setReportResponseCount] = React.useState(0);
   const profileMenuRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -28,6 +30,15 @@ const Navbar = () => {
   React.useEffect(() => {
     setMenuOpen(false);
   }, [currentUser?.uid, currentUser?.role]);
+
+  React.useEffect(() => {
+    if (!currentUser || !pathname) return;
+    if (pathname === '/my-reports' && typeof window !== 'undefined') {
+      const key = `reports:lastSeen:${currentUser.uid}`;
+      localStorage.setItem(key, new Date().toISOString());
+      setReportResponseCount(0);
+    }
+  }, [pathname, currentUser]);
 
   React.useEffect(() => {
     let disposed = false;
@@ -80,6 +91,63 @@ const Navbar = () => {
     };
   }, [currentUser]);
 
+  React.useEffect(() => {
+    let disposed = false;
+
+    const getLastResponseTimestamp = (report) => {
+      const history = Array.isArray(report.response_history) ? report.response_history : [];
+      if (history.length > 0) {
+        return history.reduce((latest, entry) => {
+          const value = entry?.at ? new Date(entry.at).getTime() : 0;
+          return value > latest ? value : latest;
+        }, 0);
+      }
+
+      return report.last_response_at ? new Date(report.last_response_at).getTime() : 0;
+    };
+
+    const loadReportResponses = async () => {
+      if (!currentUser) {
+        setReportResponseCount(0);
+        return;
+      }
+
+      try {
+        const res = await getMyReports();
+        const reports = res.data || [];
+        const key = `reports:lastSeen:${currentUser.uid}`;
+        const lastSeenRaw = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
+        const lastSeen = lastSeenRaw ? new Date(lastSeenRaw).getTime() : 0;
+        const count = reports.reduce((sum, report) => {
+          const latestResponse = getLastResponseTimestamp(report);
+          return latestResponse > lastSeen ? sum + 1 : sum;
+        }, 0);
+
+        if (!disposed) {
+          setReportResponseCount(count);
+        }
+      } catch (err) {
+        if (!disposed) {
+          setReportResponseCount(0);
+        }
+      }
+    };
+
+    loadReportResponses();
+
+    if (!currentUser) {
+      return () => {
+        disposed = true;
+      };
+    }
+
+    const intervalId = setInterval(loadReportResponses, 30000);
+    return () => {
+      disposed = true;
+      clearInterval(intervalId);
+    };
+  }, [currentUser]);
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -127,6 +195,11 @@ const Navbar = () => {
                   onClick={() => setMenuOpen((prev) => !prev)}
                 >
                   Profile
+                  {reportResponseCount > 0 && (
+                    <span className={styles.reportBadge}>
+                      {reportResponseCount > 99 ? '99+' : reportResponseCount}
+                    </span>
+                  )}
                 </button>
                 {menuOpen && (
                   <div className={styles.profileMenu}>
