@@ -2,6 +2,12 @@
 
 A centralized web app for students to report lost items, post found items, and message each other for recovery.
 
+## Product Documentation
+
+- Product Requirements Document (PRD): `PRD.md`
+
+Reunite is the official product name used across the app and documentation.
+
 ## Current Tech Stack
 
 - Frontend: Next.js 14 + React
