@@ -142,6 +142,9 @@ const Navbar = () => {
                     <Link href="/my-posts" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
                       My Posts
                     </Link>
+                    <Link href="/my-reports" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
+                      My Reports
+                    </Link>
                     {currentUser.role === 'admin' && (
                       <>
                         <Link href="/admin" className={styles.profileMenuItem} onClick={() => setMenuOpen(false)}>
