@@ -58,7 +58,7 @@ export default function Home() {
               <li>Account Info shows your role and account status.</li>
               <li>Reset Password updates credentials for account security.</li>
               <li>Unblock List lets you reverse accidental blocks.</li>
-              <li>My Posts lets you edit your own posts (title, description, location, date, and image).</li>
+              <li>My Posts lets you edit your own posts by clicking a post card (title, description, location, date, and image).</li>
               <li>Images support JPG, PNG, WEBP up to 4MB.</li>
               <li>My Reports shows admin responses with a New Response badge per report.</li>
             </ul>
