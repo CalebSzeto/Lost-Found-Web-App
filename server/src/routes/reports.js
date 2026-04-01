@@ -170,8 +170,6 @@ router.post(
 
       res.json({
         delivery: 'reports-only',
-        message_id: null,
-        message_text: null,
         timestamp: responseAt,
       });
     } catch (error) {

@@ -6,13 +6,19 @@ import styles from './PostCard.module.css';
 import { resolveImageUrl } from '@/lib/image';
 
 const PostCard = ({ post, type }) => {
+  const [showImage, setShowImage] = React.useState(true);
+  const [copied, setCopied] = React.useState(false);
+  const imageSource = post?.image_url;
+
+  React.useEffect(() => {
+    setShowImage(true);
+  }, [imageSource]);
+
   if (!post) {
     return null;
   }
 
   const isLost = type === 'lost';
-  const [showImage, setShowImage] = React.useState(true);
-  const [copied, setCopied] = React.useState(false);
 
   const formatDate = (dateStr) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -48,10 +54,6 @@ const PostCard = ({ post, type }) => {
       console.error('Failed to copy post ID:', error);
     }
   };
-
-  React.useEffect(() => {
-    setShowImage(true);
-  }, [post?.image_url]);
 
   return (
     <Link href={href} className={styles.cardLink}>
