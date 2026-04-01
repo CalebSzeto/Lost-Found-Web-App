@@ -226,6 +226,7 @@ export default function FoundItemDetailPage() {
   }
 
   const imageUrl = resolveImageUrl(item.image_url);
+  const displayTitle = (item.title || '').trim() || 'Found item';
   const postId = item.found_item_id;
 
   const handleCopyId = async () => {
@@ -256,7 +257,7 @@ export default function FoundItemDetailPage() {
         <div className={styles.detailCard}>
           {imageUrl && showImage && (
             <div className={styles.detailImage}>
-              <img src={imageUrl} alt={item.title} onError={() => setShowImage(false)} />
+              <img src={imageUrl} alt={displayTitle} onError={() => setShowImage(false)} />
             </div>
           )}
 
@@ -369,7 +370,7 @@ export default function FoundItemDetailPage() {
               </div>
             ) : (
               <>
-                <h1>{item.title}</h1>
+                <h1>{displayTitle}</h1>
 
             <div className={styles.meta}>
               <span>📍 {item.location}</span>

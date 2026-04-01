@@ -85,11 +85,13 @@ router.post('/', authenticate, requireActiveUser, handleImageUpload, async (req,
     const normalizedDateFound = date_found || new Date().toISOString().split('T')[0];
 
     const found_item_id = uuidv4();
+    const normalizedTitle = typeof title === 'string' && title.trim() ? title.trim() : 'Found item';
+
     const foundItem = {
       found_item_id,
       user_id: req.user.uid,
       user_email: req.user.email,
-      title: title || 'Found item',
+      title: normalizedTitle,
       description,
       location,
       date_found: normalizedDateFound,
@@ -195,7 +197,7 @@ router.put('/:id', authenticate, requireActiveUser, maybeHandleImageUpload, asyn
 
     const { status, title, description, location, date_found, dropoff_time, remove_image } = req.body;
 
-    if (typeof title === 'string') item.title = title.trim();
+    if (typeof title === 'string') item.title = title.trim() || 'Found item';
     if (typeof description === 'string') item.description = description.trim();
     if (typeof location === 'string') item.location = location.trim();
     if (typeof date_found === 'string') item.date_found = date_found;

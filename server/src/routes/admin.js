@@ -488,6 +488,10 @@ router.patch('/posts/found/:id', maybeHandleImageUpload, async (req, res) => {
             }
           });
 
+          if (typeof item.title === 'string') {
+            item.title = item.title.trim() || 'Found item';
+          }
+
           if (req.body.remove_image === 'true') {
             item.image_url = null;
           }
