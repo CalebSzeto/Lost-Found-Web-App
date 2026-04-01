@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { getMyReports } from '@/lib/api';
@@ -81,6 +81,30 @@ export default function MyReportsPage() {
     [...reports].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)),
   [reports]);
 
+  const loadReports = useCallback(async (showLoading = true) => {
+    if (!currentUser) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      if (showLoading) setLoading(true);
+      setError('');
+      const res = await getMyReports();
+      const nextReports = res.data || [];
+      setReports(nextReports);
+      const validIds = new Set(
+        nextReports.map((report) => report._id || report.report_id).filter(Boolean)
+      );
+      setExpandedIds((prev) => prev.filter((id) => validIds.has(id)));
+    } catch (err) {
+      console.error('Failed to load reports:', err);
+      setError('Failed to load reports');
+    } finally {
+      if (showLoading) setLoading(false);
+    }
+  }, [currentUser]);
+
   useEffect(() => {
     if (!currentUser) {
       setLastSeenMapState({});
@@ -90,32 +114,33 @@ export default function MyReportsPage() {
   }, [currentUser]);
 
   useEffect(() => {
-    if (!currentUser) {
-      setLoading(false);
-      return;
-    }
+    loadReports(true);
+  }, [loadReports]);
 
-    const loadReports = async () => {
-      try {
-        setLoading(true);
-        setError('');
-        const res = await getMyReports();
-          const nextReports = res.data || [];
-          setReports(nextReports);
-          const validIds = new Set(
-            nextReports.map((report) => report._id || report.report_id).filter(Boolean)
-          );
-          setExpandedIds((prev) => prev.filter((id) => validIds.has(id)));
-      } catch (err) {
-        console.error('Failed to load reports:', err);
-        setError('Failed to load reports');
-      } finally {
-        setLoading(false);
-      }
+  useEffect(() => {
+    if (!currentUser) return;
+
+    const intervalId = setInterval(() => {
+      loadReports(false);
+    }, 4000);
+
+    const handleFocus = () => {
+      loadReports(false);
     };
 
-    loadReports();
-  }, [currentUser]);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('focus', handleFocus);
+      window.addEventListener('visibilitychange', handleFocus);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('focus', handleFocus);
+        window.removeEventListener('visibilitychange', handleFocus);
+      }
+    };
+  }, [currentUser, loadReports]);
 
   const toggleReport = (reportId) => {
     setExpandedIds((prev) => {

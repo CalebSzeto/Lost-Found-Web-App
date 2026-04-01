@@ -72,7 +72,7 @@ const Navbar = () => {
       };
     }
 
-    const intervalId = setInterval(loadUnreadCount, 30000);
+    const intervalId = setInterval(loadUnreadCount, 5000);
     return () => {
       disposed = true;
       clearInterval(intervalId);
@@ -147,7 +147,7 @@ const Navbar = () => {
       };
     }
 
-    const intervalId = setInterval(loadReportResponses, 30000);
+    const intervalId = setInterval(loadReportResponses, 5000);
     return () => {
       disposed = true;
       clearInterval(intervalId);
