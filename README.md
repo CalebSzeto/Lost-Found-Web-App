@@ -283,5 +283,5 @@ For deployment, set production values for:
 - `PUBLIC_BASE_URL`
 - `NEXT_PUBLIC_API_URL`
 
-Also configure secure CORS, HTTPS, and a persistent file storage strategy if you do not want local disk uploads in production.
+Also configure secure CORS, HTTPS, and a persistent file storage strategy if you do not want local disk uploads in production..
 
