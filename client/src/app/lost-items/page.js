@@ -37,7 +37,7 @@ export default function LostItemsPage() {
   return (
     <div className="pageContainer">
       <div className="pageHeader">
-        <h1>🔴 Lost Items</h1>
+        <h1>Lost Items</h1>
         <p>Browse items that have been reported as lost on campus.</p>
       </div>
 
@@ -58,7 +58,7 @@ export default function LostItemsPage() {
         </div>
       ) : items.length === 0 ? (
         <div className="emptyState">
-          <span className="emptyIcon">📋</span>
+          <span className="emptyIcon">No Results</span>
           <h3>No lost items found</h3>
           <p>No items match your search criteria, or no items have been reported yet.</p>
         </div>

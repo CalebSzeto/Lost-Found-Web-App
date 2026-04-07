@@ -76,17 +76,17 @@ const PostCard = ({ post, type }) => {
         <div className={styles.content}>
           <div className={styles.badgeRow}>
             <span className={`${styles.badge} ${isLost ? styles.badgeLost : styles.badgeFound}`}>
-              {isLost ? '🔴 Lost' : '🟢 Found'}
+              {isLost ? 'Lost' : 'Found'}
             </span>
             <span className={styles.date}>Posted: {formatDate(post.created_at)}</span>
           </div>
 
           <div className={styles.metaRow}>
-            <span>📍 {post.location}</span>
+            <span>Location: {post.location}</span>
             <span className={styles.dateInline}>
               {isLost
-                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
-                : `📅 Found: ${post.date_found ? formatDate(post.date_found) : 'Unknown'}`}
+                ? `Date lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
+                : `Date found: ${post.date_found ? formatDate(post.date_found) : 'Unknown'}`}
             </span>
           </div>
 
@@ -111,7 +111,7 @@ const PostCard = ({ post, type }) => {
 
           <div className={styles.meta}>
             {!isLost && post.dropoff_time && (
-              <span>🕐 Drop-off: {post.dropoff_time}</span>
+              <span>Drop-off: {post.dropoff_time}</span>
             )}
           </div>
         </div>
