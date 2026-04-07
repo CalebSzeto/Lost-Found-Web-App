@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <AuthProvider>
-          <div className="appShell">
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <Navbar />
-            <main className="appMain">
+            <main style={{ flex: 1 }}>
               {children}
             </main>
             <Footer />

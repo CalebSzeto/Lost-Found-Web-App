@@ -36,69 +36,65 @@ export default function Home() {
         </div>
       )}
 
-      <section className={styles.heroSection}>
-        <p className={styles.kicker}>Campus Lost and Found</p>
-        <div className={styles.heroHeader}>
-          <h1>Find belongings faster with one trusted hub.</h1>
-          <p className={styles.heroLead}>
-            Reunite gives students one clear workflow to report lost items, return found items, and
-            message safely without relying on scattered group chats.
+      <section className={styles.introSection}>
+        <div className={styles.introHeader}>
+          <h1>Welcome to Reunite</h1>
+          <p className={styles.introLead}>
+            This website helps students recover lost items, return found belongings, and communicate
+            safely. Below is a complete guide to the key features so new users can understand exactly
+            what to do from their first visit.
           </p>
         </div>
 
-        <div className={styles.heroActions}>
-          <Link href="/lost-items" className={`${styles.heroButton} ${styles.heroPrimary}`}>
-            Browse Lost Items
-          </Link>
-          <Link href="/found-items" className={`${styles.heroButton} ${styles.heroSecondary}`}>
-            Browse Found Items
-          </Link>
-        </div>
-
-        <div className={styles.guideGrid}>
-          <article className={styles.guideCard}>
-            <h2>Browse and post</h2>
+        <div className={styles.infoGrid}>
+          <article className={styles.infoCard}>
+            <h2>1) Browsing and Posting</h2>
             <ul>
-              <li>Use lost and found listings to quickly check active reports.</li>
-              <li>Filter by keyword and location to narrow results.</li>
-              <li>Create a detailed report with title, date, location, and image.</li>
+              <li>Browse Lost Items and Found Items pages to check current reports.</li>
+              <li>Use the filters (keyword, location, date, sort) to narrow results.</li>
+              <li>Click Search to apply keyword or location filters, and Clear to reset filters.</li>
+              <li>Report Lost and Report Found pages let you publish a new post with details and images.</li>
+              <li>Include title, location, date, and unique identifiers to improve match quality.</li>
             </ul>
           </article>
 
-          <article className={styles.guideCard}>
-            <h2>Message with confidence</h2>
+          <article className={styles.infoCard}>
+            <h2>2) How to Message Post Owners</h2>
             <ol>
-              <li>Open an item detail page and start a conversation.</li>
-              <li>Share match details privately to confirm ownership.</li>
-              <li>Track unread replies from the messages badge.</li>
+              <li>Open the post details page for the item you think is relevant.</li>
+              <li>Use the message action on that post to start a conversation.</li>
+              <li>Explain why you believe it is a match and share verification details.</li>
+              <li>Check the Messages page and navbar unread badge for replies.</li>
             </ol>
           </article>
 
-          <article className={styles.guideCard}>
-            <h2>Report safety issues</h2>
+          <article className={styles.infoCard}>
+            <h2>3) Report to Admin</h2>
             <ul>
-              <li>Submit abuse, spam, or suspicious behavior directly to admins.</li>
-              <li>Copy the post ID from a listing card and attach it to your report.</li>
-              <li>Review responses from admins in My Reports.</li>
+              <li>If you see abuse, spam, or suspicious activity, report it to admin immediately.</li>
+              <li>Reports require a Related Post ID. Click Copy ID on the post card, then paste it into the report.</li>
+              <li>Include a short reason in the description so admins can act quickly.</li>
+              <li>Admins can moderate accounts, posts, and messages from the Admin Dashboard.</li>
+              <li>For urgent issues, report first and avoid direct confrontation in chat.</li>
             </ul>
           </article>
 
-          <article className={styles.guideCard}>
-            <h2>Manage your account</h2>
+          <article className={styles.infoCard}>
+            <h2>4) Profile and Tools</h2>
             <ul>
-              <li>Review account status and update your password.</li>
-              <li>Edit your own posts from the My Posts section.</li>
-              <li>Unblock users and track report responses from profile tools.</li>
+              <li>Account Info shows your role and account status.</li>
+              <li>Reset Password updates credentials for account security.</li>
+              <li>Unblock List lets you reverse accidental blocks.</li>
+              <li>My Posts lets you edit your own posts by clicking a post card (title, description, location, date, and image).</li>
+              <li>Images support JPG, PNG, WEBP up to 4MB.</li>
+              <li>My Reports shows admin responses to your report issue.</li>
             </ul>
           </article>
         </div>
       </section>
 
       <section className={styles.quickActions}>
-        <div className={styles.quickHeader}>
-          <h2>Quick actions</h2>
-          <p>Start with the most common tasks below.</p>
-        </div>
+        <h2>Quick Actions</h2>
         <div className={styles.actionGrid}>
           <Link href="/lost-items" className={styles.actionCard}>
             <h3>Browse Lost Items</h3>

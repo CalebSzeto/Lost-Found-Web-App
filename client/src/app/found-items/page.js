@@ -40,7 +40,7 @@ export default function FoundItemsPage() {
   return (
     <div className="pageContainer">
       <div className="pageHeader">
-        <h1>Found Items</h1>
+        <h1>🟢 Found Items</h1>
         <p>Browse items that have been found. If one of these is yours, message the finder!</p>
       </div>
 
@@ -61,7 +61,6 @@ export default function FoundItemsPage() {
         <div className="errorMessage">{error}</div>
       ) : items.length === 0 ? (
         <div className="emptyState">
-          <span className="emptyIcon">No Results</span>
           <h3>No found items posted yet</h3>
           <p>Check back later or report an item you&apos;ve found.</p>
         </div>
