@@ -22,7 +22,7 @@ const featurePages = [
     label: '01',
     title: 'Browsing and Posting',
     body:
-      'Helping students recover lost items, and return found belongings.',
+      'Find and share items easily without making the process complicated.',
     bullets: [
       'Browse Lost Items and Found Items pages to check current reports.',
       'Use the filters (keyword, location, date, sort) to narrow results.',
@@ -40,11 +40,11 @@ const featurePages = [
     body:
       'Connect with the right person without making the experience feel heavy or technical.',
     bullets: [
-      'Open the post details page for the item you think is relevant.',
-      'Use the message action on that post to start a conversation.',
-      'Explain why you believe it is a match and share verification details.',
-      'Check the Messages page and navbar unread badge for replies.',
-    ],
+        'Open the post details page for the item you think is relevant.',
+        'Use the message action on that post to start a conversation.',
+        'Explain why you believe it is a match and share verification details.',
+        'Check the Messages page and navbar unread badge for replies.',
+      ],
     ctaLabel: 'Open Messages',
     ctaHref: '/messages',
     mediaTone: 'chat',
@@ -117,6 +117,9 @@ export default function Home() {
         <div className={styles.sectionInner}>
           <div className={styles.heroCopy}>
             <h1>Reconnecting people with their belongings</h1>
+            <p>
+              Helping students recover lost items, return found belongings, and communicate safely.
+            </p>
             <div className={styles.heroActions}>
               <Link href="/lost-items" className={styles.primaryAction}>
                 Start Searching
