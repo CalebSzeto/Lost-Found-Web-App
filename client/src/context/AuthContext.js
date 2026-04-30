@@ -47,7 +47,14 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const restoreSession = async () => {
       try {
-        const res = await getCurrentUser();
+        const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : null;
+        if (!token) {
+          setCurrentUser(null);
+          setLoading(false);
+          return;
+        }
+
+        const res = await getCurrentUser({ _suppressAuthNotice: true });
         const user = res.data;
         setCurrentUser({
           uid: user.user_id,

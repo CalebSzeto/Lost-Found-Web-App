@@ -26,8 +26,9 @@ api.interceptors.response.use(
       const status = error?.response?.status;
       const errorMessage = String(error?.response?.data?.error || '').toLowerCase();
       const hadToken = Boolean(localStorage.getItem(AUTH_TOKEN_KEY));
+      const suppressAuthNotice = Boolean(error?.config?._suppressAuthNotice);
 
-      if (status === 401 && hadToken && !window.__reuniteAuthRedirecting) {
+      if (status === 401 && hadToken && !suppressAuthNotice && !window.__reuniteAuthRedirecting) {
         window.__reuniteAuthRedirecting = true;
         localStorage.removeItem(AUTH_TOKEN_KEY);
         const noticeMessage = errorMessage.includes('user not found')
@@ -67,8 +68,8 @@ export const registerUser = (email, password, displayName) =>
 export const loginUser = (email, password) =>
   api.post('/auth/login', { email, password });
 
-export const getCurrentUser = () =>
-  api.get('/auth/me');
+export const getCurrentUser = (config = {}) =>
+  api.get('/auth/me', config);
 
 export const changePassword = (currentPassword, newPassword) =>
   api.post('/auth/change-password', { currentPassword, newPassword });
