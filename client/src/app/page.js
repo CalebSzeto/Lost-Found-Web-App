@@ -22,7 +22,7 @@ const featurePages = [
     label: '01',
     title: 'Browsing and Posting',
     body:
-      'This website helps students recover lost items, return found belongings, and communicate safely. Below is a complete guide to the key features so new users can understand exactly what to do from their first visit.',
+      'Helping students recover lost items, return found belongings, and communicate safely. Below is a complete guide to the key features so new users can understand exactly what to do from their first visit.',
     bullets: [
       'Browse Lost Items and Found Items pages to check current reports.',
       'Use the filters (keyword, location, date, sort) to narrow results.',
