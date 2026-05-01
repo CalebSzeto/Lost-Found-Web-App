@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { createReport } from '@/lib/api';
+import { FaCheckCircle } from 'react-icons/fa';
 import styles from './report.module.css';
 
 export default function ReportIssuePage() {
@@ -88,7 +89,8 @@ export default function ReportIssuePage() {
           {error && <div className={styles.errorMessage}>{error}</div>}
           {success && (
             <div className={styles.successMessage}>
-              ✓ Report submitted successfully! Track updates in My Reports.
+              <FaCheckCircle aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+              Report submitted successfully! Track updates in My Reports.
             </div>
           )}
 

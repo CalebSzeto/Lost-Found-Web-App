@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import PostCard from '@/components/PostCard';
 import { getLostItems, getFoundItems } from '@/lib/api';
+import { FaCircle, FaListAlt } from 'react-icons/fa';
 import styles from './myposts.module.css';
 
 export default function MyPostsPage() {
@@ -59,7 +60,10 @@ export default function MyPostsPage() {
       </div>
 
       <div className="pageHeader">
-        <h1>📋 My Posts</h1>
+        <h1>
+          <FaListAlt aria-hidden="true" style={{ marginRight: '0.5rem', verticalAlign: '-0.1em' }} />
+          My Posts
+        </h1>
         <p>Manage your lost and found item reports.</p>
       </div>
 
@@ -68,13 +72,15 @@ export default function MyPostsPage() {
           className={`${styles.tab} ${activeTab === 'lost' ? styles.tabActive : ''}`}
           onClick={() => setActiveTab('lost')}
         >
-          🔴 Lost Items ({lostItems.length})
+          <FaCircle aria-hidden="true" style={{ color: '#dc2626', marginRight: '0.5rem' }} />
+          Lost Items ({lostItems.length})
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'found' ? styles.tabActive : ''}`}
           onClick={() => setActiveTab('found')}
         >
-          🟢 Found Items ({foundItems.length})
+          <FaCircle aria-hidden="true" style={{ color: '#16a34a', marginRight: '0.5rem' }} />
+          Found Items ({foundItems.length})
         </button>
       </div>
 

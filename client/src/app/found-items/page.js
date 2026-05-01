@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from '@/components/SearchBar';
 import PostCard from '@/components/PostCard';
 import { getFoundItems } from '@/lib/api';
+import { FaCircle } from 'react-icons/fa';
 
 const foundSortOptions = [
   { value: 'most_recent', label: 'Most Recent (Posted)' },
@@ -40,7 +41,10 @@ export default function FoundItemsPage() {
   return (
     <div className="pageContainer">
       <div className="pageHeader">
-        <h1>🟢 Found Items</h1>
+        <h1>
+          <FaCircle aria-hidden="true" style={{ color: '#16a34a', marginRight: '0.5rem', verticalAlign: '-0.1em' }} />
+          Found Items
+        </h1>
         <p>Browse items that have been found. If one of these is yours, message the finder!</p>
       </div>
 

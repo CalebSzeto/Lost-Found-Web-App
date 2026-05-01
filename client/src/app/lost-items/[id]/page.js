@@ -10,6 +10,17 @@ import {
   updateLostItem,
   adminModerateLostPost,
 } from '@/lib/api';
+import {
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaCircle,
+  FaClock,
+  FaCommentDots,
+  FaEdit,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaTrashAlt,
+} from 'react-icons/fa';
 import { resolveImageUrl } from '@/lib/image';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
@@ -259,7 +270,10 @@ export default function LostItemDetailPage() {
           <div className={styles.detailContent}>
             <div className={styles.badgeRow}>
               <div className={styles.badgeGroup}>
-                <span className={styles.badgeLost}>🔴 Lost Item</span>
+                <span className={styles.badgeLost}>
+                  <FaCircle aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Lost Item
+                </span>
                 <span className={`${styles.statusBadge} ${styles[`status_${item.status}`]}`}>
                   {item.status}
                 </span>
@@ -359,10 +373,22 @@ export default function LostItemDetailPage() {
                 <h1>{item.title}</h1>
 
             <div className={styles.meta}>
-              <span>📍 {item.location}</span>
-              <span>📅 Lost: {new Date(item.date_lost).toLocaleDateString()}</span>
-              <span>🕐 Posted: {new Date(item.created_at).toLocaleDateString()}</span>
-              <span>📧 Posted by: {item.user_email}</span>
+              <span>
+                <FaMapMarkerAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                {item.location}
+              </span>
+              <span>
+                <FaCalendarAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Lost: {new Date(item.date_lost).toLocaleDateString()}
+              </span>
+              <span>
+                <FaClock aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Posted: {new Date(item.created_at).toLocaleDateString()}
+              </span>
+              <span>
+                <FaEnvelope aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Posted by: {item.user_email}
+              </span>
             </div>
 
                 <div className={styles.description}>
@@ -378,21 +404,25 @@ export default function LostItemDetailPage() {
                   href={`/messages?to=${item.user_id}&post=${item.lost_item_id}`}
                   className="btn btnPrimary"
                 >
-                  💬 Message Owner
+                  <FaCommentDots aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Message Owner
                 </Link>
               )}
               {(isOwner || canAdminModerate) && item.status === 'active' && (
                 <>
                   {!isEditing && (
                     <button type="button" onClick={() => setIsEditing(true)} className="btn">
-                      ✏️ Edit Post
+                      <FaEdit aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                      Edit Post
                     </button>
                   )}
                   <button onClick={handleResolve} className="btn btnSuccess">
-                    ✅ Mark as Resolved
+                    <FaCheckCircle aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                    Mark as Resolved
                   </button>
                   <button onClick={handleDelete} className="btn btnDanger">
-                    🗑️ Delete Post
+                    <FaTrashAlt aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                    Delete Post
                   </button>
                 </>
               )}

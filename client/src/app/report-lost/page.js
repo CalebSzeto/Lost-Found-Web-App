@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { createLostItem } from '@/lib/api';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
+import { FaCircle, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -129,7 +130,10 @@ export default function ReportLostPage() {
     <div className="pageContainer">
       <div className={styles.reportPage}>
         <div className={styles.reportHeader}>
-          <h1>🔴 Report a Lost Item</h1>
+          <h1>
+            <FaCircle aria-hidden="true" style={{ color: '#dc2626', marginRight: '0.5rem', verticalAlign: '-0.1em' }} />
+            Report a Lost Item
+          </h1>
           <p>Provide as much detail as possible to help others identify your item.</p>
         </div>
 
@@ -212,14 +216,20 @@ export default function ReportLostPage() {
                   onClick={() => { setImage(null); setImagePreview(null); }}
                   className={styles.removeImage}
                 >
-                  ✕ Remove
+                  <FaTimes aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Remove
                 </button>
               </div>
             )}
           </div>
 
           <button type="submit" className="btn btnDanger" disabled={loading}>
-            {loading ? 'Submitting...' : '📤 Submit Lost Item Report'}
+            {loading ? 'Submitting...' : (
+              <>
+                <FaPaperPlane aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                Submit Lost Item Report
+              </>
+            )}
           </button>
         </form>
       </div>

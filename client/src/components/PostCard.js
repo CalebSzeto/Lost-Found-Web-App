@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './PostCard.module.css';
 import { resolveImageUrl } from '@/lib/image';
+import { FaCalendarAlt, FaCircle, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 
 const PostCard = ({ post, type }) => {
   const [showImage, setShowImage] = React.useState(true);
@@ -76,17 +77,22 @@ const PostCard = ({ post, type }) => {
         <div className={styles.content}>
           <div className={styles.badgeRow}>
             <span className={`${styles.badge} ${isLost ? styles.badgeLost : styles.badgeFound}`}>
-              {isLost ? '🔴 Lost' : '🟢 Found'}
+              <FaCircle aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+              {isLost ? 'Lost' : 'Found'}
             </span>
             <span className={styles.date}>Posted: {formatDate(post.created_at)}</span>
           </div>
 
           <div className={styles.metaRow}>
-            <span>📍 {post.location}</span>
+            <span>
+              <FaMapMarkerAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+              {post.location}
+            </span>
             <span className={styles.dateInline}>
+              <FaCalendarAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
               {isLost
-                ? `📅 Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
-                : `📅 Found: ${post.date_found ? formatDate(post.date_found) : 'Unknown'}`}
+                ? `Lost: ${post.date_lost ? formatDate(post.date_lost) : 'Unknown'}`
+                : `Found: ${post.date_found ? formatDate(post.date_found) : 'Unknown'}`}
             </span>
           </div>
 
@@ -111,7 +117,10 @@ const PostCard = ({ post, type }) => {
 
           <div className={styles.meta}>
             {!isLost && post.dropoff_time && (
-              <span>🕐 Drop-off: {post.dropoff_time}</span>
+              <span>
+                <FaClock aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Drop-off: {post.dropoff_time}
+              </span>
             )}
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { createFoundItem } from '@/lib/api';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
+import { FaCircle, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import styles from './report.module.css';
 
 const MAX_IMAGE_SIZE_BYTES = 4 * 1024 * 1024;
@@ -129,7 +130,10 @@ export default function ReportFoundPage() {
     <div className="pageContainer">
       <div className={styles.reportPage}>
         <div className={styles.reportHeader}>
-          <h1>🟢 Report a Found Item</h1>
+          <h1>
+            <FaCircle aria-hidden="true" style={{ color: '#16a34a', marginRight: '0.5rem', verticalAlign: '-0.1em' }} />
+            Report a Found Item
+          </h1>
           <p>Help reunite this item with its owner by providing details.</p>
         </div>
 
@@ -212,14 +216,20 @@ export default function ReportFoundPage() {
                   onClick={() => { setImage(null); setImagePreview(null); }}
                   className={styles.removeImage}
                 >
-                  ✕ Remove
+                  <FaTimes aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Remove
                 </button>
               </div>
             )}
           </div>
 
           <button type="submit" className="btn btnSuccess" disabled={loading}>
-            {loading ? 'Submitting...' : '📤 Submit Found Item Report'}
+            {loading ? 'Submitting...' : (
+              <>
+                <FaPaperPlane aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                Submit Found Item Report
+              </>
+            )}
           </button>
         </form>
       </div>

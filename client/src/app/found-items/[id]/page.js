@@ -10,6 +10,17 @@ import {
   updateFoundItem,
   adminModerateFoundPost,
 } from '@/lib/api';
+import {
+  FaCalendarAlt,
+  FaCheckCircle,
+  FaCircle,
+  FaClock,
+  FaCommentDots,
+  FaEdit,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaTrashAlt,
+} from 'react-icons/fa';
 import { resolveImageUrl } from '@/lib/image';
 import { normalizeImageFile, prepareImageForUpload } from '@/lib/imageOptimization';
 import styles from './detail.module.css';
@@ -264,7 +275,10 @@ export default function FoundItemDetailPage() {
           <div className={styles.detailContent}>
             <div className={styles.badgeRow}>
               <div className={styles.badgeGroup}>
-                <span className={styles.badgeFound}>🟢 Found Item</span>
+                <span className={styles.badgeFound}>
+                  <FaCircle aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Found Item
+                </span>
                 <span className={`${styles.statusBadge} ${styles[`status_${item.status}`]}`}>
                   {item.status}
                 </span>
@@ -373,10 +387,22 @@ export default function FoundItemDetailPage() {
                 <h1>{displayTitle}</h1>
 
             <div className={styles.meta}>
-              <span>📍 {item.location}</span>
-              <span>📅 Found: {new Date(item.date_found).toLocaleDateString()}</span>
-              <span>🕐 Posted: {new Date(item.created_at).toLocaleDateString()}</span>
-              <span>📧 Posted by: {item.user_email}</span>
+              <span>
+                <FaMapMarkerAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                {item.location}
+              </span>
+              <span>
+                <FaCalendarAlt aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Found: {new Date(item.date_found).toLocaleDateString()}
+              </span>
+              <span>
+                <FaClock aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Posted: {new Date(item.created_at).toLocaleDateString()}
+              </span>
+              <span>
+                <FaEnvelope aria-hidden="true" style={{ marginRight: '0.35rem' }} />
+                Posted by: {item.user_email}
+              </span>
             </div>
 
                 <div className={styles.description}>
@@ -392,21 +418,25 @@ export default function FoundItemDetailPage() {
                   href={`/messages?to=${item.user_id}&post=${item.found_item_id}`}
                   className="btn btnPrimary"
                 >
-                  💬 Message Finder
+                  <FaCommentDots aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                  Message Finder
                 </Link>
               )}
               {(isOwner || canAdminModerate) && item.status === 'active' && (
                 <>
                   {!isEditing && (
                     <button type="button" onClick={() => setIsEditing(true)} className="btn">
-                      ✏️ Edit Post
+                      <FaEdit aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                      Edit Post
                     </button>
                   )}
                   <button onClick={handleResolve} className="btn btnSuccess">
-                    ✅ Mark as Returned
+                    <FaCheckCircle aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                    Mark as Returned
                   </button>
                   <button onClick={handleDelete} className="btn btnDanger">
-                    🗑️ Delete Post
+                    <FaTrashAlt aria-hidden="true" style={{ marginRight: '0.4rem' }} />
+                    Delete Post
                   </button>
                 </>
               )}
