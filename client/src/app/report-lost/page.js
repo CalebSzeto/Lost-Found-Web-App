@@ -18,6 +18,9 @@ function getSubmitErrorMessage(err) {
   if (status === 401) {
     return 'Your session expired. Please log in again.';
   }
+  if (status === 403) {
+    return serverError || 'You do not have permission to create this post.';
+  }
   if (status === 413) {
     return 'Image is too large even after optimization. Try a smaller image.';
   }
@@ -86,7 +89,7 @@ export default function ReportLostPage() {
         reader.onloadend = () => setImagePreview(reader.result);
         reader.readAsDataURL(normalized);
       } catch (err) {
-        setImageError('Unsupported image type. Use JPG, PNG, or WEBP.');
+        setImageError('Unsupported image type. Use JPG, PNG, WEBP, HEIC, or HEIF.');
         setError('');
       }
     }
@@ -196,7 +199,7 @@ export default function ReportLostPage() {
           <div className="formGroup">
             <label htmlFor="image">Upload Image (optional)</label>
             <p className={styles.uploadHint}>
-              Supported types: JPG, PNG, WEBP. Maximum file size: {MAX_IMAGE_SIZE_MB}MB
+              Supported types: JPG, PNG, WEBP, HEIC, HEIF. Maximum file size: {MAX_IMAGE_SIZE_MB}MB
             </p>
             <input
               type="file"

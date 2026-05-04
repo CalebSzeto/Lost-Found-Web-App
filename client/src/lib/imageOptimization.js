@@ -7,6 +7,8 @@ const SUPPORTED_TYPES = new Set([
   'image/jpg',
   'image/png',
   'image/webp',
+  'image/heic',
+  'image/heif',
 ]);
 
 function getFileExtension(name) {
@@ -19,7 +21,7 @@ export function isSupportedImageFile(file) {
   const type = file?.type?.toLowerCase();
   if (type && SUPPORTED_TYPES.has(type)) return true;
   const ext = getFileExtension(file?.name || '');
-  return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
+  return ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif'].includes(ext);
 }
 
 function loadImageFromFile(file) {

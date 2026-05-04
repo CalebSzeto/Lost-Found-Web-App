@@ -147,8 +147,8 @@ export default function FoundItemDetailPage() {
       reader.onloadend = () => setEditPreview(reader.result);
       reader.readAsDataURL(normalized);
     } catch (err) {
-      setEditImageError('Unsupported image type. Use JPG, PNG, or WEBP.');
-      setError('Unsupported image type. Use JPG, PNG, or WEBP.');
+      setEditImageError('Unsupported image type. Use JPG, PNG, WEBP, HEIC, or HEIF.');
+      setError('Unsupported image type. Use JPG, PNG, WEBP, HEIC, or HEIF.');
     }
   };
 

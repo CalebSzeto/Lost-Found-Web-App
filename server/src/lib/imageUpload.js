@@ -11,6 +11,8 @@ function getExtension(file) {
 
   if (file.mimetype === 'image/png') return '.png';
   if (file.mimetype === 'image/webp') return '.webp';
+  if (file.mimetype === 'image/heic') return '.heic';
+  if (file.mimetype === 'image/heif') return '.heif';
   if (file.mimetype === 'image/gif') return '.gif';
   return '.jpg';
 }
