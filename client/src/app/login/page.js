@@ -23,7 +23,25 @@ export default function LoginPage() {
       await login(email, password);
       router.push('/');
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to sign in. Please try again.');
+      const status = err?.response?.status;
+      const serverError = err?.response?.data?.error;
+
+      if (!err?.response) {
+        setError('Cannot reach the sign-in server. Check the deployed API URL and try again.');
+        return;
+      }
+
+      if (status === 401) {
+        setError(serverError || 'Invalid email or password.');
+        return;
+      }
+
+      if (status === 403) {
+        setError(serverError || 'Your account is restricted. Contact an administrator.');
+        return;
+      }
+
+      setError(serverError || 'Failed to sign in. Please try again.');
     } finally {
       setLoading(false);
     }
