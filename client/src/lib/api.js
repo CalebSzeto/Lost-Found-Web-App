@@ -1,6 +1,23 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+function resolveApiUrl() {
+  const configuredUrl = process.env.NEXT_PUBLIC_API_URL;
+  const isDev = process.env.NODE_ENV === 'development';
+
+  if (configuredUrl) {
+    return configuredUrl;
+  }
+
+  if (isDev) {
+    return 'http://localhost:5000/api';
+  }
+
+  throw new Error(
+    'Missing NEXT_PUBLIC_API_URL in non-development environment. Set it in your deployment environment variables.'
+  );
+}
+
+const API_URL = resolveApiUrl();
 const AUTH_TOKEN_KEY = 'authToken';
 const AUTH_NOTICE_KEY = 'reunite.authNotice';
 const AUTH_NOTICE_EVENT = 'auth:logout-notice';
